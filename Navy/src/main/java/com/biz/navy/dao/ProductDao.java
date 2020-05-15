@@ -31,6 +31,6 @@ public interface ProductDao {
 	public SizeVO getCPcode(long c_p_code);
 	
 	@Select("SELECT * FROM tbl_p_images WHERE p_img_seq = #{p_img_seq}")
-	public ProductImagesVO getPImgSeq(long p_img_seq);
+	public List<ProductImagesVO> getPImgSeq(long p_img_seq);
 	
 }
