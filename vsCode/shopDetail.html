@@ -13,12 +13,13 @@
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
     />
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
     <!-- Popper JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
     <script src="main.js"></script>
   </head>
@@ -67,7 +68,7 @@
       <a href="main.html" class="red-text mr-5 h-title"><h2>NAVIYA</h2></a>
       <div class="d-flex">
         <a class="nav-link black-text" href="shopList.html">SHOP</a>
-        <a class="nav-link black-text">고객센터</a>
+        <a class="nav-link black-text" href="sponsor.html">고객센터</a>
       </div>
     </nav>
 
@@ -75,7 +76,7 @@
       <div class="hr-sect mb-5">DETAIL PAGE</div>
       <!--detail pages 정보 -->
       <div class="container">
-        <div class="row d-flex justify-content-center">
+        <div class="row">
           <img
             src="./img/dress1.jpg"
             style="width: 450px; height: 400px; margin-right: 70px;"
@@ -118,7 +119,6 @@
         </div>
       </div>
       <!-- end -->
-      <script></script>
 
       <div class="hr-sect mb-5">DETAIL INFO</div>
       <!-- 상세 정보 -->
@@ -152,22 +152,480 @@
             </div>
           </div>
         </div>
+
         <!-- review Q&A-->
-        <ul class="nav nav-tabs">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
           <li class="nav-item">
-            <a class="nav-link active" href="#">Active</a>
+            <a
+              class="nav-link active"
+              id="home-tab"
+              data-toggle="tab"
+              href="#home"
+              role="tab"
+              aria-controls="home"
+              aria-selected="true"
+              >유의사항</a
+            >
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
+            <a
+              class="nav-link"
+              id="profile-tab"
+              data-toggle="tab"
+              href="#profile"
+              role="tab"
+              aria-controls="profile"
+              aria-selected="false"
+              >REVIEW</a
+            >
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" href="#">Disabled</a>
+            <a
+              class="nav-link"
+              id="contact-tab"
+              data-toggle="tab"
+              href="#contact"
+              role="tab"
+              aria-controls="contact"
+              aria-selected="false"
+              >Q&A</a
+            >
           </li>
         </ul>
+        <!--tab 본문-->
+        <div class="tab-content" id="myTabContent">
+          <!--유의 사항-->
+          <div
+            class="tab-pane fade show active"
+            id="home"
+            role="tabpanel"
+            aria-labelledby="home-tab"
+          >
+            <img src="./img/shopguide.jpg" />
+          </div>
+
+          <!--review -->
+
+          <div
+            class="tab-pane fade"
+            id="profile"
+            role="tabpanel"
+            aria-labelledby="profile-tab"
+          >
+            <div class="d-flex justify-content-end">
+              <button class="bt-review-wr">리뷰작성</button>
+            </div>
+            <div
+              class="container-fluid"
+              style="border-bottom: 1px solid #8c8d90; margin: 40px;"
+            >
+              <span class="pro-star">상품</span>
+              <input
+                type="radio"
+                name="rating"
+                value="1"
+                id="star-1"
+                class="star__radio visuhide"
+              />
+              <input
+                type="radio"
+                name="rating"
+                value="2"
+                id="star-2"
+                class="star__radio visuhide"
+              />
+              <input
+                type="radio"
+                name="rating"
+                value="3"
+                id="star-3"
+                class="star__radio visuhide"
+              />
+              <input
+                type="radio"
+                name="rating"
+                value="4"
+                id="star-4"
+                class="star__radio visuhide"
+              />
+              <input
+                type="radio"
+                name="rating"
+                value="5"
+                id="star-5"
+                class="star__radio visuhide"
+              />
+
+              <label class="star__item" for="star-1"
+                ><span class="visuhide">1 star</span></label
+              >
+              <label class="star__item" for="star-2"
+                ><span class="visuhide">2 stars</span></label
+              >
+              <label class="star__item" for="star-3"
+                ><span class="visuhide">3 stars</span></label
+              >
+              <label class="star__item" for="star-4"
+                ><span class="visuhide">4 stars</span></label
+              >
+              <label class="star__item" for="star-5"
+                ><span class="visuhide">5 stars</span></label
+              >
+
+              <!--상품명-->
+              <span
+                class="row"
+                style="
+                  font-size: 20px;
+                  margin-top: 10px;
+                  color: #8c8d90;
+                  margin-bottom: 20px;
+                  margin-left: 30px;
+                "
+                >White pants</span
+              >
+              <div class="container">
+                <div
+                  class="row"
+                  style="margin-left: 30px; margin-bottom: 20px;"
+                >
+                  <div class="col-sm-4 d-flex justify-content-center">
+                    <img src="./img/dress1.jpg" style="width: 50%;" />
+                  </div>
+                  <div
+                    class="col-sm-8"
+                    style="
+                      vertical-align: middle;
+
+                      top: 30px;
+                    "
+                  >
+                    <span
+                      >Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                      Cras luctus nunc ut maximus consequat. Vestibulum et mi
+                      vulputate, convallis tortor quis, blandit mi. Suspendisse
+                      vulputate ligula turpis, id tincidunt ipsum vestibulum ac.
+                    </span>
+                  </div>
+                  <!--사용자 id 작성 날짜-->
+                  <div class="mt-5">
+                    <span>quss**</span>
+                    <span>&#124;</span>
+                    <span>2020-05-13</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--end-->
+            <div
+              class="container-fluid"
+              style="border-bottom: 1px solid #8c8d90; margin: 40px;"
+            >
+              <button class="bt-css">장바구니</button>
+              <span class="pro-star">상품</span>
+              <input
+                type="radio"
+                name="rating"
+                value="1"
+                id="star-1"
+                class="star__radio visuhide"
+              />
+              <input
+                type="radio"
+                name="rating"
+                value="2"
+                id="star-2"
+                class="star__radio visuhide"
+              />
+              <input
+                type="radio"
+                name="rating"
+                value="3"
+                id="star-3"
+                class="star__radio visuhide"
+              />
+              <input
+                type="radio"
+                name="rating"
+                value="4"
+                id="star-4"
+                class="star__radio visuhide"
+              />
+              <input
+                type="radio"
+                name="rating"
+                value="5"
+                id="star-5"
+                class="star__radio visuhide"
+              />
+
+              <label class="star__item" for="star-1"
+                ><span class="visuhide">1 star</span></label
+              >
+              <label class="star__item" for="star-2"
+                ><span class="visuhide">2 stars</span></label
+              >
+              <label class="star__item" for="star-3"
+                ><span class="visuhide">3 stars</span></label
+              >
+              <label class="star__item" for="star-4"
+                ><span class="visuhide">4 stars</span></label
+              >
+              <label class="star__item" for="star-5"
+                ><span class="visuhide">5 stars</span></label
+              >
+
+              <!--상품명-->
+              <span
+                class="row"
+                style="
+                  font-size: 20px;
+                  margin-top: 10px;
+                  color: #8c8d90;
+                  margin-bottom: 20px;
+                  margin-left: 30px;
+                "
+                >White pants</span
+              >
+              <div class="container">
+                <div
+                  class="row"
+                  style="margin-left: 30px; margin-bottom: 20px;"
+                >
+                  <div class="col-sm-4 d-flex justify-content-center">
+                    <img src="./img/dress1.jpg" style="width: 50%;" />
+                  </div>
+                  <div
+                    class="col-sm-8"
+                    style="
+                      vertical-align: middle;
+
+                      top: 30px;
+                    "
+                  >
+                    <span
+                      >Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                      Cras luctus nunc ut maximus consequat. Vestibulum et mi
+                      vulputate, convallis tortor quis, blandit mi. Suspendisse
+                      vulputate ligula turpis, id tincidunt ipsum vestibulum ac.
+                    </span>
+                  </div>
+                  <!--사용자 id 작성 날짜-->
+                  <div class="mt-5">
+                    <span>quss**</span>
+                    <span>&#124;</span>
+                    <span>2020-05-13</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--end-->
+            <div
+              class="container-fluid"
+              style="border-bottom: 1px solid #8c8d90; margin: 40px;"
+            >
+              <span class="pro-star">상품</span>
+              <input
+                type="radio"
+                name="rating"
+                value="1"
+                id="star-1"
+                class="star__radio visuhide"
+              />
+              <input
+                type="radio"
+                name="rating"
+                value="2"
+                id="star-2"
+                class="star__radio visuhide"
+              />
+              <input
+                type="radio"
+                name="rating"
+                value="3"
+                id="star-3"
+                class="star__radio visuhide"
+              />
+              <input
+                type="radio"
+                name="rating"
+                value="4"
+                id="star-4"
+                class="star__radio visuhide"
+              />
+              <input
+                type="radio"
+                name="rating"
+                value="5"
+                id="star-5"
+                class="star__radio visuhide"
+              />
+
+              <label class="star__item" for="star-1"
+                ><span class="visuhide">1 star</span></label
+              >
+              <label class="star__item" for="star-2"
+                ><span class="visuhide">2 stars</span></label
+              >
+              <label class="star__item" for="star-3"
+                ><span class="visuhide">3 stars</span></label
+              >
+              <label class="star__item" for="star-4"
+                ><span class="visuhide">4 stars</span></label
+              >
+              <label class="star__item" for="star-5"
+                ><span class="visuhide">5 stars</span></label
+              >
+
+              <!--상품명-->
+              <span
+                class="row"
+                style="
+                  font-size: 20px;
+                  margin-top: 10px;
+                  color: #8c8d90;
+                  margin-bottom: 20px;
+                  margin-left: 30px;
+                "
+                >White pants</span
+              >
+              <div class="container">
+                <div
+                  class="row"
+                  style="margin-left: 30px; margin-bottom: 20px;"
+                >
+                  <div class="col-sm-4 d-flex justify-content-center">
+                    <img src="./img/dress1.jpg" style="width: 50%;" />
+                  </div>
+                  <div
+                    class="col-sm-8"
+                    style="
+                      vertical-align: middle;
+
+                      top: 30px;
+                    "
+                  >
+                    <span
+                      >Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                      Cras luctus nunc ut maximus consequat. Vestibulum et mi
+                      vulputate, convallis tortor quis, blandit mi. Suspendisse
+                      vulputate ligula turpis, id tincidunt ipsum vestibulum ac.
+                    </span>
+                  </div>
+                  <!--사용자 id 작성 날짜-->
+                  <div class="mt-5">
+                    <span>quss**</span>
+                    <span>&#124;</span>
+                    <span>2020-05-13</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--end-->
+          </div>
+
+          <div
+            class="tab-pane fade"
+            id="contact"
+            role="tabpanel"
+            aria-labelledby="contact-tab"
+          >
+            <div class="d-flex justify-content-end">
+              <button class="bt-review-wr">질문하기</button>
+            </div>
+            <!--구매자 id-->
+            <div class="container">
+              <div
+                style="border-bottom: 1px solid #8c8d90;"
+                class="justify-content-center"
+              >
+                <div class="row mt-5" style="margin-bottom: 20px;">
+                  <span class="mr-2">qus**</span>
+                  <span style="color: #8c8d90;">&#124;</span>
+                  <span class="ml-2">2020-05-13</span>
+                </div>
+                <!--질문-->
+                <div>
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Cras luctus nunc ut maximus consequat. Vestibulum et mi
+                    vulputate, convallis tortor quis, blandit mi. Suspendisse?
+                  </p>
+                </div>
+                <div class="mb-3">
+                  <a style="margin-right: 10px;">댓글보기 : 0개</a>
+                  <span style="color: #8c8d90;">&#124;</span>
+                  <button style="margin-left: 10px;" class="qa-btn">
+                    댓글달기
+                  </button>
+                </div>
+              </div>
+            </div>
+            <!--end-->
+            <!--구매자 id-->
+            <div class="container">
+              <div
+                style="border-bottom: 1px solid #8c8d90;"
+                class="justify-content-center"
+              >
+                <div class="row mt-5" style="margin-bottom: 20px;">
+                  <span class="mr-2">qus**</span>
+                  <span style="color: #8c8d90;">&#124;</span>
+                  <span class="ml-2">2020-05-13</span>
+                </div>
+                <!--질문-->
+                <div>
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Cras luctus nunc ut maximus consequat. Vestibulum et mi
+                    vulputate, convallis tortor quis, blandit mi. Suspendisse?
+                  </p>
+                </div>
+                <div class="mb-3">
+                  <a style="margin-right: 10px;">댓글보기 : 0개</a>
+                  <span style="color: #8c8d90;">&#124;</span>
+                  <button style="margin-left: 10px;" class="qa-btn">
+                    댓글달기
+                  </button>
+                </div>
+              </div>
+            </div>
+            <!--end-->
+            <!--구매자 id-->
+            <div class="container">
+              <div
+                style="border-bottom: 1px solid #8c8d90;"
+                class="justify-content-center"
+              >
+                <div class="row mt-5" style="margin-bottom: 20px;">
+                  <span class="mr-2">qus**</span>
+                  <span style="color: #8c8d90;">&#124;</span>
+                  <span class="ml-2">2020-05-13</span>
+                </div>
+                <!--질문-->
+                <div>
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Cras luctus nunc ut maximus consequat. Vestibulum et mi
+                    vulputate, convallis tortor quis, blandit mi. Suspendisse?
+                  </p>
+                </div>
+                <div class="mb-3">
+                  <a style="margin-right: 10px;">댓글보기 : 0개</a>
+                  <span style="color: #8c8d90;">&#124;</span>
+                  <button style="margin-left: 10px;" class="qa-btn">
+                    댓글달기
+                  </button>
+                </div>
+              </div>
+            </div>
+            <!--end-->
+          </div>
+        </div>
+
+        <!--reviews end-->
       </div>
+
       <!--end-->
     </main>
     <!-- footer include -->
@@ -180,16 +638,10 @@
         <div class="pl-5 pr-5 d-flex row">
           <div class="col-sm-3">
             <div>
-              shop
+              SHOP
             </div>
             <div>
-              main1
-            </div>
-            <div>
-              main2
-            </div>
-            <div>
-              QnA
+              고객센터
             </div>
           </div>
           <div class="col-sm-3">

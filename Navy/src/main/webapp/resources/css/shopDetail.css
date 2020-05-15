@@ -1,9 +1,12 @@
-p.heading {
-  line-height: 1.2;
-  font-size: 2em;
-  text-align: center;
+/* title font*/
+.h-title {
+  text-decoration: none;
+  font-family: "GmarketSansBold";
 }
-
+.h-title:hover {
+  text-decoration: none;
+  color: #f1404b;
+}
 .wrapper {
   margin: 30px auto;
   max-width: 600px;
@@ -80,16 +83,18 @@ ul.menu li:hover {
   margin-bottom: 0;
   text-align: center;
   font-size: 20px;
-
+  outline: none;
   opacity: 0.6;
   transition: 0.3s;
 }
 
 .bt-css:hover {
   opacity: 1;
+  outline: none;
   background-color: #252c41;
   color: white;
 }
+
 /* 더보기 css */
 .more-style {
   width: 200px;
@@ -104,4 +109,131 @@ ul.menu li:hover {
 
 .more-style:hover {
   text-decoration: none;
+}
+
+/* 별점 css*/
+.visuhide {
+  position: absolute !important;
+  overflow: hidden;
+  width: 1px;
+  height: 1px;
+  clip: rect(1px, 1px, 1px, 1px);
+}
+.star__container:hover .star__item,
+.star__radio:checked ~ .star__item {
+  -webkit-filter: grayscale(0);
+  filter: grayscale(0);
+}
+
+.star__container:not(:hover)
+  > .star__radio:nth-of-type(1):checked
+  ~ .star__item:nth-of-type(1)
+  ~ .star__item,
+.star__container:not(:hover)
+  > .star__radio:nth-of-type(2):checked
+  ~ .star__item:nth-of-type(2)
+  ~ .star__item,
+.star__container:not(:hover)
+  > .star__radio:nth-of-type(3):checked
+  ~ .star__item:nth-of-type(3)
+  ~ .star__item,
+.star__container:not(:hover)
+  > .star__radio:nth-of-type(4):checked
+  ~ .star__item:nth-of-type(4)
+  ~ .star__item,
+.star__container:not(:hover)
+  > .star__radio:nth-of-type(5):checked
+  ~ .star__item:nth-of-type(5)
+  ~ .star__item,
+.star__item,
+.star__item:hover ~ .star__item {
+  -webkit-filter: grayscale(1);
+  filter: grayscale(1);
+}
+
+.star__radio:nth-of-type(1):checked ~ .star__item:nth-of-type(1)::before {
+  -webkit-transform: scale(1.5);
+  transform: scale(1.5);
+  -webkit-transition-timing-function: cubic-bezier(0.5, 1.5, 0.25, 1);
+  transition-timing-function: cubic-bezier(0.5, 1.5, 0.25, 1);
+}
+.star__radio:nth-of-type(2):checked ~ .star__item:nth-of-type(2)::before {
+  -webkit-transform: scale(1.5);
+  transform: scale(1.5);
+  -webkit-transition-timing-function: cubic-bezier(0.5, 1.5, 0.25, 1);
+  transition-timing-function: cubic-bezier(0.5, 1.5, 0.25, 1);
+}
+.star__radio:nth-of-type(3):checked ~ .star__item:nth-of-type(3)::before {
+  -webkit-transform: scale(1.5);
+  transform: scale(1.5);
+  -webkit-transition-timing-function: cubic-bezier(0.5, 1.5, 0.25, 1);
+  transition-timing-function: cubic-bezier(0.5, 1.5, 0.25, 1);
+}
+.star__radio:nth-of-type(4):checked ~ .star__item:nth-of-type(4)::before {
+  -webkit-transform: scale(1.5);
+  transform: scale(1.5);
+  -webkit-transition-timing-function: cubic-bezier(0.5, 1.5, 0.25, 1);
+  transition-timing-function: cubic-bezier(0.5, 1.5, 0.25, 1);
+}
+.star__radio:nth-of-type(5):checked ~ .star__item:nth-of-type(5)::before {
+  -webkit-transform: scale(1.5);
+  transform: scale(1.5);
+  -webkit-transition-timing-function: cubic-bezier(0.5, 1.5, 0.25, 1);
+  transition-timing-function: cubic-bezier(0.5, 1.5, 0.25, 1);
+}
+.star__container {
+  display: -webkit-box;
+  display: flex;
+  margin: auto;
+  border-radius: 0.25em;
+  background-color: white;
+  box-shadow: 0 0.25em 1em rgba(0, 0, 0, 0.25);
+  -webkit-transition: box-shadow 0.3s ease;
+  transition: box-shadow 0.3s ease;
+}
+.star__container:focus-within {
+  box-shadow: 0 0.125em 0.5em rgba(0, 0, 0, 0.5);
+}
+.star__item {
+  display: -webkit-inline-box;
+  display: inline-flex;
+  width: 1.25em;
+  height: 1.5em;
+}
+.star__item::before {
+  content: "⭐️";
+  display: inline-block;
+  margin: auto;
+  font-size: 1em;
+  vertical-align: top;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transform-origin: 50% 33.3%;
+  transform-origin: 50% 33.3%;
+  -webkit-transition: -webkit-transform 0.3s ease-out;
+  transition: -webkit-transform 0.3s ease-out;
+  transition: transform 0.3s ease-out;
+  transition: transform 0.3s ease-out, -webkit-transform 0.3s ease-out;
+}
+
+.pro-star {
+  font-size: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.qa-btn {
+  outline: none;
+  text-decoration: none;
+  border: none;
+  background-color: white;
+}
+
+.bt-review-wr {
+  border: 1px solid #b2b4b9;
+  background-color: white;
+  width: 100px;
+  height: 30px;
+  margin-top: 10px;
+  outline: none;
 }

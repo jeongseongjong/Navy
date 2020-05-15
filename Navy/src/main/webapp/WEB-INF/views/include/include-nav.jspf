@@ -55,7 +55,7 @@ $(function(){
     <nav
       class="navbar navbar-expand-sm bg-white d-flex ml-5 mt-5 mb-5 sticky-top"
     >
-      <a href="main.html" class="red-text mr-5 h-title"><h2>NAVIYA</h2></a>
+      <a href="${rootPath}/" class="red-text mr-5 h-title"><h2>NAVIYA</h2></a>
       <div class="d-flex">
         <a class="nav-link black-text" href="${rootPath}/product/list">SHOP</a>
         <a class="nav-link black-text">고객센터</a>
