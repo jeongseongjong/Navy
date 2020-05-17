@@ -11,6 +11,14 @@
 </head>
 <body>
 <section>
+	<c:if test="${adminBody == 'proInsert' }">
+		<h3>상품 등록</h3>
+		<hr/>
+	</c:if>
+	<c:if test="${adminBody == 'proUpdate' }">
+		<h3>상품 수정</h3>
+		<hr/>
+	</c:if>
 	<form:form modelAttribute="productVO">
 
 		<div class="input-group mb-3">

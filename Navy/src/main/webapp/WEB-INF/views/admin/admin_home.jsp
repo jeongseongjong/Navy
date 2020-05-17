@@ -101,7 +101,7 @@
 				})
 			})
 			
-		
+			// 유저정보 수정 화면 저장 버튼
 			$(document).on("click","button#btn_save",function(){
 				let formdata = $("form").serialize()
 				let username = $(this).data("id")
@@ -112,10 +112,20 @@
 				})
 				
 			})
+			// 유저정보 수정 화면 목록 버튼
+			$(document).on("click",".ad-us-list",function(){
+				document.location.href="${rootPath}/admin"
+			})
+			// 유저정보 수정 화면 수정 버튼
+			$(document).on("click",".ad-us-update",function(){
+				document.location.href="${rootPath}/admin"
+			})
+			
+			
 			
 			$(document).on("change","#auth",function(){
 					let item = $(this).val()
-					$("div#auth_list").append($("<input/>",{class:"auth form-control mb-3", name:"auth",value:item}))
+					$("div#auth_list").append($("<input/>",{class:"auth form-control-plaintext", name:"auth",value:item}))
 			})
 			
 			$(document).on("click","#auth_append",function(){
@@ -165,22 +175,33 @@
 </head>
 <body>
 <%@ include file = "/WEB-INF/views/include/include-nav.jspf" %>
+<article class="all-browsers">
+      <div class="hr-sect">PRODUCT</div>
 
-<section id="body">
-	<ul>
-		<p>관리자 메인페이지</p>
-		<li id="user_list"><a href="javascript:void(0)">회원 리스트</a></li>
-		<li id="pro_list"><a href="javascript:void(0)">상품 정보</a></li>
-		<li id="order_list"><a href="javascript:void(0)">주문 정보</a></li>
-		<li id="qna_list"><a href="javascript:void(0)">QNA</a></li>
-		<li id="review_list"><a href="javascript:void(0)">리뷰</a></li>
-		<li id="stock_list"><a href="javascript:void(0)">재고</a></li>
-		<li id="support_list"><a href="javascript:void(0)">고객센터</a></li>
-	</ul>
+      <div class="container">
+        <!--sidebar-->
+        <div class="row">
+          <aside
+            class="col-2 px-0"
+            id="left"
+            style="top: 250px; position: fixed; left: 0;"
+          >
+            <div class="list-group w-100">
+				<a id="user_list" href="javascript:void(0)" class="list-group-item">회원 관리</a>
+				<a id="pro_list" href="javascript:void(0)" class="list-group-item">상품 정보</a>
+				<a id="order_list" href="javascript:void(0)" class="list-group-item">주문 정보</a>
+				<a id="qna_list" href="javascript:void(0)" class="list-group-item">QNA</a>
+				<a id="review_list" href="javascript:void(0)" class="list-group-item">리뷰</a>
+				<a id="stock_list" href="javascript:void(0)" class="list-group-item">재고</a>
+				<a id="support_list" href="javascript:void(0)" class="list-group-item">고객센터</a>
+            </div>
+          </aside>
+          
+        </div>
+      </div>
+    </article>
 	<article id="admin_content">
 	</article>
-</section>
-
-
+	<%@ include file = "/WEB-INF/views/include/include-footer.jspf" %>
 </body>
 </html>

@@ -107,6 +107,7 @@ public class AdminController {
 	public String proInsert(ProductVO productVO, Model model) {
 		
 		model.addAttribute("productVO",productVO);
+		model.addAttribute("adminBody","proInsert");
 		
 		return "admin/admin_proInsert";
 	}
@@ -127,6 +128,7 @@ public class AdminController {
 		productVO = proService.findById(Long.valueOf(p_code));
 		
 		model.addAttribute("productVO",productVO);
+		model.addAttribute("adminBody","proUpdate");
 		
 		return "admin/admin_proInsert";
 	}
