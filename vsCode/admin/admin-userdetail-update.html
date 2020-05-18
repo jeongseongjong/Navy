@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Page Title</title>
+        <!-- Latest compiled and minified CSS -->
+        <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+        <link
+            rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        />
+        <!-- Popper JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+        <link rel="stylesheet" href="./admin-main.css" />
+        <link rel="stylesheet" href="../main.css" />
+    </head>
+    <body>
+        <!--header include-->
+        <header>
+            <div class="d-flex">
+                <ul class="nav ml-auto mr-5">
+                    <!-- input 검색창-->
+                    <li class="nav-item nav-input">
+                        <input class="input-style" />
+                        <img src="../img/scope.png" class="scope" />
+                    </li>
+                    <!-- annonimous& authentication-->
+                    <li class="nav-item">
+                        <a class="nav-link">login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link">logout</a>
+                    </li>
+                    <!--로그인시 mypage-->
+                    <li class="nav-item">
+                        <a class="nav-link">mypage</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link">join</a>
+                    </li>
+                </ul>
+            </div>
+        </header>
+        <!--nav include 할 것-->
+        <nav class="navbar navbar-expand-sm bg-white d-flex ml-5 mt-5 mb-5 sticky-top">
+            <a href="../main.html" class="red-text mr-5 h-title"><h2>NAVIYA</h2></a>
+            <div class="d-flex">
+                <a class="nav-link black-text" href="../shopList.html">SHOP</a>
+                <a class="nav-link black-text" href="../sponsor.html">고객센터</a>
+                <a class="nav-link black-text" href="./admin/admin-main.html">관리자</a>
+            </div>
+        </nav>
+        <!--main 화면 img들어갈 것-->
+        <article class="all-browsers">
+            <div class="hr-sect">ADMIN</div>
+
+            <div class="container">
+                <div class="row">
+                    <aside
+                        class="col-2 px-0"
+                        id="left"
+                        style="top: 250px; position: fixed; left: 0;"
+                    >
+                        <div class="list-group w-100">
+                            <a href="admin-main.html" class="list-group-item">회원관리</a>
+                            <a href="admin-pro-list.html" class="list-group-item">상품관리</a>
+                            <a href="admin-order-list.html" class="list-group-item">주문관리</a>
+                            <a href="admin-qty-list.html" class="list-group-item">재고관리</a>
+                            <a href="admin-review-list.html" class="list-group-item">리뷰관리</a>
+                            <a href="admin-qna-list.html" class="list-group-item">Q&A관리</a>
+                        </div>
+                    </aside>
+                    <!--page include-->
+                    <main class="col offset-2 h-100 user-main">
+                        <div class="row bg-light">
+                            <div class="col-12 py-4 text-center">
+                                <span style="font-size: 30px;">회원상세수정관리</span>
+                            </div>
+                        </div>
+                        <!--userdetail 정보-->
+                        <div class="row bg-white">
+                            <div class="col-12 py-4">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <span>회원 코드 : 1</span>
+                                        <span class="ml-5">qussoa</span>
+                                        <hr />
+                                        <form class="container">
+                                            <div class="form-group row">
+                                                <label
+                                                    for="staticEmail"
+                                                    class="col-sm-2 col-form-label"
+                                                    >이름</label
+                                                >
+                                                <div class="col-sm-10">
+                                                    <input
+                                                        type="text"
+                                                        class="form-control-plaintext"
+                                                        id="staticEmail"
+                                                        placeholder="이름을 입력하세요"
+                                                    />
+                                                </div>
+                                                <label
+                                                    for="staticEmail"
+                                                    class="col-sm-2 col-form-label"
+                                                    >전화번호</label
+                                                >
+                                                <div class="col-sm-10">
+                                                    <input
+                                                        type="tel"
+                                                        class="form-control-plaintext"
+                                                        id="staticEmail"
+                                                        placeholder="전화번호를 입력해주세요"
+                                                    />
+                                                </div>
+                                                <label
+                                                    for="staticEmail"
+                                                    class="col-sm-2 col-form-label"
+                                                    >주소</label
+                                                >
+                                                <div class="col-sm-10">
+                                                    <input
+                                                        type="text"
+                                                        class="form-control-plaintext"
+                                                        id="staticEmail"
+                                                        placeholder="주소를 입력하세요"
+                                                    />
+                                                </div>
+                                                <label
+                                                    for="staticEmail"
+                                                    class="col-sm-2 col-form-label"
+                                                    >이메일</label
+                                                >
+                                                <div class="col-sm-10">
+                                                    <input
+                                                        type="email"
+                                                        class="form-control-plaintext"
+                                                        id="staticEmail"
+                                                        placeholder="이메일을 입력하세요"
+                                                    />
+                                                </div>
+                                                <select class="custom-select custom-select-sm">
+                                                    <option selected>권한을 설정해주세요</option>
+                                                    <option value="1">ROLE_ADMIN</option>
+                                                    <option value="2">ROLE_USER</option>
+                                                    <option value="3">ADMIN</option>
+                                                    <option value="3">USER</option>
+                                                </select>
+                                            </div>
+                                        </form>
+                                        <!--button group-->
+                                        <div class="d-flex justify-content-end mb-5">
+                                            <button
+                                                class="mr-2 bt-bbs-style bt-bbs-list"
+                                                onclick="$(document).on('click','.bt-bbs-list',function(){document.location.href='admin-pro-list.html'})"
+                                            >
+                                                목록
+                                            </button>
+                                            <!-- 회원일시 보이는 버튼-->
+                                            <button
+                                                class="mr-2 bt-bbs-style bt-bbs-update"
+                                                onclick="$(document).on('click','.bt-bbs-update',function(){document.location.href='admin-userdetail.html'})"
+                                            >
+                                                저장
+                                            </button>
+                                        </div>
+                                        <!--button group end-->
+                                        <!--container end-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </main>
+                </div>
+            </div>
+        </article>
+    </body>
+    <!-- footer include -->
+    <footer class="bg-gray mt-5">
+        <div class="container p-5">
+            <div class="row">
+                <h2 class="red-text">NAVIYA</h2>
+            </div>
+            <div class="pl-5 pr-5 d-flex row">
+                <div class="col-sm-3">
+                    <div>
+                        shop
+                    </div>
+                    <div>
+                        main1
+                    </div>
+                    <div>
+                        main2
+                    </div>
+                    <div>
+                        QnA
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div>
+                        <span class="font-weight-bold"> TEAMLEADER </span><br />
+                        <span
+                            ><a class="atag-github" href="https://github.com/jeongseongjong"
+                                >&nbsp;&nbsp;- NAVI</a
+                            ></span
+                        >
+                    </div>
+                    <div>
+                        <span class="font-weight-bold">UI/UX</span> <br />
+                        <span
+                            ><a class="atag-github" href="https://github.com/qussoa"
+                                >&nbsp;&nbsp;- QUSSOA</a
+                            ></span
+                        >
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div>
+                        <span class="font-weight-bold">DEVELOPER</span><br />
+                        <span
+                            ><a class="atag-github" href="https://github.com/leeiter"
+                                >&nbsp;&nbsp;- PRINCESSEJIN</a
+                            ></span
+                        >
+                    </div>
+                    <div>
+                        <span class="font-weight-bold">DEVELOPER</span><br />
+                        <span
+                            ><a class="atag-github" href="https://github.com/bjmin17"
+                                >&nbsp;&nbsp; - BJ.MIN</a
+                            ></span
+                        >
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div>
+                        <small>
+                            광주광역시 북구 경양로170<br />
+                            한경빌딩 5층
+                        </small>
+                    </div>
+                    <div>
+                        <small>
+                            &copy; copyRight qussoa@naver.com
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</html>

@@ -1,9 +1,12 @@
-p.heading {
-  line-height: 1.2;
-  font-size: 2em;
-  text-align: center;
+/* title font*/
+.h-title {
+  text-decoration: none;
+  font-family: "GmarketSansBold";
 }
-
+.h-title:hover {
+  text-decoration: none;
+  color: #f1404b;
+}
 .wrapper {
   margin: 30px auto;
   max-width: 600px;
@@ -224,4 +227,13 @@ ul.menu li:hover {
   text-decoration: none;
   border: none;
   background-color: white;
+}
+
+.bt-review-wr {
+  border: 1px solid #b2b4b9;
+  background-color: white;
+  width: 100px;
+  height: 30px;
+  margin-top: 10px;
+  outline: none;
 }
