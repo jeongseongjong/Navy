@@ -17,6 +17,17 @@
   font-family: "GmarketSansMedium";
 }
 
+html,
+body {
+  height: 100%;
+}
+
+.all-browsers {
+  margin: 0;
+  padding: 5px;
+  background-color: white;
+}
+
 /* title font*/
 .h-title {
   text-decoration: none;
@@ -87,18 +98,18 @@
 /*mouse over img*/
 #img1 {
   display: inline-block;
-  width: 300px;
+  width: 100%;
   height: 300px;
   background: url("./img/dress1.jpg") no-repeat;
-  background-size: 300px 300px;
+  background-size: 200px 300px;
 }
 #img1:hover {
   background: url("./img/dress2.jpg") no-repeat;
-  background-size: 300px 300px;
+  background-size: 200px 300px;
 }
 
-footer {
-  margin: 0px;
+.footer {
+  padding: 3px;
 }
 
 /*git-hub tag*/
@@ -109,4 +120,11 @@ footer {
 .atag-github:hover {
   text-decoration: none;
   color: #252c41;
+}
+
+/*위로 올리기 css*/
+a.top {
+  position: fixed;
+  bottom: 100px;
+  display: none;
 }

@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="main.css" />
     <link rel="stylesheet" href="shopList.css" />
     <!-- Latest compiled and minified CSS -->
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
     <link
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -18,9 +19,8 @@
 
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
-    <script src="main.js"></script>
   </head>
   <script>
     $(document).on("click", ".detail-img", function () {
@@ -59,16 +59,17 @@
     <nav
       class="navbar navbar-expand-sm bg-white d-flex ml-5 mt-5 mb-5 sticky-top"
     >
-      <a href="main.html" class="red-text mr-5 h-title"><h2>NAVIYA</h2></a>
+      <a href="main.html" class="red-text mr-5 h-title"><h1>NAVIYA</h1></a>
       <div class="d-flex">
         <a class="nav-link black-text" href="shopList.html">SHOP</a>
-        <a class="nav-link black-text">고객센터</a>
+        <a class="nav-link black-text" href="sponsor.html">고객센터</a>
+        <a class="nav-link black-text" href="./admin/admin-main.html">관리자</a>
       </div>
     </nav>
     <div class="hr-sect mb-5">PRODUCT LIST</div>
 
-      <!--product img list -->
-
+    <!--product img list -->
+    <article class="all-browsers">
       <div class="container d-flex flex-wrap justify-content-center">
         <div class="row">
           <div class="col m-3">
@@ -257,7 +258,36 @@
           </div>
         </div>
       </div>
-    </main>
+      <!--pagination-->
+      <div class="d-flex justify-content-center">
+        <nav aria-label="Page navigation example">
+          <ul class="pagination">
+            <li class="page-item">
+              <a class="page-link black-text" href="#" aria-label="Previous">
+                <span aria-hidden="true" class="black-text">&laquo;</span>
+                <span class="sr-only">Previous</span>
+              </a>
+            </li>
+            <li class="page-item black-text">
+              <a class="page-link black-text" href="#">1</a>
+            </li>
+            <li class="page-item black-text">
+              <a class="page-link black-text" href="#">2</a>
+            </li>
+            <li class="page-item black-text">
+              <a class="page-link black-text" href="#">3</a>
+            </li>
+            <li class="page-item black-text">
+              <a class="page-link black-text" href="#" aria-label="Next">
+                <span aria-hidden="true" class="black-text">&raquo;</span>
+                <span class="sr-only black-text">Next</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <!--pagination end-->
+    </article>
     <!-- footer include -->
 
     <footer class="bg-gray mt-5">
