@@ -30,9 +30,9 @@
 		UPDATE tbl_product SET
 			p_name = #{p_name},
 			p_price = #{p_price},
-			p_qty = #{p_qty},
-			p_desc = #{p_desc},
-			p_image = #{p_image}
+			p_qty = #{p_qty,jdbcType=VARCHAR},
+			p_desc = #{p_desc,jdbcType=VARCHAR},
+			p_image = #{p_image,jdbcType=VARCHAR}
 
 		WHERE p_code = #{p_code}
 	</update>

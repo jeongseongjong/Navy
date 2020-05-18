@@ -11,7 +11,7 @@
 	<script>
 		$(function(){
 			// 유저 리스트 보이기
-			$(document).on("click","#user_list",function(){
+			$(document).on("click",".ad-us-list",function(){
 				$.get("${rootPath}/admin/userlist",function(result){
 					$("#admin_content").html(result)
 				})
@@ -28,7 +28,7 @@
 			})
 			
 			// 상품 리스트 보이기
-			$(document).on("click","#pro_list",function(){
+			$(document).on("click",".ad-pro-list",function(){
 				$.get("${rootPath}/admin/productlist",function(result){
 					$("#admin_content").html(result)
 				})
@@ -45,7 +45,7 @@
 			})
 			
 			// 상품 등록 페이지 이동
-			$(document).on("click",".btn_pro_insert",function(){
+			$(document).on("click",".ad-pro-insert",function(){
 				
 				$.get("${rootPath}/admin/pro_insert",
 						function(result){
@@ -54,7 +54,7 @@
 			})
 			
 			// 상품 수정 페이지 이동
-			$(document).on("click",".btn_pro_update",function(){
+			$(document).on("click",".ad-pro-update",function(){
 				let p_code = $(this).data("id")
 				$.get("${rootPath}/admin/pro_update/" + p_code,
 						function(result){
@@ -63,7 +63,7 @@
 			})
 			
 			// 상품 1개 삭제
-			$(document).on("click",".btn_pro_delete",function(){
+			$(document).on("click",".ad-pro-delete",function(){
 				let p_code = $(this).data("id")
 				$.get("${rootPath}/admin/pro_delete/" + p_code,
 						function(result){
@@ -102,26 +102,22 @@
 			})
 			
 			// 유저정보 수정 화면 저장 버튼
-			$(document).on("click","button#btn_save",function(){
+			$(document).on("click",".ad-us-update",function(){
 				let formdata = $("form").serialize()
-				let username = $(this).data("id")
-
+				let username = $(this).data("name")
+				alert(username)
+				$.get("${rootPath}/admin/user_update/"+username,formdata,function(result){
+					$("#admin_content").html(result)
+				})
+				/*
 				$.post("${rootPath}/admin/user_detail_view/"+username,formdata,function(result){
 					$("#admin_content").html(result)
 					alert("Update 성공!!")
 				})
+				*/
 				
 			})
-			// 유저정보 수정 화면 목록 버튼
-			$(document).on("click",".ad-us-list",function(){
-				document.location.href="${rootPath}/admin"
-			})
-			// 유저정보 수정 화면 수정 버튼
-			$(document).on("click",".ad-us-update",function(){
-				document.location.href="${rootPath}/admin"
-			})
-			
-			
+
 			
 			$(document).on("change","#auth",function(){
 					let item = $(this).val()
@@ -187,8 +183,8 @@
             style="top: 250px; position: fixed; left: 0;"
           >
             <div class="list-group w-100">
-				<a id="user_list" href="javascript:void(0)" class="list-group-item">회원 관리</a>
-				<a id="pro_list" href="javascript:void(0)" class="list-group-item">상품 정보</a>
+				<a id="user_list" href="javascript:void(0)" class="list-group-item ad-us-list">회원 관리</a>
+				<a id="pro_list" href="javascript:void(0)" class="list-group-item ad-pro-list">상품 정보</a>
 				<a id="order_list" href="javascript:void(0)" class="list-group-item">주문 정보</a>
 				<a id="qna_list" href="javascript:void(0)" class="list-group-item">QNA</a>
 				<a id="review_list" href="javascript:void(0)" class="list-group-item">리뷰</a>
@@ -196,12 +192,12 @@
 				<a id="support_list" href="javascript:void(0)" class="list-group-item">고객센터</a>
             </div>
           </aside>
+			<article id="admin_content">
+			</article>
           
         </div>
       </div>
     </article>
-	<article id="admin_content">
-	</article>
-	<%@ include file = "/WEB-INF/views/include/include-footer.jspf" %>
 </body>
+<%@ include file = "/WEB-INF/views/include/include-footer.jspf" %>
 </html>

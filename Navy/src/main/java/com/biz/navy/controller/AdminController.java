@@ -62,14 +62,7 @@ public class AdminController {
 		return "admin/admin_userDetail";
 	}
 	
-	@RequestMapping(value="/user_detail_view/{username}",method=RequestMethod.POST)
-	public String userDetailView(@PathVariable("username") String username, UserDetailsVO userVO, String[] auth, Model model) {
-		
 
-		int ret = userService.update(userVO, auth);
-		
-		return "redirect:/admin/user_detail_view/" + userVO.getUsername();
-	}
 	
 	// 권한 삭제
 	@RequestMapping(value="/delete",method=RequestMethod.GET)
@@ -79,6 +72,26 @@ public class AdminController {
 		
 		return "redirect:/admin/user_detail_view/" + userVO.getUsername();
 	}
+	
+	// 유저 정보 수정
+	@RequestMapping(value="/user_update/{username}",method=RequestMethod.GET)
+	public String userUpdate(@PathVariable("username") String username, Model model) {
+		
+		UserDetailsVO userVO =  userService.findByUserName(username);
+		model.addAttribute("userVO", userVO);
+		
+		return "admin/admin_userUpdate";
+	}
+	
+	@RequestMapping(value="/user_update/{username}",method=RequestMethod.POST)
+	public String userUpdate(@PathVariable("username") String username, UserDetailsVO userVO, String[] auth, Model model) {
+		
+
+		int ret = userService.update(userVO, auth);
+		
+		return "redirect:/admin";
+	}
+	
 	
 	// 상품 정보
 	@RequestMapping(value="/productlist",method=RequestMethod.GET)
@@ -118,7 +131,7 @@ public class AdminController {
 		
 		int ret = proService.insert(productVO);
 		
-		return "redirect:/admin/productlist";
+		return "redirect:/admin";
 	}
 	
 	// 상품 수정하는 페이지로 이동
@@ -139,7 +152,7 @@ public class AdminController {
 		
 		int ret = proService.update(productVO);
 		
-		return "redirect:/admin/productlist";
+		return "redirect:/admin";
 	}
 	
 	// 상품 삭제
