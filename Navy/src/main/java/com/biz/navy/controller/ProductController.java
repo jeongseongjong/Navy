@@ -31,8 +31,6 @@ public class ProductController {
 		List<ProductImgVO> proImgList = proImgService.selectAll();
 		
 		model.addAttribute("PROLIST", proList);
-		model.addAttribute("PROIMGLIST", proImgList);
-		
 		
 		return "allList";
 	}

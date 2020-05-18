@@ -11,7 +11,7 @@ import com.biz.navy.domain.CartVO;
 public interface CartService {
 
 	// 장바구니 개수
-	public String cartCount();
+	public int cartCount();
 	
 	public int countDelivery();
 	
@@ -22,16 +22,16 @@ public interface CartService {
 	public List<CartVO> selectDelivery(String username);
 	
 	// 장바구니 담기
-	public String insert(CartVO cartVO);
+	public CartVO insert(CartVO cartVO);
 	
 	// 장바구니에 담긴 상품 단품 개수 수정
-	public String qty_update(long seq, long p_qty);
+	public int qty_update(long bk_id, int bk_p_qty);
 	
 	// 장바구니 상품 삭제
-	public String deleteOne(long longSeq);
+	public int deleteOne(long bk_id);
 	
 	// 장바구니 선택된 상품 삭제
-	public String cart_list_delete(List<String> seqList);
+	public int cart_list_delete(List<String> seqList);
 	
 	// 장바구니 상품 전체 수량 수정
 	public void cart_list_qty_update(CartListVO cartList);

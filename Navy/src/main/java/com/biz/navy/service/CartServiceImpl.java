@@ -16,7 +16,7 @@ public class CartServiceImpl implements CartService{
 	private final CartDao cartDao;
 
 	@Override
-	public String cartCount() {
+	public int cartCount() {
 
 		return cartDao.cartCount();
 	}
@@ -40,26 +40,26 @@ public class CartServiceImpl implements CartService{
 	}
 
 	@Override
-	public String insert(CartVO cartVO) {
+	public CartVO insert(CartVO cartVO) {
 
-		cartVO.setP_status("CART");
+		cartVO.setBk_p_status("CART");
 		return cartDao.insert(cartVO);
 	}
 
 	@Override
-	public String qty_update(long seq, long p_qty) {
+	public int qty_update(long bk_id, int bk_p_qty) {
 
-		return cartDao.update(seq, p_qty);
+		return cartDao.qty_update(bk_id, bk_p_qty);
 	}
 
 	@Override
-	public String deleteOne(long longSeq) {
+	public int deleteOne(long longSeq) {
 
 		return cartDao.delete(longSeq);
 	}
 
 	@Override
-	public String cart_list_delete(List<String> seqList) {
+	public int cart_list_delete(List<String> seqList) {
 
 		return cartDao.cart_list_delete(seqList);
 	}

@@ -28,6 +28,7 @@ public class CartController {
 	private final ProductService proService;
 	private final CartService cartService;
 
+	// 상품 리스트
 	@RequestMapping(value="/list",method=RequestMethod.GET)
 	public String list(Model model) {
 		
@@ -48,7 +49,7 @@ public class CartController {
 			cartVO.setUsername(authen.getPrincipal().toString());	
 		} catch (Exception e) {
 			
-			return "LOGIN_FAILE";
+			return "LOGIN_FAIL";
 		}
 		
 		// 
@@ -58,10 +59,10 @@ public class CartController {
 		
 	}
 	
+	// 장바구니 목록
 	@RequestMapping(value="/view", method=RequestMethod.GET)
 	public String cart_view(Authentication authen, Model model) {
 	
-		model.addAttribute("BODY","CART_VIEW");
 		try {
 			String username = authen.getPrincipal().toString();
 			List<CartVO> cartList = cartService.selectCart(username);
@@ -72,20 +73,12 @@ public class CartController {
 			e.printStackTrace();
 		}
 		
-		return "user/user_main";
-	}
-	
-	@RequestMapping(value="/list", method=RequestMethod.GET)
-	public String list(String c_p_code) { // 매개변수로 사이즈 코드
-		
-		productService.findByPId();
-		
-		
 		return "cart";
 	}
 	
+	
 	@RequestMapping(value="/qty_update/{seq}/p_qty")
-	public String qty_update(@RequestParam("seq")String seq,@RequestParam("p_qty") String p_qty) {
+	public String qty_update(@PathVariable("seq")String seq,@RequestParam("p_qty") String p_qty) {
 		
 		long longSeq = Long.valueOf(seq);
 		int intQty = Integer.valueOf(p_qty);
@@ -98,7 +91,7 @@ public class CartController {
 	public String cart_one_delete(@PathVariable("seq")String seq) {
 		
 		long longSeq = Long.valueOf(seq);
-		cartService.delete(longSeq);
+		cartService.deleteOne(longSeq);
 		
 		return "redirect:/user/product/cart_view";
 		

@@ -16,4 +16,8 @@
  
 ## 05-16
  * ProductController의 productList에서 model에 심어보내는 PROIMGLIST가 어디에 쓰이는가 ?
- * detail의 PROIMGLIST가 있던데 어디서 받아오는가 ?
+  > - 지워도 되는 문구였음
+ 
+## 05-18
+ * tbl_cart 칼럼 수정
+  > - bk_p_username -> username으로 수정
