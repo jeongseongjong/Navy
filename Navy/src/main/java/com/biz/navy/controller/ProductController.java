@@ -28,7 +28,6 @@ public class ProductController {
 	public String productList(ProductVO productVO, Model model) {
 		
 		List<ProductVO> proList = proService.selectAll();
-		List<ProductImgVO> proImgList = proImgService.selectAll();
 		
 		model.addAttribute("PROLIST", proList);
 		

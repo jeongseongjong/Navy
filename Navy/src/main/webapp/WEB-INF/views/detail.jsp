@@ -19,9 +19,41 @@ $(function() {
 	});
 
 	$("#btn-cart").click(function() {
-		// let id = $(this).data("id")
-		document.location.href = "${rootPath}/cart/list" // + id
+		let p_qty = parseInt($("#p_qty").val())
+		
+		if(p_qty <= 0){
+			alert("수량은 0개 이상")
+			return false;
+		}
+
+		$.ajax({
+			url : "${rootPath}/cart/cart",
+			type : "POST",
+			data : {
+				p_name : "${productVO.p_name}",
+				p_code : "${productVO.p_code}",
+				p_price : "${productVO.p_price}",
+				p_qty : p_qty,
+				
+				// 포스트일 경우에는 이 값을 보내주어야 한다.
+				"${_csrf.parameterName}" : "${_csrf.token}"
+			},
+			success : function(result){
+				
+				if(result == 'LOGIN_FAIL'){
+					alert("먼저 로그인을 수행해야 한다.")
+				}else if(result == "OK"){
+					if(confirm("상품을 카트에 담았습니다.\n" + "장바구니로 이동하겠습니까?")){
+						document.location.href="${rootPath}/cart/view"
+					}
+				}
+			},
+			error:function(){
+				alert("서버 통신 오류")
+			}
+		})
 	})
+	
 
 	$("#btn-buy").click(function() {
 		// let id = $(this).data("id")
@@ -72,7 +104,7 @@ $(function() {
 			</div>
 			<div class="col mb-5">
 				<label class="mr-5">QUAN·TITY</label>
-				<input type="number" class="text-center" style="width: 80px;" />
+				<input id="p_qty" type="number" class="text-center" style="width: 80px;" />
 			</div>
 
 			<!-- 장바구니 상품 button -->

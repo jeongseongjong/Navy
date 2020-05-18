@@ -2,6 +2,7 @@ package com.biz.navy.service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.biz.navy.dao.CartDao;
@@ -10,6 +11,7 @@ import com.biz.navy.domain.CartVO;
 
 import lombok.RequiredArgsConstructor;
 
+@Service
 @RequiredArgsConstructor
 public class CartServiceImpl implements CartService{
 
@@ -40,7 +42,7 @@ public class CartServiceImpl implements CartService{
 	}
 
 	@Override
-	public CartVO insert(CartVO cartVO) {
+	public int insert(CartVO cartVO) {
 
 		cartVO.setBk_p_status("CART");
 		return cartDao.insert(cartVO);

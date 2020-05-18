@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import com.biz.navy.domain.CartListVO;
 import com.biz.navy.domain.CartVO;
 
-@Service
 public interface CartService {
 
 	// 장바구니 개수
@@ -22,7 +21,7 @@ public interface CartService {
 	public List<CartVO> selectDelivery(String username);
 	
 	// 장바구니 담기
-	public CartVO insert(CartVO cartVO);
+	public int insert(CartVO cartVO);
 	
 	// 장바구니에 담긴 상품 단품 개수 수정
 	public int qty_update(long bk_id, int bk_p_qty);
@@ -41,5 +40,6 @@ public interface CartService {
 	
 	// 장바구니 담겨진 상품 총 금액
 	public String sum();
+
 	
 }

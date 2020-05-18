@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.biz.navy.dao.CartDao">
+
+<insert id="insert">
+	INSERT INTO tbl_cart(
+	
+	bk_id,
+	username,
+	bk_p_code,
+	bk_p_name,
+	bk_p_oprice,
+	bk_p_qty,
+	bk_p_status
+	
+	)VALUES(
+	seq_cart.nextval,
+	#{username,jdbcType=VARCHAR},
+	#{bk_p_code,jdbcType=VARCHAR},
+	#{bk_p_name,jdbcType=VARCHAR},
+	#{bk_p_oprice,jdbcType=VARCHAR},
+	#{bk_p_qty,jdbcType=VARCHAR},
+	#{bk_p_status,jdbcType=VARCHAR}
+	)
+	
+</insert>
+
+	<delete id="cart_list_delete" parameterType="List">
+		DELETE FROM tbl_cart
+		where bk_id in (
+
+		<foreach collection="list" item="ssiba" separator=", ">
+			#{ssiba}
+		</foreach>
+
+		)
+
+	</delete>
+	
+	<update id="cart_to_delivery" parameterType="List">
+	
+	UPDATE tbl_cart
+	SET bk_p_status = 'DELIV'
+	WHERE bk_id IN (
+	<foreach collection="list" item="seq" separator=", ">
+	#{bk_id}
+	</foreach>
+	
+	)
+	
+	</update>
+</mapper> 

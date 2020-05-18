@@ -20,7 +20,7 @@ public class CartVO {
 	
 	private String username;
 	
-	private String bk_p_code; 	// 상품코드
+	private long bk_p_code; 	// 상품코드
 	
 	private String bk_p_name;
 	
@@ -29,4 +29,5 @@ public class CartVO {
 	private int bk_p_qty;		// 수량
 	
 	private String bk_p_status;
+ 
 }

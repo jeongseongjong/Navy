@@ -21,3 +21,5 @@
 ## 05-18
  * tbl_cart 칼럼 수정
   > - bk_p_username -> username으로 수정
+ * cart list 출력
+ * cart 각각 삭제 
