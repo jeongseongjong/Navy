@@ -62,6 +62,7 @@ public class CartController {
 					.bk_p_code(productVO.getP_code())
 					.bk_p_name(productVO.getP_name())
 					.username(userVO.getUsername())
+					.bk_p_size(productVO.getP_size())
 					.bk_p_qty((int)productVO.getP_qty())
 					.bk_p_oprice((int)productVO.getP_price())
 					.build();

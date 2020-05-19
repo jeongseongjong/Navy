@@ -11,6 +11,7 @@
 		p_code,
 		p_name,
 		p_price,
+		p_size,
 		p_qty,
 		p_desc,
 		p_image
@@ -19,6 +20,7 @@
 		SEQ_PRODUCT.NEXTVAL,
 		#{p_name},
 		#{p_price},
+		#{p_size},
 		#{p_qty},
 		#{p_desc,jdbcType=VARCHAR},
 		#{p_image,jdbcType=VARCHAR}

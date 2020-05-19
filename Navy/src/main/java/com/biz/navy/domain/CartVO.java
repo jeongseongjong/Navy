@@ -24,6 +24,8 @@ public class CartVO {
 	
 	private String bk_p_name;
 	
+	private String bk_p_size;
+	
 	private int bk_p_oprice;	// 판매가격
 	
 	private int bk_p_qty;		// 수량
