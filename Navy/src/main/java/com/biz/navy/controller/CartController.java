@@ -117,7 +117,8 @@ public class CartController {
 	public String cart_one_delete(@PathVariable("id")String seq) {
 		
 		long longSeq = Long.valueOf(seq);
-		cartService.deleteOne(longSeq);
+		int ret = cartService.deleteOne(longSeq);
+		log.debug("삭제할 상품 seq 번호 " + ret);
 		
 		return "redirect:/cart/view";
 		
