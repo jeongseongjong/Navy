@@ -51,6 +51,7 @@ public class CartController {
 			) {
 		
 		log.debug("프로덕트"+productVO.toString());
+		log.debug("카트에 카트 size를 가져오냐 ? " + productVO.getP_size());
 		
 		try {
 			// 카트 VO에서 시큐리티로 로그인한 사용자 이름 가져오기

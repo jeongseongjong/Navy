@@ -14,10 +14,12 @@ import com.biz.navy.service.ProductImgService;
 import com.biz.navy.service.ProductService;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @RequiredArgsConstructor
 @RequestMapping(value="/product")
 @Controller
+@Slf4j
 public class ProductController {
 
 	private final ProductService proService;
@@ -30,6 +32,7 @@ public class ProductController {
 		List<ProductVO> proList = proService.selectAll();
 		
 		model.addAttribute("PROLIST", proList);
+		log.debug("상품 리스트에 뭐가 담겼는가" + proList);
 		
 		return "allList";
 	}

@@ -12,6 +12,7 @@
 	username,
 	bk_p_code,
 	bk_p_name,
+	bk_p_size
 	bk_p_oprice,
 	bk_p_qty,
 	bk_p_status
@@ -21,6 +22,7 @@
 	#{username,jdbcType=VARCHAR},
 	#{bk_p_code,jdbcType=VARCHAR},
 	#{bk_p_name,jdbcType=VARCHAR},
+	#{bk_p_size,jdbcType=VARCHAR},
 	#{bk_p_oprice,jdbcType=VARCHAR},
 	#{bk_p_qty,jdbcType=VARCHAR},
 	#{bk_p_status,jdbcType=VARCHAR}
@@ -32,8 +34,8 @@
 		DELETE FROM tbl_cart
 		where bk_id in (
 
-		<foreach collection="list" item="ssiba" separator=", ">
-			#{ssiba}
+		<foreach collection="list" item="bk_id" separator=", ">
+			#{bk_id}
 		</foreach>
 
 		)

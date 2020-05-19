@@ -23,3 +23,8 @@
   > - bk_p_username -> username으로 수정
  * cart list 출력
  * cart 각각 삭제 
+ 
+## 05-19
+ * 테이블 수정
+  > - tbl_product pk 삭제 ( 하나의 상품에 여러개의 사이즈 데이터가 담겨야 하기때문)
+  > - tbl_size pk 삭제 

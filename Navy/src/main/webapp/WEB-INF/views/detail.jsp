@@ -93,7 +93,7 @@
 					<c:if test="${!empty productVO.sizeList}">
 						<ul class="menu">
 							<c:forEach items="${productVO.sizeList}" var="size">
-								<li><input id="bk_p_code" value="${size.c_size}">(${size.c_qty})</li>
+								<li><input id="p_size" >${size.c_size}</li>
 							</c:forEach>
 						</ul>
 					</c:if>
