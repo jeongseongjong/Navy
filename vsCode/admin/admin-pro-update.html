@@ -1,241 +1,263 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Page Title</title>
-        <!-- Latest compiled and minified CSS -->
-        <script src="https://code.jquery.com/jquery-latest.min.js"></script>
-        <link
-            rel="stylesheet"
-            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-        />
-        <!-- Popper JS -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Page Title</title>
+    <!-- Latest compiled and minified CSS -->
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    />
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 
-        <!-- Latest compiled JavaScript -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
-        <link rel="stylesheet" href="./admin-main.css" />
-        <link rel="stylesheet" href="../main.css" />
-    </head>
-    <body>
-        <!--header include-->
-        <header>
-            <div class="d-flex">
-                <ul class="nav ml-auto mr-5">
-                    <!-- input 검색창-->
-                    <li class="nav-item nav-input">
-                        <input class="input-style" />
-                        <img src="../img/scope.png" class="scope" />
-                    </li>
-                    <!-- annonimous& authentication-->
-                    <li class="nav-item">
-                        <a class="nav-link">login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link">logout</a>
-                    </li>
-                    <!--로그인시 mypage-->
-                    <li class="nav-item">
-                        <a class="nav-link">mypage</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link">join</a>
-                    </li>
-                </ul>
-            </div>
-        </header>
-        <!--nav include 할 것-->
-        <nav class="navbar navbar-expand-sm bg-white d-flex ml-5 mt-5 mb-5 sticky-top">
-            <a href="../main.html" class="red-text mr-5 h-title"><h2>NAVIYA</h2></a>
-            <div class="d-flex">
-                <a class="nav-link black-text" href="../shopList.html">SHOP</a>
-                <a class="nav-link black-text" href="../sponsor.html">고객센터</a>
-                <a class="nav-link black-text" href="./admin/admin-main.html">관리자</a>
-            </div>
-        </nav>
-        <!--main 화면 img들어갈 것-->
-        <article class="all-browsers">
-            <div class="hr-sect">ADMIN</div>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+    <link rel="stylesheet" href="./admin-main.css" />
+    <link rel="stylesheet" href="../main.css" />
+  </head>
+  <body>
+    <!--header include-->
+    <header>
+      <div class="d-flex">
+        <ul class="nav ml-auto mr-5">
+          <!-- input 검색창-->
+          <li class="nav-item nav-input">
+            <input class="input-style" />
+            <img src="../img/scope.png" class="scope" />
+          </li>
+          <!-- annonimous& authentication-->
+          <li class="nav-item">
+            <a class="nav-link">login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link">logout</a>
+          </li>
+          <!--로그인시 mypage-->
+          <li class="nav-item">
+            <a class="nav-link">mypage</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link">join</a>
+          </li>
+        </ul>
+      </div>
+    </header>
+    <!--nav include 할 것-->
+    <nav
+      class="navbar navbar-expand-sm bg-white d-flex ml-5 mt-5 mb-5 sticky-top"
+    >
+      <a href="../main.html" class="red-text mr-5 h-title"><h2>NAVIYA</h2></a>
+      <div class="d-flex">
+        <a class="nav-link black-text" href="../shopList.html">SHOP</a>
+        <a class="nav-link black-text" href="../sponsor.html">고객센터</a>
+        <a class="nav-link black-text" href="./admin/admin-main.html">관리자</a>
+      </div>
+    </nav>
+    <!--main 화면 img들어갈 것-->
+    <article class="all-browsers">
+      <div class="hr-sect">ADMIN</div>
 
+      <div class="container">
+        <div class="row">
+          <aside
+            class="col-2 px-0"
+            id="left"
+            style="top: 250px; position: fixed; left: 0;"
+          >
+            <div class="list-group w-100">
+              <a href="admin-main.html" class="list-group-item">관리자 홈</a>
+              <a href="admin-user-list.html" class="list-group-item"
+                >회원관리</a
+              >
+              <a href="admin-pro-list.html" class="list-group-item">상품관리</a>
+              <a href="admin-order-list.html" class="list-group-item"
+                >주문관리</a
+              >
+              <a href="admin-qty-list.html" class="list-group-item">재고관리</a>
+              <a href="admin-review-list.html" class="list-group-item"
+                >리뷰관리</a
+              >
+              <a href="admin-qna-list.html" class="list-group-item">Q&A관리</a>
+            </div>
+          </aside>
+
+          <script>
+            $(document).ready(function () {
+              let templates = '<div class="select-box">';
+              templates +=
+                '<select class="select" name="test" style="height: 30px;>';
+
+              templates += '<option value="black_s">BLACK S</option>';
+              templates += '<option value="black_m">BLACK M</option>';
+              templates += '<option value="black_l">BLACK L</option>';
+              templates += '<option value="white_s">WHITE S</option>';
+              templates += '<option value="white_m">WHITE M</option>';
+              templates += '<option value="white_l">WHITE L</option>';
+              templates += '<option value="red_s">RED S</option>';
+              templates += '<option value="red_m">RED M</option>';
+              templates += '<option value="red_l">RED L</option>';
+
+              templates += "</select>";
+              templates += ' <input type="number" style="width: 50px;" />';
+              templates += '<span class="delete-selectbox">&cross;</span>';
+              templates += "</div>";
+              $("#btn-plus").click(function () {
+                $("#select-container").append(templates);
+              });
+
+              $(document).on("click", ".delete-selectbox", function () {
+                $(this).closest("div").remove();
+              });
+            });
+          </script>
+
+          <!-- 상품 입력 -->
+          <main class="col offset-2 h-100 user-main">
             <div class="container">
-                <div class="row">
-                    <aside
-                        class="col-2 px-0"
-                        id="left"
-                        style="top: 250px; position: fixed; left: 0;"
-                    >
-                        <div class="list-group w-100">
-                            <a href="admin-main.html" class="list-group-item">회원관리</a>
-                            <a href="admin-pro-list.html" class="list-group-item">상품관리</a>
-                            <a href="admin-order-list.html" class="list-group-item">주문관리</a>
-                            <a href="admin-qty-list.html" class="list-group-item">재고관리</a>
-                            <a href="admin-review-list.html" class="list-group-item">리뷰관리</a>
-                            <a href="admin-qna-list.html" class="list-group-item">Q&A관리</a>
-                        </div>
-                    </aside>
-
-                    <script>
-                        $(document).ready(function () {
-                            let templates = '<div class="select-box">';
-                            templates += '<select class="select" name="test" style="height: 30px;>';
-
-                            templates += '<option value="black_s">BLACK S</option>';
-                            templates += '<option value="black_m">BLACK M</option>';
-                            templates += '<option value="black_l">BLACK L</option>';
-                            templates += '<option value="white_s">WHITE S</option>';
-                            templates += '<option value="white_m">WHITE M</option>';
-                            templates += '<option value="white_l">WHITE L</option>';
-                            templates += '<option value="red_s">RED S</option>';
-                            templates += '<option value="red_m">RED M</option>';
-                            templates += '<option value="red_l">RED L</option>';
-
-                            templates += '</select>';
-                            templates += ' <input type="number" style="width: 50px;" />';
-                            templates += '<span class="delete-selectbox">&cross;</span>';
-                            templates += '</div>';
-                            $('#btn-plus').click(function () {
-                                $('#select-container').append(templates);
-                            });
-
-                            $(document).on('click', '.delete-selectbox', function () {
-                                $(this).closest('div').remove();
-                            });
-                        });
-                    </script>
-
-                    <!-- 상품 입력 -->
-                    <main class="col offset-2 h-100 user-main">
-                        <div class="container">
-                            <div>
-                                상품 정보 등록
-                            </div>
-                            <span>상품코드 : 000001</span>
-                            <hr />
-                            <div>
-                                <lable>상품 이름</lable>
-                                <input placeholder="상품이름을 입력해주세요" />
-                            </div>
-                            <div>
-                                <label>상품 가격</label>
-                                <input type="number" placeholder="가격을 입력해주세요" />
-                            </div>
-                            <div id="select-container">
-                                <label>상품 종류</label>
-                                <button id="btn-plus">추가</button>
-                                <div class="select-box">
-                                    <select class="select" name="test" style="height: 30px;">
-                                        <option value="black_s">BLACK S</option>
-                                        <option value="black_m">BLACK M</option>
-                                        <option value="black_l">BLACK L</option>
-                                        <option value="white_s">WHITE S</option>
-                                        <option value="white_m">WHITE M</option>
-                                        <option value="white_l">WHITE L</option>
-                                        <option value="red_s">RED S</option>
-                                        <option value="red_m">RED M</option>
-                                        <option value="red_l">RED L</option>
-                                    </select>
-                                    <input type="number" style="width: 50px;" />
-                                    <span class="delete-selectbox">&cross;</span>
-                                </div>
-                            </div>
-                            <!--이미지 및 상세 정보-->
-                            <label>상품 정보</label>
-                            <div>
-                                <textarea style="width: 100%;"></textarea>
-                            </div>
-                            <!--buton group-->
-                            <div class="d-flex justify-content-end mt-3">
-                                <button
-                                    id="btn-plus"
-                                    class="bt-pro-save"
-                                    onclick="$(document)
+              <div>
+                상품 정보 등록
+              </div>
+              <span>상품코드 : 000001</span>
+              <hr />
+              <div class="mb-3">
+                <lable class="mr-3">상품 이름</lable>
+                <input placeholder="상품이름을 입력해주세요" />
+              </div>
+              <div class="mb-3">
+                <label class="mr-3">상품 가격</label>
+                <input type="number" placeholder="가격을 입력해주세요" />
+              </div>
+              <div id="select-container">
+                <label class="mr-3">상품 종류</label>
+                <button
+                  id="btn-plus"
+                  style="
+                    border: 1px solid rgb(168, 163, 163);
+                    border-radius: 10px;
+                  "
+                >
+                  추가
+                </button>
+                <div class="select-box">
+                  <select class="select" name="test" style="height: 30px;">
+                    <option value="black_s">BLACK S</option>
+                    <option value="black_m">BLACK M</option>
+                    <option value="black_l">BLACK L</option>
+                    <option value="white_s">WHITE S</option>
+                    <option value="white_m">WHITE M</option>
+                    <option value="white_l">WHITE L</option>
+                    <option value="red_s">RED S</option>
+                    <option value="red_m">RED M</option>
+                    <option value="red_l">RED L</option>
+                  </select>
+                  <input type="number" style="width: 50px;" />
+                  <span class="delete-selectbox">&cross;</span>
+                </div>
+              </div>
+              <!--이미지 및 상세 정보-->
+              <div class="mt-3">
+                <label>상품 정보</label>
+                <div>
+                  <textarea style="width: 100%;">
+여기에 summernote랑 이미지 업로드 같이 설정</textarea
+                  >
+                </div>
+                <!--buton group-->
+                <div class="d-flex justify-content-end mt-3">
+                  <button
+                    id="btn-plus"
+                    class="bt-pro-save"
+                    onclick="$(document)
                                     .on('click','.bt-pro-save',function(){
                               document.location.href='admin-pro-list.html'
                             })"
-                                >
-                                    저장
-                                </button>
-                            </div>
-                        </div>
-                    </main>
+                  >
+                    저장
+                  </button>
                 </div>
+              </div>
             </div>
-        </article>
-    </body>
-
-    <!-- footer include -->
-    <footer class="bg-gray mt-5">
-        <div class="container p-5">
-            <div class="row">
-                <h2 class="red-text">NAVIYA</h2>
-            </div>
-            <div class="pl-5 pr-5 d-flex row">
-                <div class="col-sm-3">
-                    <div>
-                        shop
-                    </div>
-                    <div>
-                        main1
-                    </div>
-                    <div>
-                        main2
-                    </div>
-                    <div>
-                        QnA
-                    </div>
-                </div>
-                <div class="col-sm-3">
-                    <div>
-                        <span class="font-weight-bold"> TEAMLEADER </span><br />
-                        <span
-                            ><a class="atag-github" href="https://github.com/jeongseongjong"
-                                >&nbsp;&nbsp;- NAVI</a
-                            ></span
-                        >
-                    </div>
-                    <div>
-                        <span class="font-weight-bold">UI/UX</span> <br />
-                        <span
-                            ><a class="atag-github" href="https://github.com/qussoa"
-                                >&nbsp;&nbsp;- QUSSOA</a
-                            ></span
-                        >
-                    </div>
-                </div>
-                <div class="col-sm-3">
-                    <div>
-                        <span class="font-weight-bold">DEVELOPER</span><br />
-                        <span
-                            ><a class="atag-github" href="https://github.com/leeiter"
-                                >&nbsp;&nbsp;- PRINCESSEJIN</a
-                            ></span
-                        >
-                    </div>
-                    <div>
-                        <span class="font-weight-bold">DEVELOPER</span><br />
-                        <span
-                            ><a class="atag-github" href="https://github.com/bjmin17"
-                                >&nbsp;&nbsp; - BJ.MIN</a
-                            ></span
-                        >
-                    </div>
-                </div>
-                <div class="col-sm-3">
-                    <div>
-                        <small>
-                            광주광역시 북구 경양로170<br />
-                            한경빌딩 5층
-                        </small>
-                    </div>
-                    <div>
-                        <small>
-                            &copy; copyRight qussoa@naver.com
-                        </small>
-                    </div>
-                </div>
-            </div>
+          </main>
         </div>
-    </footer>
+      </div>
+    </article>
+  </body>
+
+  <!-- footer include -->
+  <footer class="bg-gray mt-5">
+    <div class="container p-5">
+      <div class="row">
+        <h2 class="red-text">NAVIYA</h2>
+      </div>
+      <div class="pl-5 pr-5 d-flex row">
+        <div class="col-sm-3">
+          <div>
+            shop
+          </div>
+          <div>
+            main1
+          </div>
+          <div>
+            main2
+          </div>
+          <div>
+            QnA
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div>
+            <span class="font-weight-bold"> TEAMLEADER </span><br />
+            <span
+              ><a class="atag-github" href="https://github.com/jeongseongjong"
+                >&nbsp;&nbsp;- NAVI</a
+              ></span
+            >
+          </div>
+          <div>
+            <span class="font-weight-bold">UI/UX</span> <br />
+            <span
+              ><a class="atag-github" href="https://github.com/qussoa"
+                >&nbsp;&nbsp;- QUSSOA</a
+              ></span
+            >
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div>
+            <span class="font-weight-bold">DEVELOPER</span><br />
+            <span
+              ><a class="atag-github" href="https://github.com/leeiter"
+                >&nbsp;&nbsp;- PRINCESSEJIN</a
+              ></span
+            >
+          </div>
+          <div>
+            <span class="font-weight-bold">DEVELOPER</span><br />
+            <span
+              ><a class="atag-github" href="https://github.com/bjmin17"
+                >&nbsp;&nbsp; - BJ.MIN</a
+              ></span
+            >
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div>
+            <small>
+              광주광역시 북구 경양로170<br />
+              한경빌딩 5층
+            </small>
+          </div>
+          <div>
+            <small>
+              &copy; copyRight qussoa@naver.com
+            </small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
 </html>

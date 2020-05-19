@@ -60,8 +60,8 @@
     <!--main 화면 img들어갈 것-->
     <article class="all-browsers">
       <div class="hr-sect">ADMIN</div>
-
       <div class="container">
+        <!--sidebar-->
         <div class="row">
           <aside
             class="col-2 px-0"
@@ -84,40 +84,40 @@
               <a href="admin-qna-list.html" class="list-group-item">Q&A관리</a>
             </div>
           </aside>
-
+          <!--page include-->
           <main class="col offset-2 h-100 user-main">
             <div class="row bg-light">
               <div class="col-12 py-4 text-center">
-                <span style="font-size: 30px;">주문관리</span>
+                <span style="font-size: 30px;">회원관리</span>
               </div>
             </div>
             <div class="row bg-white">
               <div class="col-12 py-4">
-                <table class="table" style="width: 100%;">
+                <table class="table">
                   <thead>
                     <tr>
                       <th class="in-ck-box">NO</th>
                       <th class="in-ck-box">회원ID</th>
-                      <th class="in-ck-box">회원주소</th>
-                      <th class="in-ck-box">상품이름</th>
-                      <th class="in-ck-box">상품가격</th>
-                      <th class="in-ck-box">상품수량</th>
-                      <th class="in-ck-box">상품총가격</th>
-                      <th class="in-ck-box">주문일자</th>
-                      <th class="in-ck-box">주문현황</th>
+                      <th class="in-ck-box">권한</th>
+                      <th class="in-ck-box">권한유무</th>
+                      <th class="in-ck-box">탈퇴유무</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
+                    <tr
+                      onclick="$(document)
+                        .on('click','.td-click'
+                        ,function(){document.location.href='admin-userdetail.html'})"
+                    >
                       <td class="in-ck-box td-click">1</td>
                       <td class="in-ck-box td-click">qussoa</td>
-                      <td class="in-ck-box td-click">백운동</td>
-                      <td class="in-ck-box td-click">White pants</td>
-                      <td class="in-ck-box td-click">15000</td>
-                      <td class="in-ck-box td-click">10</td>
-                      <td class="in-ck-box td-click">1500000</td>
-                      <td class="in-ck-box td-click">2020-05-17</td>
-                      <td class="in-ck-box td-click">배송중</td>
+                      <td class="in-ck-box td-click">ADMIN</td>
+                      <td class="in-ck-box">
+                        <input type="checkbox" />
+                      </td>
+                      <td class="in-ck-box">
+                        <input type="checkbox" />
+                      </td>
                     </tr>
                   </tbody>
                 </table>

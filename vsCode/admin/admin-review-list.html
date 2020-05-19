@@ -1,232 +1,241 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Page Title</title>
-        <!-- Latest compiled and minified CSS -->
-        <script src="https://code.jquery.com/jquery-latest.min.js"></script>
-        <link
-            rel="stylesheet"
-            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-        />
-        <!-- Popper JS -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Page Title</title>
+    <!-- Latest compiled and minified CSS -->
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    />
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 
-        <!-- Latest compiled JavaScript -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
-        <link rel="stylesheet" href="./admin-main.css" />
-        <link rel="stylesheet" href="../main.css" />
-    </head>
-    <body>
-        <!--header include-->
-        <header>
-            <div class="d-flex">
-                <ul class="nav ml-auto mr-5">
-                    <!-- input 검색창-->
-                    <li class="nav-item nav-input">
-                        <input class="input-style" />
-                        <img src="../img/scope.png" class="scope" />
-                    </li>
-                    <!-- annonimous& authentication-->
-                    <li class="nav-item">
-                        <a class="nav-link">login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link">logout</a>
-                    </li>
-                    <!--로그인시 mypage-->
-                    <li class="nav-item">
-                        <a class="nav-link">mypage</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link">join</a>
-                    </li>
-                </ul>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+    <link rel="stylesheet" href="./admin-main.css" />
+    <link rel="stylesheet" href="../main.css" />
+  </head>
+  <body>
+    <!--header include-->
+    <header>
+      <div class="d-flex">
+        <ul class="nav ml-auto mr-5">
+          <!-- input 검색창-->
+          <li class="nav-item nav-input">
+            <input class="input-style" />
+            <img src="../img/scope.png" class="scope" />
+          </li>
+          <!-- annonimous& authentication-->
+          <li class="nav-item">
+            <a class="nav-link">login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link">logout</a>
+          </li>
+          <!--로그인시 mypage-->
+          <li class="nav-item">
+            <a class="nav-link">mypage</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link">join</a>
+          </li>
+        </ul>
+      </div>
+    </header>
+    <!--nav include 할 것-->
+    <nav
+      class="navbar navbar-expand-sm bg-white d-flex ml-5 mt-5 mb-5 sticky-top"
+    >
+      <a href="../main.html" class="red-text mr-5 h-title"><h2>NAVIYA</h2></a>
+      <div class="d-flex">
+        <a class="nav-link black-text" href="../shopList.html">SHOP</a>
+        <a class="nav-link black-text" href="../sponsor.html">고객센터</a>
+        <a class="nav-link black-text" href="./admin/admin-main.html">관리자</a>
+      </div>
+    </nav>
+    <!--main 화면 img들어갈 것-->
+    <article class="all-browsers">
+      <div class="hr-sect">ADMIN</div>
+
+      <div class="container">
+        <div class="row">
+          <aside
+            class="col-2 px-0"
+            id="left"
+            style="top: 250px; position: fixed; left: 0;"
+          >
+            <div class="list-group w-100">
+              <a href="admin-main.html" class="list-group-item">관리자 홈</a>
+              <a href="admin-user-list.html" class="list-group-item"
+                >회원관리</a
+              >
+              <a href="admin-pro-list.html" class="list-group-item">상품관리</a>
+              <a href="admin-order-list.html" class="list-group-item"
+                >주문관리</a
+              >
+              <a href="admin-qty-list.html" class="list-group-item">재고관리</a>
+              <a href="admin-review-list.html" class="list-group-item"
+                >리뷰관리</a
+              >
+              <a href="admin-qna-list.html" class="list-group-item">Q&A관리</a>
             </div>
-        </header>
-        <!--nav include 할 것-->
-        <nav class="navbar navbar-expand-sm bg-white d-flex ml-5 mt-5 mb-5 sticky-top">
-            <a href="../main.html" class="red-text mr-5 h-title"><h2>NAVIYA</h2></a>
-            <div class="d-flex">
-                <a class="nav-link black-text" href="../shopList.html">SHOP</a>
-                <a class="nav-link black-text" href="../sponsor.html">고객센터</a>
-                <a class="nav-link black-text" href="./admin/admin-main.html">관리자</a>
+          </aside>
+
+          <main class="col offset-2 h-100 user-main">
+            <div class="row bg-light">
+              <div class="col-12 py-4 text-center">
+                <span style="font-size: 30px;">리뷰관리</span>
+              </div>
             </div>
-        </nav>
-        <!--main 화면 img들어갈 것-->
-        <article class="all-browsers">
-            <div class="hr-sect">ADMIN</div>
+            <div class="row bg-white">
+              <div class="col-12 py-4">
+                <table class="table" style="width: 100%;">
+                  <thead>
+                    <tr>
+                      <th class="in-ck-box">NO</th>
+                      <th class="in-ck-box">회원ID</th>
+                      <th class="in-ck-box">상품코드</th>
+                      <th class="in-ck-box">상품이름</th>
+                      <th class="in-ck-box">댓글내용</th>
+                      <th class="in-ck-box">피드백유무</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="in-ck-box td-click">1</td>
+                      <td class="in-ck-box td-click">qussoa</td>
+                      <td class="in-ck-box td-click">000001</td>
+                      <td class="in-ck-box td-click">Whtie pants</td>
+                      <td class="in-ck-box td-click">바지가 작아요</td>
+                      <td class="in-ck-box td-click">Y</td>
+                    </tr>
+                  </tbody>
+                </table>
 
-            <div class="container">
-                <div class="row">
-                    <aside
-                        class="col-2 px-0"
-                        id="left"
-                        style="top: 250px; position: fixed; left: 0;"
-                    >
-                        <div class="list-group w-100">
-                            <a href="admin-main.html" class="list-group-item">회원관리</a>
-                            <a href="admin-pro-list.html" class="list-group-item">상품관리</a>
-                            <a href="admin-order-list.html" class="list-group-item">주문관리</a>
-                            <a href="admin-qty-list.html" class="list-group-item">재고관리</a>
-                            <a href="admin-review-list.html" class="list-group-item">리뷰관리</a>
-                            <a href="admin-qna-list.html" class="list-group-item">Q&A관리</a>
-                        </div>
-                    </aside>
-
-                    <main class="col offset-2 h-100 user-main">
-                        <div class="row bg-light">
-                            <div class="col-12 py-4 text-center">
-                                <span style="font-size: 30px;">리뷰관리</span>
-                            </div>
-                        </div>
-                        <div class="row bg-white">
-                            <div class="col-12 py-4">
-                                <table class="table" style="width: 100%;">
-                                    <thead>
-                                        <tr>
-                                            <th class="in-ck-box">NO</th>
-                                            <th class="in-ck-box">유저ID</th>
-                                            <th class="in-ck-box">상품코드</th>
-                                            <th class="in-ck-box">상품이름</th>
-                                            <th class="in-ck-box">댓글내용</th>
-                                            <th class="in-ck-box">피드백유무</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td class="in-ck-box td-click">1</td>
-                                            <td class="in-ck-box td-click">qussoa</td>
-                                            <td class="in-ck-box td-click">000001</td>
-                                            <td class="in-ck-box td-click">Whtie pants</td>
-                                            <td class="in-ck-box td-click">바지가 작아요</td>
-                                            <td class="in-ck-box td-click">Y</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-
-                                <!--pagination-->
-                                <div class="d-flex justify-content-center">
-                                    <nav aria-label="Page navigation example">
-                                        <ul class="pagination">
-                                            <li class="page-item">
-                                                <a
-                                                    class="page-link black-text"
-                                                    href="#"
-                                                    aria-label="Previous"
-                                                >
-                                                    <span aria-hidden="true" class="black-text"
-                                                        >&laquo;</span
-                                                    >
-                                                    <span class="sr-only">Previous</span>
-                                                </a>
-                                            </li>
-                                            <li class="page-item black-text">
-                                                <a class="page-link black-text" href="#">1</a>
-                                            </li>
-                                            <li class="page-item black-text">
-                                                <a class="page-link black-text" href="#">2</a>
-                                            </li>
-                                            <li class="page-item black-text">
-                                                <a class="page-link black-text" href="#">3</a>
-                                            </li>
-                                            <li class="page-item black-text">
-                                                <a
-                                                    class="page-link black-text"
-                                                    href="#"
-                                                    aria-label="Next"
-                                                >
-                                                    <span aria-hidden="true" class="black-text"
-                                                        >&raquo;</span
-                                                    >
-                                                    <span class="sr-only black-text">Next</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </nav>
-                                </div>
-                                <!--pagination end-->
-                            </div>
-                        </div>
-                    </main>
-                </div>
-            </div>
-        </article>
-    </body>
-
-    <!-- footer include -->
-    <footer class="bg-gray mt-5">
-        <div class="container p-5">
-            <div class="row">
-                <h2 class="red-text">NAVIYA</h2>
-            </div>
-            <div class="pl-5 pr-5 d-flex row">
-                <div class="col-sm-3">
-                    <div>
-                        shop
-                    </div>
-                    <div>
-                        main1
-                    </div>
-                    <div>
-                        main2
-                    </div>
-                    <div>
-                        QnA
-                    </div>
-                </div>
-                <div class="col-sm-3">
-                    <div>
-                        <span class="font-weight-bold"> TEAMLEADER </span><br />
-                        <span
-                            ><a class="atag-github" href="https://github.com/jeongseongjong"
-                                >&nbsp;&nbsp;- NAVI</a
-                            ></span
+                <!--pagination-->
+                <div class="d-flex justify-content-center">
+                  <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                      <li class="page-item">
+                        <a
+                          class="page-link black-text"
+                          href="#"
+                          aria-label="Previous"
                         >
-                    </div>
-                    <div>
-                        <span class="font-weight-bold">UI/UX</span> <br />
-                        <span
-                            ><a class="atag-github" href="https://github.com/qussoa"
-                                >&nbsp;&nbsp;- QUSSOA</a
-                            ></span
+                          <span aria-hidden="true" class="black-text"
+                            >&laquo;</span
+                          >
+                          <span class="sr-only">Previous</span>
+                        </a>
+                      </li>
+                      <li class="page-item black-text">
+                        <a class="page-link black-text" href="#">1</a>
+                      </li>
+                      <li class="page-item black-text">
+                        <a class="page-link black-text" href="#">2</a>
+                      </li>
+                      <li class="page-item black-text">
+                        <a class="page-link black-text" href="#">3</a>
+                      </li>
+                      <li class="page-item black-text">
+                        <a
+                          class="page-link black-text"
+                          href="#"
+                          aria-label="Next"
                         >
-                    </div>
+                          <span aria-hidden="true" class="black-text"
+                            >&raquo;</span
+                          >
+                          <span class="sr-only black-text">Next</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </nav>
                 </div>
-                <div class="col-sm-3">
-                    <div>
-                        <span class="font-weight-bold">DEVELOPER</span><br />
-                        <span
-                            ><a class="atag-github" href="https://github.com/leeiter"
-                                >&nbsp;&nbsp;- PRINCESSEJIN</a
-                            ></span
-                        >
-                    </div>
-                    <div>
-                        <span class="font-weight-bold">DEVELOPER</span><br />
-                        <span
-                            ><a class="atag-github" href="https://github.com/bjmin17"
-                                >&nbsp;&nbsp; - BJ.MIN</a
-                            ></span
-                        >
-                    </div>
-                </div>
-                <div class="col-sm-3">
-                    <div>
-                        <small>
-                            광주광역시 북구 경양로170<br />
-                            한경빌딩 5층
-                        </small>
-                    </div>
-                    <div>
-                        <small>
-                            &copy; copyRight qussoa@naver.com
-                        </small>
-                    </div>
-                </div>
+                <!--pagination end-->
+              </div>
             </div>
+          </main>
         </div>
-    </footer>
+      </div>
+    </article>
+  </body>
+
+  <!-- footer include -->
+  <footer class="bg-gray mt-5">
+    <div class="container p-5">
+      <div class="row">
+        <h2 class="red-text">NAVIYA</h2>
+      </div>
+      <div class="pl-5 pr-5 d-flex row">
+        <div class="col-sm-3">
+          <div>
+            shop
+          </div>
+          <div>
+            main1
+          </div>
+          <div>
+            main2
+          </div>
+          <div>
+            QnA
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div>
+            <span class="font-weight-bold"> TEAMLEADER </span><br />
+            <span
+              ><a class="atag-github" href="https://github.com/jeongseongjong"
+                >&nbsp;&nbsp;- NAVI</a
+              ></span
+            >
+          </div>
+          <div>
+            <span class="font-weight-bold">UI/UX</span> <br />
+            <span
+              ><a class="atag-github" href="https://github.com/qussoa"
+                >&nbsp;&nbsp;- QUSSOA</a
+              ></span
+            >
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div>
+            <span class="font-weight-bold">DEVELOPER</span><br />
+            <span
+              ><a class="atag-github" href="https://github.com/leeiter"
+                >&nbsp;&nbsp;- PRINCESSEJIN</a
+              ></span
+            >
+          </div>
+          <div>
+            <span class="font-weight-bold">DEVELOPER</span><br />
+            <span
+              ><a class="atag-github" href="https://github.com/bjmin17"
+                >&nbsp;&nbsp; - BJ.MIN</a
+              ></span
+            >
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div>
+            <small>
+              광주광역시 북구 경양로170<br />
+              한경빌딩 5층
+            </small>
+          </div>
+          <div>
+            <small>
+              &copy; copyRight qussoa@naver.com
+            </small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
 </html>
