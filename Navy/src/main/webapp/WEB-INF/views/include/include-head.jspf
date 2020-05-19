@@ -14,3 +14,4 @@
 
 <link rel="stylesheet" href="${rootPath}/resources/css/main.css" />
 <link rel="stylesheet" href="${rootPath}/resources/css/shopDetail.css" />
+<link rel="stylesheet" href="${rootPath}/resources/css/admin-main.css" />
