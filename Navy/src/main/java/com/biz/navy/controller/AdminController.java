@@ -13,7 +13,7 @@ import com.biz.navy.domain.ProductVO;
 import com.biz.navy.domain.UserDetailsVO;
 import com.biz.navy.service.ProductImgService;
 import com.biz.navy.service.ProductService;
-import com.biz.navy.service.UserService;
+import com.biz.navy.service.secure.UserService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

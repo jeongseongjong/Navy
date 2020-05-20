@@ -36,9 +36,9 @@
 			<constructor-arg index="0" value="4"/>
 	</bean>
 	
-	<context:component-scan base-package="com.biz.navy.service"/>
+	<context:component-scan base-package="com.biz.navy.service.secure"/>
 	
-	<bean id="authProvider" class="com.biz.navy.service.AuthProviderImpl">
+	<bean id="authProvider" class="com.biz.navy.service.secure.AuthProviderImpl">
 	</bean>
  
 	<!-- 사용자 login을 검증 -->

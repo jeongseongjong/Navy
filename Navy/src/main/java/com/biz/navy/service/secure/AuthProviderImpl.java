@@ -1,4 +1,4 @@
-package com.biz.navy.service;
+package com.biz.navy.service.secure;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

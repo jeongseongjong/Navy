@@ -42,7 +42,10 @@ public class ProductController {
 	public String detail(ProductVO productVO, @PathVariable("id") String id, Model model) {
 		long p_code = Long.valueOf(id);
 		productVO = proService.findById(p_code);
-		model.addAttribute("productVO", productVO);	
+		
+		
+		model.addAttribute("productVO", productVO);
+		
 		return "detail";
 	}
 

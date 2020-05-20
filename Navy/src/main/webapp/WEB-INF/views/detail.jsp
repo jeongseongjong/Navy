@@ -35,9 +35,8 @@
 					p_name : "${productVO.p_name}",
 					p_code : "${productVO.p_code}",
 					p_price : "${productVO.p_price}",
-					p_size : p_size,
-					p_qty : p_qty,
 
+				
 					// 포스트일 경우에는 이 값을 보내주어야 한다.
 					"${_csrf.parameterName}" : "${_csrf.token}"
 				},
@@ -91,11 +90,11 @@
 						<p>색과 사이즈를 선택해주세요</p>
 					</div>
 					<c:if test="${!empty productVO.sizeList}">
-						<ul class="menu">
+						<select id="p_size">
 							<c:forEach items="${productVO.sizeList}" var="size">
-								<li><input id="p_size" >${size.c_size}</li>
+								<option value="${size.c_size}">${size.c_size}</option>
 							</c:forEach>
-						</ul>
+						</select>
 					</c:if>
 				</div>
 				<div class="col mb-5">
