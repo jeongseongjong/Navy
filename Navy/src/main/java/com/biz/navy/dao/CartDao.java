@@ -9,9 +9,12 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import com.biz.navy.domain.CartVO;
+import com.biz.navy.domain.ColorVO;
+import com.biz.navy.domain.SizeVO;
 
 public interface CartDao {
  
+
 	// 장바구니 보기용 SELECT
 	@Select("select C.bk_id, C.bk_p_name, P.p_code, P.p_name, C.username, C.bk_p_oprice, C.bk_p_qty from tbl_cart C"
 			+ " LEFT JOIN tbl_product P ON C.bk_p_code = P.p_code "
@@ -45,5 +48,11 @@ public interface CartDao {
 	@Select("select count(*) from tbl_cart where bk_p_status = 'CART' ")
 	public int cartCount();
 
+
+	@Select("SELECT * FROM tbl_size where s_p_code = #{p_code}")
+	public List<SizeVO> findBySpCode(long p_code);
+	
+	@Select("SELECT * FROM tbl_color where c_s_code = #{c_s_code}")
+	public List<ColorVO> findByCsCode(long c_s_code);
 
 }

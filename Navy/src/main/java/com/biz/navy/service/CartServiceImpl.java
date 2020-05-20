@@ -8,6 +8,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.biz.navy.dao.CartDao;
 import com.biz.navy.domain.CartListVO;
 import com.biz.navy.domain.CartVO;
+import com.biz.navy.domain.ColorVO;
+import com.biz.navy.domain.SizeVO;
 
 import lombok.RequiredArgsConstructor;
 
@@ -87,6 +89,18 @@ public class CartServiceImpl implements CartService{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	// s_p_code로 사이즈를 조회하는 코드
+	public List<SizeVO> findBySpCode(long s_p_code){
+		
+		return cartDao.findBySpCode(s_p_code);
+	}
+
+	public List<ColorVO> findByCsCode(long c_s_code) {
+
+		return cartDao.findByCsCode(c_s_code);
+	}
+
 	
 	
 

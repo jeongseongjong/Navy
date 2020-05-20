@@ -31,7 +31,7 @@ public interface ProductDao {
 					@Result(property = "proDImgList", column = "p_code", javaType = List.class, many = @Many(select = "getPImgSeq"))})
 	public ProductVO findById(long p_code);
 	
-	@Select("SELECT * FROM tbl_size WHERE c_p_code = #{c_p_code}")
+	@Select("SELECT * FROM tbl_size WHERE s_p_code = #{c_p_code}")
 	public SizeVO getCPcode(long c_p_code);
 	
 	@Select("SELECT * FROM tbl_p_images WHERE p_img_p_code = #{p_img_p_code}")

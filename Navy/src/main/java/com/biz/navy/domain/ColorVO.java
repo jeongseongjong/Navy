@@ -13,10 +13,10 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 @Builder
-public class SizeVO {
-	
-	private long s_code ;// number PRIMARY KEY,
-	private String s_p_code; // VARCHAR(6) ,
-	private String s_size; // VARCHAR(255),
+public class ColorVO {
 
+	private long c_code;
+	private String c_color;
+	private long c_s_code;
+	private long c_qty;
 }

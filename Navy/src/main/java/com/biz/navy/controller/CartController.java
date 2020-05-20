@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.biz.navy.domain.CartListVO;
 import com.biz.navy.domain.CartVO;
+import com.biz.navy.domain.ColorVO;
 import com.biz.navy.domain.ProductVO;
+import com.biz.navy.domain.SizeVO;
 import com.biz.navy.domain.UserDetailsVO;
 import com.biz.navy.service.CartService;
 import com.biz.navy.service.ProductService;
@@ -32,26 +34,20 @@ public class CartController {
 	private final ProductService proService;
 	private final CartService cartService;
 
-	// 상품 리스트
-	@RequestMapping(value="/list",method=RequestMethod.GET)
-	public String list(Model model) {
-		
-		List<ProductVO> proList = proService.selectAll();
-		
-		model.addAttribute("PRODUCT_LIST", proList);
-		log.debug("상품 리스트를 가져오느냐"+ proList);
-		
-		return "cart";
-	}
 	
 	@ResponseBody
 	@RequestMapping(value="/cart",method=RequestMethod.POST)
 	public String cart(CartVO cartVO, Authentication authen,
-			ProductVO productVO
+			ProductVO productVO, 
+			String[] size,
+			SizeVO sizeVO, ColorVO colorVO
 			) {
 		
 		log.debug("프로덕트"+productVO.toString());
 		log.debug("카트에 카트 size를 가져오냐 ? " + productVO.getP_size());
+		
+		
+
 		
 		try {
 			// 카트 VO에서 시큐리티로 로그인한 사용자 이름 가져오기
@@ -59,11 +55,13 @@ public class CartController {
 			UserDetailsVO userVO = (UserDetailsVO) authen.getPrincipal();
 //			cartVO.setUsername(userVO.getUsername());
 //			cartVO.setBk_p_code(productVO.getP_code()+"");
+			
 			cartVO = CartVO.builder()
 					.bk_p_code(productVO.getP_code())
 					.bk_p_name(productVO.getP_name())
 					.username(userVO.getUsername())
 					.bk_p_size(productVO.getP_size())
+					.bk_p_color(productVO.getP_color())
 					.bk_p_qty((int)productVO.getP_qty())
 					.bk_p_oprice((int)productVO.getP_price())
 					.build();
@@ -74,7 +72,7 @@ public class CartController {
 		}
 		
 		// 
-		log.debug("오류 ㅣ " + cartVO.getUsername());
+		log.debug("오류 " + cartVO.getUsername());
 		log.debug("카트:" + cartVO.toString());
 		cartService.insert(cartVO);
 		

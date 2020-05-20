@@ -167,6 +167,9 @@ $(function() {
 					<div class="col-9">
 						<p>상품이름 : ${cart.bk_p_name}</p>
 						<p>상품가격 : ${cart.bk_p_oprice}</p>
+						<p>색상 : ${cart.bk_p_color}</p>
+						<p>사이즈 : ${cart.bk_p_size}</p>
+						
 						<p>
 							<label>수량</label> <input type="number" name="p_qty"
 								value="${cart.bk_p_qty}" id="p_${cart.bk_id}" /> <input

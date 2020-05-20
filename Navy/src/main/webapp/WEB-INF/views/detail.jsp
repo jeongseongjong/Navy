@@ -20,8 +20,10 @@
 
 		$("#btn-cart").click(function() {
 			let p_qty = parseInt($("#p_qty").val())
-			let p_size = $("#p_size").val()
-			alert(p_size)
+			let c_color = $("#c_color").val()
+			let s_size = $("#s_size").val()
+			alert(s_size)
+			alert(c_color)
 
 			if (p_qty <= 0) {
 				alert("수량은 0개 이상")
@@ -35,8 +37,9 @@
 					p_name : "${productVO.p_name}",
 					p_code : "${productVO.p_code}",
 					p_price : "${productVO.p_price}",
-
-				
+					p_size : s_size,
+					p_color : c_color,
+					p_qty : p_qty,
 					// 포스트일 경우에는 이 값을 보내주어야 한다.
 					"${_csrf.parameterName}" : "${_csrf.token}"
 				},
@@ -87,20 +90,43 @@
 				<div class="col">
 					<label class="mr-5">COLOR/SIZE</label>
 					<div class="dropdownbox">
-						<p>색과 사이즈를 선택해주세요</p>
+						<p>사이즈를 선택해주세요</p>
 					</div>
-					<c:if test="${!empty productVO.sizeList}">
-						<select id="p_size">
-							<c:forEach items="${productVO.sizeList}" var="size">
-								<option value="${size.c_size}">${size.c_size}</option>
-							</c:forEach>
-						</select>
-					</c:if>
+					<div class="dropdownbox">
+						<p>컬러를 선택해주세요
+					</div>
+
 				</div>
 				<div class="col mb-5">
 					<label class="mr-5">QUAN·TITY</label> <input id="p_qty"
 						type="number" class="text-center" style="width: 80px;" />
 				</div>
+					<div id="color_box"></div>
+				<script>
+				$(function(){
+					   $(document).on("change","#color",function(){
+			               let size = $("#size").val()            
+			               let item = $(this).val()
+			               $("div#color_box").append($("<input/>",{class:"auth form-control-plaintext", name:"size",value:size}))
+			               $("div#color_box").append($("<input/>",{class:"auth form-control-plaintext", name:"color",value:item}))
+					   })
+					
+				})
+				</script>
+				<c:if test="${!empty productVO.sizeList}">
+					<select id="size">
+						<option selected="selected">사이즈를 선택하세요</option>
+						<c:forEach 	items="${SIZELIST}" var="size">
+							<option id="s_size" value="${size.s_size}">${size.s_size}</option>
+						</c:forEach>
+					</select>
+					<select id="color">
+						<option selected="selected">색상을 선택하세요</option>
+						<c:forEach items="${COLORLIST}" var="color">
+							<option id="c_color" value="${color.c_color}">${color.c_color}</option>
+						</c:forEach>
+					</select>
+				</c:if>
 
 				<!-- 장바구니 상품 button -->
 				<div class="d-flex justify-content-center">
