@@ -4,6 +4,7 @@
 <html>
 <head>
 <%@ include file="/WEB-INF/views/include/include-head.jspf"%>
+<%@ page import="java.util.*, java.text.*" %>
 
 <script>
 	$(function() {
@@ -24,7 +25,7 @@
 			let s_size = $("#s_size").val()
 			alert(s_size)
 			alert(c_color)
-
+			console.log("야이 개새끼야")
 			if (p_qty <= 0) {
 				alert("수량은 0개 이상")
 				return false;
@@ -95,17 +96,16 @@
 					<div class="dropdownbox">
 						<p>컬러를 선택해주세요
 					</div>
-					
-										<c:if test="${!empty productVO.sizeList}">
-					
+					<c:if test="${!empty productVO.sizeList}">
 						<select id="p_size">
 							<c:forEach items="${productVO.sizeList}" var="size">
 								<option value="${size.s_size}">${size.s_size}</option>
-									<c:if test="${!empty size.colorList}">
-										<c:forEach items="${size.colorList}" var="color">
-												<option value="${color.c_color}">${color.c_color}</option>
-										</c:forEach>
-									</c:if>
+								<c:if test="${!empty size.colorList}">
+									<c:forEach items="${size.colorList}" var="color">
+									
+										<option value="${color.c_color}">${color.c_color}</option>
+									</c:forEach>
+								</c:if>
 							</c:forEach>
 						</select>
 					</c:if>
@@ -115,7 +115,7 @@
 					<label class="mr-5">QUAN·TITY</label> <input id="p_qty"
 						type="number" class="text-center" style="width: 80px;" />
 				</div>
-				
+
 				<!-- 
 					<div id="color_box"></div>
 			

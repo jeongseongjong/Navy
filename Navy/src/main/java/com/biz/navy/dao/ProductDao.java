@@ -25,7 +25,7 @@ public interface ProductDao {
 	
 	@Select("SELECT * FROM tbl_product WHERE p_code = #{p_code}")
 	@Results(value= {@Result(property = "p_code", column = "p_code"),
-					@Result(property = "sizeList", column = "p_code", javaType = List.class, many = @Many(select = "getCPcode")),
+					@Result(property = "sizeList", column = "p_code", javaType = List.class, many = @Many(select = "getSPcode")),
 					@Result(property = "proDImgList", column = "p_code", javaType = List.class, many = @Many(select = "getPImgSeq"))})
 	public ProductVO findById(long p_code);
 	
