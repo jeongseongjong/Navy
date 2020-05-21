@@ -30,5 +30,8 @@ public class ProductVO {
     
     // 상품의 디테일이미지 정보를 담을 변수
     private List<ProductImgVO> proDImgList;
+    
+    // 상품의 회원리뷰 정보를 담을 변수
+    private List<ReviewVO> reviewList;
       
 }
