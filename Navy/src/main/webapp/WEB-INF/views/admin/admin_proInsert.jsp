@@ -12,7 +12,6 @@
 </head>
 <body>
 	<!-- 상품 입력 -->
-	<main class="col offset-2 h-100 user-main">
 		<div class="container">
 			<c:if test="${adminBody == 'proInsert' }">
 				<div>상품 정보 등록</div>
@@ -34,7 +33,7 @@
 			</div>
 			<div id="select-container">
 				<label>상품 종류</label>
-				<button id="btn-plus">추가</button>
+				<button type="button" id="btn-plus">추가</button>
 				<div class="select-box">
 					<select class="select" name="test" style="height: 30px;">
 						<option value="black_s">BLACK S</option>
@@ -51,6 +50,10 @@
 				</div>
 			</div>
 			<!--이미지 및 상세 정보-->
+			<div>
+				<label for="p_image">이미지</label> 
+				<form:input type="file" path="p_image" value="${productVO.p_image}" placeholder="" />
+			</div>
 			<label>상품 정보</label>
 			<div>
 				<textarea style="width: 100%;"></textarea>
@@ -62,7 +65,6 @@
 			</div>
 			</form:form>
 		</div>
-	</main>
 
 </body>
 </html>

@@ -11,7 +11,6 @@
 </head>
 <body>
 	<!--page include-->
-	<main class="col offset-2 h-100 user-main">
 		<div class="row bg-light">
 			<div class="col-12 py-4 text-center">
 				<span style="font-size: 30px;">회원상세수정관리</span>
@@ -101,7 +100,6 @@
 				</div>
 			</div>
 		</div>
-	</main>
 
 </body>
 </html>
