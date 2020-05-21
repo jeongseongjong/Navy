@@ -105,7 +105,6 @@
 			$(document).on("click",".ad-us-update",function(){
 				let formdata = $("form").serialize()
 				let username = $(this).data("name")
-				alert(username)
 				$.get("${rootPath}/admin/user_update/"+username,formdata,function(result){
 					$("#admin_content").html(result)
 				})
@@ -192,8 +191,8 @@
 				<a id="support_list" href="javascript:void(0)" class="list-group-item">고객센터</a>
             </div>
           </aside>
-			<article id="admin_content">
-			</article>
+			<main class="col offset-2 h-100 user-main" id="admin_content">
+			</main>
           
         </div>
       </div>

@@ -10,7 +10,6 @@
 </head>
 <body>
 	<!--page include-->
-	<main class="col offset-2 h-100 user-main">
 		<div class="row bg-light">
 			<div class="col-12 py-4 text-center">
 				<span style="font-size: 30px;">상품관리</span>
@@ -42,7 +41,7 @@
 										<td>${pro.p_code}</td>
 										<td>${pro.p_name}</td>
 										<td>${pro.p_price}</td>
-										<td>${pro.p_qty}</td>
+										<td>수량</td>
 									</tr>
 								</c:forEach>
 							</c:otherwise>
@@ -83,7 +82,6 @@
 				<!--pagination end-->
 			</div>
 		</div>
-	</main>
 
 </body>
 </html>

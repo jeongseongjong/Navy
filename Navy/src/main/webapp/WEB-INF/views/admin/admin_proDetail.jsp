@@ -41,12 +41,12 @@
 </script>
 </head>
 <body>
-	<main class="col offset-2 h-100 user-main">
 		<!--detail pages 정보 -->
 		<div class="container">
 			<div class="row">
 				<img src="../img/dress1.jpg"
 					style="width: 450px; height: 400px; margin-right: 70px;" />
+					${productVO.p_image}
 				<!--detail box-->
 				<div class="detail-box"
 					style="margin-left: 70px; margin-bottom: 100px;">
@@ -90,7 +90,6 @@
 			</div>
 		</div>
 		<!-- end -->
-	</main>
 
 </body>
 </html>
