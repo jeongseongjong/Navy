@@ -10,7 +10,6 @@
 </head>
 <body>
 	<!--page include-->
-          <main class="col offset-2 h-100 user-main" id="admin_content">
             <div class="row bg-light">
               <div class="col-12 py-4 text-center">
                 <span style="font-size: 30px;">회원관리</span>
@@ -106,6 +105,5 @@
                 <!--pagination end-->
               </div>
             </div>
-          </main>
 </body>
 </html>
