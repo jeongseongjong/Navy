@@ -95,13 +95,30 @@
 					<div class="dropdownbox">
 						<p>컬러를 선택해주세요
 					</div>
+					
+										<c:if test="${!empty productVO.sizeList}">
+					
+						<select id="p_size">
+							<c:forEach items="${productVO.sizeList}" var="size">
+								<option value="${size.s_size}">${size.s_size}</option>
+									<c:if test="${!empty size.colorList}">
+										<c:forEach items="${size.colorList}" var="color">
+												<option value="${color.c_color}">${color.c_color}</option>
+										</c:forEach>
+									</c:if>
+							</c:forEach>
+						</select>
+					</c:if>
 
 				</div>
 				<div class="col mb-5">
 					<label class="mr-5">QUAN·TITY</label> <input id="p_qty"
 						type="number" class="text-center" style="width: 80px;" />
 				</div>
+				
+				<!-- 
 					<div id="color_box"></div>
+			
 				<script>
 				$(function(){
 					   $(document).on("change","#color",function(){
@@ -113,6 +130,7 @@
 					
 				})
 				</script>
+			 
 				<c:if test="${!empty productVO.sizeList}">
 					<select id="size">
 						<option selected="selected">사이즈를 선택하세요</option>
@@ -127,7 +145,7 @@
 						</c:forEach>
 					</select>
 				</c:if>
-
+-->
 				<!-- 장바구니 상품 button -->
 				<div class="d-flex justify-content-center">
 					<button id="btn-cart" class="bt-css">장바구니</button>
