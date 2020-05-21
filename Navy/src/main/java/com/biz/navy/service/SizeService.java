@@ -6,8 +6,8 @@ import com.biz.navy.domain.SizeVO;
 
 public interface SizeService {
 
-	public List<SizeVO> selectAll();
+public List<SizeVO> selectAll();
 	
-	public SizeVO findByCPcode(long c_p_code);
+	public SizeVO findBySPcode(long c_p_code);
 
 }

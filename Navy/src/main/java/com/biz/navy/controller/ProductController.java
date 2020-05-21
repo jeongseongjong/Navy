@@ -44,7 +44,8 @@ public class ProductController {
 	// 상품 디테일 화면
 	@RequestMapping(value="/detail/{id}", method = RequestMethod.GET)
 	public String detail(ProductVO productVO, @PathVariable("id") String id, Model model) {
-		
+	/*
+	
 		log.debug("여기에는 오니 ");
 		List<ColorVO> colorList = new ArrayList<>();
 		
@@ -80,7 +81,11 @@ public class ProductController {
 		
 		System.out.println("여기는 사이즈 리스트" + sizeList);
 		System.out.println("여기는 사이즈 리스트" + colorList);
-		
+		 * 	
+	 */
+		long p_code = Long.valueOf(id);
+		productVO = proService.findById(p_code);
+		model.addAttribute("productVO", productVO);
 		
 		return "detail";
 	}

@@ -15,8 +15,8 @@ import lombok.ToString;
 @Builder
 public class ColorVO {
 
-	private long c_code;
-	private String c_color;
-	private long c_s_code;
-	private long c_qty;
+	 private long c_code; // number primary key,
+	 private String c_color; // nvarchar2(255),
+	 private int c_s_code; // number, -- s_code 랑 fk될 값
+	 private int c_qty; // number
 }

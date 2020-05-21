@@ -23,8 +23,8 @@ public class SizeServiceImpl implements SizeService {
 	}
 
 	@Override
-	public SizeVO findByCPcode(long c_p_code) {
-		return sizeDao.findByCPcode(c_p_code);
+	public SizeVO findBySPcode(long c_p_code) {
+		return sizeDao.findBySPcode(c_p_code);
 	}
 
 }
