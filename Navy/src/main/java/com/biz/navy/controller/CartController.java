@@ -35,7 +35,7 @@ public class CartController {
 	private final CartService cartService;
 
 	
-<<<<<<< HEAD
+// <<<<<<< HEAD
 	@ResponseBody
 	@RequestMapping(value="/cart",method=RequestMethod.POST)
 	public String cart(CartVO cartVO, Authentication authen,
@@ -76,7 +76,7 @@ public class CartController {
 		return "OK";
 		
 	}
-=======
+// =======
 //	@ResponseBody
 //	@RequestMapping(value="/cart",method=RequestMethod.POST)
 //	public String cart(CartVO cartVO, Authentication authen,
@@ -121,7 +121,7 @@ public class CartController {
 //		return "OK";
 //		
 //	}
->>>>>>> 0d5bd9c5b53655b045fe65a7a662af7b0453e75c
+// >>>>>>> 0d5bd9c5b53655b045fe65a7a662af7b0453e75c
 	
 	// 장바구니 목록
 	@RequestMapping(value="/view", method=RequestMethod.GET)
