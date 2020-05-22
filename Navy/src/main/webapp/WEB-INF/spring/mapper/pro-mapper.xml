@@ -24,6 +24,47 @@
 		
 	</insert>
 
+	<insert id="insertWithSize" parameterType="list">
+		INSERT INTO tbl_size(s_code, s_p_code, s_size)
+		SELECT SEQ_SIZE.NEXTVAL, sub.* from(
+		<foreach collection="list" item="sizeVO" separator="UNION ALL">
+			SELECT
+				#{sizeVO.s_p_code,jdbcType=VARCHAR},
+				#{sizeVO.s_size,jdbcType=VARCHAR}
+			FROM dual
+		</foreach>
+		) sub
+		
+	</insert>
+	<!--  원본 백업  -->
+	<insert id="insertWithSize2" parameterType="list">
+		INSERT INTO tbl_size(s_code, s_p_code, s_size)
+		SELECT SEQ_SIZE.NEXTVAL, sub.* from(
+		<foreach collection="list" item="sizeVO" separator="UNION ALL">
+			SELECT
+				#{sizeVO.s_p_code,jdbcType=VARCHAR},
+				#{sizeVO.s_size,jdbcType=VARCHAR}
+			FROM dual
+		</foreach>
+		) sub
+		
+	</insert>
+	
+	<insert id="insertWithColor" parameterType="list">
+		INSERT INTO tbl_color(c_code, c_s_code, c_color, c_qty)
+		SELECT SEQ_COLOR.NEXTVAL, sub.* from(
+		<foreach collection="list" item="color" separator="UNION ALL">
+			SELECT
+				#{color.c_s_code,jdbcType=VARCHAR},
+				#{color.c_color,jdbcType=VARCHAR},
+				#{color.c_qty,jdbcType=VARCHAR}
+			FROM dual
+		</foreach>
+		) sub
+		
+	</insert>
+	
+
 	<update id="update" parameterType="productVO">
 		UPDATE tbl_product SET
 			p_name = #{p_name},

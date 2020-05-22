@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 
 import com.biz.navy.domain.ColorVO;
+import com.biz.navy.domain.ProSizeColorVO;
 import com.biz.navy.domain.ProductImgVO;
 import com.biz.navy.domain.ProductVO;
 import com.biz.navy.domain.SizeVO;
@@ -47,6 +48,17 @@ public interface ProductDao {
 
 	@Delete("DELETE FROm tbl_product WHERE p_code = #{p_code}")
 	public int delete(long p_code);
+
+	// 상품 등록 사이즈 테이블 포함
+	public void insertWithSize(List<SizeVO> sizeList);
+	
+	@Select("SELECT MAX(P_CODE) FROM tbl_product")
+	public int findByMaxPCode();
+
+	@Select("SELECT MAX(S_CODE) FROM tbl_size")
+	public int findByMaxSizeCode();
+
+	public void insertWithColor(List<ColorVO> colorList);
 
 	
 }

@@ -1,41 +1,21 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE log4j:configuration PUBLIC "-//APACHE//DTD LOG4J 1.2//EN" "log4j.dtd">
-<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration scan="true" scanPeriod="3 seconds">
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <layout>
+            <pattern>
+                %d{HH:mm:ss.SSS} [%thread] %-5level %logger{32} - %msg%n
+            </pattern>
+        </layout>
+    </appender>
 
-	<!-- Appenders -->
-	<appender name="console" class="org.apache.log4j.ConsoleAppender">
-		<param name="Target" value="System.out" />
-		<layout class="org.apache.log4j.PatternLayout">
-			<param name="ConversionPattern" value="%-5p: %c - %m%n" />
-		</layout>
-	</appender>
-	
-	<!-- Application Loggers -->
-	<logger name="com.biz.naviya">
-		<level value="info" />
-	</logger>
-	
-	<!-- 3rdparty Loggers -->
-	<logger name="org.springframework.core">
-		<level value="info" />
-	</logger>
-	
-	<logger name="org.springframework.beans">
-		<level value="info" />
-	</logger>
-	
-	<logger name="org.springframework.context">
-		<level value="info" />
-	</logger>
+    <logger name="org.springframework" level="INFO" />
+    <logger name="org.mybatis"><level value="INFO"/></logger>
+    
+    <logger name="com.biz.navy.dao"><level value="DEBUG"/></logger>
+    <logger name="com.biz.navy.controller"><level value="DEBUG"/></logger>
+    <logger name="com.biz.navy.service"><level value="DEBUG"/></logger>
 
-	<logger name="org.springframework.web">
-		<level value="info" />
-	</logger>
-
-	<!-- Root Logger -->
-	<root>
-		<priority value="warn" />
-		<appender-ref ref="console" />
-	</root>
-	
-</log4j:configuration>
+    <root level="TRACE">
+        <appender-ref ref="console"/>
+    </root>
+</configuration>
