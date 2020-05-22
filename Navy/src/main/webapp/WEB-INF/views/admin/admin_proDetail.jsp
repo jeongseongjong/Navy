@@ -43,7 +43,7 @@
 <body>
 		<!--detail pages 정보 -->
 		<div class="container">
-			<div class="row">
+			<div class="row"  style="flex-wrap:nowrap">
 				<img src="../img/dress1.jpg"
 					style="width: 450px; height: 400px; margin-right: 70px;" />
 					${productVO.p_image}
