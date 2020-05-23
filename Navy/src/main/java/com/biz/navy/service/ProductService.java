@@ -19,6 +19,8 @@ public interface ProductService {
 	public List<ProductVO> selectAll();
 
 	public ProductVO findById(long p_code);
+
+	public int insert(ProductVO productVO, String[] size, String[] color, int[] qty);
 	
 
 }

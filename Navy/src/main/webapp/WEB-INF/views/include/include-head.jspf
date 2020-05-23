@@ -13,6 +13,11 @@
 
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
 
+<!-- include summernote css/js -->
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.15/dist/summernote.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.15/dist/summernote.min.js"></script>
+<script src="${rootPath}/resources/js/summernote-ko-KR.js"></script>
+
 <link rel="stylesheet" href="${rootPath}/resources/css/main.css" />
 <link rel="stylesheet" href="${rootPath}/resources/css/shopDetail.css" />
 <link rel="stylesheet" href="${rootPath}/resources/css/admin-main.css" />

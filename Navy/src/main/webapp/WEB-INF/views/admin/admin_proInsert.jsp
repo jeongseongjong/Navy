@@ -8,7 +8,22 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
+<script>
+$(function(){
+	$("#pro_append").click(function(){
+		
+		let size_input = $("<input/>", {class:"auth form-control mb-3", name:"size", placeholder:"사이즈"})
+		let color_input = $("<input/>", {class:"auth form-control mb-3", name:"color", placeholder:"색깔"})
+		let qty_input = $("<input/>", {class:"auth form-control mb-3", name:"qty", placeholder:"수량"})
+		// let auth_delete = $("<button class='btn btn-danger' type='button'>&times</button>")
+		// auth_input.append($("<p/>",{text:'제거',class:'auth_delete'}))
+		$("div#pro_size_list").append(size_input)
+		$("div#pro_size_list").append(color_input)
+		$("div#pro_size_list").append(qty_input)
+		// $("div#auth_box").append(auth_delete)
+	})
+})
+</script>
 </head>
 <body>
 	<!-- 상품 입력 -->
@@ -33,6 +48,13 @@
 			</div>
 			<div id="select-container">
 				<label>상품 종류</label>
+				<div align="right">
+					<button type="button" class="btn btn-success mb-3" id="pro_append">제품 종류
+						정보 입력 추가</button>
+				</div>
+				<div id="pro_size_list">
+				
+				</div>
 				<button type="button" id="btn-plus">추가</button>
 				<div class="select-box">
 					<select class="select" name="test" style="height: 30px;">
@@ -60,7 +82,7 @@
 			</div>
 			<!--buton group-->
 			<div class="d-flex justify-content-end mt-3">
-				<button id="btn-plus" class="bt-pro-save">
+				<button class="bt-pro-save">
 					저장</button>
 			</div>
 			</form:form>
