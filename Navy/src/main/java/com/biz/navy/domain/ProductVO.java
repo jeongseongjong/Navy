@@ -22,11 +22,14 @@ public class ProductVO {
     private int p_price;// number,
     private String p_desc;// nVARCHAR2(1000),
     private String p_image;// nVARCHAR2(255)
+    private String p_size;
+    private String p_color;
+    private int p_qty;
     
     
     // 상품의 각 Size, Color 정보를 담을 변수
     private List<SizeVO> sizeList;
-    // private List<ColorVO> colorList;
+    private List<ColorVO> colorList;
     
     // 상품의 디테일이미지 정보를 담을 변수
     private List<ProductImgVO> proDImgList;

@@ -17,7 +17,7 @@ public interface CartService {
 	// 카트에서 선택하기
 	public List<CartVO> selectCart(String username);
 	
-	// 선택목록 주문하기
+	// 배송중인 상품을 보여주는 메서드
 	public List<CartVO> selectDelivery(String username);
 	
 	// 장바구니 담기
@@ -35,11 +35,13 @@ public interface CartService {
 	// 장바구니 상품 전체 수량 수정
 	public void cart_list_qty_update(CartListVO cartList);
 	
-	// 장바구니에서 결제가기
-	public Integer cart_to_delivery(List<String> buyList);
-	
 	// 장바구니 담겨진 상품 총 금액
 	public String sum();
+
+	// 장바구니에 있는 상품상태를 delivery로 바꾸는 메서드
+	public Integer cart_to_delivery(List<String> buyList);
+
+
 
 	
 }

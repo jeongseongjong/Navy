@@ -49,8 +49,8 @@
 	UPDATE tbl_cart
 	SET bk_p_status = 'DELIV'
 	WHERE bk_id IN (
-	<foreach collection="list" item="seq" separator=", ">
-	#{bk_id}
+	<foreach collection="list" item="cartVO" separator=", ">
+	#{cartVO}
 	</foreach>
 	
 	)

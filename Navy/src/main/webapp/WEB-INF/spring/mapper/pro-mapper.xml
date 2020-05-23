@@ -12,14 +12,20 @@
 		p_name,
 		p_price,
 		p_desc,
-		p_image
+		p_image,
+		p_size,
+		p_color,
+		p_qty
 		
 		) VALUES (
 		SEQ_PRODUCT.NEXTVAL,
 		#{p_name},
 		#{p_price},
 		#{p_desc,jdbcType=VARCHAR},
-		#{p_image,jdbcType=VARCHAR}
+		#{p_image,jdbcType=VARCHAR},
+		#{p_size,jdbcType=VARCHAR},
+		#{p_color,jdbcType=VARCHAR},
+		#{p_qty,jdbcType=VARCHAR}
 		)
 		
 	</insert>

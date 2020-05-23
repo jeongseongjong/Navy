@@ -46,7 +46,6 @@ $(function() {
 	})
 	
 	$(".btn_list_delete").click(function() {
-
 		// js에서 비어있는 배열을 생성
 		let cart_array = Array()
 
@@ -104,6 +103,7 @@ $(function() {
 			$(this).text("전체선택하기")
 		}
 		check *= (-1)
+		
 		$(this).data("check", check)
 		
 	})
@@ -111,7 +111,7 @@ $(function() {
 	
 	$(".btn_list_buy").click(function(){
 		let cart_array = Array()
-
+		alert("여기까지오니 " + cart_array)
 		// 본문에 있는 cart_list_check를 뽑아서 배열로 생성
 		let checkList = $(".cart_list_check")
 
@@ -143,15 +143,18 @@ $(function() {
 				},
 				success : function(result) {
 					if (result > 0) {
-						document.location.replace("${rootPath}/cart/delivery_list")
+						document.location.href = "${rootPath}/cart/delivery_view"
+						alert("성공")
 					}
 				},
 				error : function() {
-					alert("서버통신오류")
+					 alert("서버통신오류")
+					
 				}
 			})
 		}
 	})
+	
 
 })
 </script>

@@ -4,7 +4,7 @@
 <html>
 <head>
 <%@ include file="/WEB-INF/views/include/include-head.jspf"%>
-<%@ page import="java.util.*, java.text.*" %>
+<%@ page import="java.util.*, java.text.*"%>
 
 <script>
 	$(function() {
@@ -21,11 +21,11 @@
 
 		$("#btn-cart").click(function() {
 			let p_qty = parseInt($("#p_qty").val())
-			let c_color = $("#c_color").val()
-			let s_size = $("#s_size").val()
-			alert(s_size)
-			alert(c_color)
-			console.log("야이 개새끼야")
+			let p_color = $("#p_color").val()
+			let p_size = $("#p_size").val()
+			alert(p_size)
+			alert(p_color)
+			
 			if (p_qty <= 0) {
 				alert("수량은 0개 이상")
 				return false;
@@ -38,8 +38,8 @@
 					p_name : "${productVO.p_name}",
 					p_code : "${productVO.p_code}",
 					p_price : "${productVO.p_price}",
-					p_size : s_size,
-					p_color : c_color,
+					p_size : p_size,
+					p_color : p_color,
 					p_qty : p_qty,
 					// 포스트일 경우에는 이 값을 보내주어야 한다.
 					"${_csrf.parameterName}" : "${_csrf.token}"
@@ -50,6 +50,7 @@
 						alert("먼저 로그인을 수행해야 한다.")
 					} else if (result == "OK") {
 						if (confirm("상품을 카트에 담았습니다.\n" + "장바구니로 이동하겠습니까?")) {
+							console.log(result)
 							document.location.href = "${rootPath}/cart/view"
 						}
 					}
@@ -96,19 +97,10 @@
 					<div class="dropdownbox">
 						<p>컬러를 선택해주세요
 					</div>
-					<c:if test="${!empty productVO.sizeList}">
-						<select id="p_size">
-							<c:forEach items="${productVO.sizeList}" var="size">
-								<option value="${size.s_size}">${size.s_size}</option>
-								<c:if test="${!empty size.colorList}">
-									<c:forEach items="${size.colorList}" var="color">
-									
-										<option value="${color.c_color}">${color.c_color}</option>
-									</c:forEach>
-								</c:if>
-							</c:forEach>
-						</select>
-					</c:if>
+					<p>
+					<input id="p_size" value="${productVO.p_size}" />
+					<input id="p_color" value="${productVO.p_color}" />
+
 
 				</div>
 				<div class="col mb-5">

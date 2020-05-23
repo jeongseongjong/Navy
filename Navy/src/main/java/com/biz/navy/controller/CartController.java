@@ -35,7 +35,7 @@ public class CartController {
 	private final CartService cartService;
 
 	
-<<<<<<< HEAD
+// <<<<<<< HEAD
 	@ResponseBody
 	@RequestMapping(value="/cart",method=RequestMethod.POST)
 	public String cart(CartVO cartVO, Authentication authen,
@@ -61,6 +61,9 @@ public class CartController {
 					.bk_p_name(productVO.getP_name())
 					.username(userVO.getUsername())
 					.bk_p_oprice((int)productVO.getP_price())
+					.bk_p_size(productVO.getP_size())
+					.bk_p_color(productVO.getP_color())
+					.bk_p_qty((int)productVO.getP_qty())
 					.build();
 					
 		} catch (Exception e) {
@@ -71,57 +74,13 @@ public class CartController {
 		// 
 		log.debug("오류 " + cartVO.getUsername());
 		log.debug("카트:" + cartVO.toString());
-		cartService.insert(cartVO);
+		int ret = cartService.insert(cartVO);
+		log.debug("여기는 카트 메서드의 인서트실행 코드 " + ret);
 		
 		return "OK";
 		
 	}
-=======
-//	@ResponseBody
-//	@RequestMapping(value="/cart",method=RequestMethod.POST)
-//	public String cart(CartVO cartVO, Authentication authen,
-//			ProductVO productVO, 
-//			String[] size,
-//			SizeVO sizeVO, ColorVO colorVO
-//			) {
-//		
-//		log.debug("프로덕트"+productVO.toString());
-//		log.debug("카트에 카트 size를 가져오냐 ? " + productVO.getP_size());
-//		
-//		
-//
-//		
-//		try {
-//			// 카트 VO에서 시큐리티로 로그인한 사용자 이름 가져오기
-//			///////////////이 아랫줄을 보아라!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//			UserDetailsVO userVO = (UserDetailsVO) authen.getPrincipal();
-////			cartVO.setUsername(userVO.getUsername());
-////			cartVO.setBk_p_code(productVO.getP_code()+"");
-//			
-//			cartVO = CartVO.builder()
-//					.bk_p_code(productVO.getP_code())
-//					.bk_p_name(productVO.getP_name())
-//					.username(userVO.getUsername())
-//					.bk_p_size(productVO.getP_size())
-//					.bk_p_color(productVO.getP_color())
-//					.bk_p_qty((int)productVO.getP_qty())
-//					.bk_p_oprice((int)productVO.getP_price())
-//					.build();
-//					
-//		} catch (Exception e) {
-//			
-//			return "LOGIN_FAIL";
-//		}
-//		
-//		// 
-//		log.debug("오류 " + cartVO.getUsername());
-//		log.debug("카트:" + cartVO.toString());
-//		cartService.insert(cartVO);
-//		
-//		return "OK";
-//		
-//	}
->>>>>>> 0d5bd9c5b53655b045fe65a7a662af7b0453e75c
+
 	
 	// 장바구니 목록
 	@RequestMapping(value="/view", method=RequestMethod.GET)
@@ -141,6 +100,33 @@ public class CartController {
 		}
 		
 		return "cart";
+	}
+	
+	// 배송중 상품을 보여주는 메서드
+	@RequestMapping(value="/delivery_view",method=RequestMethod.GET)
+	public String cart_list_delivery(Principal principal, Authentication authen, Model model) {
+
+		UsernamePasswordAuthenticationToken upa = (UsernamePasswordAuthenticationToken) principal;		
+		try {
+			UserDetailsVO userVO = (UserDetailsVO) upa.getPrincipal();
+			List<CartVO> deliveryList = cartService.selectDelivery(userVO.getUsername());
+			log.debug("여기는 딜리버리 리스트 " + deliveryList.toString());
+			model.addAttribute("DELIVERY_LIST", deliveryList);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		return "delivery_view";
+	}
+	
+	// 구매버튼 클릭 시 p_status가 cart->Deliv 로 바뀌는 메소드
+	@ResponseBody
+	@RequestMapping(value="/cart_list_buy",method=RequestMethod.POST)
+	public Integer cart_list_buy(@RequestParam("buyList[]") List<String> buyList) {
+		
+		Integer ret = cartService.cart_to_delivery(buyList);
+		log.debug("여기는 구매목록 " + ret+"");
+		return ret;
 	}
 	
 	
@@ -167,6 +153,7 @@ public class CartController {
 		
 	}
 	
+	// 장바구니 전체 삭제 메서드
 	@ResponseBody
 	@RequestMapping(value="/cart_list_delete",method=RequestMethod.POST)
 	public Integer cart_list_delete(@RequestParam("delList[]")List<String> strSeqList) {
@@ -179,6 +166,7 @@ public class CartController {
 		return ret;
 	}
 	
+	// 장바구니 전체 수량 업데이트 메서드
 	@RequestMapping(value="/cart_list_qty_update",method=RequestMethod.POST)
 	public String cart_list_qty_update(CartListVO cartList) {
 		
@@ -189,13 +177,6 @@ public class CartController {
 		return "redirect:/cart/view";
 	}
 	
-	@ResponseBody
-	@RequestMapping(value="/cart_list_buy",method=RequestMethod.POST)
-	public Integer cart_list_buy(@RequestParam("buyList[]") List<String> buyList) {
-		
-		Integer ret = cartService.cart_to_delivery(buyList);
-		
-		return ret;
-	}
+	
 	
 }
