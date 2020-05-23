@@ -127,9 +127,14 @@ public class AdminController {
 	
 	// 상품 등록에 작성한 내용 DB에 심기
 	@RequestMapping(value="/pro_insert",method=RequestMethod.POST)
-	public String proInsert(ProductVO productVO, Model model, String dummy) {
+	public String proInsert(ProductVO productVO, Model model, 
+			String[] size,
+			String[] color,
+			int[] qty,
+			
+			String dummy) {
 		
-		int ret = proService.insert(productVO);
+		int ret = proService.insert(productVO, size, color, qty);
 		
 		return "redirect:/admin";
 	}

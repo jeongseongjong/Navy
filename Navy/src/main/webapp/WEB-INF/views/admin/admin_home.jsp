@@ -116,6 +116,9 @@
 				*/
 				
 			})
+			
+			//$(document).on("click","#auth_append",function(){
+
 
 			
 			$(document).on("change","#auth",function(){
