@@ -2,24 +2,31 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ include file="/WEB-INF/views/include/include-head.jspf"%>
-
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+	.product_type {
+		width: 100px;
+		display: inline-block;
+	}
+</style>
 <script>
 $(function(){
 	$("#pro_append").click(function(){
 		
-		let size_input = $("<input/>", {class:"auth form-control mb-3", name:"size", placeholder:"사이즈"})
-		let color_input = $("<input/>", {class:"auth form-control mb-3", name:"color", placeholder:"색깔"})
-		let qty_input = $("<input/>", {class:"auth form-control mb-3", name:"qty", placeholder:"수량"})
+		let size_input = $("<input/>", {class:"product_type form-control mb-3", name:"size", placeholder:"사이즈"})
+		let color_input = $("<input/>", {class:"product_type form-control mb-3", name:"color", placeholder:"색깔"})
+		let qty_input = $("<input/>", {class:"product_type form-control mb-3", name:"qty", placeholder:"수량"})
+		let hr = $("<hr/>")
 		// let auth_delete = $("<button class='btn btn-danger' type='button'>&times</button>")
 		// auth_input.append($("<p/>",{text:'제거',class:'auth_delete'}))
 		$("div#pro_size_list").append(size_input)
 		$("div#pro_size_list").append(color_input)
 		$("div#pro_size_list").append(qty_input)
+		$("div#pro_size_list").append(hr)
 		// $("div#auth_box").append(auth_delete)
 	})
 })

@@ -17,6 +17,6 @@ public class ProSizeColorVO {
 
 	private String size;
 	private String color;
-	private String qty;
+	private int qty;
 	
 }
