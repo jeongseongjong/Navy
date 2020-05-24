@@ -28,7 +28,7 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 @RequestMapping(value="/cart")
 @RequiredArgsConstructor
-@Slf4j
+@Slf4j	
 public class CartController {
 
 	private final ProductService proService;
@@ -45,9 +45,6 @@ public class CartController {
 			) {
 		
 		log.debug("프로덕트"+productVO.toString());
-		
-		
-
 		
 		try {
 			// 카트 VO에서 시큐리티로 로그인한 사용자 이름 가져오기
@@ -80,56 +77,8 @@ public class CartController {
 		return "OK";
 		
 	}
-<<<<<<< HEAD
+// <<<<<<< HEAD
 
-=======
-// =======
-//	@ResponseBody
-//	@RequestMapping(value="/cart",method=RequestMethod.POST)
-//	public String cart(CartVO cartVO, Authentication authen,
-//			ProductVO productVO, 
-//			String[] size,
-//			SizeVO sizeVO, ColorVO colorVO
-//			) {
-//		
-//		log.debug("프로덕트"+productVO.toString());
-//		log.debug("카트에 카트 size를 가져오냐 ? " + productVO.getP_size());
-//		
-//		
-//
-//		
-//		try {
-//			// 카트 VO에서 시큐리티로 로그인한 사용자 이름 가져오기
-//			///////////////이 아랫줄을 보아라!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//			UserDetailsVO userVO = (UserDetailsVO) authen.getPrincipal();
-////			cartVO.setUsername(userVO.getUsername());
-////			cartVO.setBk_p_code(productVO.getP_code()+"");
-//			
-//			cartVO = CartVO.builder()
-//					.bk_p_code(productVO.getP_code())
-//					.bk_p_name(productVO.getP_name())
-//					.username(userVO.getUsername())
-//					.bk_p_size(productVO.getP_size())
-//					.bk_p_color(productVO.getP_color())
-//					.bk_p_qty((int)productVO.getP_qty())
-//					.bk_p_oprice((int)productVO.getP_price())
-//					.build();
-//					
-//		} catch (Exception e) {
-//			
-//			return "LOGIN_FAIL";
-//		}
-//		
-//		// 
-//		log.debug("오류 " + cartVO.getUsername());
-//		log.debug("카트:" + cartVO.toString());
-//		cartService.insert(cartVO);
-//		
-//		return "OK";
-//		
-//	}
-// >>>>>>> 0d5bd9c5b53655b045fe65a7a662af7b0453e75c
->>>>>>> 0fce65c893b0f1bbef500e9288e3b436fc085236
 	
 	// 장바구니 목록
 	@RequestMapping(value="/view", method=RequestMethod.GET)

@@ -35,13 +35,16 @@ public class UserService implements UserDetailsService{
 	private final AuthoritiesDao authDao;
 	
 	
-	public int insert(String username, String password) {
+	public int insert(String username, String password, String address, String address_etc) {
 		String encPassword = passwordEncoder.encode(password);
 		UserDetailsVO userVO = UserDetailsVO.builder()
 								.username(username)
 								.password(encPassword)
+								.address(address)
+								.address_etc(address_etc)
 								.enabled(true)
 								.build();
+		log.debug("여기는 조인 인서트 서비스 어드레스 " + address);
 		int ret = userDao.insert(userVO);
 		
 		List<AuthorityVO> authList = new ArrayList();
@@ -184,6 +187,7 @@ public class UserService implements UserDetailsService{
 		oldUserVO.setEmail(userVO.getEmail());
 		oldUserVO.setPhone(userVO.getPhone());
 		oldUserVO.setAddress(userVO.getAddress());
+		oldUserVO.setAddress_etc(userVO.getAddress_etc());
 
 		// 암호화된 password를 vo에 직접 담아줘야한다.
 		userVO.setPassword(encPassword);
@@ -206,7 +210,7 @@ public class UserService implements UserDetailsService{
 		int ret = authDao.delete_id(id);
 		return ret;
 	}
-	
-	
+
+
 	
 }

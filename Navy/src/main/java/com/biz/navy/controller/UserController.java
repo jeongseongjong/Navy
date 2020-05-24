@@ -44,12 +44,13 @@ public class UserController {
 		return "join";
 	}
 	
-//	@ResponseBody
+	// @ResponseBody
 	@RequestMapping(value = "/join",method=RequestMethod.POST,
 			produces = "text/html;charset=UTF-8")
-	public String join(String username, String password) {
+	public String join(String username, String password, String address, String address_etc) {
 		
-		int ret = userService.insert(username,password);
+		log.debug("여기는 조인 포스트 어드레스" + address, address_etc);
+		int ret = userService.insert(username,password, address, address_etc);
 		
 		return "redirect:/";
 	}
@@ -80,6 +81,8 @@ public class UserController {
 		
 		model.addAttribute("userVO",userVO);
 		
+		log.debug("컨트롤러 마이페이지 겟 " + userVO);
+		
 		return "user/mypage";
 	}
 	
@@ -89,7 +92,7 @@ public class UserController {
 		
 		log.debug("컨트롤러 패스워드"+password);
 		int ret = userService.update(userVO, password);
-		
+		log.debug("컨트롤러 마이페이지 포스트 " + ret+"");
 		return "redirect:/";
 	}
 	
@@ -131,4 +134,11 @@ public class UserController {
 		reviewService.insert(reviewVO);
 		return "redirect:/product/detail/" + id;
 	}
+	
+	@RequestMapping("/goPopup")
+    public String goPopup(){
+
+        return "/goPopup";
+
+    }
 }

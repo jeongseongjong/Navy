@@ -17,14 +17,14 @@
 		username,
 		password,
 		enabled,
-		email, phone, address, checkout
+		email, phone, address, address_etc, checkout
 		FROM tbl_users WHERE username = #{username}
 	</select>
 
 	<select id="selectAll" resultMap="userAndAuthorities">
 		SELECT username,
 		password,
-		email, phone, address, checkout
+		email, phone, address, address_etc, checkout
 		FROM tbl_users
 	</select>
 
@@ -38,6 +38,7 @@
 		email,
 		phone,
 		address,
+		address_etc,
 		checkout
 
 		FROM tbl_users WHERE u_id = #{id}
@@ -55,6 +56,8 @@
 		(u_id,
 		username,
 		password,
+		address,
+		address_etc,
 		enabled
 		)
 		VALUES
@@ -62,6 +65,8 @@
 		SEQ_USERS_ID.NEXTVAL,
 		#{username,jdbcType=VARCHAR},
 		#{password,jdbcType=VARCHAR},
+		#{address,jdbcType=VARCHAR},
+		#{address_etc,jdbcType=VARCHAR},
 		#{enabled,jdbcType=VARCHAR}
 		)
 
@@ -72,7 +77,8 @@
 		SET email = #{email,jdbcType=VARCHAR},
 		password = #{password,jdbcType=VARCHAR},
 		phone = #{phone,jdbcType=VARCHAR},
-		address = #{address,jdbcType=VARCHAR}
+		address = #{address,jdbcType=VARCHAR},
+		address_etc = #{address_etc,jdbcType=VARCHAR}
 
 		WHERE username = #{username,jdbcType=VARCHAR}
 
@@ -83,6 +89,7 @@
 		SET email = #{email,jdbcType=VARCHAR},
 		phone = #{phone,jdbcType=VARCHAR},
 		address = #{address,jdbcType=VARCHAR},
+		address_etc = #{address_etc,jdbcType=VARCHAR},
 		enabled = #{enabled},
 		checkout = #{checkout}
 
