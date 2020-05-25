@@ -41,7 +41,7 @@
 										<td>${pro.p_code}</td>
 										<td>${pro.p_name}</td>
 										<td>${pro.p_price}</td>
-										<td>수량</td>
+										<td>${pro.p_qty}</td>
 									</tr>
 								</c:forEach>
 							</c:otherwise>

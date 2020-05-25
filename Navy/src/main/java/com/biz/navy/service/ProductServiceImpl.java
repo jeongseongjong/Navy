@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.biz.navy.dao.ProductDao;
 import com.biz.navy.domain.ColorVO;
@@ -24,6 +25,7 @@ import lombok.extern.slf4j.Slf4j;
 public class ProductServiceImpl implements ProductService {
 	
 	private final ProductDao proDao;
+	private final FileService fileService;
 	
 	@Override
 
@@ -32,10 +34,15 @@ public class ProductServiceImpl implements ProductService {
 	}
 	// 상품 사이즈, 컬러, 수량 포함해서 insert 수행
 	@Override
-	public int insert(ProductVO productVO, String[] size, String[] color, int[] qty) {
+	public int insert(ProductVO productVO, String[] size, String[] color, int[] qty, MultipartFile file) {
+//	public int insert(ProductVO productVO, String[] size, String[] color, int[] qty, List<MultipartFile> file) {
 		
 		// 가져온 사이즈 input 개수
-		int intSize = size.length;
+		int intSize = 0;
+		intSize = size.length;
+		
+		// 총 수량 담을 변수
+		int p_qty = 0;
 		
 		// 가져온 값 정렬해서 DB에 넣기 위해 리스트에 담기
 		List<ProSizeColorVO> proSCList = new ArrayList<>();
@@ -48,7 +55,12 @@ public class ProductServiceImpl implements ProductService {
 			proSCList.add(proSCVO);
 			log.debug("proSCList에 담길 VO 값 : " + proSCVO.toString());
 			log.debug("proSCList에 담긴 값 : " + proSCList.get(0).toString());
+			
+			// 수량 더하기
+			p_qty += qty[i];
 		}
+		// 총 수량 VO에 담기
+		productVO.setP_qty(p_qty);
 		
 		for(ProSizeColorVO p : proSCList) {
 			log.debug("proSCList 정렬하기 전 값 : " + p.toString());
@@ -97,6 +109,13 @@ public class ProductServiceImpl implements ProductService {
 		for(int q : qty) {
 			log.debug("서비스 상품등록 사이즈 값 : " + q);
 		}
+
+		// 파일 업로드한 것 추가하기
+		String saveFileName = fileService.file_up(file);
+		log.debug("파일 저장경로 : "+file);
+		log.debug("저장한 파일 이름 : " + saveFileName);
+		productVO.setP_image(saveFileName);
+
 		// DB 상품 테이블에 데이터 추가
 		int ret = proDao.insert(productVO);
 		

@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.biz.navy.domain.ProductVO;
 import com.biz.navy.domain.UserDetailsVO;
@@ -132,10 +134,23 @@ public class AdminController {
 			String[] color,
 			int[] qty,
 			
-			String dummy) {
+//			MultipartHttpServletRequest files
+			@RequestParam("file") MultipartFile file
+			) {
+		log.debug("파일이름:"+file.getOriginalFilename());
+//		List<MultipartFile> fileList = files.getFiles("file");
+//		for(MultipartFile f: fileList) {
+//			f.getOriginalFilename();
+//			log.debug("파일 리스트 여러개 : "+ f.getOriginalFilename());
+//		}
+//		int ret = proService.insert(productVO, size, color, qty);
+		int ret = proService.insert(productVO, size, color, qty, file);
+//		int ret = proService.insert(productVO, size, color, qty, fileList);
 		
-		int ret = proService.insert(productVO, size, color, qty);
 		
+//		long intId = productVO.getP_code();
+//		return "redirect:/admin/pro_detail_view/"+intId;
+//		return "admin_home";
 		return "redirect:/admin";
 	}
 	
@@ -148,7 +163,7 @@ public class AdminController {
 		model.addAttribute("productVO",productVO);
 		model.addAttribute("adminBody","proUpdate");
 		
-		return "admin/admin_proInsert";
+		return "admin/admin_proUpdate";
 	}
 	
 	// 상품 수정하고 DB에 저장
