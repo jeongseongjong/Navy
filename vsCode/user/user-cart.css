@@ -88,7 +88,7 @@ input[type="checkbox"]:checked + label {
 }
 
 .prod_header .u_title li.u_info {
-  width: 70%;
+  width: 745px;
 }
 
 .prod_header .u_title li {
@@ -103,8 +103,259 @@ input[type="checkbox"]:checked + label {
 }
 
 .prod_header .u_title li.u_order {
-  width: 20%;
+  width: 170px;
 }
 .prod_header .u_title li.u_delivery {
-  width: 10%;
+  width: 132px;
+}
+
+/*list-box css*/
+#cart .ct_prod_wp {
+  position: relative;
+  width: 1100px;
+  background-color: #d6dadd;
+}
+p {
+  margin-bottom: 0;
+}
+.ct_prod_wp {
+  border-bottom: 1px solid #d6dadd;
+}
+
+#cart .ct_prod_wp .prod {
+  position: relative;
+  width: 800px;
+  padding: 30px 30px 30px 194px;
+  background-color: white;
+}
+
+.prod:first-child {
+  border-top-width: 0;
+}
+
+.prod {
+  z-index: 100;
+  border-top: 1px solid #d6dadd;
+}
+
+#cart .ct_prod_wp .prod .chk_type {
+  top: 30px;
+}
+
+#cart .chk_type {
+  position: absolute;
+  left: 20px;
+}
+
+.prod .prod_tit {
+  position: relative;
+  padding: 7px 0 10px;
+}
+
+.prod .prod_tit a {
+  display: block;
+}
+
+.prod .prod_tit .prod_thumb {
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: -140px;
+  width: 110px;
+  height: 110px;
+}
+
+.prod .prod_tit .prod_header img {
+  width: 110px;
+  height: 110px;
+}
+
+.prod .prod_tit .prod_name .pr_name {
+  display: inline;
+  margin-right: 5px;
+  font-size: 14px;
+  line-height: 20px;
+  color: #252c41;
+  letter-spacing: -0.8px;
+}
+
+/* list css*/
+.prod .highlight_wrap {
+  position: relative;
+}
+
+div {
+  display: block;
+}
+
+.prod .p_item {
+  position: relative;
+  z-index: 2;
+  min-height: 26px;
+  padding: 2px 0;
+  border-bottom: 1px solid #d6dadd;
+}
+
+.prod .p_item .op_name {
+  display: inline-block;
+  width: 320px;
+  line-height: 1.5;
+  color: #252c41;
+  letter-spacing: -0.02em;
+  vertical-align: top;
+  word-wrap: break-word;
+  float: left;
+}
+
+.prod .p_item .op_name > span {
+  font-size: 12px;
+}
+
+.prod .p_item .bt_cnt {
+  float: left;
+  width: 80px;
+  vertical-align: middle;
+}
+
+.bt_cnt {
+  overflow: hidden;
+}
+
+button[class^="cnt_"] {
+  float: left;
+  width: 26px;
+  height: 26px;
+  border: 1px solid #c2c7cc;
+  vertical-align: top;
+}
+
+.bt_cnt .cnt_minus {
+  background: url(../img/minus.jpg) no-repeat;
+  background-size: cover;
+  width: 24px;
+  height: 24px;
+  border: none;
+  border-top: 1px solid #c2c7cc;
+  border-left: 1px solid #c2c7cc;
+  border-bottom: 1px solid #c2c7cc;
+}
+
+.bt_cnt .ip_quantity {
+  display: inline-block;
+  float: left;
+  width: 28px;
+  height: 24px;
+  border: 1px solid #c2c7cc;
+  border-right: 0 none;
+  border-left: 0 none;
+  line-height: 26px;
+  color: #252c41;
+  text-align: center;
+  vertical-align: top;
+}
+
+.bt_cnt .cnt_plus {
+  background: url(../img/plus.jpg) no-repeat;
+  background-size: cover;
+  width: 25px;
+  height: 24px;
+  border: none;
+  border-top: 1px solid #c2c7cc;
+  border-right: 1px solid #c2c7cc;
+  border-bottom: 1px solid #c2c7cc;
+}
+
+.prod .p_item .price {
+  display: inline-block;
+  margin-right: 29px;
+  margin-left: 8px;
+  font-size: 12px;
+  text-align: right;
+  vertical-align: middle;
+  margin-bottom: 0;
+}
+
+.prod .p_item .price p {
+  color: #252c41;
+  display: inline-block;
+  vertical-align: middle;
+  margin-bottom: 10px;
+  margin-left: 16px;
+}
+
+.prod .item .bt_del {
+  position: absolute;
+  top: 10px;
+  right: 0;
+}
+
+.bt_del {
+  width: 26px;
+  height: 26px;
+  background: url(../img/del.jpg) no-repeat;
+  background-size: cover;
+  border: 1px solid #c2c7cc;
+}
+
+.prod .op_change {
+  display: block;
+  position: relative;
+  margin-top: 10px;
+  margin-right: 30px;
+}
+
+.prod .op_change .term_wrap:after {
+  display: block;
+  clear: both;
+  content: "";
+}
+
+.prod .op_change .term_wrap .term_right {
+  float: right;
+}
+
+.prod .term_wrap button {
+  float: none !important;
+}
+
+.bt_type {
+  overflow: visible;
+  height: 26px;
+  padding: 0 20px;
+  border: 1px solid #a4a8ac;
+  font-size: 11px;
+  line-height: 1;
+  color: #252c41;
+  letter-spacing: -0.08em;
+}
+
+button {
+  border-radius: 0;
+  background-color: transparent;
+  outline: 0;
+  cursor: pointer;
+}
+
+#cart .ct_prod_wp .order_price {
+  right: 132px;
+  width: 169px;
+}
+
+#cart .ct_prod_wp .cart_empty,
+#cart .ct_prod_wp .delivery_price,
+#cart .ct_prod_wp .order_price {
+  display: flex;
+  background-color: white;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+}
+
+#cart .ct_prod_wp .order_price {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  height: 100%;
+  min-height: 100%;
 }
