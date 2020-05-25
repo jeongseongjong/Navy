@@ -100,13 +100,17 @@ $(function(){
 			<div>
 				<label for="p_image">이미지</label> 
 				<input type="file" id="p_file" name="file">
+				<c:forEach items="${productVO.proDImgList}" var="img">
+					<img src="${rootPath}/images/${img.p_img_upload_name}"
+							style="width: 150px; height: 100px; margin-right: 70px;" />
+				</c:forEach>
 				<!-- 
 				<form:input type="file" path="p_image" value="${productVO.p_image}" placeholder="" />
 				 -->
 			</div>
 			<label>상품 정보</label>
 			<div>
-				<textarea style="width: 100%;"></textarea>
+				<textarea style="width: 100%;" ></textarea>
 			</div>
 			<!--buton group-->
 			<div class="d-flex justify-content-end mt-3">

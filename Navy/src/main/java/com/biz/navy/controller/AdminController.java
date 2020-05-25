@@ -201,7 +201,11 @@ public class AdminController {
 	
 	// 재고 정보
 	@RequestMapping(value="/inventory",method=RequestMethod.GET)
-	public String inventory() {
+	public String inventory(Model model) {
+		
+		List<ProductVO> proList = proService.selectAll();
+		log.debug("상품 리스트 : " + proList.toString());
+		model.addAttribute("PROLIST",proList);
 		
 		return "admin/admin_inventory";
 	}

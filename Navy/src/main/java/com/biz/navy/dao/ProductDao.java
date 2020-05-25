@@ -18,6 +18,10 @@ import com.biz.navy.domain.SizeVO;
 public interface ProductDao {
 
 	@Select("SELECT * FROM tbl_product ORDER BY p_code DESC")
+	@Results(value= {@Result(property = "p_code", column = "p_code"),
+			@Result(property = "sizeList", column = "p_code", javaType = List.class, many = @Many(select = "getSPcode")),
+			@Result(property = "proDImgList", column = "p_code", javaType = List.class, many = @Many(select = "getPImgSeq")),
+			@Result(property = "reviewList", column = "p_code", javaType = List.class, many = @Many(select = "getRPcode"))})
 	public List<ProductVO> selectAll();
 
 	/*

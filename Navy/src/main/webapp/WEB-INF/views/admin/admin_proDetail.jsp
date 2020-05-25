@@ -37,10 +37,6 @@
 						<label class="mr-5">SIZE/COLOR</label>
 						<!-- <ul class="menu"> -->
 						<ul>
-							<c:forEach items="">
-								<li>
-							</c:forEach>
-							
 							<c:forEach items="${productVO.sizeList}" var="size">
 								<c:if test="${!empty size.colorList}">
 									<c:forEach items="${size.colorList}" var="color">
