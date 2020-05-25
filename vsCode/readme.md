@@ -17,3 +17,7 @@
 * 2020-05-14
 
 - bbslist & bbs CRUD detail 수정
+
+* 2020-05-19
+
+- DASHBOARD
