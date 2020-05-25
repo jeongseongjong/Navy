@@ -51,7 +51,7 @@ public interface CartDao {
 
 	public int cart_list_delete(List<String> strSeqList);
 
-	public int cart_to_delivery(List<String> buyList);
+	public int cart_to_delivery(List<CartVO> cartList);
 
 	@Select("select count(*) from tbl_cart where bk_p_status = 'CART' ")
 	public int cartCount();
@@ -62,5 +62,9 @@ public interface CartDao {
 	
 	@Select("SELECT * FROM tbl_color where c_s_code = #{c_s_code}")
 	public List<ColorVO> findByCsCode(long c_s_code);
+
+	@Select("SELECT * FROM tbl_cart WHERE bk_id = #{bk_id}")
+	public CartVO findbyBkId(String bk_id);
+
 
 }

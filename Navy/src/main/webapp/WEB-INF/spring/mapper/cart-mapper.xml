@@ -47,10 +47,12 @@
 	<update id="cart_to_delivery" parameterType="List">
 	
 	UPDATE tbl_cart
-	SET bk_p_status = 'DELIV'
+	SET bk_p_status = 'DELIV',
+	bk_p_buyTime = sysdate
+
 	WHERE bk_id IN (
-	<foreach collection="list" item="cartVO" separator=", ">
-	#{cartVO}
+	<foreach collection="list" item="cart" separator=", ">
+	#{cart.bk_id}
 	</foreach>
 	
 	)

@@ -132,6 +132,7 @@ $(function() {
 					return false;
 			
 		}
+		alert(cart_array)
 		if(confirm(cart_array.length + "개의 상품을 주문 처리할까요 ?")){
 			
 			$.ajax({
