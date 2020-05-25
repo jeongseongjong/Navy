@@ -2,12 +2,17 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ include file="/WEB-INF/views/include/include-head.jspf"%>
-
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+	.product_type {
+		width: 100px;
+		display: inline-block;
+	}
+</style>
 <script>
 $(function(){
 	
@@ -41,14 +46,16 @@ $(function(){
     });
 	$("#pro_append").click(function(){
 		
-		let size_input = $("<input/>", {class:"auth form-control mb-3", name:"size", placeholder:"사이즈"})
-		let color_input = $("<input/>", {class:"auth form-control mb-3", name:"color", placeholder:"색깔"})
-		let qty_input = $("<input/>", {class:"auth form-control mb-3", name:"qty", placeholder:"수량"})
+		let size_input = $("<input/>", {class:"product_type form-control mb-3", name:"size", placeholder:"사이즈"})
+		let color_input = $("<input/>", {class:"product_type form-control mb-3", name:"color", placeholder:"색깔"})
+		let qty_input = $("<input/>", {class:"product_type form-control mb-3", name:"qty", placeholder:"수량"})
+		let hr = $("<hr/>")
 		// let auth_delete = $("<button class='btn btn-danger' type='button'>&times</button>")
 		// auth_input.append($("<p/>",{text:'제거',class:'auth_delete'}))
 		$("div#pro_size_list").append(size_input)
 		$("div#pro_size_list").append(color_input)
 		$("div#pro_size_list").append(qty_input)
+		$("div#pro_size_list").append(hr)
 		// $("div#auth_box").append(auth_delete)
 	})
 })
@@ -57,12 +64,12 @@ $(function(){
 <body>
 	<!-- 상품 입력 -->
 		<div class="container">
-			<div>상품 정보 등록</div>
+			<div>상품 정보 수정</div>
 			<hr />
 			<span>상품코드 : ${productVO.p_code}</span>
 			<hr />
 			<form:form modelAttribute="productVO" 
-				action="${rootPath}/admin/pro_insert?${_csrf.parameterName}=${_csrf.token}"
+				action="${rootPath}/admin/pro_update/${productVO.p_code}?${_csrf.parameterName}=${_csrf.token}"
 				enctype="multipart/form-data">
 			<div>
 				<label for="p_name">상품 이름</label>
@@ -92,14 +99,18 @@ $(function(){
 			<!--이미지 및 상세 정보-->
 			<div>
 				<label for="p_image">이미지</label> 
-				<input multiple="multiple" type="file" id="p_file" name="file">
+				<input type="file" id="p_file" name="file">
+				<c:forEach items="${productVO.proDImgList}" var="img">
+					<img src="${rootPath}/images/${img.p_img_upload_name}"
+							style="width: 150px; height: 100px; margin-right: 70px;" />
+				</c:forEach>
 				<!-- 
 				<form:input type="file" path="p_image" value="${productVO.p_image}" placeholder="" />
 				 -->
 			</div>
 			<label>상품 정보</label>
 			<div>
-				<textarea style="width: 100%;"></textarea>
+				<textarea style="width: 100%;" ></textarea>
 			</div>
 			<!--buton group-->
 			<div class="d-flex justify-content-end mt-3">

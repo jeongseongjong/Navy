@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.biz.navy.domain.ProductVO;
 import com.biz.navy.domain.UserDetailsVO;
@@ -132,10 +134,19 @@ public class AdminController {
 			String[] color,
 			int[] qty,
 			
-			String dummy) {
+			MultipartHttpServletRequest files
+//			@RequestParam("file") MultipartFile file
+			) {
+//		log.debug("파일이름:"+file.getOriginalFilename());
+
+//		int ret = proService.insert(productVO, size, color, qty);
+//		int ret = proService.insert(productVO, size, color, qty, file);
+		int ret = proService.insert(productVO, size, color, qty, files);
 		
-		int ret = proService.insert(productVO, size, color, qty);
 		
+//		long intId = productVO.getP_code();
+//		return "redirect:/admin/pro_detail_view/"+intId;
+//		return "admin_home";
 		return "redirect:/admin";
 	}
 	
@@ -148,7 +159,7 @@ public class AdminController {
 		model.addAttribute("productVO",productVO);
 		model.addAttribute("adminBody","proUpdate");
 		
-		return "admin/admin_proInsert";
+		return "admin/admin_proUpdate";
 	}
 	
 	// 상품 수정하고 DB에 저장
@@ -190,7 +201,11 @@ public class AdminController {
 	
 	// 재고 정보
 	@RequestMapping(value="/inventory",method=RequestMethod.GET)
-	public String inventory() {
+	public String inventory(Model model) {
+		
+		List<ProductVO> proList = proService.selectAll();
+		log.debug("상품 리스트 : " + proList.toString());
+		model.addAttribute("PROLIST",proList);
 		
 		return "admin/admin_inventory";
 	}

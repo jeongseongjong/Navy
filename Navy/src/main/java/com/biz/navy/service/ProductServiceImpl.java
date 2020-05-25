@@ -8,10 +8,13 @@ import java.util.List;
 import java.util.Set;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.biz.navy.dao.ProductDao;
 import com.biz.navy.domain.ColorVO;
 import com.biz.navy.domain.ProSizeColorVO;
+import com.biz.navy.domain.ProductImgVO;
 import com.biz.navy.domain.ProductVO;
 import com.biz.navy.domain.SizeVO;
 
@@ -24,6 +27,7 @@ import lombok.extern.slf4j.Slf4j;
 public class ProductServiceImpl implements ProductService {
 	
 	private final ProductDao proDao;
+	private final FileService fileService;
 	
 	@Override
 
@@ -32,10 +36,17 @@ public class ProductServiceImpl implements ProductService {
 	}
 	// 상품 사이즈, 컬러, 수량 포함해서 insert 수행
 	@Override
-	public int insert(ProductVO productVO, String[] size, String[] color, int[] qty) {
+//	public int insert(ProductVO productVO, String[] size, String[] color, int[] qty, MultipartFile file) {
+	public int insert(ProductVO productVO, String[] size, String[] color, int[] qty, MultipartHttpServletRequest files) {
+		
+
 		
 		// 가져온 사이즈 input 개수
-		int intSize = size.length;
+		int intSize = 0;
+		intSize = size.length;
+		
+		// 총 수량 담을 변수
+		int p_qty = 0;
 		
 		// 가져온 값 정렬해서 DB에 넣기 위해 리스트에 담기
 		List<ProSizeColorVO> proSCList = new ArrayList<>();
@@ -48,7 +59,12 @@ public class ProductServiceImpl implements ProductService {
 			proSCList.add(proSCVO);
 			log.debug("proSCList에 담길 VO 값 : " + proSCVO.toString());
 			log.debug("proSCList에 담긴 값 : " + proSCList.get(0).toString());
+			
+			// 수량 더하기
+			p_qty += qty[i];
 		}
+		// 총 수량 VO에 담기
+		productVO.setP_qty(p_qty);
 		
 		for(ProSizeColorVO p : proSCList) {
 			log.debug("proSCList 정렬하기 전 값 : " + p.toString());
@@ -88,6 +104,44 @@ public class ProductServiceImpl implements ProductService {
 		// PCODE + 1
 		maxPCode++;
 		
+		//////////////////////////////////////
+		// 파일 이미지 업로드
+		List<MultipartFile> fileList = files.getFiles("file");
+		ProductImgVO proImgVO ;
+		
+		// tbl_p_images테이블에 Insert 하기 위해 리스트 생성
+		List<ProductImgVO> proImgList = new ArrayList<>();
+		
+		for(MultipartFile f: fileList) {
+			f.getOriginalFilename();
+			log.debug("파일 리스트 여러개 : "+ f.getOriginalFilename());
+			proImgVO = new ProductImgVO();
+			proImgVO.setP_img_p_code(maxPCode);
+			proImgVO.setP_img_origin_name(f.getOriginalFilename());
+			
+			// C드라이브 로컬에 파일을 저장하기 위한 코드
+			String saveFilesName = fileService.file_up(f);
+			// 파일을 저장한 이름 (UUID + 이름)을 set으로 저장해주기
+			proImgVO.setP_img_upload_name(saveFilesName);
+			
+			proImgList.add(proImgVO);
+		}
+		
+		// 파일 여러개 잘 담겼는지 확인
+		// 로컬도 확인하고 로그도 확인하기
+		for(ProductImgVO p : proImgList) {
+			log.debug("파일 여러개 저장 : "+p);
+		}
+		
+		// 잘 담겼으면 tbl_p_images테이블에 값 저장
+		proDao.insertWithImages(proImgList);
+		
+		// 저장한 파일들 중 첫번째(대표이미지) 파일의 업로드 이름(UUID+파일이름)을
+		// 대표이미지로 설정하기 위해 productVO의 p_image에 담앙주기
+		productVO.setP_image(proImgList.get(0).getP_img_upload_name());
+		/* 파일 이미지 업로드 끝 */
+		////////////////////////////
+		
 		for(String s : size) {
 			log.debug("서비스 상품등록 사이즈 값 : " + s);
 		}
@@ -97,6 +151,13 @@ public class ProductServiceImpl implements ProductService {
 		for(int q : qty) {
 			log.debug("서비스 상품등록 사이즈 값 : " + q);
 		}
+
+		// 파일 업로드한 것 추가하기
+//		String saveFileName = fileService.file_up(file);
+//		log.debug("파일 저장경로 : "+file);
+//		log.debug("저장한 파일 이름 : " + saveFileName);
+//		productVO.setP_image(saveFileName);
+
 		// DB 상품 테이블에 데이터 추가
 		int ret = proDao.insert(productVO);
 		
@@ -177,6 +238,7 @@ public class ProductServiceImpl implements ProductService {
 		// DB 컬러 테이블에 데이터 추가
 		proDao.insertWithColor(colorList);
 		return ret;
+//		return 0;
 	}
 
 	@Override

@@ -2,6 +2,9 @@ package com.biz.navy.service;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+
 import com.biz.navy.domain.ProductVO;
 
 public interface ProductService {
@@ -20,7 +23,11 @@ public interface ProductService {
 
 	public ProductVO findById(long p_code);
 
-	public int insert(ProductVO productVO, String[] size, String[] color, int[] qty);
+//	public int insert(ProductVO productVO, String[] size, String[] color, int[] qty);
+
+//	public int insert(ProductVO productVO, String[] size, String[] color, int[] qty, MultipartFile file);
+	
+	public int insert(ProductVO productVO, String[] size, String[] color, int[] qty, MultipartHttpServletRequest files);
 	
 
 }
