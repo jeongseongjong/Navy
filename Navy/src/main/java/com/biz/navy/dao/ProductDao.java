@@ -65,5 +65,8 @@ public interface ProductDao {
 
 	public void insertWithColor(List<ColorVO> colorList);
 
+	// 파일 업로드용 메서드
+	public void insertWithImages(List<ProductImgVO> proImgList);
+
 	
 }

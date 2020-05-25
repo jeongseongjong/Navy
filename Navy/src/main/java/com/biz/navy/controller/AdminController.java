@@ -134,18 +134,14 @@ public class AdminController {
 			String[] color,
 			int[] qty,
 			
-//			MultipartHttpServletRequest files
-			@RequestParam("file") MultipartFile file
+			MultipartHttpServletRequest files
+//			@RequestParam("file") MultipartFile file
 			) {
-		log.debug("파일이름:"+file.getOriginalFilename());
-//		List<MultipartFile> fileList = files.getFiles("file");
-//		for(MultipartFile f: fileList) {
-//			f.getOriginalFilename();
-//			log.debug("파일 리스트 여러개 : "+ f.getOriginalFilename());
-//		}
+//		log.debug("파일이름:"+file.getOriginalFilename());
+
 //		int ret = proService.insert(productVO, size, color, qty);
-		int ret = proService.insert(productVO, size, color, qty, file);
-//		int ret = proService.insert(productVO, size, color, qty, fileList);
+//		int ret = proService.insert(productVO, size, color, qty, file);
+		int ret = proService.insert(productVO, size, color, qty, files);
 		
 		
 //		long intId = productVO.getP_code();

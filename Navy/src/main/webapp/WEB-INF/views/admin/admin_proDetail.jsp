@@ -23,12 +23,13 @@
 							style="width: 450px; height: 400px; margin-right: 70px;" />
 					</c:otherwise>
 				</c:choose>
+
 				<!--detail box-->
 				<div class="detail-box"
 					style="margin-left: 70px; margin-bottom: 100px;">
 					<div class="mb-3 mt-5">
 						<h2 class="black-text">${productVO.p_name}</h2>
-						<span>${productVO.p_price}won</span>
+						<span>${productVO.p_price}원</span>
 					</div>
 					<hr style="border: 1px solid #252c41;" />
 					<br />
@@ -66,6 +67,10 @@
 							data-id="${productVO.p_code}">삭제</button>
 							 -->
 					</div>
+					<c:forEach items="${productVO.proDImgList}" var="img">
+						<img src="${rootPath}/images/${img.p_img_upload_name}"
+								style="width: 250px; height: 200px; margin-right: 70px;" />
+					</c:forEach>
 				</div>
 			</div>
 		</div>
