@@ -57,31 +57,6 @@
 								수정</button>
 							<button class="mr-2 bt-bbs-style">삭제</button>
 						</div>
-						<div id="auth_box">
-							<!-- 
-<div align="right">
-	<button type="button" class="btn btn-success mb-3" id="auth_append">권한
-		정보 입력 추가</button>
-</div>
- -->
-							<div id="auth_list">
-								<c:if test="${not empty userVO.authorities}">
-									<p>
-										현재 권한
-										<c:forEach items="${userVO.authorities}" var="auth"
-											varStatus="index">
-											<div class="input-group mb-3">
-												<input name="auth" value="${auth.authority}"
-													class="auth form-control-plaintext" placeholder="권한">
-												<div class="input-group-append">
-													<button class="btn btn-danger btn-delete" type="button"
-														data-id="${auth.id}" data-username="${auth.username}">&times</button>
-												</div>
-											</div>
-										</c:forEach>
-								</c:if>
-							</div>
-						</div>
 						<!-- review 정보 가져오기-->
 						<div class="container col mt-4">
 							<span>상품 구매 이력</span>
