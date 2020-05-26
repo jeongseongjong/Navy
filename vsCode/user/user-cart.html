@@ -69,8 +69,8 @@
       </div>
     </nav>
     <!--main 화면 img들어갈 것-->
-    <article class="all-browers">
-      <div class="container" id="cart">
+    <article class="all-browers container">
+      <div id="cart">
         <!--main-list-->
         <div class="mypage-header">
           <div class="image_title_area top_banner_mypage">
@@ -155,132 +155,294 @@
             <span class="cart_goods_num_cart_cnt">0</span>
             개
           </span>
-          <section id="ct_cont">
-            <div class="prod_header">
-              <label class="checks _check_all chk_type">
-                <input
-                  type="checkbox"
-                  id="check_id"
-                  class="_check_all"
-                  checked="checked"
-                />
-                <label for="check_id"> </label>
-                <span class="clicked_deal">
-                  <i class="blind">상품전체선택</i></span
-                >
-              </label>
-              <ul class="u_title">
-                <li class="u_info">상품정보</li>
-                <li class="u_order">상품금액</li>
-                <li class="u_delivery">배송비</li>
-              </ul>
-            </div>
-            <!--장바구니 리스트-->
-            <div id="deal_list">
-              <div class="ct_prod_wp">
-                <div class="prod">
-                  <label class="checks _check_all chk_type">
-                    <input
-                      type="checkbox"
-                      id="check_item"
-                      class="_check_all"
-                      checked="checked"
+        </div>
+        <section id="ct_cont">
+          <div class="prod_header">
+            <label class="checks _check_all chk_type">
+              <input
+                type="checkbox"
+                id="check_id"
+                class="_check_all"
+                checked="checked"
+              />
+              <label for="check_id"> </label>
+              <span class="clicked_deal">
+                <i class="blind">상품전체선택</i></span
+              >
+            </label>
+            <ul class="u_title">
+              <li class="u_info">상품정보</li>
+              <li class="u_order">상품금액</li>
+              <li class="u_delivery">배송비</li>
+            </ul>
+          </div>
+          <!--장바구니 리스트-->
+          <div id="deal_lists">
+            <div class="ct_prod_wp">
+              <div class="prod">
+                <label class="checks _check_all chk_type">
+                  <input
+                    type="checkbox"
+                    id="check_item"
+                    class="_check_all"
+                    checked="checked"
+                  />
+                  <label for="check_item"> </label>
+                  <span class="clicked_deal">
+                    <i class="blind">상품한개선택</i></span
+                  >
+                </label>
+                <div class="prod_tit">
+                  <a href="../shopDetail.html"
+                    ><!--여기에 디테일로 넘어갈 url입력--></a
+                  >
+                  <!--이미지 들어갈 tag-->
+                  <div class="prod_thumb">
+                    <img
+                      src="../img/gu-dress-2.jpg"
+                      alt="Gucci dress"
+                      style="width: 100%;"
+                      class="pro-img"
                     />
-                    <label for="check_item"> </label>
-                    <span class="clicked_deal">
-                      <i class="blind">상품한개선택</i></span
-                    >
-                  </label>
-                  <div class="prod_tit">
-                    <a href="../shopDetail.html"
-                      ><!--여기에 디테일로 넘어갈 url입력--></a
-                    >
-                    <!--이미지 들어갈 tag-->
-                    <div class="prod_thumb">
-                      <img
-                        src="../img/gu-dress-2.jpg"
-                        alt="Gucci dress"
-                        style="width: 100%;"
-                      />
-                    </div>
-                    <div class="prod_name">
-                      <strong class="pr_name">Gucci Dress</strong>
-                    </div>
                   </div>
-                  <!--prod_tit end-->
-                  <div class="highlight_wrap">
-                    <div class="p_item">
-                      <p class="op_name">
-                        <span>[black M] Gucci drass</span>
-                      </p>
+                  <div class="prod_name">
+                    <strong class="pr_name">Gucci Dress</strong>
+                  </div>
+                </div>
+                <!--prod_tit end-->
+                <div class="highlight_wrap">
+                  <div class="p_item">
+                    <p class="op_name">
+                      <span>[black M] Gucci drass</span>
+                    </p>
 
-                      <div class="bt_cnt">
-                        <form>
-                          <button
-                            type="button"
-                            class="cnt_minus"
-                            onClick="javascript:this.form.amount.value--;"
-                          >
-                            <i class="blind">수량빼기</i>
-                          </button>
-                          <input
-                            type="text"
-                            class="ip_quantity"
-                            title="수량입력"
-                            value="1"
-                            name="amount"
-                          />
-                          <button
-                            type="button"
-                            class="cnt_plus"
-                            onClick="javascript:this.form.amount.value++;"
-                          >
-                            <i class="blind">수량 더하기</i>
-                          </button>
-                        </form>
-                      </div>
-
-                      <div class="price">
-                        <p class="_origin">
-                          <span class="num">1,750,000</span>
-                          won
-                        </p>
-                        <button type="button" class="bt_del">
-                          <i class="blind">삭제</i>
+                    <div class="bt_cnt">
+                      <form>
+                        <button
+                          type="button"
+                          class="cnt_minus"
+                          onClick="javascript:this.form.amount.value--;"
+                        >
+                          <i class="blind">수량빼기</i>
                         </button>
-                      </div>
+                        <input
+                          type="text"
+                          class="ip_quantity"
+                          title="수량입력"
+                          value="1"
+                          name="amount"
+                        />
+                        <button
+                          type="button"
+                          class="cnt_plus"
+                          onClick="javascript:this.form.amount.value++;"
+                        >
+                          <i class="blind">수량 더하기</i>
+                        </button>
+                      </form>
                     </div>
-                    <!--option 변경-->
-                    <div class="op_change">
-                      <div class="term_wrap">
-                        <div class="term_right">
-                          <button type="button" class="modify_option_ bt_type">
-                            옵션 변경/추가
-                          </button>
-                        </div>
-                      </div>
+
+                    <div class="price">
+                      <p class="_origin">
+                        <span class="num">1,750,000</span>
+                        won
+                      </p>
+                      <button type="button" class="bt_del">
+                        <i class="blind">삭제</i>
+                      </button>
                     </div>
-                    <!--end-->
                   </div>
-                  <!--주문금액-->
-                  <div class="order_price">
-                    <div class="price_inner">
-                      <div class="price_cont">
-                        <p class="nomal" style="display: none;">
-                          <span>1,750,000</span>
-                          won
-                        </p>
-                        <p></p>
-                      </div>
+                </div>
+                <!--option 변경-->
+                <div class="op_change">
+                  <div class="term_wrap">
+                    <div class="term_right">
+                      <button type="button" class="modify_option_ bt_type">
+                        옵션 변경/추가
+                      </button>
                     </div>
                   </div>
-                  <!--주문금액 end-->
+                </div>
+                <!--end-->
+
+                <!--주문금액-->
+                <div class="order_price">
+                  <div class="price_inner">
+                    <div class="price_cont">
+                      <p class="nomal">
+                        <span>1,750,000</span>
+                        won
+                      </p>
+                      <p></p>
+                    </div>
+                  </div>
+                </div>
+                <!--주문금액 end-->
+                <div class="delivery_price">
+                  <div class="price_inner">
+                    <p>-</p>
+                  </div>
                 </div>
               </div>
-              <!-- prod end-->
             </div>
-            <!--deal list end-->
-          </section>
+            <!-- prod end-->
+          </div>
+          <!--deal list  1 end-->
+          <!--2 장바구니 리스트-->
+          <div id="deal_lists">
+            <div class="ct_prod_wp">
+              <div class="prod">
+                <label class="checks _check_all chk_type">
+                  <input
+                    type="checkbox"
+                    id="check_item"
+                    class="_check_all"
+                    checked="checked"
+                  />
+                  <label for="check_item"> </label>
+                  <span class="clicked_deal">
+                    <i class="blind">상품한개선택</i></span
+                  >
+                </label>
+                <div class="prod_tit">
+                  <a href="../shopDetail.html"
+                    ><!--여기에 디테일로 넘어갈 url입력--></a
+                  >
+                  <!--이미지 들어갈 tag-->
+                  <div class="prod_thumb">
+                    <img
+                      src="../img/gu-dress-2.jpg"
+                      alt="Gucci dress"
+                      style="width: 100%;"
+                      class="pro-img"
+                    />
+                  </div>
+                  <div class="prod_name">
+                    <strong class="pr_name">Gucci Dress</strong>
+                  </div>
+                </div>
+                <!--prod_tit end-->
+                <div class="highlight_wrap">
+                  <div class="p_item">
+                    <p class="op_name">
+                      <span>[black M] Gucci drass</span>
+                    </p>
+
+                    <div class="bt_cnt">
+                      <form>
+                        <button
+                          type="button"
+                          class="cnt_minus"
+                          onClick="javascript:this.form.amount.value--;"
+                        >
+                          <i class="blind">수량빼기</i>
+                        </button>
+                        <input
+                          type="text"
+                          class="ip_quantity"
+                          title="수량입력"
+                          value="1"
+                          name="amount"
+                        />
+                        <button
+                          type="button"
+                          class="cnt_plus"
+                          onClick="javascript:this.form.amount.value++;"
+                        >
+                          <i class="blind">수량 더하기</i>
+                        </button>
+                      </form>
+                    </div>
+
+                    <div class="price">
+                      <p class="_origin">
+                        <span class="num">1,750,000</span>
+                        won
+                      </p>
+                      <button type="button" class="bt_del">
+                        <i class="blind">삭제</i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <!--option 변경-->
+                <div class="op_change">
+                  <div class="term_wrap">
+                    <div class="term_right">
+                      <button type="button" class="modify_option_ bt_type">
+                        옵션 변경/추가
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <!--end-->
+
+                <!--주문금액-->
+                <div class="order_price">
+                  <div class="price_inner">
+                    <div class="price_cont">
+                      <p class="nomal">
+                        <span>1,750,000</span>
+                        won
+                      </p>
+                      <p></p>
+                    </div>
+                  </div>
+                </div>
+                <!--주문금액 end-->
+                <div class="delivery_price">
+                  <div class="price_inner">
+                    <p>-</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- prod end-->
+          </div>
+          <!--deal list end-->
+        </section>
+        <div class="product_footer">
+          <label class="checks _check_all chk_type">
+            <input
+              type="checkbox"
+              id="check_total"
+              class="_check_all"
+              checked="checked"
+            />
+            <label for="check_total"> </label>
+            <span class="clicked_deal"> <i class="blind">상품한개선택</i></span>
+          </label>
+          <button class="bt_del_type bt_type">삭제</button>
+          <p class="guide_txt">장바구니에 담긴 상품은 보관만 가능합니다</p>
+        </div>
+        <!--총 주문 금액-->
+        <div class="ct_total">
+          <h3 class="ct_total_tit">총 주문금액</h3>
+          <dl class="matter">
+            <dt>총상품금액</dt>
+            <dd>
+              <em>3,500,000</em>
+              <span>won</span>
+            </dd>
+            <dt>배송비</dt>
+            <dd>
+              <em>0</em>
+              <span>won</span>
+            </dd>
+          </dl>
+          <dl class="total">
+            <dt>결제 예상금액</dt>
+            <dd>
+              <em class="_total_amount">3,500,000</em>
+              <span>won</span>
+            </dd>
+          </dl>
+        </div>
+        <!--총주문금액 end-->
+        <!-- button -->
+        <div class="bt_area">
+          <button type="button" class="bt_continue">쇼핑계속하기</button>
+          <button type="button" class="bt_submit">구매하기</button>
         </div>
       </div>
     </article>
