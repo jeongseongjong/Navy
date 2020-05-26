@@ -14,6 +14,10 @@ public interface CartService {
 	
 	public int countDelivery();
 	
+	public List<CartVO> selectAll();
+	
+	public List<CartVO> selectByStatus(String status);
+	
 	// 카트에서 선택하기
 	public List<CartVO> selectCart(String username);
 	

@@ -21,6 +21,14 @@ public interface CartDao {
 			+ " where username = #{username} AND bk_p_status = 'CART' ")
 	public List<CartVO> selectCart(@Param("username")String username);
 	
+	@Select("SELECT * FROM tbl_cart")
+	public List<CartVO> selectAll();
+	
+	@Select("SELECT * FROM tbl_cart WHERE bk_p_status = #{status}")
+	public List<CartVO> selectByStatus(String status);
+	
+	
+	
 	// 배송 중인 상품 SELECT
 //	@Select("select C.bk_id, C.bk_p_name, P.p_code, C.bk_p_color, "
 //			+ " C.bk_p_size, C.username, C.bk_p_oprice, C.bk_p_qty "

@@ -23,6 +23,18 @@ public class CartServiceImpl implements CartService{
 	private final CartDao cartDao;
 
 	@Override
+	public List<CartVO> selectAll() {
+		// TODO Auto-generated method stub
+		return cartDao.selectAll();
+	}
+
+	@Override
+	public List<CartVO> selectByStatus(String status) {
+
+		return cartDao.selectByStatus(status);
+	}
+	
+	@Override
 	public int cartCount() {
 
 		return cartDao.cartCount();
@@ -116,6 +128,8 @@ public class CartServiceImpl implements CartService{
 
 		return cartDao.findByCsCode(c_s_code);
 	}
+
+
 
 	
 	
