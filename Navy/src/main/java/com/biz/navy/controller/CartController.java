@@ -21,6 +21,7 @@ import com.biz.navy.domain.SizeVO;
 import com.biz.navy.domain.UserDetailsVO;
 import com.biz.navy.service.CartService;
 import com.biz.navy.service.ProductService;
+import com.biz.navy.service.secure.UserService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -33,6 +34,7 @@ public class CartController {
 
 	private final ProductService proService;
 	private final CartService cartService;
+	private final UserService userService;
 
 	
 // <<<<<<< HEAD
@@ -108,8 +110,13 @@ public class CartController {
 		try {
 			UserDetailsVO userVO = (UserDetailsVO) upa.getPrincipal();
 			List<CartVO> deliveryList = cartService.selectDelivery(userVO.getUsername());
+			UserDetailsVO userList =  userService.findByUserName(userVO.getUsername());
 			log.debug("여기는 딜리버리 리스트 " + deliveryList.toString());
+			log.debug("구매자 정보" + userList.toString());
+			
+			model.addAttribute("USER_LIST", userList);
 			model.addAttribute("DELIVERY_LIST", deliveryList);
+			log.debug("딜리버리 리스트 " + deliveryList);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}

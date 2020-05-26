@@ -48,3 +48,6 @@
  * cart -> delivery로 이동시 구매날짜 적용
  * 장바구니 버튼 nav에 추가
  * tbl_cart의 bk_p_buyTime 칼럼 추가
+ 
+## 05-26
+ * buyer(구매자정보 jsp 생성)
