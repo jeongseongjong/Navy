@@ -1,92 +1,84 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
-<!DOCTYPE html>
-<html>
-<head>
-<%@ include file="/WEB-INF/views/include/include-head.jspf" %>
 
-<script>
-$(function() {
-	
-	var read1 = document.getElementById("read1");
-	var read2 = document.getElementById("read2");
-	var read3 = document.getElementById("read3");
-	read1.readOnly = true;
-	read2.readOnly = true;
-	read3.readOnly = true;
-	
-	var toolbar = [
-		['style',['bold','italic','underline'] ],
-		['fontsize',['fontsize']],
-		['font Style',['fontname']],
-		['color',['color']],
-		['para',['ul','ol','paragraph']],
-		['height',['height']],
-		['table',['table']],
-		// ['insert',['link','hr','picture']],
-		['view',['fullscreen','codeview']]
-	]
-	
-	$("#r_text").summernote({
-		lang:'ko-KR',
-		placeholder:'본문을 입력하세요',
-		width:'100%',
-		toolbar:toolbar,
-		height:'200px',
-		disableDragAndDrop : true
-	})
-	
-	
-	$("#btn-save").click( function() {
-		
-		$("form").submit()
-		
-	})
+				<!--review -->
+				<div class="tab-pane fade" id="profile" role="tabpanel"
+					aria-labelledby="profile-tab">
+					<div class="d-flex justify-content-end">
+						<button class="bt-review-wr" data-id="${productVO.p_code}">리뷰작성</button>
+					</div>
 
-	
-})
-</script>
+					<!-- 리뷰List -->
+					<c:choose>
+						<c:when test="${empty productVO.reviewList}">
+							<div class="container-fluid"
+								style="border-bottom: 1px solid #8c8d90; margin: 40px;">
+								<p>상품 REVIEW가 없습니다.</p>
+							</div>
+						</c:when>
+						<c:otherwise>
+							<c:forEach var="REVIEW" items="${productVO.reviewList}">
+								<div data-id="${REVIEW.r_id}" class="container-fluid"
+									style="border-bottom: 1px solid #8c8d90; margin: 40px;">
+									<span class="pro-star">상품</span>
 
-</head>
-<body>
-<%@ include file = "/WEB-INF/views/include/include-nav.jspf" %>
-<h3>사용자 리뷰 페이지</h3>
-<div>상품이름 : ${productVO.p_name}</div>
-<form:form action="${rootPath}/user/review/${productVO.p_code}" modelAttribute="reviewVO">
-	<form:input type="hidden" path="r_id" /><br/>
-	
-	<label>별점 : </label>
-	<form:input type="number" path="r_start" min="1" max="5" /><br/>
-	
-	<form:input type="hidden"  id="read1" path="r_code" /><br/>
-	<label>사용자이름 : </label>
-	<form:input id="read2"  path="r_auth" /><br/>
-	
-	<label>상품디테일 : </label>
-	
-	<label>날짜 : </label>
-	<form:input id="read3" path="r_date" /><br/>
-	
-	<label>추천수 : </label>
-	<form:input type="number" path="r_like" min="1" max="5" /><br/>
-	
-	<label>내용 : </label>
-	<form:textarea path="r_text" />
-	
-	<label>이미지 : </label>
-	<form:input path="r_image" /><br/>
-</form:form>
+									<!-- 별점 -->
+									<input type="radio" name="rating" value="1" id="star-1"
+										class="star__radio visuhide" /> <input type="radio"
+										name="rating" value="2" id="star-2"
+										class="star__radio visuhide" /> <input type="radio"
+										name="rating" value="3" id="star-3"
+										class="star__radio visuhide" /> <input type="radio"
+										name="rating" value="4" id="star-4"
+										class="star__radio visuhide" /> <input type="radio"
+										name="rating" value="5" id="star-5"
+										class="star__radio visuhide" /> <label class="star__item"
+										for="star-1"> <span class="visuhide">1 star</span>
+									</label> <label class="star__item" for="star-2"> <span
+										class="visuhide">2 stars</span>
+									</label> <label class="star__item" for="star-3"> <span
+										class="visuhide">3 stars</span>
+									</label> <label class="star__item" for="star-4"> <span
+										class="visuhide">4 stars</span>
+									</label> <label class="star__item" for="star-5"> <span
+										class="visuhide">5 stars</span>
+									</label> <span>${REVIEW.r_start}</span>
+									<!-- 별점 end -->
 
-<button id="btn-save" type="button">저장</button>
- 
- 
-<div>상품코드 : ${productVO.p_code}</div>
-<div>상품이름 : ${productVO.p_name}</div>
-<div>사용자이름 : ${userVO.username}</div>
+									<!-- 상품명 -->
+									<span class="row"
+										style="font-size: 20px; margin-top: 10px; color: #8c8d90; margin-bottom: 20px; margin-left: 30px;">${productVO.p_name}</span>
+									<!-- 사이즈, 색깔 리스트 재수정해야 함 -->
+									<c:forEach items="${productVO.m_size_list}" var="list">
+										<span>${list.s_size}</span>
+									</c:forEach>
+									<div>${cartVO.bk_p_size}</div>
+									<div class="container">
+										<div class="row"
+											style="margin-left: 30px; margin-bottom: 20px;">
+											<div class="col-sm-4 d-flex justify-content-center">
+												<img src="${rootPath}/resources/img/dress1.jpg"
+													style="width: 50%;" />
+											</div>
+											<div class="col-sm-8"
+												style="vertical-align: middle; top: 30px;">
+												<span>${REVIEW.r_text}</span>
+											</div>
 
- 
-<%@ include file= "/WEB-INF/views/include/include-footer.jspf" %>
-</body>
-</html>
+											<!--사용자 id 작성 날짜-->
+											<div class="mt-5">
+												<span>${REVIEW.r_auth}</span> <span>&#124;</span> <span>${REVIEW.r_date}</span>
+											</div>
+										</div>
+									</div>
+									<!-- 상품명 end -->
+								</div>
+							</c:forEach>
+						</c:otherwise>
+					</c:choose>
+					<!-- 리뷰List end -->
+				</div>
+				<!-- 리뷰 end -->
+
   

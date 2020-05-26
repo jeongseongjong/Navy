@@ -26,15 +26,24 @@ public class ProductVO {
     private String p_color;
     private int p_qty;
     
+    private List<String> m_size_list;
+    private List<String> m_color_list;
+    
+    private List<SizeVO> p_size_list;
+    private List<String> p_color_list;
+    
     
     // 상품의 각 Size, Color 정보를 담을 변수
-    private List<SizeVO> sizeList;
-    private List<ColorVO> colorList;
+    // private List<SizeVO> sizeList;
+    // private List<ColorVO> colorList;
     
     // 상품의 디테일이미지 정보를 담을 변수
     private List<ProductImgVO> proDImgList;
     
     // 상품의 회원리뷰 정보를 담을 변수
     private List<ReviewVO> reviewList;
+    
+    // 상품의 회원Qna 정보를 담을 변수
+    private List<QnaVO> qnaList;
       
 }
