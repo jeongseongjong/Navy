@@ -18,6 +18,10 @@ import com.biz.navy.domain.SizeVO;
 public interface ProductDao {
 
 	@Select("SELECT * FROM tbl_product ORDER BY p_code DESC")
+	@Results(value= {@Result(property = "p_code", column = "p_code"),
+			@Result(property = "sizeList", column = "p_code", javaType = List.class, many = @Many(select = "getSPcode")),
+			@Result(property = "proDImgList", column = "p_code", javaType = List.class, many = @Many(select = "getPImgSeq")),
+			@Result(property = "reviewList", column = "p_code", javaType = List.class, many = @Many(select = "getRPcode"))})
 	public List<ProductVO> selectAll();
 
 	@Select("SELECT * FROM tbl_product WHERE p_code = #{p_code}")
@@ -62,6 +66,9 @@ public interface ProductDao {
 	public int findByMaxSizeCode();
 
 	public void insertWithColor(List<ColorVO> colorList);
+
+	// 파일 업로드용 메서드
+	public void insertWithImages(List<ProductImgVO> proImgList);
 
 	
 }

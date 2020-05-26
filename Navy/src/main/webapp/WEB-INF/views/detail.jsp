@@ -125,7 +125,7 @@
 	</div><!-- detail pages 정보 end -->
 
 	<div class="hr-sect mb-5">DETAIL INFO</div>
-	
+  
 	<!-- 상세 정보 -->
 	<div class="container">
 	

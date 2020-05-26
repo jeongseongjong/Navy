@@ -1,0 +1,93 @@
+<!--
+                  1. ajax로 보내는 방법
+                chart data 값 가져올때 참고 https://emflant.tistory.com/74
+                ajax로 데이터 가져오고 json으로 보내기
+
+                2. page rendering 하는 방법
+                model에 담아서 페이지 로드 할때 같이 넘겨주기
+                js에서 ${data} 이런식으로
+            -->
+<script type="text/javascript">
+  google.charts.load("current", { packages: ["corechart"] });
+  google.charts.setOnLoadCallback(allCurveChart);
+  google.charts.setOnLoadCallback(todayCurveChart);
+
+  /* chart 1*/
+  function allCurveChart() {
+    var data = google.visualization.arrayToDataTable([
+      ["Year", "WhitePants", "Blackpanther"],
+      ["3월", 1000, 400],
+      ["4월", 1170, 460],
+      ["5월", 660, 1120],
+      ["6월", 1030, 540],
+    ]);
+
+    var options = {
+      title: "월 매출",
+      width: 400,
+      height: 300,
+      hAxis: {
+        title: "Month",
+        titleTextStyle: { color: "#333" },
+      },
+      lineWidth: 5,
+      series: {
+        0: { color: "#1c91c0" },
+        1: { color: "#e7711b" },
+      },
+      vAxis: { minValue: 0 },
+    };
+
+    var chart = new google.visualization.LineChart(
+      document.getElementById("all_curve_chart")
+    );
+
+    chart.draw(data, options);
+  }
+  /*chart 2*/
+  function todayCurveChart() {
+    var data = google.visualization.arrayToDataTable([
+      ["Year", "WhitePants"],
+      ["3월", 500],
+      ["4월", 300],
+      ["5월", 1120],
+      ["6월", 540],
+    ]);
+
+    var options = {
+      title: "총 매출",
+      width: 400,
+      height: 300,
+      hAxis: {
+        title: "Month",
+
+        titleTextStyle: { color: "#333" },
+      },
+      lineWidth: 5,
+      series: {
+        0: { color: "#1c91c0" },
+        1: { color: "#e7711b" },
+      },
+      vAxis: { minValue: 0 },
+    };
+
+    var chart = new google.visualization.LineChart(
+      document.getElementById("today_curve_chart")
+    );
+
+    chart.draw(data, options);
+  }
+</script>
+<button>메뉴 추가</button>
+<div class="row">
+  <table class="col">
+    <tr>
+      <td>
+        <div id="all_curve_chart" style="width: 100%; height: 400px;"></div>
+      </td>
+      <td>
+        <div id="today_curve_chart" style="width: 100%; height: 400px;"></div>
+      </td>
+    </tr>
+  </table>
+</div>

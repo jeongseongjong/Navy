@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/include/include-head.jspf" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 
 <!DOCTYPE html>
 <html>
@@ -23,8 +24,8 @@
                       <th class="in-ck-box">SEQ</th>
                       <th class="in-ck-box">USER.ID</th>
                       <th class="in-ck-box">AUTHORITY</th>
-                      <th class="in-ck-box">AUTHORITY Y/N</th>
-                      <th class="in-ck-box">CHECKOUT Y/N</th>
+                      <th class="in-ck-box">Account suspension</th>
+                      <th class="in-ck-box">Withdrawal</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -37,28 +38,24 @@
 							<tr data-id="${user.username}" class="tr_user">
 								<td class="in-ck-box td-click">${i.count}</td>
 								<td class="in-ck-box td-click">${user.username}</td>
-								<td class="in-ck-box td-click">권한</td>
+								<c:forEach items="${user.authorities}" var="auth">
+									<c:if test="${auth.authority == 'ROLE_ADMIN' }">
+										<td class="in-ck-box td-click">관리자</td>
+									</c:if>
+									<c:if test="${auth.authority == 'ROLE_USER' }">
+										<td class="in-ck-box td-click">회원</td>
+									</c:if>
+								</c:forEach>
 								<td class="in-ck-box td-click">${user.enabled}
-									<input type="checkbox" value="${user.enabled}" >
+									<!-- <input type="checkbox" value="${user.enabled}" > -->
 								</td>
 								<td class="in-ck-box td-click">${user.checkout}
-									<input type="checkbox" value="${user.checkout}" >
+									<!-- <input type="checkbox" value="${user.checkout}" > -->
 								</td>
 							</tr>
 						</c:forEach>
 					</c:otherwise>
 				   </c:choose>
-                    <tr data-id="${user.username}" class="tr_user">
-                      <td class="in-ck-box td-click">1</td>
-                      <td class="in-ck-box td-click">qussoa</td>
-                      <td class="in-ck-box td-click">ADMIN</td>
-                      <td class="in-ck-box">
-                        <input type="checkbox" />
-                      </td>
-                      <td class="in-ck-box">
-                        <input type="checkbox" />
-                      </td>
-                    </tr>
                   </tbody>
                 </table>
 

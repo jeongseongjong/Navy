@@ -8,9 +8,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.biz.navy.domain.CartVO;
 import com.biz.navy.domain.ProductVO;
 import com.biz.navy.domain.UserDetailsVO;
+import com.biz.navy.service.CartService;
 import com.biz.navy.service.ProductImgService;
 import com.biz.navy.service.ProductService;
 import com.biz.navy.service.secure.UserService;
@@ -27,6 +30,9 @@ public class AdminController {
 	private final UserService userService;
 	private final ProductService proService;
 	private final ProductImgService proImgService;
+	private final CartService cartService;
+	
+	
 	
 	@RequestMapping(value="",method=RequestMethod.GET)
 	public String admin() {
@@ -34,14 +40,6 @@ public class AdminController {
 		return "admin/admin_home";
 	}
 	
-//	<li><a href="${rootPath}/admin/userlist">회원 리스트</a></li>
-//	<li><a href="${rootPath}/admin/productlist">상품 정보</a></li>
-//	<li><a href="${rootPath}/admin/orderlist">주문 정보</a></li>
-//	<li><a href="${rootPath}/admin/qna">QNA</a></li>
-//	<li><a href="${rootPath}/admin/review">리뷰</a></li>
-//	<li><a href="${rootPath}/admin/inventory">재고</a></li>
-//	<li><a href="${rootPath}/admin/support">고객센터</a></li>
-
 	// 회원 리스트
 	@RequestMapping(value="/userlist",method=RequestMethod.GET)
 	public String userList(Model model) {
@@ -132,9 +130,9 @@ public class AdminController {
 			String[] color,
 			int[] qty,
 			
-			String dummy) {
-		
-		int ret = proService.insert(productVO, size, color, qty);
+			MultipartHttpServletRequest files
+			) {
+		int ret = proService.insert(productVO, size, color, qty, files);
 		
 		return "redirect:/admin";
 	}
@@ -148,7 +146,7 @@ public class AdminController {
 		model.addAttribute("productVO",productVO);
 		model.addAttribute("adminBody","proUpdate");
 		
-		return "admin/admin_proInsert";
+		return "admin/admin_proUpdate";
 	}
 	
 	// 상품 수정하고 DB에 저장
@@ -169,7 +167,11 @@ public class AdminController {
 	
 	// 주문 정보
 	@RequestMapping(value="/orderlist",method=RequestMethod.GET)
-	public String orderlist() {
+	public String orderlist(Model model) {
+		
+		List<CartVO> cartList = cartService.selectAll();
+		
+		model.addAttribute("CARTLIST",cartList);
 		
 		return "admin/admin_orderList";
 	}
@@ -190,7 +192,11 @@ public class AdminController {
 	
 	// 재고 정보
 	@RequestMapping(value="/inventory",method=RequestMethod.GET)
-	public String inventory() {
+	public String inventory(Model model) {
+		
+		List<ProductVO> proList = proService.selectAll();
+		log.debug("상품 리스트 : " + proList.toString());
+		model.addAttribute("PROLIST",proList);
 		
 		return "admin/admin_inventory";
 	}

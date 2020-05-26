@@ -32,11 +32,25 @@ body {
 .h-title {
   text-decoration: none;
   font-family: "GmarketSansBold";
+  font-weight: bold;
 }
 .h-title:hover {
   text-decoration: none;
   color: #f1404b;
 }
+
+/*nav mypage*/
+
+.mypage-title {
+  text-decoration: none;
+  color: #252c41;
+}
+
+.mypage-title a:hover {
+  text-decoration: none;
+  color: #252c41;
+}
+
 /* 가져다 쓸 색*/
 .red-text {
   color: #f1404b;
@@ -96,16 +110,77 @@ body {
   margin-right: auto;
 }
 /*mouse over img*/
-#img1 {
-  display: inline-block;
-  width: 100%;
-  height: 300px;
-  background: url("./img/dress1.jpg") no-repeat;
-  background-size: 200px 300px;
+
+.show-img {
+  height: 350px;
+  width: auto;
 }
-#img1:hover {
-  background: url("./img/dress2.jpg") no-repeat;
-  background-size: 200px 300px;
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.image {
+  cursor: pointer;
+  position: relative;
+  z-index: 90;
+  overflow: hidden;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: 0.5s;
+}
+
+.overlay-cont {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  bottom: -100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 100;
+  transition: 0.5s;
+}
+
+.share {
+  margin-top: 10%;
+}
+
+.share a {
+  border: none;
+  padding: 15px 50px;
+  color: white;
+  text-decoration: none;
+  font-size: 15px;
+  letter-spacing: 1px;
+}
+
+.image-1:hover .overlay-cont {
+  bottom: 0;
+  background-image: url("./img/gu-pant-2.jpg");
+  background-size: cover;
+}
+
+.image-2:hover .overlay-cont {
+  bottom: 0;
+  background-image: url("./img/gu2.jpg");
+  background-size: cover;
+}
+
+.image-3:hover .overlay-cont {
+  bottom: 0;
+  background-image: url("./img/gu-dress-2.jpg");
+  background-size: cover;
 }
 
 .footer {

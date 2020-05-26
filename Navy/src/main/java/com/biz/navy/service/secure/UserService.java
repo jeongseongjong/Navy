@@ -137,7 +137,7 @@ public class UserService implements UserDetailsService{
 	 */
 	public int update(UserDetailsVO userVO, String[] authList) {
 		
-		
+//		String[] authList1 = new String[];
 		int ret = userDao.update_auth(userVO);
 		
 		// DB Update를 성공하면

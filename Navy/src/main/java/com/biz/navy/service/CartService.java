@@ -14,6 +14,10 @@ public interface CartService {
 	
 	public int countDelivery();
 	
+	public List<CartVO> selectAll();
+	
+	public List<CartVO> selectByStatus(String status);
+	
 	// 카트에서 선택하기
 	public List<CartVO> selectCart(String username);
 	
@@ -39,7 +43,7 @@ public interface CartService {
 	public String sum();
 
 	// 장바구니에 있는 상품상태를 delivery로 바꾸는 메서드
-	public Integer cart_to_delivery(List<String> buyList);
+	public int cart_to_delivery(List<String> buyList);
 
 
 

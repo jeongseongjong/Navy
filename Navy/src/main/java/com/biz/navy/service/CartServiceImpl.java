@@ -1,5 +1,8 @@
 package com.biz.navy.service;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -19,6 +22,18 @@ public class CartServiceImpl implements CartService{
 
 	private final CartDao cartDao;
 
+	@Override
+	public List<CartVO> selectAll() {
+		// TODO Auto-generated method stub
+		return cartDao.selectAll();
+	}
+
+	@Override
+	public List<CartVO> selectByStatus(String status) {
+
+		return cartDao.selectByStatus(status);
+	}
+	
 	@Override
 	public int cartCount() {
 
@@ -79,9 +94,22 @@ public class CartServiceImpl implements CartService{
 		
 	}
 	@Override
-	public Integer cart_to_delivery(List<String> buyList) {
+	public int cart_to_delivery(List<String> buyList) {
 
-		return cartDao.cart_to_delivery(buyList);
+		LocalDateTime ldt = LocalDateTime.now();
+		DateTimeFormatter dt = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+		
+		List<CartVO> cartList = new ArrayList<CartVO>();
+		String buyTime = ldt.format(dt).toString();
+		for(String s : buyList) {
+			
+			CartVO cartVO = cartDao.findbyBkId(s);
+			
+			cartVO.setBk_p_buyTime(buyTime);
+			
+			cartList.add(cartVO);
+		}
+		return cartDao.cart_to_delivery(cartList);
 	}
 
 	@Override
@@ -100,6 +128,8 @@ public class CartServiceImpl implements CartService{
 
 		return cartDao.findByCsCode(c_s_code);
 	}
+
+
 
 	
 	

@@ -5,7 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Page Title</title>
     <!-- Latest compiled and minified CSS -->
+
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <script
+      src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+      type="text/javascript"
+    ></script>
     <link
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -19,10 +24,100 @@
     ></script>
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
     <link rel="stylesheet" href="./admin-main.css" />
     <link rel="stylesheet" href="../main.css" />
   </head>
+  <script>
+    /* dashboard handling js*/
+    $(function () {
+      $(".column").sortable({
+        // 드래그 앤 드롭 단위 css 선택자
+        connectWith: ".column",
+        // 움직이는 css 선택자
+        handle: ".card-header",
+        // 움직이지 못하는 css 선택자
+        cancel: ".no-move",
+        // 이동하려는 location에 추가 되는 클래스
+        placeholder: "card-placeholder",
+      });
+      // 해당 클래스 하위의 텍스트 드래그를 막는다.
+      $(".column .card").disableSelection();
+    });
+
+    /*
+         1. ajax로 보내는 방법
+        chart data 값 가져올때 참고 https://emflant.tistory.com/74
+        ajax로 데이터 가져오고 json으로 보내기
+
+        2. page rendering 하는 방법
+        model에 담아서 페이지 로드 할때 같이 넘겨주기
+        js에서 ${data} 이런식으로
+    */
+
+    google.charts.load("current", { packages: ["corechart"] });
+    google.charts.setOnLoadCallback(allCurveChart);
+    google.charts.setOnLoadCallback(todayCurveChart);
+
+    /* chart 1*/
+    function allCurveChart() {
+      var data = google.visualization.arrayToDataTable([
+        ["Year", "WhitePants", "Blackpanther"],
+        ["3월", 1000, 400],
+        ["4월", 1170, 460],
+        ["5월", 660, 1120],
+        ["6월", 1030, 540],
+      ]);
+
+      var options = {
+        hAxis: {
+          titleTextStyle: { color: "#333" },
+          width: 100,
+        },
+        lineWidth: 5,
+        series: {
+          0: { color: "#1c91c0" },
+          1: { color: "#e7711b" },
+        },
+        vAxis: { minValue: 0 },
+      };
+
+      var chart = new google.visualization.LineChart(
+        document.getElementById("all_curve_chart")
+      );
+
+      chart.draw(data, options);
+    }
+    /*chart 2*/
+    function todayCurveChart() {
+      var data = google.visualization.arrayToDataTable([
+        ["Year", "WhitePants"],
+        ["3월", 500],
+        ["4월", 300],
+        ["5월", 1120],
+        ["6월", 540],
+      ]);
+
+      var options = {
+        hAxis: {
+          titleTextStyle: { color: "#333" },
+        },
+        lineWidth: 5,
+        series: {
+          0: { color: "#1c91c0" },
+          1: { color: "#e7711b" },
+        },
+        vAxis: { minValue: 0 },
+      };
+
+      var chart = new google.visualization.LineChart(
+        document.getElementById("today_curve_chart")
+      );
+
+      chart.draw(data, options);
+    }
+  </script>
   <body>
     <!--header include-->
     <header>
@@ -94,103 +189,208 @@
               <div class="col-12 py-4 text-center">
                 <span style="font-size: 30px;">DASHBOARD</span>
               </div>
-              <!--DASHBORAD Contents-->
-
-              <!--
-                  1. ajax로 보내는 방법
-                chart data 값 가져올때 참고 https://emflant.tistory.com/74
-                ajax로 데이터 가져오고 json으로 보내기
-
-                2. page rendering 하는 방법
-                model에 담아서 페이지 로드 할때 같이 넘겨주기
-                js에서 ${data} 이런식으로
-            -->
-              <script type="text/javascript">
-                google.charts.load("current", { packages: ["corechart"] });
-                google.charts.setOnLoadCallback(allCurveChart);
-                google.charts.setOnLoadCallback(todayCurveChart);
-
-                function allCurveChart() {
-                  var data = google.visualization.arrayToDataTable([
-                    ["Year", "WhitePants", "Blackpanther"],
-                    ["3월", 1000, 400],
-                    ["4월", 1170, 460],
-                    ["5월", 660, 1120],
-                    ["6월", 1030, 540],
-                  ]);
-
-                  var options = {
-                    title: "월 매출",
-                    width: 400,
-                    height: 300,
-                    hAxis: {
-                      title: "Month",
-                      titleTextStyle: { color: "#333" },
-                    },
-                    lineWidth: 5,
-                    series: {
-                      0: { color: "#1c91c0" },
-                      1: { color: "#e7711b" },
-                    },
-                    vAxis: { minValue: 0 },
-                  };
-
-                  var chart = new google.visualization.LineChart(
-                    document.getElementById("all_curve_chart")
-                  );
-
-                  chart.draw(data, options);
-                }
-                function allCurveChart() {
-                  var data = google.visualization.arrayToDataTable([
-                    ["Year", "WhitePants", "Blackpanther"],
-                    ["3월", 1000, 400],
-                    ["4월", 1170, 460],
-                    ["5월", 660, 1120],
-                    ["6월", 1030, 540],
-                  ]);
-
-                  var options = {
-                    title: "월 매출",
-                    width: 400,
-                    height: 300,
-                    hAxis: {
-                      title: "Month",
-
-                      titleTextStyle: { color: "#333" },
-                    },
-                    lineWidth: 5,
-                    series: {
-                      0: { color: "#1c91c0" },
-                      1: { color: "#e7711b" },
-                    },
-                    vAxis: { minValue: 0 },
-                  };
-
-                  var chart = new google.visualization.LineChart(
-                    document.getElementById("today_curve_chart")
-                  );
-
-                  chart.draw(data, options);
-                }
-              </script>
+            </div>
+            <!--DASHBORAD Contents-->
+            <div class="container">
+              <!-- 세로 리스트 박스 -->
               <div class="row">
-                <table class="col">
-                  <tr>
-                    <td>
-                      <div
-                        id="all_curve_chart"
-                        style="width: 100%; height: 400px;"
-                      ></div>
-                    </td>
-                    <td>
-                      <div
-                        id="today_curve_chart"
-                        style="width: 100%; height: 400px;"
-                      ></div>
-                    </td>
-                  </tr>
-                </table>
+                <!-- 각 카드 리스트 박스 -->
+                <div class="col-6 column" style="border: none;">
+                  <div class="card black-text" style="border: none;">
+                    <div class="card-header" style="background-color: white;">
+                      월매출
+                    </div>
+                    <div class="card-body d-flex justify-content-center">
+                      <td>
+                        <div id="all_curve_chart"></div>
+                      </td>
+                    </div>
+                  </div>
+                </div>
+                <!--end-->
+                <!-- 각 카드 리스트 박스
+                <div class="col-6 column" style="border: none;">
+                  <div class="card black-text" style="border: none;">
+                    <div class="card-header" style="background-color: white;">
+                      총매출
+                    </div>
+                    <div class="card-body d-flex justify-content-center">
+                      <td>
+                        <div id="today_curve_chart"></div>
+                      </td>
+                    </div>
+                  </div>
+                </div>    -->
+
+                <!-- 세로 리스트 박스 -->
+                <div class="col-6 column" style="border: none;">
+                  <div class="card black-text" style="border: none;">
+                    <div class="card-header" style="background-color: white;">
+                      Q&A
+                    </div>
+                    <div class="card-body">
+                      <div class="spn-list">
+                        <a href="#" class="card-text">
+                          <span class="title mr-4">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing
+                            elit, sed do eiusmod tempor incididunt ut labore et
+                            dolore magna aliqua.</span
+                          >
+                          <span class="date">2020-05-19</span>
+                        </a>
+                        <a href="#" class="card-text">
+                          <span class="title mr-4">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing
+                            elit, sed do eiusmod tempor incididunt ut labore et
+                            dolore magna aliqua.</span
+                          >
+                          <span class="date">2020-05-19</span>
+                        </a>
+                        <a href="#" class="card-text">
+                          <span class="title mr-4">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing
+                            elit, sed do eiusmod tempor incididunt ut labore et
+                            dolore magna aliqua.</span
+                          >
+                          <span class="date">2020-05-19</span>
+                        </a>
+                        <a href="#" class="card-text">
+                          <span class="title mr-4">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing
+                            elit, sed do eiusmod tempor incididunt ut labore et
+                            dolore magna aliqua.</span
+                          >
+                          <span class="date">2020-05-19</span>
+                        </a>
+                        <a href="#" class="card-text">
+                          <span class="title mr-4">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing
+                            elit, sed do eiusmod tempor incididunt ut labore et
+                            dolore magna aliqua.</span
+                          >
+                          <span class="date">2020-05-19</span>
+                        </a>
+                        <a href="#" class="card-text">
+                          <span class="title mr-4">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing
+                            elit, sed do eiusmod tempor incididunt ut labore et
+                            dolore magna aliqua.</span
+                          >
+                          <span class="date">2020-05-19</span>
+                        </a>
+                        <a href="#" class="card-text">
+                          <span class="title mr-4">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing
+                            elit, sed do eiusmod tempor incididunt ut labore et
+                            dolore magna aliqua.</span
+                          >
+                          <span class="date">2020-05-19</span>
+                        </a>
+                      </div>
+                      <a href="#" class="card-link d-flex justify-content-end"
+                        >더보기</a
+                      >
+                    </div>
+                  </div>
+                </div>
+                <!--end-->
+                <!--start-->
+                <div class="col-6 column" style="border: none;">
+                  <div class="card black-text" style="border: none;">
+                    <div class="card-header" style="background-color: white;">
+                      REVIEW
+                    </div>
+                    <div class="card-body">
+                      <div class="spn-list">
+                        <a href="#" class="card-text">
+                          <span class="title mr-4">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing
+                            elit, sed do eiusmod tempor incididunt ut labore et
+                            dolore magna aliqua.</span
+                          >
+                          <span class="date">2020-05-19</span>
+                        </a>
+                        <a href="#" class="card-text">
+                          <span class="title mr-4">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing
+                            elit, sed do eiusmod tempor incididunt ut labore et
+                            dolore magna aliqua.</span
+                          >
+                          <span class="date">2020-05-19</span>
+                        </a>
+                        <a href="#" class="card-text">
+                          <span class="title mr-4">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing
+                            elit, sed do eiusmod tempor incididunt ut labore et
+                            dolore magna aliqua.</span
+                          >
+                          <span class="date">2020-05-19</span>
+                        </a>
+                        <a href="#" class="card-text">
+                          <span class="title mr-4">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing
+                            elit, sed do eiusmod tempor incididunt ut labore et
+                            dolore magna aliqua.</span
+                          >
+                          <span class="date">2020-05-19</span>
+                        </a>
+                      </div>
+                      <a href="#" class="card-link d-flex justify-content-end"
+                        >더보기</a
+                      >
+                    </div>
+                  </div>
+                </div>
+                <!--end-->
+                <!-- 세로 리스트 박스 -->
+                <div class="col-6 column" style="border: none;">
+                  <div class="card black-text" style="border: none;">
+                    <div class="card-header" style="background-color: white;">
+                      고객센터
+                    </div>
+                    <div class="card-body">
+                      <div class="spn-list">
+                        <a href="#" class="card-text">
+                          <span class="title mr-4">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing
+                            elit, sed do eiusmod tempor incididunt ut labore et
+                            dolore magna aliqua.</span
+                          >
+                          <span class="date">2020-05-19</span>
+                        </a>
+                        <a href="#" class="card-text">
+                          <span class="title mr-4">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing
+                            elit, sed do eiusmod tempor incididunt ut labore et
+                            dolore magna aliqua.</span
+                          >
+                          <span class="date">2020-05-19</span>
+                        </a>
+
+                        <a href="#" class="card-text">
+                          <span class="title mr-4">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing
+                            elit, sed do eiusmod tempor incididunt ut labore et
+                            dolore magna aliqua.</span
+                          >
+                          <span class="date">2020-05-19</span>
+                        </a>
+                        <a href="#" class="card-text">
+                          <span class="title mr-4">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing
+                            elit, sed do eiusmod tempor incididunt ut labore et
+                            dolore magna aliqua.</span
+                          >
+                          <span class="date">2020-05-19</span>
+                        </a>
+                      </div>
+                      <a href="#" class="card-link d-flex justify-content-end"
+                        >더보기</a
+                      >
+                    </div>
+                  </div>
+                </div>
+                <!-- end-->
               </div>
             </div>
           </main>
