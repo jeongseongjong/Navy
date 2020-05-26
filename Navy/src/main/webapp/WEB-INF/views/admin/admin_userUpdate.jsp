@@ -186,23 +186,9 @@
                           >
                             추가
                           </button>
-                     		<c:forEach items="${userVO.authorities}" var="auth"
-								varStatus="index">
-								<div class="select-box  d-flex flex-row">
-									<select
-		                              class="s-box custom-select custom-select-sm"
-		                              name="auth"
-		                            >
-		                            <option selected value="${auth.authority}">${auth.authority}</option>
-		                            	<option value="ROLE_ADMIN">ROLE_ADMIN</option>
-		                              <option value="ROLE_USER">ROLE_USER</option>
-		                              <option value="ADMIN">ADMIN</option>
-		                              <option value="USER">USER</option>
-									</select>
-									<span class="delete-selectbox">&cross;</span>
-								</div>
-							</c:forEach>
-                          <div class="select-box d-flex flex-row">
+                          <c:choose>
+                          	<c:when test="${empty userVO.authorities}">
+                          	                          <div class="select-box d-flex flex-row">
                             <select
                               class="s-box custom-select custom-select-sm"
                               name="auth"
@@ -215,6 +201,26 @@
                             </select>
                             <span class="delete-selectbox">&cross;</span>
                           </div>
+                          	</c:when>
+							<c:otherwise>
+	                     		<c:forEach items="${userVO.authorities}" var="auth"
+									varStatus="index">
+									<div class="select-box  d-flex flex-row">
+										<select
+			                              class="s-box custom-select custom-select-sm"
+			                              name="auth"
+			                            >
+			                            <option selected value="${auth.authority}">${auth.authority}</option>
+			                            	<option value="ROLE_ADMIN">ROLE_ADMIN</option>
+			                              <option value="ROLE_USER">ROLE_USER</option>
+			                              <option value="ADMIN">ADMIN</option>
+			                              <option value="USER">USER</option>
+										</select>
+										<span class="delete-selectbox">&cross;</span>
+									</div>
+								</c:forEach>
+							</c:otherwise>                          	
+                          </c:choose>
                         </div>
                         <!--select  박스 끝-->
                       </div>
