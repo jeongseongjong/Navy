@@ -8,11 +8,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.biz.navy.domain.CartVO;
 import com.biz.navy.domain.ProductVO;
 import com.biz.navy.domain.UserDetailsVO;
+import com.biz.navy.service.CartService;
 import com.biz.navy.service.ProductImgService;
 import com.biz.navy.service.ProductService;
 import com.biz.navy.service.secure.UserService;
@@ -29,6 +30,9 @@ public class AdminController {
 	private final UserService userService;
 	private final ProductService proService;
 	private final ProductImgService proImgService;
+	private final CartService cartService;
+	
+	
 	
 	@RequestMapping(value="",method=RequestMethod.GET)
 	public String admin() {
@@ -36,14 +40,6 @@ public class AdminController {
 		return "admin/admin_home";
 	}
 	
-//	<li><a href="${rootPath}/admin/userlist">회원 리스트</a></li>
-//	<li><a href="${rootPath}/admin/productlist">상품 정보</a></li>
-//	<li><a href="${rootPath}/admin/orderlist">주문 정보</a></li>
-//	<li><a href="${rootPath}/admin/qna">QNA</a></li>
-//	<li><a href="${rootPath}/admin/review">리뷰</a></li>
-//	<li><a href="${rootPath}/admin/inventory">재고</a></li>
-//	<li><a href="${rootPath}/admin/support">고객센터</a></li>
-
 	// 회원 리스트
 	@RequestMapping(value="/userlist",method=RequestMethod.GET)
 	public String userList(Model model) {
@@ -135,18 +131,9 @@ public class AdminController {
 			int[] qty,
 			
 			MultipartHttpServletRequest files
-//			@RequestParam("file") MultipartFile file
 			) {
-//		log.debug("파일이름:"+file.getOriginalFilename());
-
-//		int ret = proService.insert(productVO, size, color, qty);
-//		int ret = proService.insert(productVO, size, color, qty, file);
 		int ret = proService.insert(productVO, size, color, qty, files);
 		
-		
-//		long intId = productVO.getP_code();
-//		return "redirect:/admin/pro_detail_view/"+intId;
-//		return "admin_home";
 		return "redirect:/admin";
 	}
 	
@@ -180,7 +167,11 @@ public class AdminController {
 	
 	// 주문 정보
 	@RequestMapping(value="/orderlist",method=RequestMethod.GET)
-	public String orderlist() {
+	public String orderlist(Model model) {
+		
+		List<CartVO> cartList = cartService.selectAll();
+		
+		model.addAttribute("CARTLIST",cartList);
 		
 		return "admin/admin_orderList";
 	}

@@ -23,6 +23,19 @@
                     </tr>
                   </thead>
                   <tbody>
+                  	<c:forEach items="${CARTLIST}" var="cart" varStatus="i">
+                  		<tr>
+                  			<td class="in-ck-box td-click">${i.count}</td>
+                  			<td class="in-ck-box td-click">${cart.username}</td>
+                  			<td class="in-ck-box td-click">주소</td>
+                  			<td class="in-ck-box td-click">${cart.bk_p_name}</td>
+                  			<td class="in-ck-box td-click">${cart.bk_p_oprice}</td>
+                  			<td class="in-ck-box td-click">${cart.bk_p_qty}</td>
+                  			<td class="in-ck-box td-click">총가격</td>
+                  			<td class="in-ck-box td-click">${cart.bk_p_buyTime}</td>
+                  			<td class="in-ck-box td-click">${cart.bk_p_status}</td>
+                  		</tr>
+                  	</c:forEach>
                     <tr>
                       <td class="in-ck-box td-click">1</td>
                       <td class="in-ck-box td-click">qussoa</td>

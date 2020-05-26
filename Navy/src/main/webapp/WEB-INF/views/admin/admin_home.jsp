@@ -114,6 +114,7 @@
 			
 			// 유저정보 수정 화면 저장 버튼
 			$(document).on("click",".ad-us-update",function(){
+				
 				let formdata = $("form").serialize()
 				let username = $(this).data("name")
 				$.get("${rootPath}/admin/user_update/"+username,formdata,function(result){
@@ -127,11 +128,8 @@
 				*/
 				
 			})
-			
+
 			//$(document).on("click","#auth_append",function(){
-
-
-			
 			$(document).on("change","#auth",function(){
 					let item = $(this).val()
 					$("div#auth_list").append($("<input/>",{class:"auth form-control-plaintext", name:"auth",value:item}))
@@ -165,7 +163,7 @@
 				
 				//alert(id)
 			})
-			
+
 		})
 	</script>
 	  <script>

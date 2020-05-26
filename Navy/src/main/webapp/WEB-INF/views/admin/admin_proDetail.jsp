@@ -63,12 +63,10 @@
 							data-id="${productVO.p_code}">삭제</button>
 							 -->
 					</div>
-					<div class="row">
-						<c:forEach items="${productVO.proDImgList}" var="img">
-							<img src="${rootPath}/images/${img.p_img_upload_name}"
-									style="width: 250px; height: 200px; margin-right: 70px;" />
-						</c:forEach>
-					</div>
+					<c:forEach items="${productVO.proDImgList}" var="img">
+						<img src="${rootPath}/images/${img.p_img_upload_name}"
+								style="width: 250px; height: 200px; margin-right: 70px;" />
+					</c:forEach>
 				</div>
 			</div>
 		</div>
