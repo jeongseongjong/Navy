@@ -120,10 +120,10 @@ public class CartController {
 	// 구매버튼 클릭 시 p_status가 cart->Deliv 로 바뀌는 메소드
 	@ResponseBody
 	@RequestMapping(value="/cart_list_buy",method=RequestMethod.POST)
-	public Integer cart_list_buy(@RequestParam("buyList[]") List<String> buyList) {
-		
+	public int cart_list_buy(@RequestParam("buyList[]") List<String> buyList) {
+		log.debug("여기는 카트에서 구매했을때 넘어가는 리스트 " + buyList);
 		Integer ret = cartService.cart_to_delivery(buyList);
-		log.debug("여기는 구매목록 " + ret+"");
+		// log.debug("여기는 구매목록 " + ret+"");
 		return ret;
 	}
 	

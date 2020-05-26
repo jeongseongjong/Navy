@@ -20,7 +20,7 @@
               <div class="col-12 py-4">
                 <div class="card">
                   <div class="card-body">
-                    <span>회원 코드 : 1</span>
+                    <span>회원 코드 : ${userVO.id}</span>
                     <span class="ml-5">유저 아이디 : ${userVO.username}</span>
                     <hr />
                     <form:form class="container" modelAttribute="userVO">
@@ -72,6 +72,7 @@
                             class="form-control-plaintext input-form mt-2"
                             path="address_etc"
                             placeholder="나머지 주소 입력해주세요"
+                            value="${userVO.address_etc}"
                           />
 
                           <!--modal 창-->
@@ -144,19 +145,36 @@
                             >abcd@abcd.abc 처럼 입력해주세요</small
                           >
                         </div>
+						<label for="enabled">정지여부</label>
+                        <div class="mb-3">
+                          <form:checkbox
+                            class="form-control-plaintext input-form"
+                            path="enabled"
+                            value="${userVO.enabled}"
+                          />
+                        </div>
+						<label for="checkout">탈퇴여부</label>
+                        <div class="mb-3">
+                          <form:checkbox
+                            class="form-control-plaintext input-form"
+                            path="checkout"
+                            value="${userVO.checkout}"
+                          />
+                        </div>
+                        
                         <!-- 권한설정 추가 script-->
                         <script>
                           $(document).ready(function () {
                             let auth =
                               ' <div class="select-box  d-flex flex-row">';
                             auth +=
-                              '<select class="s-box custom-select custom-select-sm" name="select" >';
+                              '<select class="s-box custom-select custom-select-sm" name="auth" >';
                             auth +=
                               "<option selected>권한을 설정해주세요</option>";
-                            auth += '<option value="1">ROLE_ADMIN</option>';
-                            auth += '<option value="2">ROLE_USER</option>';
-                            auth += '<option value="3">ADMIN</option>';
-                            auth += '<option value="3">USER</option>;';
+                            auth += '<option value="ROLE_ADMIN">ROLE_ADMIN</option>';
+                            auth += '<option value="ROLE_USER">ROLE_USER</option>';
+                            auth += '<option value="ADMIN">ADMIN</option>';
+                            auth += '<option value="USER">USER</option>;';
                             auth += "</select>";
                             auth +=
                               '<span class="delete-selectbox">&cross;</span>';
@@ -172,6 +190,45 @@
                               }
                             );
                           });
+                          /*
+                          function count_select(){
+                        	  var ele = $(".select-box").length;
+                        	  alert("개수:"+ele)
+                        	  if(ele < 1){
+                        		  alert("권한은 최소 1개 이상 설정해야 합니다.")
+                        		  return false
+                        	  }
+                          }
+                          */
+                          
+                          // 권한설정 관련해서 유효성 검사
+                          $("#bt-bbs-update").click(function(){
+                        	  var ele = $(".s-box").length;
+                        	  //alert("셀렉트 개수:"+ele)
+                        	  
+                        	  let selectText = $(".s-box option:selected").text()
+                        	  alert("셀렉트 텍스트:"+selectText)
+                        	  
+                        	  var searchText = selectText.indexOf("권한")
+                        	  alert(searchText)
+                        	  
+							  if(searchText > -1){
+								  alert("권한을 설정해 주세요.")
+								  return false
+							  }
+                        	  
+                        	  if(ele < 1){
+                        		  alert("권한은 최소 1개 이상 설정해야 합니다.")
+								  return false
+                        	  } else{
+                        		  //alert("된다")
+	                        	  $("form").submit()
+                        		  
+                        	  }
+                        	  
+                          })
+                          
+                          
                         </script>
                         <!-- end -->
                         <!--select  박스-->
@@ -186,41 +243,37 @@
                           >
                             추가
                           </button>
-                          <c:choose>
-                          	<c:when test="${empty userVO.authorities}">
-                          	                          <div class="select-box d-flex flex-row">
-                            <select
-                              class="s-box custom-select custom-select-sm"
-                              name="auth"
-                            >
-                              <option selected>권한을 설정해주세요</option>
-                              <option value="ROLE_ADMIN">ROLE_ADMIN</option>
-                              <option value="ROLE_USER">ROLE_USER</option>
-                              <option value="ADMIN">ADMIN</option>
-                              <option value="USER">USER</option>
-                            </select>
-                            <span class="delete-selectbox">&cross;</span>
+                     		<c:forEach items="${userVO.authorities}" var="auth"
+								varStatus="index">
+								<div class="select-box  d-flex flex-row">
+									<select
+		                              class="s-box custom-select custom-select-sm"
+		                              name="auth"
+		                            >
+		                            <option selected value="${auth.authority}">${auth.authority}</option>
+		                            	<option value="ROLE_ADMIN">ROLE_ADMIN</option>
+		                              <option value="ROLE_USER">ROLE_USER</option>
+		                              <option value="ADMIN">ADMIN</option>
+		                              <option value="USER">USER</option>
+									</select>
+									<span class="delete-selectbox">&cross;</span>
+								</div>
+							</c:forEach>
+                          <div class="select-box d-flex flex-row">
+                          	<c:if test="${empty userVO.authorities}">
+	                            <select
+	                              class="s-box custom-select custom-select-sm"
+	                              name="auth"
+	                            >
+	                              <option selected>권한을 설정해주세요.</option>
+	                              <option value="ROLE_ADMIN">ROLE_ADMIN</option>
+	                              <option value="ROLE_USER">ROLE_USER</option>
+	                              <option value="ADMIN">ADMIN</option>
+	                              <option value="USER">USER</option>
+	                            </select>
+	                            <span class="delete-selectbox">&cross;</span>
+                            </c:if>
                           </div>
-                          	</c:when>
-							<c:otherwise>
-	                     		<c:forEach items="${userVO.authorities}" var="auth"
-									varStatus="index">
-									<div class="select-box  d-flex flex-row">
-										<select
-			                              class="s-box custom-select custom-select-sm"
-			                              name="auth"
-			                            >
-			                            <option selected value="${auth.authority}">${auth.authority}</option>
-			                            	<option value="ROLE_ADMIN">ROLE_ADMIN</option>
-			                              <option value="ROLE_USER">ROLE_USER</option>
-			                              <option value="ADMIN">ADMIN</option>
-			                              <option value="USER">USER</option>
-										</select>
-										<span class="delete-selectbox">&cross;</span>
-									</div>
-								</c:forEach>
-							</c:otherwise>                          	
-                          </c:choose>
                         </div>
                         <!--select  박스 끝-->
                       </div>
@@ -229,7 +282,7 @@
 						<button type="button" class="mr-2 bt-bbs-style bt-bbs-list ad-us-list">
 							목록</button>
 						<!-- 회원일시 보이는 버튼-->
-						<button class="mr-2 bt-bbs-style bt-bbs-update">
+						<button type="button" class="mr-2 bt-bbs-style bt-bbs-update" id="bt-bbs-update">
 							저장</button>
 					</div>
                     </form:form>

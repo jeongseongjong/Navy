@@ -41,3 +41,10 @@
  * 회원수정시 주소 api 사용
   > - 회원수정 주소 api 완료
   > - 수정후에 로그아웃 후에 메인가야됨(지금은 로그인 된채로 메인으로 감)
+ * tbl_users 수정
+  > - VO (address_etc 추가)
+
+## 05-25
+ * cart -> delivery로 이동시 구매날짜 적용
+ * 장바구니 버튼 nav에 추가
+ * tbl_cart의 bk_p_buyTime 칼럼 추가

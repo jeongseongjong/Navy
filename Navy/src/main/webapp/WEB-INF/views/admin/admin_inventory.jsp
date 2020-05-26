@@ -36,7 +36,10 @@
 			                    		<td class="in-ck-box td-click">${size.s_size}</td>
 			                    		<td class="in-ck-box td-click">${color.c_qty}</td>
 			                    		<td class="in-ck-box td-click">${pro.p_qty}</td>
-			                    		<td class="in-ck-box td-click">총 가격은 얼마</td>
+					            <c:set var="total" value='0' />
+					               <c:set var="total"
+					                  value="${total + pro.p_price * color.c_qty}" />
+			                    		<td class="in-ck-box td-click">${total}</td>
 	                    			</tr>
 								</c:forEach>
 							</c:if>

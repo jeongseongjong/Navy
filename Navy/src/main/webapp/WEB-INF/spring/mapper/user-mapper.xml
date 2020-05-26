@@ -13,7 +13,7 @@
 	</resultMap>
 
 	<select id="findByUserName" resultMap="userAndAuthorities">
-		SELECT u_id,
+		SELECT u_id AS id,
 		username,
 		password,
 		enabled,
