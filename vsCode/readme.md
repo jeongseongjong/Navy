@@ -1,6 +1,6 @@
 # team project NAVIYA
 
-- git.io : https://qussoa.github.io/team-project-css/main.html
+- git.io : https://qussoa.github.io/team-project-css/vsCode/main.html
 
 * 2020-05-09
 
