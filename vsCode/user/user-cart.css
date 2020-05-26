@@ -151,13 +151,13 @@ input[type="checkbox"] + label {
   height: 22px;
   margin: -3px 0 0 -1px;
   vertical-align: middle;
-  background: url(../img/check.jpg) no-repeat;
+  background: url("../img/check.jpg") no-repeat;
   cursor: pointer;
   background-size: cover;
 }
 
 input[type="checkbox"]:checked + label {
-  background: url(../img/checked.jpg) no-repeat;
+  background: url("../img/checked.jpg") no-repeat;
   background-size: cover;
 }
 
@@ -320,7 +320,7 @@ button[class^="cnt_"] {
 }
 
 .bt_cnt .cnt_minus {
-  background: url(../img/minus.jpg) no-repeat;
+  background: url("../img/minus.jpg") no-repeat;
   background-size: cover;
 }
 
@@ -339,7 +339,7 @@ button[class^="cnt_"] {
 }
 
 .bt_cnt .cnt_plus {
-  background: url(../img/plus.jpg) no-repeat;
+  background: url("../img/plus.jpg") no-repeat;
   background-size: cover;
 }
 
@@ -370,7 +370,7 @@ button[class^="cnt_"] {
 .bt_del {
   width: 26px;
   height: 26px;
-  background: url(../img/del.jpg) no-repeat;
+  background: url("../img/del.jpg") no-repeat;
   background-size: cover;
   border: 1px solid #c2c7cc;
 }
@@ -643,7 +643,7 @@ dl {
 .bt_area .bt_submit {
   width: 276px;
   height: 64px;
-  background: url(../img/buy.jpg) no-repeat;
+  background: url("../img/buy.jpg") no-repeat;
   background-size: cover;
   border: 1px solid #f1404b;
 }
