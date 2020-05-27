@@ -1,0 +1,119 @@
+<script language="javascript">
+<!--
+function Category(value) {
+  this.value = value;
+  this.length = 0;
+}
+
+function addCategory(category, value) {
+  category[category.length] = new Category(value);
+  category.length++;
+}
+
+var category = new Category();
+
+addCategory(category, "macure set");
+addCategory(category[0], "package");
+addCategory(category, "manicare");
+addCategory(category[1], "implement");
+addCategory(category[1][0], "nail");
+addCategory(category[1][0], "ttweezer");
+addCategory(category[1][0], "scissors");
+addCategory(category[1][0], "pusher cleaner and knife");
+addCategory(category[1][0], "trimmer");
+addCategory(category[1][0], "nail clipper");
+addCategory(category[1][0], "nail nipper");
+addCategory(category[1][0], "emery boards");
+addCategory(category[1][0], "buffer");
+addCategory(category[1][0], "ear pick");
+addCategory(category[1][0], "multi useful kits");
+addCategory(category[1], "artificial nail");
+addCategory(category, "pedicure item");
+addCategory(category[2], "pumice stone");
+addCategory(category[2][0], "natural");
+addCategory(category[2][0], "atrtificial");
+addCategory(category[2][0], "ceramic");
+addCategory(category[2][0], "sponge");
+addCategory(category[2], "foot file");
+addCategory(category[2][1], "emery");
+addCategory(category[2][1], "metalic");
+addCategory(category[2][1], "laser");
+addCategory(category[2][1], "ceramic");
+addCategory(category[2], "toe separator");
+addCategory(category[2], "toe nail clipper");
+addCategory(category, "eye care");
+addCategory(category[3], "sharpener");
+addCategory(category[3], "eyelash curler");
+addCategory(category[3], "eyebrow pencil");
+addCategory(category[3], "eyebrow razor");
+addCategory(category[3], "artificial eyelash");
+addCategory(category[3], "eyebrow comb");
+addCategory(category, "make up");
+addCategory(category[4], "mirror");
+addCategory(category[4], "brush");
+addCategory(category[4][1], "set");
+addCategory(category[4][1], "facial");
+addCategory(category[4][1], "lip");
+addCategory(category[4][1], "eyeshadow applicator");
+addCategory(category[4], "puffs");
+addCategory(category, "hair care");
+addCategory(category[5], "hair roller");
+addCategory(category[5], "hair accessories");
+addCategory(category[5][1], "hair pin");
+addCategory(category[5][1], "scrunchy");
+addCategory(category[5][1], "head band");
+addCategory(category, "costume jewel");
+addCategory(category[6], "necklace");
+addCategory(category[6], "bracelet");
+addCategory(category[6], "ring");
+addCategory(category[6], "ankle");
+addCategory(category[6], "chain");
+
+
+function initForm(form) {
+  form.subject.length = category.length;
+  for (i = 0; i < category.length; i++)
+    form.subject[i].text = category[i].value;
+  form.subject.selectedIndex = 0;
+  form.contents.selectedIndex = 0;
+  change_subject(form);
+}
+
+function change_subject(form) {
+alert(form)
+  var i = form.subject.selectedIndex;
+  form.contents.length = category[i].length;
+  for (j = 0; j < form.contents.length; j++)
+    form.contents[j].text = category[i][j].value;
+  form.contents.selectedIndex = 0;
+  change_contents(form);
+}
+
+function change_contents(form) {
+  var i = form.subject.selectedIndex
+  var j = form.contents.selectedIndex;
+  form.components.length = category[i][j].length;
+  for (k = 0; k < form.components.length; k++)
+    form.components[k].text = category[i][j][k].value;
+  form.components.selectedIndex = 0;
+}
+
+// -->
+</script>
+
+
+<body onLoad="initForm(document.form)">
+
+ 
+
+< h1>3단 동적 셀렉트 박스 예제< /h1>
+
+<form name="form" method="get" action="#">
+<select name="subject" onchange="change_subject(this.form)"></select>
+<select name="contents" onchange="change_contents(this.form)"></select>
+<select name="components"></select>
+</form>
+
+ 
+
+</body>
