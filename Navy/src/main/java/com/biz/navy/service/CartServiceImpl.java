@@ -99,8 +99,8 @@ public class CartServiceImpl implements CartService{
 		LocalDateTime ldt = LocalDateTime.now();
 		DateTimeFormatter dt = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 		
-		List<CartVO> cartList = new ArrayList<CartVO>();
 		String buyTime = ldt.format(dt).toString();
+		List<CartVO> cartList = new ArrayList<CartVO>();
 		for(String s : buyList) {
 			
 			CartVO cartVO = cartDao.findbyBkId(s);

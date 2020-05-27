@@ -24,6 +24,8 @@ public class ProductVO {
     private String p_image;// nVARCHAR2(255)
     private String p_size;
     private String p_color;
+    private String p_date;
+    private String p_time;
     private int p_qty;
     
     private List<String> m_size_list;

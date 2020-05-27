@@ -35,6 +35,7 @@ public class UserDetailsVO implements UserDetails{
 	
 	private String email;
 	private String phone;
+	private String join_date;
 	private String address;
 	private String address_etc;
 	private boolean checkout;
