@@ -4,34 +4,35 @@
 
 <script>
 $(function() {
+	var read1 = document.getElementById("read1");
+	read1.readOnly = true;
 	
-	$("bt-qna-wr").click(function() {
-		
-		$("div.qnainputbox").css("display", "block")
-		
-		
+	$("#btn-save").click( function() {
+		$("form").submit()
 	})
-	
-	
 })
 </script>
 
-<style>
-div.qnainputbox {
-	display:none;
-	border: 1px solid red;
-}
-</style>
-
 <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
 	<div class="d-flex justify-content-end">
-		<button class="bt-qna-wr">질문하기</button>
+		<button class="bt-review-wr">질문하기</button>
 	</div>
+
+	<!-- Qna input -->
+	<div>
+		<hr/>
+			<form:form action="${rootPath}/product/detail/${productVO.p_code}" modelAttribute="qnaVO">
+				<form:input type="hidden" path="q_id" /><br/>
+				<form:input type="hidden" path="q_code" /><br/>
+				<form:input id="read1" path="q_auth" /><br/>
+				<form:input type="hidden" path="q_date" /><br/>
+				<form:input path="q_text" /><br/>
+			</form:form>
+			<button id="btn-save" type="button">저장</button>
+		<hr/>
+	</div>
+	<!-- Qna input end -->
 	
-	<div class="qnainputbox">
-		<p>보여라라라라라라</p>
-	</div>
-		
 	<!-- Qna List -->
 	<div class="container">
 		<c:choose>
