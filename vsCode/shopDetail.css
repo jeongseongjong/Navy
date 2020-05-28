@@ -11,6 +11,7 @@
   margin: 30px auto;
   max-width: 600px;
 }
+/* 
 .dropdownbox {
   width: 250px;
 
@@ -25,7 +26,6 @@
   line-height: 1.4em;
   user-select: none;
   -moz-user-select: none;
-  /* Safari */
   -khtml-user-select: none;
 }
 
@@ -40,13 +40,11 @@ ul.menu {
   -moz-transition: all 0.3s ease-in;
   -o-transition: all 0.3s ease-in;
   transition: all 0.3s ease-in;
-  /*-moz-transform:scale(0); */
   background: white;
   color: #252c41;
   cursor: pointer;
   user-select: none;
   -moz-user-select: none;
-  /* Safari */
   -khtml-user-select: none;
 }
 
@@ -68,9 +66,8 @@ ul.menu li:hover {
 }
 
 .menu.showMenu {
-  /*-moz-transform:scale(1);*/
   height: 165px;
-}
+} */
 
 /* 버튼 스타일 */
 .bt-css {
@@ -236,4 +233,38 @@ ul.menu li:hover {
   height: 30px;
   margin-top: 10px;
   outline: none;
+}
+
+/* test */
+.hover11 li img {
+  opacity: 1;
+  -webkit-transition: 0.3s ease-in-out;
+  transition: 0.3s ease-in-out;
+}
+.hover11 li:hover img {
+  opacity: 0.5;
+}
+.main-img {
+  width: 450px;
+  height: 400px;
+  margin-left: 40px;
+  margin-bottom: 10px;
+}
+
+.de_img {
+  display: inline-block;
+  flex-wrap: nowrap;
+  width: 100px;
+  height: 100px;
+  margin-right: 10px;
+  float: left;
+  cursor: pointer;
+}
+
+li {
+  list-style: none;
+}
+
+.layer {
+  display: none;
 }
