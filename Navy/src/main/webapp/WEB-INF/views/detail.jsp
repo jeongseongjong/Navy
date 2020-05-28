@@ -25,6 +25,7 @@
 			let p_size = $("#p_size").val()
 			alert(p_size)
 			alert(p_color)
+			alert("${productVO.p_name}")
 
 			if (p_qty <= 0) {
 				alert("수량은 0개 이상")
@@ -102,13 +103,13 @@
 							<form:option value="SIZE를 선택하세요" />
 							<form:options items="${m_size_list}" itemLabel="o_name" itemValue="o_standard" />
 						</form:select>
-						<form:select path="m_color_list" multiple="false">
+						<form:select id="p_color" path="m_color_list" multiple="false">
 							<form:option value="COLOR를 선택하세요" />
 							<form:options items="${m_color_list}" itemLabel="o_name" itemValue="o_standard" />
 						</form:select>
 	  				</form:form>
-	  				<input id="p_size" value="${productVO.p_size}" />
-					<input id="p_color" value="${productVO.p_color}" />
+	  			<!-- 	<input id="p_size" value="${productVO.p_size}" />
+					<input id="p_color" value="${productVO.p_color}" /> -->
 				</div>
 				<div class="col mb-5">
 				  	<label class="mr-5">QUAN·TITY</label>

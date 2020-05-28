@@ -16,7 +16,7 @@ import com.biz.navy.domain.SizeVO;
 
 import lombok.RequiredArgsConstructor;
 
-@Service
+@Service("cartService")
 @RequiredArgsConstructor
 public class CartServiceImpl implements CartService{
 
@@ -53,6 +53,7 @@ public class CartServiceImpl implements CartService{
 	}
 
 	@Override
+//	@Transactional
 	public List<CartVO> selectDelivery(String username) {
 
 		return cartDao.selectDelivery(username);
@@ -83,7 +84,8 @@ public class CartServiceImpl implements CartService{
 		return cartDao.cart_list_delete(seqList);
 	}
 
-	@Transactional
+//	@Transactional
+	@Override
 	public void cart_list_qty_update(CartListVO cartList) {
 		
 		int nSize = cartList.getP_qty().size();
@@ -94,6 +96,7 @@ public class CartServiceImpl implements CartService{
 		
 	}
 	@Override
+//	@Transactional
 	public int cart_to_delivery(List<String> buyList) {
 
 		LocalDateTime ldt = LocalDateTime.now();
@@ -119,11 +122,13 @@ public class CartServiceImpl implements CartService{
 	}
 
 	// s_p_code로 사이즈를 조회하는 코드
+	@Override
 	public List<SizeVO> findBySpCode(long s_p_code){
 		
 		return cartDao.findBySpCode(s_p_code);
 	}
 
+	@Override
 	public List<ColorVO> findByCsCode(long c_s_code) {
 
 		return cartDao.findByCsCode(c_s_code);

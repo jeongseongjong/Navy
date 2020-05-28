@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.biz.navy.domain.ProductVO;
-import com.biz.navy.service.CartServiceImpl;
+import com.biz.navy.service.CartService;
 import com.biz.navy.service.ProOptionsService;
 import com.biz.navy.service.ProductImgService;
 import com.biz.navy.service.ProductService;
@@ -26,7 +26,7 @@ public class ProductController {
 
 	private final ProductService proService;
 	private final ProductImgService proImgService;
-	private final CartServiceImpl cartService;
+	private final CartService cartService;
 	private final ProOptionsService optionsService;
 	
 	@ModelAttribute("productVO")
@@ -58,6 +58,8 @@ public class ProductController {
 		model.addAttribute("m_color_list", optionsService.getColorList());
 		
 		log.debug("여기는 디테일 컨트롤러" + productVO);
+		log.debug("사이즈 리스트 " +  optionsService.getSizeList());
+		log.debug("컬러 리스트 " +  optionsService.getColorList());
 		
 		return "detail";
 	}

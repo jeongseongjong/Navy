@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 
 import com.biz.navy.domain.CartListVO;
 import com.biz.navy.domain.CartVO;
+import com.biz.navy.domain.ColorVO;
+import com.biz.navy.domain.SizeVO;
 
 public interface CartService {
 
@@ -45,6 +47,11 @@ public interface CartService {
 	// 장바구니에 있는 상품상태를 delivery로 바꾸는 메서드
 	public int cart_to_delivery(List<String> buyList);
 
+	// product에서 size코드를 받아오는 메서드
+	public List<SizeVO> findBySpCode(long s_p_code);
+	
+	// size에서 color코드를 받아오는 메서드
+	public List<ColorVO> findByCsCode(long c_s_code);
 
 
 	
