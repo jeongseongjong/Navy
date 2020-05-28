@@ -1,30 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/include/include-head.jspf" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-<%@ include file = "/WEB-INF/views/include/include-nav.jspf" %>
-<article class="all-browsers">
-      <div class="hr-sect">ADMIN</div>
-
-      <div class="container">
-        <!--sidebar-->
-        <div class="row">
-          <aside
-            class="col-2 px-0"
-            id="left"
-            style="top: 250px; position: fixed; left: 0;"
-          >
-            <div class="list-group w-100">
-				<%@ include file ="/WEB-INF/views/admin/admin-include-nav.jspf" %>
-            </div>
-          </aside>
-			<main class="col offset-2 h-100 user-main" id="admin_content">
             <div class="row bg-light">
               <div class="col-12 py-4 text-center">
                 <span style="font-size: 30px;">주문관리</span>
@@ -117,11 +93,3 @@
                 <!--pagination end-->
               </div>
             </div>
-			</main>
-          
-        </div>
-      </div>
-    </article>
-</body>
-<%@ include file = "/WEB-INF/views/include/include-footer.jspf" %>
-</html>

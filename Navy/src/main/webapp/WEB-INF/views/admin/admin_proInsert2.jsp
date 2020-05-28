@@ -89,23 +89,6 @@ $(function(){
 </script>
 </head>
 <body>
-<%@ include file = "/WEB-INF/views/include/include-nav.jspf" %>
-<article class="all-browsers">
-      <div class="hr-sect">ADMIN</div>
-
-      <div class="container">
-        <!--sidebar-->
-        <div class="row">
-          <aside
-            class="col-2 px-0"
-            id="left"
-            style="top: 250px; position: fixed; left: 0;"
-          >
-            <div class="list-group w-100">
-				<%@ include file ="/WEB-INF/views/admin/admin-include-nav.jspf" %>
-            </div>
-          </aside>
-			<main class="col offset-2 h-100 user-main" id="admin_content">
 	<!-- 상품 입력 -->
 		<div class="container">
 			<div>상품 정보 등록</div>
@@ -161,11 +144,6 @@ $(function(){
 			</div>
 			</form:form>
 		</div>
-			</main>
-          
-        </div>
-      </div>
-    </article>
+
 </body>
-<%@ include file = "/WEB-INF/views/include/include-footer.jspf" %>
 </html>

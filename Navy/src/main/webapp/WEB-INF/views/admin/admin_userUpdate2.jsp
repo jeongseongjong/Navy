@@ -7,167 +7,15 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<!-- 주소 API 가져오기 -->
-<script type="text/JavaScript"
-	src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-<script>
-$(function(){
-
-		    let auth =
-		        ' <div class="select-box  d-flex flex-row">';
-		      auth +=
-		        '<select class="s-box custom-select custom-select-sm" name="auth" >';
-		      auth +=
-		        "<option selected>권한을 설정해주세요</option>";
-		      auth += '<option value="ROLE_ADMIN">ROLE_ADMIN</option>';
-		      auth += '<option value="ROLE_USER">ROLE_USER</option>';
-		      auth += '<option value="ADMIN">ADMIN</option>';
-		      auth += '<option value="USER">USER</option>;';
-		      auth += "</select>";
-		      auth +=
-		        '<span class="delete-selectbox">&cross;</span>';
-		      auth += "</div>";
-		      $("#bt-plus").click(function () {
-		        $("#select-container").append(auth);
-		      });
-		      
-	      $(document).on(
-	        "click",
-	        ".delete-selectbox",
-	        function () {
-	          $(this).closest(".select-box").remove();
-	        }
-	      );
-	
-		$(document).on("click","#auth_append",function(){
-			
-			let auth_input = $("<input/>", {class:"auth form-control mb-3", name:"auth"})
-			// let auth_delete = $("<button class='btn btn-danger' type='button'>&times</button>")
-			// auth_input.append($("<p/>",{text:'제거',class:'auth_delete'}))
-			$("div#auth_box").append(auth_input)
-			// $("div#auth_box").append(auth_delete)
+<script type="text/javascript">
+	$(function(){
+		$(".ad-us-list").click(function(){
+			document.location.href="${rootPath}/admin/userlist"
 		})
-		
-		/*$(".btn-delete").click(function(){*/
-		$(document).on("click",".btn-delete",function(){
-			
-			let id = $(this).data("id")
-			//alert(id)
-			let username = $(this).data("username")
-			//alert(username)
-			
-			if (confirm("권한을 삭제하겠습니까?")) {
-				// document.location.replace("${rootPath}/admin/delete?id=" + id)
-				
-				$.get("${rootPath}/admin/delete?id=" + id +"&username=" + username, function(result){
-						$("#admin_content").html(result)
-					}		
-				)
-			}
-			
-			//alert(id)
-		})
-		
-		                          // 권한설정 관련해서 유효성 검사
-                          $("#bt-bbs-update").click(function(){
-                        	  var ele = $(".s-box").length;
-                        	  //alert("셀렉트 개수:"+ele)
-                        	  
-                        	  let selectText = $(".s-box option:selected").text()
-                        	  alert("셀렉트 텍스트:"+selectText)
-                        	  
-                        	  var searchText = selectText.indexOf("권한")
-                        	  alert(searchText)
-                        	  
-							  if(searchText > -1){
-								  alert("권한을 설정해 주세요.")
-								  return false
-							  }
-                        	  
-                        	  if(ele < 1){
-                        		  alert("권한은 최소 1개 이상 설정해야 합니다.")
-								  return false
-                        	  } else{
-                        		  //alert("된다")
-	                        	  $("form").submit()
-                        		  
-                        	  }
-                        	  
-                          })// bt-bbs-update 저장버튼 끝
-                          
-                          $(".ad-us-list").click(function(){
-							document.location.href="${rootPath}/admin/userlist"
-                          })
-                          
-})
-                          /*
-                          $(document).ready(function () {
-
-                          });
-                          function count_select(){
-                        	  var ele = $(".select-box").length;
-                        	  alert("개수:"+ele)
-                        	  if(ele < 1){
-                        		  alert("권한은 최소 1개 이상 설정해야 합니다.")
-                        		  return false
-                        	  }
-                          }
-                          */
-                          
-
-                          
-                          
+	})
 </script>
-                        <!-- 권한설정 추가 script-->
-                        <script>
-
-                        </script>
-<script>
-	function openDaumZipAddress() {
-
-		new daum.Postcode({
-
-			oncomplete : function(data) {
-
-				jQuery("#postcode1").val(data.postcode1);
-
-				jQuery("#postcode2").val(data.postcode2);
-
-				jQuery("#zonecode").val(data.zonecode);
-
-				jQuery("#address").val(data.address);
-
-				jQuery("#address_etc").focus();
-
-				console.log(data);
-
-			}
-
-		}).open();
-
-	}
-</script>
-                        
-                        
 </head>
 <body>
-<%@ include file = "/WEB-INF/views/include/include-nav.jspf" %>
-<article class="all-browsers">
-      <div class="hr-sect">ADMIN</div>
-
-      <div class="container">
-        <!--sidebar-->
-        <div class="row">
-          <aside
-            class="col-2 px-0"
-            id="left"
-            style="top: 250px; position: fixed; left: 0;"
-          >
-            <div class="list-group w-100">
-				<%@ include file ="/WEB-INF/views/admin/admin-include-nav.jspf" %>
-            </div>
-          </aside>
-			<main class="col offset-2 h-100 user-main" id="admin_content">
             <div class="row bg-light">
               <div class="col-12 py-4 text-center">
                 <span style="font-size: 30px;">회원상세수정관리</span>
@@ -207,13 +55,14 @@ $(function(){
                           />
                           <small class="red-text">* -까지 입력해주세요</small>
                         </div>
+
+                        <input onclick="openDaumZipAddress();" type="button" value="주소"/>
                         <label for="address">주소</label>
                         <button
                           type="button"
                           class="bt-bbs-style ml-3"
                           data-toggle="modal"
                           data-target="#exampleModalCenter"
-                          onClick="openDaumZipAddress();"
                           style="border: 1px solid black; border-radius: 10px;"
                         >
                           주소찾기
@@ -269,7 +118,7 @@ $(function(){
                                 </div>
                                 <div class="modal-body">
                                   <p>예)광주광역시 남구 백운동</p>
-                                  <input placeholder="주소를 입력해주세요" id="address_etc"/>
+                                  <input placeholder="주소를 입력해주세요" />
                                   <button type="button" class="bt-bbs-style">
                                     검색
                                   </button>
@@ -320,7 +169,74 @@ $(function(){
                           />
                         </div>
                         
-
+                        <!-- 권한설정 추가 script-->
+                        <script>
+                          $(document).ready(function () {
+                            let auth =
+                              ' <div class="select-box  d-flex flex-row">';
+                            auth +=
+                              '<select class="s-box custom-select custom-select-sm" name="auth" >';
+                            auth +=
+                              "<option selected>권한을 설정해주세요</option>";
+                            auth += '<option value="ROLE_ADMIN">ROLE_ADMIN</option>';
+                            auth += '<option value="ROLE_USER">ROLE_USER</option>';
+                            auth += '<option value="ADMIN">ADMIN</option>';
+                            auth += '<option value="USER">USER</option>;';
+                            auth += "</select>";
+                            auth +=
+                              '<span class="delete-selectbox">&cross;</span>';
+                            auth += "</div>";
+                            $("#bt-plus").click(function () {
+                              $("#select-container").append(auth);
+                            });
+                            $(document).on(
+                              "click",
+                              ".delete-selectbox",
+                              function () {
+                                $(this).closest(".select-box").remove();
+                              }
+                            );
+                          });
+                          /*
+                          function count_select(){
+                        	  var ele = $(".select-box").length;
+                        	  alert("개수:"+ele)
+                        	  if(ele < 1){
+                        		  alert("권한은 최소 1개 이상 설정해야 합니다.")
+                        		  return false
+                        	  }
+                          }
+                          */
+                          
+                          // 권한설정 관련해서 유효성 검사
+                          $("#bt-bbs-update").click(function(){
+                        	  var ele = $(".s-box").length;
+                        	  //alert("셀렉트 개수:"+ele)
+                        	  
+                        	  let selectText = $(".s-box option:selected").text()
+                        	  alert("셀렉트 텍스트:"+selectText)
+                        	  
+                        	  var searchText = selectText.indexOf("권한")
+                        	  alert(searchText)
+                        	  
+							  if(searchText > -1){
+								  alert("권한을 설정해 주세요.")
+								  return false
+							  }
+                        	  
+                        	  if(ele < 1){
+                        		  alert("권한은 최소 1개 이상 설정해야 합니다.")
+								  return false
+                        	  } else{
+                        		  //alert("된다")
+	                        	  $("form").submit()
+                        		  
+                        	  }
+                        	  
+                          })
+                          
+                          
+                        </script>
                         <!-- end -->
                         <!--select  박스-->
                         <div id="select-container">
@@ -383,11 +299,6 @@ $(function(){
                 </div>
               </div>
             </div>
-			</main>
-          
-        </div>
-      </div>
-    </article>
+
 </body>
-<%@ include file = "/WEB-INF/views/include/include-footer.jspf" %>
 </html>

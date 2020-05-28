@@ -5,6 +5,47 @@
 
 <mapper namespace="com.biz.navy.dao.UserDao">
 
+	<select id="countSearch" resultType="Long">
+		SELECT COUNT(*) FROM tbl_users
+		<where>
+			<foreach collection="searchList" item="search" separator="OR">
+				username LIKE '%' || #{search,jdbcType=VARCHAR} || '%'
+			</foreach>
+		</where>
+		
+	</select>
+
+	<select id="findBySearchNameAndPaging" resultMap="userAndAuthorities">
+		SELECT * FROM
+		(
+			SELECT /*+ FIRST_ROWS 100 */ ROWNUM AS NUM, IP.* FROM
+			(
+				SELECT /*+ INDEX_DESC(U) FIRST_ROWS */ * FROM tbl_users U
+				<where>
+					<foreach collection="searchList" item="search" separator="OR">
+						username LIKE '%' || #{search,jdbcType=VARCHAR} || '%'		
+					</foreach>
+				</where>
+			) IP
+			WHERE ROWNUM &lt; = #{pageVO.limit,jdbcType=VARCHAR}
+		) 
+		WHERE NUM &gt; = #{pageVO.offset,jdbcType=VARCHAR}
+	</select>
+
+
+	<select id="selectAllPaging" resultMap="userAndAuthorities">
+		SELECT * FROM 
+		(
+			SELECT /*+ FIRST_ROWS_100 */ ROWNUM AS NUM, IP.* FROM
+			(
+				SELECT /*+ INDEX_DESC(U) FIRST_ROWS */ * FROM tbl_users U
+			) IP
+			WHERE ROWNUM &lt; = #{limit,jdbcType=VARCHAR}
+		)	TBL
+		WHERE NUM &gt; = #{offset,jdbcType=VARCHAR}
+	</select>
+	
+	
 	<resultMap type="userDetailsVO" id="userAndAuthorities">
 		<id column="id" property="id" />
 		<result property="username" column="username" />

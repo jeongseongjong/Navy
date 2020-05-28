@@ -7,51 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script>
-$(function(){
-	// 상품 디테일 페이지 보이기
-	$(document).on("click","tr.tr_pro",function(){
-		let p_code = $(this).data("id")
-		document.location.href="${rootPath}/admin/pro_detail_view/"+p_code
-		/*
-		$.get("${rootPath}/admin/pro_detail_view/" + p_code,
-				function(result){
-			$("#admin_content").html(result)
-		})
-		*/
-	})
-	
-	// 상품 등록 페이지 이동
-	$(document).on("click",".ad-pro-insert",function(){
-		document.location.href="${rootPath}/admin/pro_insert"
-		/*
-		$.get("${rootPath}/admin/pro_insert",
-				function(result){
-			$("#admin_content").html(result)
-		})
-		*/
-	})
-})
-</script>
 </head>
 <body>
-<%@ include file = "/WEB-INF/views/include/include-nav.jspf" %>
-<article class="all-browsers">
-      <div class="hr-sect">ADMIN</div>
-
-      <div class="container">
-        <!--sidebar-->
-        <div class="row">
-          <aside
-            class="col-2 px-0"
-            id="left"
-            style="top: 250px; position: fixed; left: 0;"
-          >
-            <div class="list-group w-100">
-            	<%@ include file ="/WEB-INF/views/admin/admin-include-nav.jspf" %>
-            </div>
-          </aside>
-			<main class="col offset-2 h-100 user-main" id="admin_content">
 	<!--page include-->
 		<div class="row bg-light">
 			<div class="col-12 py-4 text-center">
@@ -125,11 +82,6 @@ $(function(){
 				<!--pagination end-->
 			</div>
 		</div>
-			</main>
-          
-        </div>
-      </div>
-    </article>
+
 </body>
-<%@ include file = "/WEB-INF/views/include/include-footer.jspf" %>
 </html>
