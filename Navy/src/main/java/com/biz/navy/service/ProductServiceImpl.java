@@ -3,9 +3,7 @@ package com.biz.navy.service;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -17,6 +15,7 @@ import com.biz.navy.domain.ProSizeColorVO;
 import com.biz.navy.domain.ProductImgVO;
 import com.biz.navy.domain.ProductVO;
 import com.biz.navy.domain.SizeVO;
+import com.biz.navy.utils.DateTime;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -65,6 +64,11 @@ public class ProductServiceImpl implements ProductService {
 		}
 		// 총 수량 VO에 담기
 		productVO.setP_qty(p_qty);
+		
+		// 날짜, 시간 담기
+				productVO.setP_date(DateTime.Date());
+				productVO.setP_time(DateTime.Time());
+		
 		
 		for(ProSizeColorVO p : proSCList) {
 			log.debug("proSCList 정렬하기 전 값 : " + p.toString());

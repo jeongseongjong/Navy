@@ -24,7 +24,7 @@
     <script src="main.js"></script>
   </head>
   <script>
-    $(document).ready(function () {
+    $(function () {
       $(".dropdownbox").click(function () {
         $(".menu").toggleClass("showMenu");
         $(".menu > li").click(function () {
@@ -32,7 +32,44 @@
           $(".menu").removeClass("showMenu");
         });
       });
+      $(".small_thumb li a").click(function () {
+        var address = $(this).children("img");
+        $(".big_pic img")
+          .attr("src", address.attr("src"))
+          .attr("id", address.attr("id"));
+
+        $(this).parent().addClass("on").siblings().removeClass("on");
+        return false;
+      });
     });
+
+    function categoryChange(e) {
+      var size_s = ["BLACK", "RED", "WHITE", "BLUE", "GREEN", "GRAY", "YELLOW"];
+      var size_m = ["BLACK", "RED", "WHITE", "BLUE", "GREEN", "GRAY", "YELLOW"];
+      var size_l = ["BLACK", "RED", "WHITE", "BLUE", "GREEN", "GRAY", "YELLOW"];
+      var target = document.getElementById("size");
+
+      if (e.value == "size-s") var d = size_s;
+      else if (e.value == "size-m") var d = size_m;
+      else if (e.value == "size-l") var d = size_l;
+
+      target.options.length = 0;
+
+      for (x in d) {
+        var opt = document.createElement("option");
+        opt.value = d[x];
+        opt.innerHTML = d[x];
+        target.appendChild(opt);
+      }
+
+      $("#select_ck").on("change", function () {
+        console.log(
+          $(this)
+            .find("option:checked[value='" + $(this).val() + "']")
+            .text()
+        );
+      });
+    }
   </script>
   <body>
     <!--header include-->
@@ -77,11 +114,39 @@
       <div class="hr-sect mb-5">DETAIL PAGE</div>
       <!--detail pages 정보 -->
       <div class="container">
-        <div class="row" style="flex-wrap: nowrap;">
-          <img
-            src="./img/dress1.jpg"
-            style="width: 450px; height: 400px; margin-right: 70px;"
-          />
+        <div class="row justify-content-center" style="flex-wrap: nowrap;">
+          <div class="">
+            <div class="big_pic">
+              <img class="main-img" src="./img/dress1.jpg" />
+            </div>
+            <div class="hover11 small_thumb justify-content-center">
+              <ul>
+                <li>
+                  <a>
+                    <img class="de_img" id="img-1" src="./img/gu1.jpg" />
+                  </a>
+                </li>
+
+                <li>
+                  <a href="#">
+                    <img class="de_img" id="img-2" src="./img/gu2.jpg"
+                  /></a>
+                </li>
+
+                <li>
+                  <a href="#">
+                    <img class="de_img" id="img-3" src="./img/gu-dress.jpg"
+                  /></a>
+                </li>
+
+                <li>
+                  <a href="#">
+                    <img class="de_img" id="img-4" src="./img/dress1.jpg"
+                  /></a>
+                </li>
+              </ul>
+            </div>
+          </div>
           <!--detail box-->
           <div
             class="detail-box"
@@ -95,21 +160,26 @@
             <br />
 
             <div class="col">
-              <label class="mr-5">COLOR/SIZE</label>
-
-              <div class="dropdownbox">
-                <p>색과 사이즈를 선택해주세요</p>
+              <label class="mr-5">OPTION</label>
+              <div class="select-s-box">
+                <select id="select_ck" onchange="categoryChange(this)">
+                  <option>SIZE</option>
+                  <option value="size-s">SMALL</option>
+                  <option value="size-m">MIDDLE</option>
+                  <option value="size-l">LARGE</option>
+                </select>
               </div>
-              <ul class="menu">
-                <li>BLACK S</li>
-                <li>BLACK M</li>
-                <li>BLACK L</li>
-              </ul>
+              <div class="select-c-box">
+                <select id="size">
+                  <option selected>COLOR</option>
+                </select>
+              </div>
+              <div class="test-box"></div>
             </div>
-            <div class="col mb-5">
+            <!-- <div class="col mb-5">
               <label class="mr-5">QUAN·TITY</label>
               <input type="number" class="text-center" style="width: 80px;" />
-            </div>
+            </div> -->
 
             <!-- 장바구니 상품 button -->
             <div class="d-flex justify-content-center">
@@ -322,7 +392,6 @@
               class="container-fluid"
               style="border-bottom: 1px solid #8c8d90; margin: 40px;"
             >
-              <button class="bt-css">장바구니</button>
               <span class="pro-star">상품</span>
               <input
                 type="radio"

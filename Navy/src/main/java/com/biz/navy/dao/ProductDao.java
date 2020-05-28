@@ -25,16 +25,35 @@ public interface ProductDao {
 	public List<ProductVO> selectAll();
 
 	@Select("SELECT * FROM tbl_product WHERE p_code = #{p_code}")
+<<<<<<< HEAD
 	@Results(value = { @Result(property = "p_code", column = "p_code"),
 			@Result(property = "p_size_list", column = "p_code", javaType = List.class, many = @Many(select = "getSize")),
 			@Result(property = "proDImgList", column = "p_code", javaType = List.class, many = @Many(select = "getPImgSeq")),
 			@Result(property = "reviewList", column = "p_code", javaType = List.class, many = @Many(select = "getRPcode")),
 			@Result(property = "qnaList", column = "p_code", javaType = List.class, many = @Many(select = "getQPcode")) })
+=======
+	@Results(value= {@Result(property = "p_code", column = "p_code"),
+					@Result(property = "sizeList", column = "p_code", javaType = List.class, many = @Many(select = "getSPcode")),
+					@Result(property = "p_size_list", column = "p_code", javaType = List.class, many = @Many(select = "getSize")),
+					@Result(property = "proDImgList", column = "p_code", javaType = List.class, many = @Many(select = "getPImgSeq")),
+					@Result(property = "reviewList", column = "p_code", javaType = List.class, many = @Many(select = "getRPcode")),
+					@Result(property = "qnaList", column = "p_code", javaType = List.class, many = @Many(select = "getQPcode"))})
+>>>>>>> f78cc7f45675eb17454a0a15dc7dad10333b2964
 	public ProductVO findById(long p_code);
 
 	@Select("SELECT * FROM tbl_size WHERE s_p_code = #{p_code}")
 	public SizeVO getSize(long p_code);
+<<<<<<< HEAD
 
+=======
+	
+	@Select("SELECT * FROM tbl_size WHERE s_p_code = #{s_p_code}")
+	@Results(value= {@Result(property = "s_code", column = "s_code"),
+			@Result(property = "colorList", column = "s_code", javaType = List.class, many = @Many(select = "getCPcode"))})
+	public SizeVO getSPcode(long s_p_code);
+	
+	
+>>>>>>> f78cc7f45675eb17454a0a15dc7dad10333b2964
 	@Select("SELECT * FROM tbl_color WHERE c_s_code = #{c_s_code}")
 	public ColorVO getCPcode(long c_s_code);
 
