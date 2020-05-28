@@ -26,6 +26,7 @@ public interface ProductDao {
 
 	@Select("SELECT * FROM tbl_product WHERE p_code = #{p_code}")
 	@Results(value= {@Result(property = "p_code", column = "p_code"),
+					@Result(property = "sizeList", column = "p_code", javaType = List.class, many = @Many(select = "getSPcode")),
 					@Result(property = "p_size_list", column = "p_code", javaType = List.class, many = @Many(select = "getSize")),
 					@Result(property = "proDImgList", column = "p_code", javaType = List.class, many = @Many(select = "getPImgSeq")),
 					@Result(property = "reviewList", column = "p_code", javaType = List.class, many = @Many(select = "getRPcode")),
@@ -34,6 +35,11 @@ public interface ProductDao {
 	
 	@Select("SELECT * FROM tbl_size WHERE s_p_code = #{p_code}")
 	public SizeVO getSize(long p_code);
+	
+	@Select("SELECT * FROM tbl_size WHERE s_p_code = #{s_p_code}")
+	@Results(value= {@Result(property = "s_code", column = "s_code"),
+			@Result(property = "colorList", column = "s_code", javaType = List.class, many = @Many(select = "getCPcode"))})
+	public SizeVO getSPcode(long s_p_code);
 	
 	
 	@Select("SELECT * FROM tbl_color WHERE c_s_code = #{c_s_code}")

@@ -1,7 +1,6 @@
 package com.biz.navy.service.secure;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -20,6 +19,7 @@ import com.biz.navy.dao.AuthoritiesDao;
 import com.biz.navy.dao.UserDao;
 import com.biz.navy.domain.AuthorityVO;
 import com.biz.navy.domain.UserDetailsVO;
+import com.biz.navy.utils.DateTime;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -42,6 +42,7 @@ public class UserService implements UserDetailsService{
 								.password(encPassword)
 								.address(address)
 								.address_etc(address_etc)
+								.join_date(DateTime.Date())
 								.enabled(true)
 								.build();
 		log.debug("여기는 조인 인서트 서비스 어드레스 " + address);
