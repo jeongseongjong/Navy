@@ -10,6 +10,12 @@
 <title>Insert title here</title>
 	<script>
 		$(function(){
+			// 유저 리스트 보이기
+			$(document).on("click",".ad-us-list",function(){
+				$.get("${rootPath}/admin/userlist",function(result){
+					$("#admin_content").html(result)
+				})
+			})
 			
 			// 유저 디테일 페이지 보이기
 			$(document).on("click","tr.tr_user",function(){
@@ -65,7 +71,30 @@
 				})
 			})
 			
+			$(document).on("click",".order_list",function(){
+				$.get("${rootPath}/admin/orderlist",function(result){
+					$("#admin_content").html(result)
+				})
+			})
+			
+			$(document).on("click",".qna_list",function(){
+				$.get("${rootPath}/admin/qna",function(result){
+					$("#admin_content").html(result)
+				})
+			})
+			
+			$(document).on("click",".review_list",function(){
+				$.get("${rootPath}/admin/review",function(result){
+					$("#admin_content").html(result)
+				})
+			})
 
+			// 재고 보기
+			$(document).on("click",".stock_list",function(){
+				$.get("${rootPath}/admin/inventory",function(result){
+					$("#admin_content").html(result)
+				})
+			})
 			
 			// 재고에서 표 클릭하면
 			$(document).on("click","tr.tr_stock",function(){
@@ -290,26 +319,6 @@
                     </div>
                     <div class="card-body">
                       <div class="spn-list">
-                      	<c:choose>
-                      		<c:when test="${!empty QNALIST}">
-								<c:forEach items="${QNALIST}" var="qna" begin="1" end="5">
-									<a href="#" class="card-text">
-		                          <span class="title mr-4">
-		                            ${qna.q_title}</span
-		                          >
-		                          <span class="date">${qna.q_date}</span>
-		                        </a>	
-								</c:forEach>
-                      		</c:when>
-                      		<c:otherwise>
-                      			<a href="#" class="card-text">
-		                          <span class="title mr-4">
-		                            Q&A가 없습니다.</span
-		                          >
-		                          <span class="date"></span>
-		                        </a>		
-                      		</c:otherwise>
-                      	</c:choose>
                         <a href="#" class="card-text">
                           <span class="title mr-4">
                             Lorem ipsum dolor sit amet, consectetur adipiscing
@@ -367,7 +376,7 @@
                           <span class="date">2020-05-19</span>
                         </a>
                       </div>
-                      <a href="${rootPath}/admin/qna" class="card-link d-flex justify-content-end qna_list"
+                      <a href="#" class="card-link d-flex justify-content-end qna_list"
                         >더보기</a
                       >
                     </div>
@@ -382,26 +391,6 @@
                     </div>
                     <div class="card-body">
                       <div class="spn-list">
-                         <c:choose>
-                      		<c:when test="${!empty REVIEWLIST}">
-								<c:forEach items="${REVIEWLIST}" var="review" begin="1" end="5">
-									<a href="#" class="card-text">
-		                          <span class="title mr-4">
-		                            ${review.r_text}</span
-		                          >
-		                          <span class="date">${review.r_date}</span>
-		                        </a>	
-								</c:forEach>
-                      		</c:when>
-                      		<c:otherwise>
-                      			<a href="#" class="card-text">
-		                          <span class="title mr-4">
-		                            Review가 없습니다.</span
-		                          >
-		                          <span class="date"></span>
-		                        </a>		
-                      		</c:otherwise>
-                      	</c:choose>
                         <a href="#" class="card-text">
                           <span class="title mr-4">
                             Lorem ipsum dolor sit amet, consectetur adipiscing
@@ -435,7 +424,7 @@
                           <span class="date">2020-05-19</span>
                         </a>
                       </div>
-                      <a href="${rootPath}/admin/review" class="card-link d-flex justify-content-end review_list"
+                      <a href="#" class="card-link d-flex justify-content-end review_list"
                         >더보기</a
                       >
                     </div>

@@ -7,8 +7,53 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script>
+$(function(){
+	// 유저정보 수정 화면 수정 버튼
+	$(document).on("click",".ad-us-update",function(){
+		
+		let formdata = $("form").serialize()
+		let username = $(this).data("name")
+		$.get("${rootPath}/admin/user_update/"+username,formdata,function(result){
+			//$("#admin_content").html(result)
+			document.location.href="${rootPath}/admin/user_update/"+username
+			//document.location.replace("${rootPath}/admin/user_update/"+username)
+			
+		})
+		/*
+		$.post("${rootPath}/admin/user_detail_view/"+username,formdata,function(result){
+			$("#admin_content").html(result)
+			alert("Update 성공!!")
+		})
+		*/
+	})
+	
+	// 목록으로
+	$(".ad-us-list").click(function(){
+		document.location.href="${rootPath}/admin/userlist"
+	})
+	
+})
+</script>
 </head>
 <body>
+<%@ include file = "/WEB-INF/views/include/include-nav.jspf" %>
+<article class="all-browsers">
+      <div class="hr-sect">ADMIN</div>
+
+      <div class="container">
+        <!--sidebar-->
+        <div class="row">
+          <aside
+            class="col-2 px-0"
+            id="left"
+            style="top: 250px; position: fixed; left: 0;"
+          >
+            <div class="list-group w-100">
+				<%@ include file ="/WEB-INF/views/admin/admin-include-nav.jspf" %>
+            </div>
+          </aside>
+			<main class="col offset-2 h-100 user-main" id="admin_content">
 	<!--page include-->
 		<div class="row bg-light">
 			<div class="col-12 py-4 text-center">
@@ -97,5 +142,11 @@
 			</div>
 		</div>
 		<!--userdetail 정보 end-->
+					</main>
+          
+        </div>
+      </div>
+    </article>
 </body>
+<%@ include file = "/WEB-INF/views/include/include-footer.jspf" %>
 </html>

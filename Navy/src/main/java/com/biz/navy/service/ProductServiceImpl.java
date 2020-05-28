@@ -66,8 +66,8 @@ public class ProductServiceImpl implements ProductService {
 		productVO.setP_qty(p_qty);
 		
 		// 날짜, 시간 담기
-				productVO.setP_date(DateTime.Date());
-				productVO.setP_time(DateTime.Time());
+		productVO.setP_date(DateTime.Date());
+		productVO.setP_time(DateTime.Time());
 		
 		
 		for(ProSizeColorVO p : proSCList) {

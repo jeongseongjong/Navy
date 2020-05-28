@@ -1,5 +1,6 @@
 package com.biz.navy.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -11,11 +12,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.biz.navy.domain.CartVO;
+import com.biz.navy.domain.PageVO;
 import com.biz.navy.domain.ProductVO;
+import com.biz.navy.domain.QnaVO;
+import com.biz.navy.domain.ReviewVO;
 import com.biz.navy.domain.UserDetailsVO;
 import com.biz.navy.service.CartService;
+import com.biz.navy.service.PageService;
 import com.biz.navy.service.ProductImgService;
 import com.biz.navy.service.ProductService;
+import com.biz.navy.service.QnaService;
+import com.biz.navy.service.ReviewService;
 import com.biz.navy.service.secure.UserService;
 
 import lombok.RequiredArgsConstructor;
@@ -31,21 +38,46 @@ public class AdminController {
 	private final ProductService proService;
 	private final ProductImgService proImgService;
 	private final CartService cartService;
+	private final ReviewService reviewService;
+	private final QnaService qnaService;
+	private final PageService pageService;
 	
 	
 	
 	@RequestMapping(value="",method=RequestMethod.GET)
-	public String admin() {
+	public String admin(Model model) {
+		
+		List<ReviewVO> reviewList = reviewService.selectAll();
+		List<QnaVO> qnaList = qnaService.selectAll();
+		
+		model.addAttribute("REVIEWLIST",reviewList);
+		model.addAttribute("QNALIST",qnaList);
 		
 		return "admin/admin_home";
 	}
 	
 	// 회원 리스트
 	@RequestMapping(value="/userlist",method=RequestMethod.GET)
-	public String userList(Model model) {
+	public String userList(Model model,
+			@RequestParam(value="search", required = false, defaultValue = "") String search,
+			@RequestParam(value="currentPageNo", required = false, defaultValue = "1") int currentPageNo
+			) {
 		
-		List<UserDetailsVO> userList =  userService.selectAll();
-		model.addAttribute("userList", userList);
+		log.debug("컨트롤러 검색어 : " + search);
+		
+		long totalCount = userService.totalCount(search);
+		PageVO pageVO = pageService.getPagination(totalCount, currentPageNo);
+		
+//		List<UserDetailsVO> userList =  userService.selectAll();
+//		List<UserDetailsVO> userList =  userService.selectAllPaging(pageVO);
+		List<UserDetailsVO> userNameList = userService.findBySearchName(search,pageVO);
+		
+		model.addAttribute("pageVO",pageVO);
+		
+		// 페이징에 보내줄 URL들 미리 만들어두기
+		model.addAttribute("controller","admin");
+		model.addAttribute("url","userlist");
+		model.addAttribute("userList", userNameList);
 		
 		return "admin/admin_userList";
 	}
@@ -87,7 +119,7 @@ public class AdminController {
 
 		int ret = userService.update(userVO, auth);
 		
-		return "redirect:/admin";
+		return "redirect:/admin/user_detail_view/"+username;
 	}
 	
 	
