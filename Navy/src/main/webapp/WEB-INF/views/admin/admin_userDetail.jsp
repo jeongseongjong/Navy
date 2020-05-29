@@ -86,6 +86,15 @@ $(function(){
 								<td class="p-2">${userVO.email}</td>
 							</tr>
 							<tr>
+								<th class="text-left">권한정보</th>
+								<td class="p-2">${userVO.email}
+									<c:forEach items="${userVO.authorities}" var="auth">
+										${auth.authority}
+									</c:forEach>
+								
+								</td>
+							</tr>
+							<tr>
 								<th class="text-left">정지여부</th>
 								<td class="p-2"><span>${userVO.enabled}</span></td>
 							</tr>
@@ -100,7 +109,9 @@ $(function(){
 							<!-- 회원일시 보이는 버튼-->
 							<button class="mr-2 bt-bbs-style ad-us-update" type="button" data-name = "${userVO.username}">
 								수정</button>
-							<button class="mr-2 bt-bbs-style">삭제</button>
+								<!-- 
+							<button type="button" class="mr-2 bt-bbs-style">삭제</button>
+							 -->
 						</div>
 						<!-- review 정보 가져오기-->
 						<div class="container col mt-4">

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.biz.navy.domain.PageVO;
 import com.biz.navy.domain.ColorVO;
 import com.biz.navy.domain.ProductVO;
 import com.biz.navy.domain.SizeVO;
@@ -33,6 +34,13 @@ public interface ProductService {
 	
 	public int insert(ProductVO productVO, String[] size, String[] color, int[] qty, MultipartHttpServletRequest files);
 
+	public int imagesDelete(long img_seq);
+
+	public List<ProductVO> selectAllPaging(PageVO pageVO);
+
+	public long totalCount(String search);
+
+	public List<ProductVO> findBySearchName(String search, PageVO pageVO);
 	public List<SizeVO> getProSize(long s_p_code);
 
 	public List<ColorVO> getProColor(long c_s_code);

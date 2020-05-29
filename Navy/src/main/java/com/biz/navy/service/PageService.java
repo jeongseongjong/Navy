@@ -88,4 +88,68 @@ public class PageService {
 					
 		return pageVO;
 	}
+	
+	public PageVO getPagination(long totalCount, int currentPageNo, int listPerPage) {
+		
+		if(totalCount < 1) {
+			return null;
+		}
+		
+		int finalPageNo = ((int)totalCount + (listPerPage -1)) / listPerPage;
+		
+		if(currentPageNo > finalPageNo) currentPageNo = finalPageNo;
+		if(currentPageNo < 1) currentPageNo = 1;
+
+//		boolean isNowFirst = currentPageNo == 1;
+//		boolean isNowFinal = currentPageNo == finalPageNo;
+		
+		
+
+
+		int startPageNo = ((currentPageNo -1) / pageCount) * pageCount +1;
+		
+
+		int endPageNo = startPageNo + pageCount - 1;
+		
+		if(endPageNo > finalPageNo) endPageNo = finalPageNo;
+		
+		int prePageNo = 1;
+		if(currentPageNo  > 1) prePageNo = currentPageNo - 1;
+		
+		
+		int nextPageNo = finalPageNo;
+		if(currentPageNo < finalPageNo) nextPageNo = currentPageNo + 1;
+		
+		
+		// DB에서 데이터 가져오기 값 설정
+		// 1, 2, 3 페이지를 선택했을 때
+		// 시작 번호를 1, 11, 21로 설정하기
+		int offset = (currentPageNo - 1) * listPerPage + 1;
+		
+		// 10, 20, 30으로 설정하기
+		int limit = offset + listPerPage - 1;
+		
+		
+		PageVO pageVO = PageVO.builder()
+					.totalCount(totalCount)
+					.pageCount(pageCount)
+					
+					.listPerPage(listPerPage)
+					.offset(offset)
+					.limit(limit)
+					
+					.firstPageNo(1)
+					.finalPageNo(finalPageNo)
+					
+					.startPageNo(startPageNo)
+					.endPageNo(endPageNo)
+					
+					.prePageNo(prePageNo)
+					.nextPageNo(nextPageNo)
+					
+					.currentPageNo(currentPageNo)
+					.build();
+					
+		return pageVO;
+	}
 }

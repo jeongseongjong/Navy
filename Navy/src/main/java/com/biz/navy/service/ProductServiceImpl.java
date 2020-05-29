@@ -1,6 +1,7 @@
 package com.biz.navy.service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -11,6 +12,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.biz.navy.dao.ProductDao;
 import com.biz.navy.domain.ColorVO;
+import com.biz.navy.domain.PageVO;
 import com.biz.navy.domain.ProSizeColorVO;
 import com.biz.navy.domain.ProductImgVO;
 import com.biz.navy.domain.ProductVO;
@@ -265,6 +267,38 @@ public class ProductServiceImpl implements ProductService {
 	public ProductVO findById(long p_code) {
 		return proDao.findById(p_code);
 	}
+	@Override
+	public int imagesDelete(long img_seq) {
+		return proDao.imagesDelete(img_seq);
+	}
+	@Override
+	public List<ProductVO> selectAllPaging(PageVO pageVO) {
+		return proDao.selectAllPaging(pageVO);
+	}
+	@Override
+	public long totalCount(String search) {
+		long ret = 0;
+		if(search == "") {
+			ret = proDao.countAll();
+		} else {
+			List<String> searchList = Arrays.asList(search.split(" "));
+			// 검색 결과의 totalCount 구하기
+			ret = proDao.countSearch(searchList);
+		}
+		return ret;
+	}
+	@Override
+	public List<ProductVO> findBySearchName(String search, PageVO pageVO) {
+
+		List<String> searchList = Arrays.asList(search.split(" "));
+		
+		List<ProductVO> proSearchList = new ArrayList<>();
+		if(search != "") {
+			proSearchList = proDao.findBySearchNameAndPaging(searchList,pageVO);
+		} else {
+			proSearchList = proDao.selectAllPaging(pageVO);
+		}
+		return proSearchList;
 	
 	@Override
 	public List<ColorVO> getColorListBySize(String s_code) {

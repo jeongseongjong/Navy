@@ -1,0 +1,39 @@
+/* title font*/
+.h-title {
+  text-decoration: none;
+  font-family: "GmarketSansBold";
+}
+.h-title:hover {
+  text-decoration: none;
+  color: #f1404b;
+}
+
+tbody-style {
+  border: none;
+}
+
+.bbs-search {
+  margin-bottom: 20px;
+  width: 80%;
+  height: 40px;
+}
+
+.bt-bbs-search {
+  width: 50px;
+  height: 40px;
+  margin-left: 20px;
+
+  outline: none;
+  border: 1px solid #b2b4b9;
+  background-color: white;
+  text-decoration: none;
+}
+
+.bt-review-wr {
+  border: 1px solid #b2b4b9;
+  background-color: white;
+  width: 100px;
+  height: 30px;
+  margin-top: 10px;
+  outline: none;
+}

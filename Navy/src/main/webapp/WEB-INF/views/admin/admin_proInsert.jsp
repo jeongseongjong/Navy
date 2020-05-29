@@ -11,6 +11,8 @@
 <script>
 $(function(){
 	
+	$("#p_desc").summernote();
+	
     let templates = '<div class="select-box">';
     templates += '<select class="select" name="size" style="height: 30px;>';
 
@@ -109,21 +111,21 @@ $(function(){
 	<!-- 상품 입력 -->
 		<div class="container">
 			<div>상품 정보 등록</div>
-			<hr />
 			<span>상품코드 : ${productVO.p_code}</span>
 			<hr />
 			<form:form modelAttribute="productVO" 
 				action="${rootPath}/admin/pro_insert?${_csrf.parameterName}=${_csrf.token}"
 				enctype="multipart/form-data">
-			<div>
-				<label for="p_name">상품 이름</label>
+			<div class="mb-3">
+				<label class="mr-3" for="p_name">상품 이름</label>
 				<form:input path="p_name" value="${productVO.p_name}" placeholder="상품이름을 입력해주세요" />
 			</div>
-			<div>
-				<label for="p_price">상품 가격</label> 
+			<div class="mb-3">
+				<label class="mr-3" for="p_price">상품 가격</label> 
 				<form:input path="p_price" value="${productVO.p_price}" placeholder="가격을 입력해주세요" />
 			</div>
 			<div id="select-container">
+				<label class="mr-3">상품 종류</label>
 				<!-- 
 				<label>상품 종류</label>
 				<div align="right">
@@ -131,28 +133,28 @@ $(function(){
 						정보 입력 추가</button>
 				</div>
 				 -->
-				<div id="pro_size_list">
+				<button type="button" id="btn-plus"
+				        style="
+                    border: 1px solid rgb(168, 163, 163);
+                    border-radius: 10px;
+                  ">추가</button>
+				<div id="pro_size_list" class="select-box">
 				
-				</div>
-				<button type="button" id="btn-plus">제품 종류
-						정보 입력 추가</button>
-				<p>
-				<span>사이즈 색상 수량</span>
-				<div class="select-box">
-
 				</div>
 			</div>
 			<!--이미지 및 상세 정보-->
 			<div>
-				<label for="p_image">이미지</label> 
+				<label class="mr-3" for="p_image">이미지</label> 
 				<input multiple="multiple" type="file" id="p_file" name="file" >
 				<!-- 
 				<form:input type="file" path="p_image" value="${productVO.p_image}" placeholder="" />
 				 -->
 			</div>
+			<div class="mt-3">
 			<label>상품 정보</label>
+			</div>
 			<div>
-				<textarea style="width: 100%;"></textarea>
+				<textarea id="p_desc" name="p_desc" style="width: 100%;"></textarea>
 			</div>
 			<!--buton group-->
 			<div class="d-flex justify-content-end mt-3">
@@ -160,9 +162,8 @@ $(function(){
 					저장</button>
 			</div>
 			</form:form>
-		</div>
+			</div>
 			</main>
-          
         </div>
       </div>
     </article>
