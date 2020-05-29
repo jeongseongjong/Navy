@@ -74,5 +74,7 @@ public interface CartDao {
 	@Select("SELECT * FROM tbl_cart WHERE bk_id = #{bk_id}")
 	public CartVO findbyBkId(String bk_id);
 
+	public int recipient_update(long bk_id);
+
 
 }

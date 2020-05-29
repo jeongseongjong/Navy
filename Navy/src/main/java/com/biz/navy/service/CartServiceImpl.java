@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.biz.navy.dao.CartDao;
 import com.biz.navy.domain.CartListVO;
@@ -133,6 +132,14 @@ public class CartServiceImpl implements CartService{
 
 		return cartDao.findByCsCode(c_s_code);
 	}
+
+	@Override
+	public int recipient_update(long bk_id) {
+
+		return cartDao.recipient_update(bk_id);
+	}
+	
+	
 
 
 
