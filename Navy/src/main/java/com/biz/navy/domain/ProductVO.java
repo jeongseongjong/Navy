@@ -34,7 +34,6 @@ public class ProductVO {
     private List<SizeVO> p_size_list;
     private List<String> p_color_list;
     
-    
     // 상품의 각 Size, Color 정보를 담을 변수
     private List<SizeVO> sizeList;
     private List<ColorVO> colorList;

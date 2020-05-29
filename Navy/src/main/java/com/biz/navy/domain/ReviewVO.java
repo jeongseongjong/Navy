@@ -21,6 +21,7 @@ public class ReviewVO {
    private int r_code; // varchar2(6) not null, -- (p_code 참조해서 p_name 가져오기)
    private String r_auth; // varchar2(64),
    private String r_date; // varchar2(40),
+   private String r_time; // VARCHAR2(40),
    private String r_image; // varchar2(255),
    private int r_like; // number -- 추천
 

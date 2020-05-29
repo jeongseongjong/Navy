@@ -8,6 +8,46 @@
 
 <script>
 	$(function() {
+		
+		$("#sizeList").change(function() {
+			
+			let s_code = $(this).find("option:selected").data("id")
+			alert(s_code)
+			
+			$.ajax({
+			
+				url : "${rootPath}/product/get_color_list_by_size",
+				method : "GET",
+				data : { s_code : s_code }
+				
+			})
+			.done(function(colorList) {
+						
+				if(colorList == "FAIL") {
+					alert("통신오류")
+				} else if(!colorList.length) {
+					alert("컬러리스트가 없습니다.")
+				} else {
+					colorList.forEach(function(vo) {
+						$("#colorList").append($("<option/>", {value : vo.c_color, text : vo.c_color, 'data-id' : vo.c_code}))
+					})
+				}
+				
+			})
+			
+		})
+			
+			$("#colorList").change(function() {
+			
+				let c_code = $(this).find("option:selected").data("id")
+				alert(c_code)
+			
+			})
+		
+		
+		
+		
+		
 
 		$(document).ready(function() {
 			$(".dropdownbox").click(function() {
@@ -18,13 +58,14 @@
 				});
 			});
 		});
-
+		
 		$("#btn-cart").click(function() {
 			let p_qty = parseInt($("#p_qty").val())
 			let p_color = $("#p_color").val()
 			let p_size = $("#p_size").val()
 			alert(p_size)
 			alert(p_color)
+			alert("${productVO.p_name}")
 
 			if (p_qty <= 0) {
 				alert("수량은 0개 이상")
@@ -70,6 +111,9 @@
 			let id = $(this).data("id")
 			document.location.href = "${rootPath}/user/review/" + id
 		})
+		
+		
+		
 
 	})
 </script>
@@ -94,7 +138,19 @@
 	  			</div>
 	  			<hr style="border: 1px solid #252c41;" />
 				<br />
-	
+				
+				<select id="sizeList">
+					<option>선택</option>
+					<c:forEach items="${sizeList}" var="size">
+						<option value="${size.s_size}" data-id="${size.s_code}">${size.s_size}</option>
+					</c:forEach>
+				</select>
+				
+				<select id="colorList">
+					
+				</select>
+
+			<!-- 
 				<div class="col">
 	  				<label class="mr-5">SIZE/COLOR</label>
 	  				<form:form modelAttribute="productVO">
@@ -102,215 +158,18 @@
 							<form:option value="SIZE를 선택하세요" />
 							<form:options items="${m_size_list}" itemLabel="o_name" itemValue="o_standard" />
 						</form:select>
-						<form:select path="m_color_list" multiple="false">
+						<form:select id="p_color" path="m_color_list" multiple="false">
 							<form:option value="COLOR를 선택하세요" />
 							<form:options items="${m_color_list}" itemLabel="o_name" itemValue="o_standard" />
 						</form:select>
 	  				</form:form>
-	  				<input id="p_size" value="${productVO.p_size}" />
-					<input id="p_color" value="${productVO.p_color}" />
 				</div>
+			 -->
+				
 				<div class="col mb-5">
 				  	<label class="mr-5">QUAN·TITY</label>
 				  	<input id="p_qty" type="number" class="text-center" style="width: 80px;" />
-				</div>
-				
-				
-				<select id="sizeList" name="size">
-					<option>사이즈 선택</option>
-					<c:forEach items="${productVO.sizeList}" var="size">
-						<option value="${size.s_size}">${size.s_size}</option>
-					</c:forEach>
-				</select>
-				
-				<select id="sizeList" name="size">
-					<option>색깔 선택</option>
-					<c:forEach items="${productVO.sizeList}" var="size">
-						<option class="sizebox" value="${size.s_size}">${size.s_size}</option>
-							<c:forEach items="${size.colorList}" var="color">
-								<option value="${color.c_color}">${color.c_color}</option>
-							</c:forEach>
-					</c:forEach>
-				</select>
-				
-				<style>
-					.sizebox {
-						display: none;
-					}
-				</style>
-				
-				<!--
-				
-								
-				<form:form action="">
-				<div id="optionPlus">
-				
-				</div>
-				</form:form>	
-				
-				
-				
-								<select id="sizeList" name="size">
-					<c:forEach items="${productVO.sizeList}" var="size">
-						<option value="${size.s_size}">${size.s_size}</option>
-							<c:forEach items="${size.colorList}" var="color">
-								<option value="${color.c_color}">${color.c_color}</option>
-							</c:forEach>
-					</c:forEach>
-				</select>
-				
-				
-				
-								<script>
-				
-					let sizeList = $("#sizeList").val()
-					let colorList = $("#colorList").val()
-				
-				
-					$(document).on("change","#colorList",function(){
-						alert(sizeList)
-						alert(colorList)
-						$("div#optionPlus").append($("<input/>",{class:"option", name:"size",value:sizeList}))
-						$("div#optionPlus").append($("<input/>",{class:"option", name:"color",value:colorList}))
-						$("div#optionPlus").append($("<input/>",{class:"option", type:"number", name:"qty"}))
-					})
-				
-				
-				
-				
-								<select id="sizeList" name="size">
-					<c:forEach items="${productVO.sizeList}" var="size">
-						<option value="${size.s_size}">${size.s_size}</option>
-					</c:forEach>
-				</select>
-				
-				
-				<!-- 여기 -->
-				<!-- 
-				<select id="sizeList" name="size">
-					<c:forEach items="${productVO.sizeList}" var="size">
-						<option value="${size.s_size}">${size.s_size}</option>
-					</c:forEach>
-				</select>
-				
-				<select id="colorList" name="color">
-					<option value="RED">RED</option>
-					<option value="BLUE">B</option>
-					<option value="GREEN">G</option>
-					<option value="White">W</option>
-					
-
-				</select>
-		
-				<script>
-				
-				let sizeList = $("#sizeList").val()
-				let colorList = $("#colorList").val()
-				
-				
-				$(document).on("change","#colorList",function(){
-					alert(sizeList)
-					alert(colorList)
-					$("div#optionPlus").append($("<input/>",{class:"option", name:"size",value:sizeList}))
-					$("div#optionPlus").append($("<input/>",{class:"option", name:"color",value:colorList}))
-					$("div#optionPlus").append($("<input/>",{class:"option", type:"number", name:"qty"}))
-				})
-				
-				
-				</script>		
-	
-				<form:form action="">
-				<div id="optionPlus">
-				
-				</div>
-				</form:form>
-	
-	
-				 여기 끝 -->
-				
-				
-				
-				<!-- 여기까지다다다다다다다다다다다다다다다다다다다다 -->
-				
-				
-				
-				<!--
-				
-				<select id="sizeList" name="size">
-					<c:forEach items="${productVO.sizeList}" var="size">
-						<option value="${size.s_size}">${size.s_size}</option>
-							<c:forEach items="${size.colorList}" var="color">
-								<option value="${color.c_color}">${color.c_color}</option>
-							</c:forEach>
-					</c:forEach>
-				</select>
-				
-				
-								<select id="sizeList" name="size">
-					<c:forEach items="${productVO.sizeList}" var="size">
-						<option value="${size.s_size}">${size.s_size}</option>
-					</c:forEach>
-				</select>
-				
-				 여기 
-				<c:if test="${!empty productVO.sizeList}">
-					<select id="p_size">
-							<c:forEach items="${productVO.sizeList}" var="size">
-								<option value="${size.s_size}">${size.s_size}</option>
-									<c:if test="${!empty size.colorList}">
-										<c:forEach items="${size.colorList}" var="color">
-											<option id="colorbox" value="${color.c_color}">${color.c_color}</option>
-										</c:forEach>
-									</c:if>
-							</c:forEach>
-						</select>
-					</c:if>
-					-->
-					
-				
-				<!-- 여기 -->
-				<!-- 
-				<select id="sizeList" name="size">
-					<c:forEach items="${productVO.sizeList}" var="size">
-						<option value="${size.s_size}">${size.s_size}</option>
-					</c:forEach>
-				</select>
-				
-				<select id="colorList" name="color">
-					<option value="RED">RED</option>
-					<option value="BLUE">B</option>
-					<option value="GREEN">G</option>
-					<option value="White">W</option>
-					
-
-				</select>
-		
-				<script>
-				
-				let sizeList = $("#sizeList").val()
-				let colorList = $("#colorList").val()
-				
-				
-				$(document).on("change","#colorList",function(){
-					alert(sizeList)
-					alert(colorList)
-					$("div#optionPlus").append($("<input/>",{class:"option", name:"size",value:sizeList}))
-					$("div#optionPlus").append($("<input/>",{class:"option", name:"color",value:colorList}))
-					$("div#optionPlus").append($("<input/>",{class:"option", type:"number", name:"qty"}))
-				})
-				
-				
-				</script>		
-	
-				<form:form action="">
-				<div id="optionPlus">
-				
-				</div>
-				</form:form>
-	
-	
-				 여기 끝 -->
-				
+				</div>			
 	
 				<!-- 장바구니 상품 button -->
 	      		<div class="d-flex justify-content-center">

@@ -217,29 +217,27 @@
                     </p>
 
                     <div class="bt_cnt">
-                      <form>
-                        <button
-                          type="button"
-                          class="cnt_minus"
-                          onClick="javascript:this.form.amount.value--;"
-                        >
-                          <i class="blind">수량빼기</i>
-                        </button>
-                        <input
-                          type="text"
-                          class="ip_quantity"
-                          title="수량입력"
-                          value="1"
-                          name="amount"
-                        />
-                        <button
-                          type="button"
-                          class="cnt_plus"
-                          onClick="javascript:this.form.amount.value++;"
-                        >
-                          <i class="blind">수량 더하기</i>
-                        </button>
-                      </form>
+                      <button
+                        type="button"
+                        class="cnt_minus"
+                        onClick="javascript:this.amount.value--;"
+                      >
+                        <i class="blind">수량빼기</i>
+                      </button>
+                      <input
+                        type="text"
+                        class="ip_quantity"
+                        title="수량입력"
+                        value="1"
+                        name="amount"
+                      />
+                      <button
+                        type="button"
+                        class="cnt_plus"
+                        onClick="javascript:this.amount.value++;"
+                      >
+                        <i class="blind">수량 더하기</i>
+                      </button>
                     </div>
 
                     <div class="price">
@@ -257,7 +255,7 @@
                 <div class="op_change">
                   <div class="term_wrap">
                     <div class="term_right">
-                      <button type="button" class="modify_option_ bt_type">
+                      <button type="button" class="bt_type">
                         옵션 변경/추가
                       </button>
                     </div>
@@ -289,116 +287,7 @@
           </div>
           <!--deal list  1 end-->
           <!--2 장바구니 리스트-->
-          <div id="deal_lists">
-            <div class="ct_prod_wp">
-              <div class="prod">
-                <label class="checks _check_all chk_type">
-                  <input
-                    type="checkbox"
-                    id="check_item"
-                    class="_check_all"
-                    checked="checked"
-                  />
-                  <label for="check_item"> </label>
-                  <span class="clicked_deal">
-                    <i class="blind">상품한개선택</i></span
-                  >
-                </label>
-                <div class="prod_tit">
-                  <a href="../shopDetail.html"
-                    ><!--여기에 디테일로 넘어갈 url입력--></a
-                  >
-                  <!--이미지 들어갈 tag-->
-                  <div class="prod_thumb">
-                    <img
-                      src="../img/gu-dress-2.jpg"
-                      alt="Gucci dress"
-                      style="width: 100%;"
-                      class="pro-img"
-                    />
-                  </div>
-                  <div class="prod_name">
-                    <strong class="pr_name">Gucci Dress</strong>
-                  </div>
-                </div>
-                <!--prod_tit end-->
-                <div class="highlight_wrap">
-                  <div class="p_item">
-                    <p class="op_name">
-                      <span>[black M] Gucci drass</span>
-                    </p>
 
-                    <div class="bt_cnt">
-                      <form>
-                        <button
-                          type="button"
-                          class="cnt_minus"
-                          onClick="javascript:this.form.amount.value--;"
-                        >
-                          <i class="blind">수량빼기</i>
-                        </button>
-                        <input
-                          type="text"
-                          class="ip_quantity"
-                          title="수량입력"
-                          value="1"
-                          name="amount"
-                        />
-                        <button
-                          type="button"
-                          class="cnt_plus"
-                          onClick="javascript:this.form.amount.value++;"
-                        >
-                          <i class="blind">수량 더하기</i>
-                        </button>
-                      </form>
-                    </div>
-
-                    <div class="price">
-                      <p class="_origin">
-                        <span class="num">1,750,000</span>
-                        won
-                      </p>
-                      <button type="button" class="bt_del">
-                        <i class="blind">삭제</i>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-                <!--option 변경-->
-                <div class="op_change">
-                  <div class="term_wrap">
-                    <div class="term_right">
-                      <button type="button" class="modify_option_ bt_type">
-                        옵션 변경/추가
-                      </button>
-                    </div>
-                  </div>
-                </div>
-                <!--end-->
-
-                <!--주문금액-->
-                <div class="order_price">
-                  <div class="price_inner">
-                    <div class="price_cont">
-                      <p class="nomal">
-                        <span>1,750,000</span>
-                        won
-                      </p>
-                      <p></p>
-                    </div>
-                  </div>
-                </div>
-                <!--주문금액 end-->
-                <div class="delivery_price">
-                  <div class="price_inner">
-                    <p>-</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- prod end-->
-          </div>
           <!--deal list end-->
         </section>
         <div class="product_footer">

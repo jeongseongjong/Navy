@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -101,6 +102,7 @@ public class CartController {
 		
 		return "cart";
 	}
+	
 	
 	// 배송중 상품을 보여주는 메서드
 	@RequestMapping(value="/delivery_view",method=RequestMethod.GET)
