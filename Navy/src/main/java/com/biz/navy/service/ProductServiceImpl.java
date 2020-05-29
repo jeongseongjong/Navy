@@ -265,5 +265,29 @@ public class ProductServiceImpl implements ProductService {
 	public ProductVO findById(long p_code) {
 		return proDao.findById(p_code);
 	}
+	
+	@Override
+	public List<ColorVO> getColorListBySize(String s_code) {
+		long longSCode = 0;
+		try {
+			longSCode = Long.valueOf(s_code);
+		} catch (Exception e) {
+			return null;
+			// TODO: handle exception
+		}
+		List<ColorVO> proColorList = proDao.getColorListBySize(longSCode);
+		// TODO Auto-generated method stub
+		return proColorList;
+	}
+	@Override
+	public List<SizeVO> getProSize(long s_p_code) {
+		// TODO Auto-generated method stub
+		return proDao.getProSize(s_p_code);
+	}
+	@Override
+	public List<ColorVO> getProColor(long c_s_code) {
+		// TODO Auto-generated method stub
+		return proDao.getProColor(c_s_code);
+	}
 
 }
