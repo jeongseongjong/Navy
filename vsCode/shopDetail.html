@@ -61,14 +61,9 @@
         opt.innerHTML = d[x];
         target.appendChild(opt);
       }
-
-      $("#select_ck").on("change", function () {
-        console.log(
-          $(this)
-            .find("option:checked[value='" + $(this).val() + "']")
-            .text()
-        );
-      });
+      if (!d) {
+        alert("d를 선택하시오");
+      }
     }
   </script>
   <body>
@@ -184,7 +179,12 @@
             <!-- 장바구니 상품 button -->
             <div class="d-flex justify-content-center">
               <button class="bt-css">장바구니</button>
-              <button class="bt-css">바로구매</button>
+              <button
+                class="bt-css bt-buy"
+                onclick="$(document).on('click','.bt-buy',function(){document.location.href='./user/user-buy.html'})"
+              >
+                바로구매
+              </button>
             </div>
           </div>
         </div>
