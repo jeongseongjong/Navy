@@ -4,11 +4,13 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Many;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 
 import com.biz.navy.domain.ColorVO;
+import com.biz.navy.domain.PageVO;
 import com.biz.navy.domain.ProductImgVO;
 import com.biz.navy.domain.ProductVO;
 import com.biz.navy.domain.QnaVO;
@@ -75,6 +77,20 @@ public interface ProductDao {
 
 	// 파일 업로드용 메서드
 	public void insertWithImages(List<ProductImgVO> proImgList);
+
+	@Delete("DELETE FROM tbl_p_images WHERE p_IMG_SEQ = #{img_seq}")
+	public int imagesDelete(long img_seq);
+
+	// 페이징
+	public List<ProductVO> selectAllPaging(PageVO pageVO);
+
+	// 검색 미포함한 페이징
+	public long countAll();
+
+	public long countSearch(@Param("searchList")List<String> searchList);
+
+	// 제품 이름으로 검색, 페이징
+	public List<ProductVO> findBySearchNameAndPaging(@Param("searchList")List<String> searchList, @Param("pageVO")PageVO pageVO);
 
 	
 }

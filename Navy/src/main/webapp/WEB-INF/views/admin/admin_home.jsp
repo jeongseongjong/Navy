@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
 <%@ include file="/WEB-INF/views/include/include-head.jspf" %>
 
 <!DOCTYPE html>
@@ -10,7 +9,7 @@
 <title>Insert title here</title>
 	<script>
 		$(function(){
-			
+			/*
 			// 유저 디테일 페이지 보이기
 			$(document).on("click","tr.tr_user",function(){
 				let username = $(this).data("id")
@@ -91,13 +90,6 @@
 				$.get("${rootPath}/admin/user_update/"+username,formdata,function(result){
 					$("#admin_content").html(result)
 				})
-				/*
-				$.post("${rootPath}/admin/user_detail_view/"+username,formdata,function(result){
-					$("#admin_content").html(result)
-					alert("Update 성공!!")
-				})
-				*/
-				
 			})
 
 			//$(document).on("click","#auth_append",function(){
@@ -115,7 +107,6 @@
 				// $("div#auth_box").append(auth_delete)
 			})
 			
-			/*$(".btn-delete").click(function(){*/
 			$(document).on("click",".btn-delete",function(){
 				
 				let id = $(this).data("id")
@@ -134,6 +125,7 @@
 				
 				//alert(id)
 			})
+			*/
 
 		})
 	</script>
@@ -292,7 +284,7 @@
                       <div class="spn-list">
                       	<c:choose>
                       		<c:when test="${!empty QNALIST}">
-								<c:forEach items="${QNALIST}" var="qna" begin="1" end="5">
+								<c:forEach items="${QNALIST}" var="qna" begin="0" end="4">
 									<a href="#" class="card-text">
 		                          <span class="title mr-4">
 		                            ${qna.q_title}</span
@@ -384,7 +376,7 @@
                       <div class="spn-list">
                          <c:choose>
                       		<c:when test="${!empty REVIEWLIST}">
-								<c:forEach items="${REVIEWLIST}" var="review" begin="1" end="5">
+								<c:forEach items="${REVIEWLIST}" var="review" begin="0" end="4">
 									<a href="#" class="card-text">
 		                          <span class="title mr-4">
 		                            ${review.r_text}</span

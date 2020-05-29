@@ -8,9 +8,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.biz.navy.domain.PageVO;
 import com.biz.navy.domain.ProductVO;
 import com.biz.navy.service.CartServiceImpl;
+import com.biz.navy.service.PageService;
 import com.biz.navy.service.ProOptionsService;
 import com.biz.navy.service.ProductImgService;
 import com.biz.navy.service.ProductService;
@@ -28,6 +31,7 @@ public class ProductController {
 	private final ProductImgService proImgService;
 	private final CartServiceImpl cartService;
 	private final ProOptionsService optionsService;
+	private final PageService pageService;
 	
 	@ModelAttribute("productVO")
 	public ProductVO newProductVO() {
@@ -36,12 +40,29 @@ public class ProductController {
 	
 	// 상품 전체 리스트 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public String productList(ProductVO productVO, Model model) {
+	public String productList(ProductVO productVO, Model model,
+			@RequestParam(value="search", required = false, defaultValue = "") String search,
+			@RequestParam(value="currentPageNo", required = false, defaultValue = "1") int currentPageNo
+			) {
 		
-		List<ProductVO> proList = proService.selectAll();
+		long totalCount = proService.totalCount(search);
+		int listPerPage = 15;
+		PageVO pageVO = pageService.getPagination(totalCount, currentPageNo, listPerPage);
+//		List<ProductVO> proList = proService.selectAll();
+//		List<ProductVO> proListPaging = proService.selectAllPaging(pageVO);
+		List<ProductVO> proListPaging = proService.findBySearchName(search, pageVO);
+		log.debug("페이지VO값:"+pageVO);
+		log.debug("서치 값"+search);
 		
-		model.addAttribute("PROLIST", proList);
-		log.debug("상품 리스트에 뭐가 담겼는가" + proList);
+		model.addAttribute("pageVO",pageVO);
+		model.addAttribute("PROLIST", proListPaging);
+		log.debug("상품 페이징 리스트에 뭐가 담겼는가" + proListPaging);
+		
+		// 페이징에 보내줄 URL들 미리 만들어주기
+		model.addAttribute("controller","product");
+		model.addAttribute("url","list");
+		
+//		log.debug("상품 리스트에 뭐가 담겼는가" + proList);
 		
 		return "allList";
 	}

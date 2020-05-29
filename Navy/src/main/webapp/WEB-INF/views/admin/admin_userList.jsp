@@ -50,16 +50,25 @@
                 <span style="font-size: 30px;">회원관리</span>
               </div>
             </div>
+            	<form>
+					<input type="search" 
+					class="bbs-search" 
+					name="search" 
+					value="${search}" 
+					placeholder="ID를 입력 후 Enter...">
+					<button class="bt-bbs-search">검색</button>
+				</form>
+            
             <div class="row bg-white">
               <div class="col-12 py-4">
                 <table class="table">
                   <thead>
                     <tr>
-                      <th class="in-ck-box">SEQ</th>
-                      <th class="in-ck-box">USER.ID</th>
-                      <th class="in-ck-box">AUTHORITY</th>
-                      <th class="in-ck-box">Account suspension</th>
-                      <th class="in-ck-box">Withdrawal</th>
+                      <th class="in-ck-box">NO</th>
+                      <th class="in-ck-box">회원ID</th>
+                      <th class="in-ck-box">권한</th>
+                      <th class="in-ck-box">권한유무</th>
+                      <th class="in-ck-box">탈퇴유무</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -97,13 +106,7 @@
                   </tbody>
                 </table>
                 
-				<form>
-					<input type="search" 
-					class="form-control" 
-					name="search" 
-					value="${search}" 
-					placeholder="검색어를 입력 후 Enter...">
-				</form>
+
 				
 				
                 <!--pagination-->

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/include/include-head.jspf"%>
+<c:set var="num" value="${pageVO.totalCount - ((pageVO.currentPageNo-1) * 10) }"/>
 
 <!DOCTYPE html>
 <html>
@@ -64,10 +65,10 @@ $(function(){
 					<thead>
 						<tr>
 							<th class="in-ck-box">NO</th>
-							<th class="in-ck-box">PRODUCT.CODE</th>
-							<th class="in-ck-box">PRODUCT.NAME</th>
-							<th class="in-ck-box">PRODUCT.PRICE</th>
-							<th class="in-ck-box">PRODUCT.QTY</th>
+							<th class="in-ck-box">상품코드</th>
+							<th class="in-ck-box">상품이름</th>
+							<th class="in-ck-box">가격</th>
+							<th class="in-ck-box">수량</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -80,12 +81,14 @@ $(function(){
 							<c:otherwise>
 								<c:forEach items="${PROLIST}" var="pro" varStatus="i">
 									<tr data-id="${pro.p_code}" class="tr_pro">
-										<td>${i.count}</td>
+										<!-- <td>${i.count}</td> -->
+										<td>${num}</td>
 										<td>${pro.p_code}</td>
 										<td>${pro.p_name}</td>
 										<td>${pro.p_price}</td>
 										<td>${pro.p_qty}</td>
 									</tr>
+									<c:set var="num" value="${num-1}"></c:set>
 								</c:forEach>
 							</c:otherwise>
 						</c:choose>
@@ -98,31 +101,18 @@ $(function(){
 
 						등록</button>
 				</div>
+				
+				<form>
+					<input type="search" 
+					class="bbs-search" 
+					name="search" 
+					value="${search}" 
+					placeholder="상품명을 입력 후 Enter...">
+					<button class="bt-bbs-search">검색</button>
+				</form>
+				
 				<!--button group end-->
-				<!--pagination-->
-				<div class="d-flex justify-content-center">
-					<nav aria-label="Page navigation example">
-						<ul class="pagination">
-							<li class="page-item"><a class="page-link black-text"
-								href="#" aria-label="Previous">
-									<span aria-hidden="true" class="black-text">&laquo;</span>
-									<span class="sr-only">Previous</span>
-							</a></li>
-							<li class="page-item black-text"><a
-								class="page-link black-text" href="#">1</a></li>
-							<li class="page-item black-text"><a
-								class="page-link black-text" href="#">2</a></li>
-							<li class="page-item black-text"><a
-								class="page-link black-text" href="#">3</a></li>
-							<li class="page-item black-text"><a
-								class="page-link black-text" href="#" aria-label="Next">
-									<span aria-hidden="true" class="black-text">&raquo;</span>
-									<span class="sr-only black-text">Next</span>
-							</a></li>
-						</ul>
-					</nav>
-				</div>
-				<!--pagination end-->
+				<%@ include file="/WEB-INF/views/include/include-paging.jspf" %>
 			</div>
 		</div>
 			</main>
