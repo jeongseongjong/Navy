@@ -17,60 +17,50 @@ import com.biz.navy.domain.SizeVO;
 
 public interface ProductDao {
 
+	// 상품 전체 조회
 	@Select("SELECT * FROM tbl_product ORDER BY p_code DESC")
-	@Results(value = { @Result(property = "p_code", column = "p_code"),
-			@Result(property = "sizeList", column = "p_code", javaType = List.class, many = @Many(select = "getSPcode")),
-			@Result(property = "proDImgList", column = "p_code", javaType = List.class, many = @Many(select = "getPImgSeq")),
-			@Result(property = "reviewList", column = "p_code", javaType = List.class, many = @Many(select = "getRPcode")) })
-	public List<ProductVO> selectAll();
-
-	@Select("SELECT * FROM tbl_product WHERE p_code = #{p_code}")
-<<<<<<< HEAD
-	@Results(value = { @Result(property = "p_code", column = "p_code"),
-			@Result(property = "p_size_list", column = "p_code", javaType = List.class, many = @Many(select = "getSize")),
-			@Result(property = "proDImgList", column = "p_code", javaType = List.class, many = @Many(select = "getPImgSeq")),
-			@Result(property = "reviewList", column = "p_code", javaType = List.class, many = @Many(select = "getRPcode")),
-			@Result(property = "qnaList", column = "p_code", javaType = List.class, many = @Many(select = "getQPcode")) })
-=======
 	@Results(value= {@Result(property = "p_code", column = "p_code"),
-					@Result(property = "sizeList", column = "p_code", javaType = List.class, many = @Many(select = "getSPcode")),
-					@Result(property = "p_size_list", column = "p_code", javaType = List.class, many = @Many(select = "getSize")),
-					@Result(property = "proDImgList", column = "p_code", javaType = List.class, many = @Many(select = "getPImgSeq")),
-					@Result(property = "reviewList", column = "p_code", javaType = List.class, many = @Many(select = "getRPcode")),
-					@Result(property = "qnaList", column = "p_code", javaType = List.class, many = @Many(select = "getQPcode"))})
->>>>>>> f78cc7f45675eb17454a0a15dc7dad10333b2964
-	public ProductVO findById(long p_code);
-
-	@Select("SELECT * FROM tbl_size WHERE s_p_code = #{p_code}")
-	public SizeVO getSize(long p_code);
-<<<<<<< HEAD
-
-=======
+			@Result(property = "sizeList", column = "p_code", javaType = List.class, many = @Many(select = "getProSize")),
+			@Result(property = "proDImgList", column = "p_code", javaType = List.class, many = @Many(select = "getProImages")),
+			@Result(property = "reviewList", column = "p_code", javaType = List.class, many = @Many(select = "getProReview"))})
+	public List<ProductVO> selectAll();
 	
+	// 상품 조회
+	@Select("SELECT * FROM tbl_product WHERE p_code = #{p_code}")
+	@Results(value = {@Result(property = "p_code", column = "p_code"),
+			@Result(property = "sizeList", column = "p_code", javaType = List.class, many = @Many(select = "getProSize")),
+			@Result(property = "proDImgList", column = "p_code", javaType = List.class, many = @Many(select = "getProImages")),
+			@Result(property = "reviewList", column = "p_code", javaType = List.class, many = @Many(select = "getProReview")),
+			@Result(property = "qnaList", column = "p_code", javaType = List.class, many = @Many(select = "getProQna"))})
+	public ProductVO findById(long p_code);
+	
+	// 상품 사이즈 조회
 	@Select("SELECT * FROM tbl_size WHERE s_p_code = #{s_p_code}")
 	@Results(value= {@Result(property = "s_code", column = "s_code"),
-			@Result(property = "colorList", column = "s_code", javaType = List.class, many = @Many(select = "getCPcode"))})
-	public SizeVO getSPcode(long s_p_code);
+			@Result(property = "colorList", column = "s_code", javaType = List.class, many = @Many(select = "getProColor"))})
+	public List<SizeVO> getProSize(long s_p_code);
 	
-	
->>>>>>> f78cc7f45675eb17454a0a15dc7dad10333b2964
+	// 상품 색깔 조회
 	@Select("SELECT * FROM tbl_color WHERE c_s_code = #{c_s_code}")
-	public ColorVO getCPcode(long c_s_code);
-
+	public List<ColorVO> getProColor(long c_s_code);
+	
+	@Select("SELECT * FROM tbl_color "
+			+ " LEFT JOIN tbl_size "
+			+ " ON c_s_code = s_code "
+			+ " WHERE c_s_code = #{longSCode} ORDER BY c_color ")
+	public List<ColorVO> getColorListBySize(long longSCode);
+	
+	// 상품 이미지 조회
 	@Select("SELECT * FROM tbl_p_images WHERE p_img_p_code = #{p_img_p_code}")
-	public List<ProductImgVO> getPImgSeq(long p_img_p_code);
-
+	public ProductImgVO getProImages(long p_img_p_code);
+	
+	// 상품 리뷰 조회
 	@Select("SELECT * FROM tbl_review WHERE r_code = #{r_code}")
-	public ReviewVO getRPcode(long r_code);
-
-	@Select("SELECT * FROM tbl_size WHERE s_p_code = #{s_p_code}")
-	@Results(value = { 
-			@Result(property = "s_code", column = "s_code"),
-			@Result(property = "colorList", column = "s_code", javaType = List.class, many = @Many(select = "getCPcode")) })
-	public SizeVO getSPcode(long s_p_code);
-
+	public ReviewVO getProReview(long r_code);
+	
+	// 상품 qna 조회
 	@Select("SELECT * FROM tbl_q_a WHERE q_code = #{q_code}")
-	public QnaVO getQPcode(long q_code);
+	public QnaVO getProQna(long q_code);
 
 	public int insert(ProductVO productVO);
 
