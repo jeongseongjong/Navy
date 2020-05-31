@@ -20,7 +20,6 @@ import com.biz.navy.domain.ProductVO;
 import com.biz.navy.domain.SizeVO;
 import com.biz.navy.service.CartService;
 
-import com.biz.navy.service.ProOptionsService;
 import com.biz.navy.service.ProductImgService;
 import com.biz.navy.service.ProductService;
 
@@ -35,7 +34,6 @@ public class ProductController {
 
 	private final ProductService proService;
 	private final ProductImgService proImgService;
-  private final ProOptionsService optionsService;
 	private final PageService pageService;
 	private final CartService cartService;
 	// private final ProOptionsService optionsService;
@@ -81,13 +79,14 @@ public class ProductController {
 
 		long p_code = Long.valueOf(id);
 		productVO = proService.findById(p_code);
-		
+		log.debug("여기는 product컨트롤러의 productVO " + productVO);
 		List<SizeVO> sizeList = null;
 		List<ColorVO> colorList = null;
 		
 		long s_p_code =  productVO.getP_code();
+		log.debug("여기는 product컨트롤러의 code " + s_p_code);
 		sizeList = proService.getProSize(s_p_code);
-		
+		log.debug("product컨트롤러의 sizeList " + sizeList);
 		for(SizeVO sVO : sizeList) {
 			long c_s_code = sVO.getS_code();
 			colorList = proService.getProColor(c_s_code);
@@ -97,16 +96,8 @@ public class ProductController {
 		model.addAttribute("sizeList", sizeList);
 		model.addAttribute("colorList", colorList);
 		
+		log.debug("여기는 컨트롤러의 사이즈 리스트 " +  sizeList);
 		
-		
-		/*
-		model.addAttribute("m_size_list", optionsService.getSizeList());
-		model.addAttribute("m_color_list", optionsService.getColorList());
-		
-		log.debug("여기는 디테일 컨트롤러" + productVO);
-		log.debug("사이즈 리스트 " +  optionsService.getSizeList());
-		log.debug("컬러 리스트 " +  optionsService.getColorList());
-		*/
 		return "detail";
 	}
 	

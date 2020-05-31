@@ -66,3 +66,7 @@
 	> - private String bk_recipient_address;		// 받는사람 주소
 	> - private String bk_recipient_address_etc;	// 받는사람 상세주소
 	> - private String bk_recipient_message;		// 배송요청사항
+	
+## 05-31
+ * productDao의 findByMaxPCode 리턴타임 int - > Integer로 변환
+  > - primitive 타입 오류
