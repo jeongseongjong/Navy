@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +22,7 @@ import com.biz.navy.domain.SizeVO;
 import com.biz.navy.domain.UserDetailsVO;
 import com.biz.navy.service.CartService;
 import com.biz.navy.service.ProductService;
+import com.biz.navy.service.secure.UserService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -33,6 +35,7 @@ public class CartController {
 
 	private final ProductService proService;
 	private final CartService cartService;
+	private final UserService userService;
 
 	
 // <<<<<<< HEAD
@@ -100,6 +103,7 @@ public class CartController {
 		return "cart";
 	}
 	
+	
 	// 배송중 상품을 보여주는 메서드
 	@RequestMapping(value="/delivery_view",method=RequestMethod.GET)
 	public String cart_list_delivery(Principal principal, Authentication authen, Model model) {
@@ -108,8 +112,16 @@ public class CartController {
 		try {
 			UserDetailsVO userVO = (UserDetailsVO) upa.getPrincipal();
 			List<CartVO> deliveryList = cartService.selectDelivery(userVO.getUsername());
+			UserDetailsVO userList =  userService.findByUserName(userVO.getUsername());
 			log.debug("여기는 딜리버리 리스트 " + deliveryList.toString());
+			log.debug("구매자 정보" + userList.toString());
+			int size = deliveryList.size();
+			model.addAttribute("USER_LIST", userList);
 			model.addAttribute("DELIVERY_LIST", deliveryList);
+			
+			model.addAttribute("LIST_COUNT",size -1);
+			
+			log.debug("딜리버리 리스트 " + deliveryList);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -120,10 +132,10 @@ public class CartController {
 	// 구매버튼 클릭 시 p_status가 cart->Deliv 로 바뀌는 메소드
 	@ResponseBody
 	@RequestMapping(value="/cart_list_buy",method=RequestMethod.POST)
-	public Integer cart_list_buy(@RequestParam("buyList[]") List<String> buyList) {
-		
+	public int cart_list_buy(@RequestParam("buyList[]") List<String> buyList) {
+		log.debug("여기는 카트에서 구매했을때 넘어가는 리스트 " + buyList);
 		Integer ret = cartService.cart_to_delivery(buyList);
-		log.debug("여기는 구매목록 " + ret+"");
+		// log.debug("여기는 구매목록 " + ret+"");
 		return ret;
 	}
 	
@@ -174,6 +186,42 @@ public class CartController {
 			
 		return "redirect:/cart/view";
 	}
+	
+	@ResponseBody
+	@RequestMapping(value="/recipient_update", method=RequestMethod.POST)
+	public int recipient_update(@RequestParam("bk_id")String bk_id, CartVO cartVO) {
+		
+		long longSeq = Long.valueOf(bk_id);
+		log.debug("여기는 컨트롤러 구매목록 업데이트" + longSeq);
+		int ret = cartService.recipient_update(longSeq);
+		
+		return ret;
+	}
+	
+		// 결제완료 상품을 보여주는 메서드
+		@RequestMapping(value="/payment_list",method=RequestMethod.GET)
+		public String payment_list(Principal principal, Authentication authen, Model model) {
+
+			UsernamePasswordAuthenticationToken upa = (UsernamePasswordAuthenticationToken) principal;		
+			try {
+				UserDetailsVO userVO = (UserDetailsVO) upa.getPrincipal();
+				List<CartVO> deliveryList = cartService.selectDelivery(userVO.getUsername());
+				UserDetailsVO userList =  userService.findByUserName(userVO.getUsername());
+				log.debug("여기는 딜리버리 리스트 " + deliveryList.toString());
+				log.debug("구매자 정보" + userList.toString());
+				int size = deliveryList.size();
+				model.addAttribute("USER_LIST", userList);
+				model.addAttribute("DELIVERY_LIST", deliveryList);
+				
+				model.addAttribute("LIST_COUNT",size -1);
+				
+				log.debug("결제 리스트 " + deliveryList);
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+			
+			return "payment_list";
+		}
 	
 	
 	

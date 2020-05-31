@@ -93,7 +93,7 @@ public class UserController {
 		log.debug("컨트롤러 패스워드"+password);
 		int ret = userService.update(userVO, password);
 		log.debug("컨트롤러 마이페이지 포스트 " + ret+"");
-		return "redirect:/";
+		return "redirect:/logout";
 	}
 	
 	//

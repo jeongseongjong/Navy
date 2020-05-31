@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.biz.navy.dao.CsDao">
+
+	<select id="countSearch" resultType="Long">
+		SELECT COUNT(*) FROM tbl_cs
+		<where>
+			<foreach collection="searchList" item="search" separator="OR">
+				cs_title LIKE '%' || #{search,jdbcType=VARCHAR} || '%'
+			</foreach>
+		</where>
+		
+	</select>
+	
+	<select id="findBySearchNameAndPaging" resultMap="productAndSize">
+		SELECT * FROM
+		(
+			SELECT /*+ FIRST_ROWS 100 */ ROWNUM AS NUM, IP.* FROM
+			(
+				SELECT /*+ INDEX_DESC(C) FIRST_ROWS */ * FROM tbl_cs C
+				<where>
+					<foreach collection="searchList" item="search" separator="OR">
+						cs_title LIKE '%' || #{search,jdbcType=VARCHAR} || '%'		
+					</foreach>
+				</where>
+			) IP
+			WHERE ROWNUM &lt; = #{pageVO.limit,jdbcType=VARCHAR}
+		) 
+		WHERE NUM &gt; = #{pageVO.offset,jdbcType=VARCHAR}	
+	
+	
+	</select>
+
+
+	<select id="countAll" resultType="Long">
+		SELECT COUNT(*) FROM tbl_cs
+	</select>
+
+
+	<select id="selectAllPaging" resultType="list">
+		SELECT * FROM
+		(
+			SELECT /*+ FIRST_ROWS_100 */ ROWNUM AS NUM, IP.* FROM
+			(
+				SELECT /*+ INDEX_DESC(C) FIRST_ROWS */ * FROM tbl_cs C
+			) IP
+			WHERE ROWNUM &lt; = #{limit,jdbcType=VARCHAR}
+		)
+		WHERE NUM &gt; = #{offset,jdbcType=VARCHAR}
+	</select>
+	
+	<!-- 
+	result 태그 
+	property는 VO의 값
+	column은 테이블에 있는 칼럼
+	
+	collection 태그
+	property는 productVO의 값
+	column은 보내줄 값인데 select문의 where 조건 안의 #{}값과 일치시키기
+	ofType은 받을 VO 타입
+	select는 가져올 셀렉트문
+	 -->
+	<resultMap type="productVO" id="productAndSize">
+		<id column="id" property="id"/>
+		<result property="p_code" column="p_code"/>
+		<collection property="sizeList" column="p_code"
+				ofType="sizeVO"	select="selectSize"	/>
+	</resultMap>
+
+	<select id="selectSize" resultType="sizeVO">
+		SELECT * FROM tbl_size WHERE s_p_code = #{p_code}
+	</select>
+
+
+	
+
+
+</mapper> 

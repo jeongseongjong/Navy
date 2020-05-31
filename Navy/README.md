@@ -41,3 +41,28 @@
  * 회원수정시 주소 api 사용
   > - 회원수정 주소 api 완료
   > - 수정후에 로그아웃 후에 메인가야됨(지금은 로그인 된채로 메인으로 감)
+ * tbl_users 수정
+  > - VO (address_etc 추가)
+
+## 05-25
+ * cart -> delivery로 이동시 구매날짜 적용
+ * 장바구니 버튼 nav에 추가
+ * tbl_cart의 bk_p_buyTime 칼럼 추가
+ 
+## 05-26
+ * buyer(구매자정보 jsp 생성)
+ 
+## 05-28
+ * 장바구니 UI 적용
+  > - 장바구니 상품 qty update
+  > - 체크항목 삭제 (전체상품) / 내일 단일상품 삭제 적용해야함
+  > - 총 주문금액 합산
+  > - 구매하기 버튼 클릭시 구매목록으로 이동
+  
+## 05-29
+ * 배송 받는사람 칼럼 추가
+  	> - private String bk_recipient_name; 			// 배송 받는사람 이름
+	> - private String bk_recipient_phone; 			// 받는사람 연락처
+	> - private String bk_recipient_address;		// 받는사람 주소
+	> - private String bk_recipient_address_etc;	// 받는사람 상세주소
+	> - private String bk_recipient_message;		// 배송요청사항

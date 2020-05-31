@@ -16,7 +16,7 @@ import lombok.ToString;
 public class ProductImgVO {
 	
 	   private long p_img_seq;
-	   private int p_img_p_code;
+	   private long p_img_p_code;
 	   private String p_img_origin_name;
 	   private String p_img_upload_name;
 

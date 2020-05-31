@@ -8,6 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Service
 public class FileService {
 
@@ -21,6 +24,9 @@ public class FileService {
 	}
 
 	public String file_up(MultipartFile mFile) {
+		
+		log.debug("파일서비스 파일 경로 : "+filePath);
+		
 		
 		if(mFile == null) {
 			return null;

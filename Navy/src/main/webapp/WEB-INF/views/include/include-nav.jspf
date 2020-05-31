@@ -20,8 +20,10 @@ $(function(){
         <ul class="nav ml-auto mr-5">
           <!-- input 검색창-->
           <li class="nav-item nav-input">
-            <input class="input-style" />
-            <img src="${rootPath}/resources/img/scope.png" class="scope" />
+          	<form action="${rootPath}/product/list">
+	            <input name="search" class="input-style" />
+            	<img src="${rootPath}/resources/img/scope.png" class="scope" />
+          	</form>
           </li>
           <!-- annonimous& authentication-->
           <sec:authorize access="isAnonymous()">
@@ -42,6 +44,9 @@ $(function(){
           	<li class="nav-item">
             	<a class="nav-link" href="${rootPath}/user/mypage">mypage</a>
           	</li>
+          	<li class="nav-item">
+            	<a class="nav-link" href="${rootPath}/cart/view">cart</a>
+          	</li>
           </sec:authorize>
           <sec:authorize access="hasRole('ROLE_ADMIN')">
           <li class="nav-item">
@@ -58,6 +63,6 @@ $(function(){
       <a href="${rootPath}/" class="red-text mr-5 h-title"><h2>NAVIYA</h2></a>
       <div class="d-flex">
         <a class="nav-link black-text" href="${rootPath}/product/list">SHOP</a>
-        <a class="nav-link black-text">고객센터</a>
+        <a class="nav-link black-text" href="${rootPath}/cs/list">고객센터</a>
       </div>
     </nav>

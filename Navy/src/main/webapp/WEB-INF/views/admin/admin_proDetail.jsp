@@ -9,71 +9,94 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script>
-	$(document)
-			.ready(
-					function() {
-						let templates = '<div class="select-box">';
-						templates += '<select class="select" name="test" style="height: 30px;>';
-
-						templates += '<option value="black_s">BLACK S</option>';
-						templates += '<option value="black_m">BLACK M</option>';
-						templates += '<option value="black_l">BLACK L</option>';
-						templates += '<option value="white_s">WHITE S</option>';
-						templates += '<option value="white_m">WHITE M</option>';
-						templates += '<option value="white_l">WHITE L</option>';
-						templates += '<option value="red_s">RED S</option>';
-						templates += '<option value="red_m">RED M</option>';
-						templates += '<option value="red_l">RED L</option>';
-
-						templates += '</select>';
-						templates += ' <input type="number" style="width: 50px;" />';
-						templates += '<span class="delete-selectbox">&cross;</span>';
-						templates += '</div>';
-						$('#btn-plus').click(function() {
-							$('#select-container').append(templates);
-						});
-
-						$(document).on('click', '.delete-selectbox',
-								function() {
-									$(this).closest('div').remove();
-								});
-					});
+$(function(){
+	// 상품 수정 페이지 이동
+	$(document).on("click",".ad-pro-update",function(){
+		let p_code = $(this).data("id")
+		document.location.href="${rootPath}/admin/pro_update/"+p_code
+		/*
+		$.get("${rootPath}/admin/pro_update/" + p_code,
+				function(result){
+			$("#admin_content").html(result)
+		})
+		*/
+	})
+	
+	// 상품 1개 삭제
+	$(document).on("click",".ad-pro-delete",function(){
+		let p_code = $(this).data("id")
+		document.location.href="${rootPath}/admin/pro_delete/"+p_code
+		/*
+		$.get("${rootPath}/admin/pro_delete/" + p_code,
+				function(result){
+			document.location.replace("${rootPath}/admin/pro_delete/" + p_code)
+		})
+		*/
+	})
+	
+	$(".ad-pro-list").click(function(){
+		document.location.href="${rootPath}/admin/productlist"
+	})
+})
 </script>
 </head>
 <body>
+<%@ include file = "/WEB-INF/views/include/include-nav.jspf" %>
+<article class="all-browsers">
+      <div class="hr-sect">ADMIN</div>
+
+      <div class="container">
+        <!--sidebar-->
+        <div class="row">
+          <aside
+            class="col-2 px-0"
+            id="left"
+            style="top: 250px; position: fixed; left: 0;"
+          >
+            <div class="list-group w-100">
+				<%@ include file ="/WEB-INF/views/admin/admin-include-nav.jspf" %>
+            </div>
+          </aside>
+			<main class="col offset-2 h-100 user-main" id="admin_content">
 		<!--detail pages 정보 -->
 		<div class="container">
 			<div class="row"  style="flex-wrap:nowrap">
-				<img src="../img/dress1.jpg"
-					style="width: 450px; height: 400px; margin-right: 70px;" />
-					${productVO.p_image}
+				<c:choose>
+					<c:when test="${empty productVO.p_image}">
+						<img src="../img/dress1.jpg"
+							style="width: 450px; height: 400px; margin-right: 70px;" />
+					</c:when>
+					<c:otherwise>
+						<img src="${rootPath}/images/${productVO.p_image}"
+							style="width: 450px; height: 400px; margin-right: 70px;" />
+					</c:otherwise>
+				</c:choose>
+
 				<!--detail box-->
 				<div class="detail-box"
 					style="margin-left: 70px; margin-bottom: 100px;">
 					<div class="mb-3 mt-5">
 						<h2 class="black-text">${productVO.p_name}</h2>
-						<span>${productVO.p_price}won</span>
+						<span>${productVO.p_price}원</span>
 					</div>
 					<hr style="border: 1px solid #252c41;" />
 					<br />
-
 					<div class="col">
-						<label class="mr-5">COLOR/SIZE</label>
-						<ul class="menu">
-							<li>BLACK S(20)</li>
-							<li>BLACK M(20)</li>
-							<li>BLACK L(20)</li>
-							<li>RED S(20)</li>
-							<li>RED M(20)</li>
-							<li>RED L(20)</li>
-							<li>WHITE S(20)</li>
-							<li>WHITE M(20)</li>
-							<li>WHITE L(20)</li>
+						<label class="mr-5">SIZE/COLOR</label>
+						<!-- <ul class="menu"> -->
+						<ul>
+							<c:forEach items="${productVO.sizeList}" var="size">
+								<c:if test="${!empty size.colorList}">
+									<c:forEach items="${size.colorList}" var="color">
+									<li> ${size.s_size} ${color.c_color} (${color.c_qty})</li>
+									</c:forEach>
+								</c:if>
+							</c:forEach>
+							
 						</ul>
 					</div>
 					<div class="col mb-5">
-						<label class="mr-5">QUAN·TITY</label> <span>180개</span> <br /> <label
-							class="mr-5">TOTAL</label> <span>2,700,000won</span>
+						<label class="mr-5">QUAN·TITY</label> <span>${productVO.p_qty}개</span> <br /> 
 					</div>
 
 					<!-- 장바구니 상품 button -->
@@ -83,13 +106,24 @@
 						<!-- 회원일시 보이는 버튼-->
 						<button class="mr-2 bt-bbs-style ad-pro-update" type="button"
 							data-id="${productVO.p_code}">수정</button>
+						<!-- 삭제버튼 없애기
 						<button class="mr-2 bt-bbs-style ad-pro-delete" type="button"
 							data-id="${productVO.p_code}">삭제</button>
+							 -->
 					</div>
+					<c:forEach items="${productVO.proDImgList}" var="img">
+						<img src="${rootPath}/images/${img.p_img_upload_name}"
+								style="width: 250px; height: 200px; margin-right: 70px;" />
+					</c:forEach>
 				</div>
 			</div>
 		</div>
 		<!-- end -->
-
+			</main>
+          
+        </div>
+      </div>
+    </article>
 </body>
+<%@ include file = "/WEB-INF/views/include/include-footer.jspf" %>
 </html>

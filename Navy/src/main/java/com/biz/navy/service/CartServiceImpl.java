@@ -1,9 +1,11 @@
 package com.biz.navy.service;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.biz.navy.dao.CartDao;
 import com.biz.navy.domain.CartListVO;
@@ -13,12 +15,24 @@ import com.biz.navy.domain.SizeVO;
 
 import lombok.RequiredArgsConstructor;
 
-@Service
+@Service("cartService")
 @RequiredArgsConstructor
 public class CartServiceImpl implements CartService{
 
 	private final CartDao cartDao;
 
+	@Override
+	public List<CartVO> selectAll() {
+		// TODO Auto-generated method stub
+		return cartDao.selectAll();
+	}
+
+	@Override
+	public List<CartVO> selectByStatus(String status) {
+
+		return cartDao.selectByStatus(status);
+	}
+	
 	@Override
 	public int cartCount() {
 
@@ -38,6 +52,7 @@ public class CartServiceImpl implements CartService{
 	}
 
 	@Override
+//	@Transactional
 	public List<CartVO> selectDelivery(String username) {
 
 		return cartDao.selectDelivery(username);
@@ -68,7 +83,8 @@ public class CartServiceImpl implements CartService{
 		return cartDao.cart_list_delete(seqList);
 	}
 
-	@Transactional
+//	@Transactional
+	@Override
 	public void cart_list_qty_update(CartListVO cartList) {
 		
 		int nSize = cartList.getP_qty().size();
@@ -79,9 +95,23 @@ public class CartServiceImpl implements CartService{
 		
 	}
 	@Override
-	public Integer cart_to_delivery(List<String> buyList) {
+//	@Transactional
+	public int cart_to_delivery(List<String> buyList) {
 
-		return cartDao.cart_to_delivery(buyList);
+		LocalDateTime ldt = LocalDateTime.now();
+		DateTimeFormatter dt = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+		
+		String buyTime = ldt.format(dt).toString();
+		List<CartVO> cartList = new ArrayList<CartVO>();
+		for(String s : buyList) {
+			
+			CartVO cartVO = cartDao.findbyBkId(s);
+			
+			cartVO.setBk_p_buyTime(buyTime);
+			
+			cartList.add(cartVO);
+		}
+		return cartDao.cart_to_delivery(cartList);
 	}
 
 	@Override
@@ -91,15 +121,27 @@ public class CartServiceImpl implements CartService{
 	}
 
 	// s_p_code로 사이즈를 조회하는 코드
+	@Override
 	public List<SizeVO> findBySpCode(long s_p_code){
 		
 		return cartDao.findBySpCode(s_p_code);
 	}
 
+	@Override
 	public List<ColorVO> findByCsCode(long c_s_code) {
 
 		return cartDao.findByCsCode(c_s_code);
 	}
+
+	@Override
+	public int recipient_update(long bk_id) {
+
+		return cartDao.recipient_update(bk_id);
+	}
+	
+	
+
+
 
 	
 	
