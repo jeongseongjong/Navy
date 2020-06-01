@@ -112,6 +112,7 @@ public class ProductServiceImpl implements ProductService {
 		log.debug("PCODE 최대값:" + maxPCode);
 		// 가장 큰 SCODE값 가져오기
 
+
 		// PCODE + 1
 		maxPCode++;
 

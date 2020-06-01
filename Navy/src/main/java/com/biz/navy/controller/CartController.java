@@ -115,9 +115,12 @@ public class CartController {
 			UserDetailsVO userList =  userService.findByUserName(userVO.getUsername());
 			log.debug("여기는 딜리버리 리스트 " + deliveryList.toString());
 			log.debug("구매자 정보" + userList.toString());
-			
+			int size = deliveryList.size();
 			model.addAttribute("USER_LIST", userList);
 			model.addAttribute("DELIVERY_LIST", deliveryList);
+			
+			model.addAttribute("LIST_COUNT",size -1);
+			
 			log.debug("딜리버리 리스트 " + deliveryList);
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -183,6 +186,42 @@ public class CartController {
 			
 		return "redirect:/cart/view";
 	}
+	
+	@ResponseBody
+	@RequestMapping(value="/recipient_update", method=RequestMethod.POST)
+	public int recipient_update(@RequestParam("bk_id")String bk_id, CartVO cartVO) {
+		
+		long longSeq = Long.valueOf(bk_id);
+		log.debug("여기는 컨트롤러 구매목록 업데이트" + longSeq);
+		int ret = cartService.recipient_update(longSeq);
+		
+		return ret;
+	}
+	
+		// 결제완료 상품을 보여주는 메서드
+		@RequestMapping(value="/payment_list",method=RequestMethod.GET)
+		public String payment_list(Principal principal, Authentication authen, Model model) {
+
+			UsernamePasswordAuthenticationToken upa = (UsernamePasswordAuthenticationToken) principal;		
+			try {
+				UserDetailsVO userVO = (UserDetailsVO) upa.getPrincipal();
+				List<CartVO> deliveryList = cartService.selectDelivery(userVO.getUsername());
+				UserDetailsVO userList =  userService.findByUserName(userVO.getUsername());
+				log.debug("여기는 딜리버리 리스트 " + deliveryList.toString());
+				log.debug("구매자 정보" + userList.toString());
+				int size = deliveryList.size();
+				model.addAttribute("USER_LIST", userList);
+				model.addAttribute("DELIVERY_LIST", deliveryList);
+				
+				model.addAttribute("LIST_COUNT",size -1);
+				
+				log.debug("결제 리스트 " + deliveryList);
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+			
+			return "payment_list";
+		}
 	
 	
 	

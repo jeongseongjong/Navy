@@ -38,7 +38,8 @@ public interface ProductDao {
 	
 	// 상품 사이즈 조회
 	@Select("SELECT * FROM tbl_size WHERE s_p_code = #{s_p_code}")
-	@Results(value= {@Result(property = "s_code", column = "s_code"),
+	@Results(value= {
+			@Result(property = "s_code", column = "s_code"),
 			@Result(property = "colorList", column = "s_code", javaType = List.class, many = @Many(select = "getProColor"))})
 	public List<SizeVO> getProSize(long s_p_code);
 	
@@ -75,7 +76,7 @@ public interface ProductDao {
 	public void insertWithSize(List<SizeVO> sizeList);
 
 	@Select("SELECT MAX(P_CODE) FROM tbl_product")
-	public int findByMaxPCode();
+	public Integer findByMaxPCode();
 
 	@Select("SELECT MAX(S_CODE) FROM tbl_size")
 	public int findByMaxSizeCode();

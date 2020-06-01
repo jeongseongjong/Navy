@@ -56,6 +56,18 @@
 	</foreach>
 	
 	)
-	
 	</update>
+	
+	<update id="recipient_update" parameterType="cartVO">
+		UPDATE tbl_cart SET
+			bk_recipient_name = #{bk_recipient_name},
+			bk_recipient_phone = #{bk_recipient_phone},
+			bk_recipient_address = #{bk_recipient_address,jdbcType=VARCHAR},
+			bk_recipient_address = #{bk_recipient_address,jdbcType=VARCHAR},
+			bk_recipient_message = #{bk_recipient_message,jdbcType=VARCHAR}
+
+		WHERE bk_id = #{bk_id}
+	</update>
+	
+	
 </mapper> 

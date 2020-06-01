@@ -34,6 +34,12 @@ public class CartVO {
 	private String bk_p_color;	// 상품 색상
 	private String bk_p_buyTime;// 구매 시각
 	
+	private String bk_recipient_name; 			// 배송 받는사람 이름
+	private String bk_recipient_phone; 			// 받는사람 연락처
+	private String bk_recipient_address;		// 받는사람 주소
+	private String bk_recipient_address_etc;	// 받는사람 상세주소
+	private String bk_recipient_message;		// 배송 요청사항
+	
 	
  
 }

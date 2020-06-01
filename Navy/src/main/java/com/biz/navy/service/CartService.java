@@ -53,6 +53,8 @@ public interface CartService {
 	// size에서 color코드를 받아오는 메서드
 	public List<ColorVO> findByCsCode(long c_s_code);
 
+	// 배송정보 업데이트
+	public int recipient_update(long bk_id);
 
 	
 }
