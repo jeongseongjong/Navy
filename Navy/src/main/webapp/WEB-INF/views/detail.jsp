@@ -22,7 +22,10 @@
 				
 			})
 			.done(function(colorList) {
-						
+				
+				// color select의 전체 options를 삭제
+				$("#colorList option").remove()
+				
 				if(colorList == "FAIL") {
 					alert("통신오류")
 				} else if(!colorList.length) {
@@ -44,10 +47,6 @@
 			
 			})
 		
-		
-		
-		
-		
 
 		$(document).ready(function() {
 			$(".dropdownbox").click(function() {
@@ -61,8 +60,8 @@
 		
 		$("#btn-cart").click(function() {
 			let p_qty = parseInt($("#p_qty").val())
-			let p_color = $("#p_color").val()
-			let p_size = $("#p_size").val()
+			let p_color = $("#colorList").val()
+			let p_size = $("#sizeList").val()
 			alert(p_size)
 			alert(p_color)
 			alert("${productVO.p_name}")
@@ -150,22 +149,6 @@
 					
 				</select>
 
-			<!-- 
-				<div class="col">
-	  				<label class="mr-5">SIZE/COLOR</label>
-	  				<form:form modelAttribute="productVO">
-	  					<form:select id="p_size" path="m_size_list" multiple="false" class="menu">
-							<form:option value="SIZE를 선택하세요" />
-							<form:options items="${m_size_list}" itemLabel="o_name" itemValue="o_standard" />
-						</form:select>
-						<form:select id="p_color" path="m_color_list" multiple="false">
-							<form:option value="COLOR를 선택하세요" />
-							<form:options items="${m_color_list}" itemLabel="o_name" itemValue="o_standard" />
-						</form:select>
-	  				</form:form>
-				</div>
-			 -->
-				
 				<div class="col mb-5">
 				  	<label class="mr-5">QUAN·TITY</label>
 				  	<input id="p_qty" type="number" class="text-center" style="width: 80px;" />

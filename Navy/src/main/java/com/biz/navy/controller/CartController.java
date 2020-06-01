@@ -189,11 +189,10 @@ public class CartController {
 	
 	@ResponseBody
 	@RequestMapping(value="/recipient_update", method=RequestMethod.POST)
-	public int recipient_update(@RequestParam("bk_id")String bk_id, CartVO cartVO) {
-		
-		long longSeq = Long.valueOf(bk_id);
-		log.debug("여기는 컨트롤러 구매목록 업데이트" + longSeq);
-		int ret = cartService.recipient_update(longSeq);
+	public int recipient_update(@RequestParam("bk_id")String[] bk_id, CartVO cartVO) {
+		long seq = Long.valueOf(bk_id);
+		log.debug("여기는 컨트롤러 구매목록 업데이트" + bk_id);
+		int ret = cartService.recipient_update(bk_id);
 		
 		return ret;
 	}
@@ -207,7 +206,7 @@ public class CartController {
 				UserDetailsVO userVO = (UserDetailsVO) upa.getPrincipal();
 				List<CartVO> deliveryList = cartService.selectDelivery(userVO.getUsername());
 				UserDetailsVO userList =  userService.findByUserName(userVO.getUsername());
-				log.debug("여기는 딜리버리 리스트 " + deliveryList.toString());
+				log.debug("여기는 페이먼트 리스트" + deliveryList.toString());
 				log.debug("구매자 정보" + userList.toString());
 				int size = deliveryList.size();
 				model.addAttribute("USER_LIST", userList);

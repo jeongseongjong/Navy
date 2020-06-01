@@ -16,7 +16,7 @@ import lombok.ToString;
 public class CartVO {
 
 	// 장바구니 들어갈 seq값
-	private long bk_id;			// 고객 id
+	private long bk_id;	
 	
 	private String username;	// 회원 이름
 	

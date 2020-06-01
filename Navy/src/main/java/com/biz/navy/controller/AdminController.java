@@ -179,6 +179,7 @@ public class AdminController {
 			MultipartHttpServletRequest files
 			) {
 		int ret = proService.insert(productVO, size, color, qty, files);
+		log.debug("관리자가 상품 등록하는 서비스 " + ret);
 		
 		return "redirect:/admin/pro_detail_view/"+productVO.getP_code();
 	}

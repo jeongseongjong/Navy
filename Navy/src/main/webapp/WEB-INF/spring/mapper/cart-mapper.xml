@@ -66,7 +66,12 @@
 			bk_recipient_address = #{bk_recipient_address,jdbcType=VARCHAR},
 			bk_recipient_message = #{bk_recipient_message,jdbcType=VARCHAR}
 
-		WHERE bk_id = #{bk_id}
+			WHERE bk_id IN (
+			<foreach collection="list" item="cart" separator=", ">
+				#{cart.bk_id}
+			</foreach>
+	
+	)
 	</update>
 	
 	
