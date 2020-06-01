@@ -1,3 +1,151 @@
+#description .review .no-image::before,
+#description .review .optiondetail_clickable::after,
+#optionDetail .nxt,
+#optionDetail .nxt:focus,
+#optionDetail .nxt:hover,
+#optionDetail .prv,
+#optionDetail .prv:focus,
+#optionDetail .prv:hover,
+#view-default-scene-optiondetail .hd .close::after,
+.adult_certify .pop_ct i,
+.btn_coupon_down .ico,
+.btn_coupon_image .ico::after,
+.btn_ex_link::after,
+.btn_go::after,
+.btn_map_view_txt::after,
+.btn_view_all span::before,
+.calendar_wrap .calendar_header button.btn_next span,
+.calendar_wrap .calendar_header button.btn_next.active span,
+.calendar_wrap .calendar_header button.btn_prev span,
+.calendar_wrap .calendar_header button.btn_prev.active span,
+.card_sale_new .another_view::after,
+.card_sale_new .card_sale_icon,
+.chk_box input[type="checkbox"]:checked + .ico,
+.customer_satisfaction_tip > .btn_help_tip,
+.deal_info_summary .deal_partner.lotte_department,
+.deal_info_summary .deal_partner.lotte_outlet,
+.deal_topinfo .ct_wrp .another_view:after,
+.deal_topinfo .ct_wrp .lst_txt li.point .grade_star,
+.deal_topinfo .ct_wrp .lst_txt li.point .grade_star .star,
+.deal_topinfo .ct_wrp.header .lst_btn > li > button.btn_share i,
+.deal_topinfo .ct_wrp.header .lst_btn > li > button.btn_share.on i,
+.deal_topinfo .ct_wrp.title .partners.lotte_department,
+.deal_topinfo .ct_wrp.title .partners.outlet,
+.default_tip .btn_help_tip,
+.default_tip .btn_sale_tip .inner span,
+.designated__wrap .ico_noti,
+.err-wrap .ic,
+.err-wrap.err_adult .ic,
+.kc_mark_area .item .in > div.mark i.black,
+.kc_mark_area .item .in > div.mark i.blue,
+.kc_mark_area .item .in > div.mark i.yellow,
+.kc_mark_area .item .in > div.txt dl dd a::after,
+.kc_mark_area .item .in > div.txt dl dd button::after,
+.order_top .dep-sel .calendar_wrap .calendar_header .btn_next span,
+.order_top .dep-sel .calendar_wrap .calendar_header .btn_next.active span,
+.order_top .dep-sel .calendar_wrap .calendar_header .btn_prev span,
+.order_top .dep-sel .calendar_wrap .calendar_header .btn_prev.active span,
+.pagination .first_page,
+.pagination .first_page:focus,
+.pagination .first_page:hover,
+.pagination .last_page,
+.pagination .last_page:focus,
+.pagination .last_page:hover,
+.pagination .next_page,
+.pagination .next_page:focus,
+.pagination .next_page:hover,
+.pagination .prev_page,
+.pagination .prev_page:focus,
+.pagination .prev_page:hover,
+.photo_review_area .btn_review.next,
+.photo_review_area .btn_review.prev,
+.pop .hd .close:before,
+.pop.card_benefit .dfn_card .benefit_no_txt::before,
+.pop.card_benefit .dfn_card .card_caution p::before,
+.pop.coupon_benefit .lst_coupon .coupon .avail::before,
+.pop.coupon_benefit .lst_coupon .coupon.disabled::before,
+.pop.coupon_benefit .lst_coupon .coupon::before,
+.pop.delivery_info .delivery_info_detail .btn_guarantee .guarantee_close::after,
+.pop.delivery_info .delivery_info_detail .btn_guarantee .guarantee_more::after,
+.pop.report_write .check_lst ul li label input[type="radio"]::before,
+.pop.report_write .check_lst ul li label input[type="radio"]:checked::before,
+.pop.review_img .hd .close:before,
+.pop.review_img .img_detail .btn_slide_next,
+.pop.review_img .img_detail .btn_slide_next:focus,
+.pop.review_img .img_detail .btn_slide_next:hover,
+.pop.review_img .img_detail .btn_slide_prev,
+.pop.review_img .img_detail .btn_slide_prev:focus,
+.pop.review_img .img_detail .btn_slide_prev:hover,
+.pop_ct_detail .btn_guarantee .guarantee_close::after,
+.pop_ct_detail .btn_guarantee .guarantee_more::after,
+.pop_toolbox .btn_clse::after,
+.popup.popup_review .img_detail .btn_slide_next,
+.popup.popup_review .img_detail .btn_slide_next:focus,
+.popup.popup_review .img_detail .btn_slide_next:hover,
+.popup.popup_review .img_detail .btn_slide_prev,
+.popup.popup_review .img_detail .btn_slide_prev:focus,
+.popup.popup_review .img_detail .btn_slide_prev:hover,
+.popup_coupon_unit::after,
+.price_tip .btn_help_tip,
+.price_tip .btn_sale_tip .inner span,
+.prod .amount button.minus,
+.prod .amount button.minus.disabled,
+.prod .amount button.minus:active,
+.prod .amount button.minus:focus,
+.prod .amount button.minus:hover,
+.prod .amount button.plus,
+.prod .amount button.plus.disabled,
+.prod .amount button.plus:active,
+.prod .amount button.plus:focus,
+.prod .amount button.plus:hover,
+.prod .del,
+.product_notice .notice_view::after,
+.product_notice dt > a::after,
+.product_notice > ul > li.open .notice_view::after,
+.product_notice > ul > li.open dt > a::after,
+.qna_lst > li .reply_area .reply_list ul li .member_info::before,
+.qna_txt.secret::before,
+.qna_wrp .no_ct_txt .btn_write_go::before,
+.review_grade_mark,
+.review_grade_point,
+.review_opt > ul > li.soldout:after,
+.safety_area .btn_confirm::after,
+.share-lst li .share i.band::before,
+.share-lst li .share i.facebook::before,
+.share-lst li .share i.kakaostory::before,
+.share-lst li .share i.kakaotalk::before,
+.share-lst li .share i.line::before,
+.share-lst li .share i.sms::before,
+.share-lst li .share i.url::before,
+.sticky .inner .close,
+.sub-guide-ico,
+.tbl_req tbody th span.ic_exc::before,
+.tbl_req tbody th span.ic_ref::before,
+.timer.time_end .timer_watch_icon,
+.timer.time_start .timer_watch_icon,
+.tmde-template-wrapper
+  .tmde-template
+  .tmde-template-colmn
+  .tmde-opt-thmb
+  .sold_out
+  .txt_sold,
+.wrap_prod_bn .another-deal-wrap .tit_align_top .btn_more_info::after,
+.wrap_prod_bn .another-deal-wrap .tit_align_top .ico_bundled_box,
+.wrap_prod_bn .another-deal-wrap .tit_align_top .sm-notice .desc::after,
+.wrap_prod_bn .another-deal-wrap .tit_align_top .sm-notice .noticebox::after,
+a.btn.gray.btn_arr::after,
+a.btn.gray2.btn_arr::after,
+a.btn.orange.btn_arr::after,
+button.btn.gray.btn_arr::after,
+button.btn.gray2.btn_arr::after,
+button.btn.orange.btn_arr::after,
+i.btn.gray.btn_arr::after,
+i.btn.gray2.btn_arr::after,
+i.btn.orange.btn_arr::after {
+  display: inline-block;
+  overflow: hidden;
+}
+
 /* title font*/
 .h-title {
   text-decoration: none;
@@ -11,65 +159,306 @@
   margin: 30px auto;
   max-width: 600px;
 }
-/* 
-.dropdownbox {
-  width: 250px;
 
-  background: white;
+/* option css*/
+.tit_align_left {
+  margin-bottom: 12px;
+  font-size: 14px;
+  line-height: 26px;
   color: #252c41;
-  cursor: pointer;
 }
 
-.dropdownbox > p {
-  padding: 5px 10px;
-  font-size: 1.25em;
-  line-height: 1.4em;
-  user-select: none;
-  -moz-user-select: none;
-  -khtml-user-select: none;
-}
-
-ul.menu {
+.prch-option .dep-sel {
   position: relative;
-  margin: 0 auto;
-  width: 400px;
+  background-color: white;
+}
+
+.prch-option .dep-sel {
+  display: block;
   overflow: hidden;
-  height: 0;
-  margin-top: 10px;
-  -webkit-transition: all 0.3s ease-in;
-  -moz-transition: all 0.3s ease-in;
-  -o-transition: all 0.3s ease-in;
-  transition: all 0.3s ease-in;
-  background: white;
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  height: 40px;
+  padding: 0 45px 0 15px;
+  border: 1px solid #b2b4b9;
+  font-size: 12px;
+  line-height: 40px;
   color: #252c41;
-  cursor: pointer;
-  user-select: none;
-  -moz-user-select: none;
-  -khtml-user-select: none;
+  text-align: left;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin-bottom: 10px;
 }
 
-ul.menu li {
-  list-style: none;
-  padding: 2px 10px;
-  font-size: 1em;
-  line-height: 1.4em;
-  -webkit-transition: all 0.3s ease-in;
-  -moz-transition: all 0.3s ease-in;
-  -o-transition: all 0.3s ease-in;
-  transition: all 0.3s ease-in;
-  border-bottom: 1px dotted rgb(254, 238, 223);
+.prod {
+  padding-left: 0;
 }
-ul.menu li:hover {
-  padding-left: 20px;
-  color: rgb(129, 111, 127);
-  background: rgb(254, 238, 223);
+.prch-option .dep-sel option.purchase_selector {
+  overflow-x: hidden;
+  overflow-y: auto;
+  z-index: 100;
+  box-sizing: border-box;
+  width: 100%;
+  max-height: 240px;
+  border: 1px solid #252c41;
+  border-top: 0;
+  background-color: #fff;
+}
+.prod li {
+  position: relative;
+  padding: 12px 15px 15px 14px;
+  border: 1px solid #f2f3f5;
+  border-top: 0;
+  border-bottom-color: #b2b4b9;
+  background-color: #f8f8f8;
+  margin-top: 10px;
 }
 
-.menu.showMenu {
-  height: 165px;
-} */
+.prod li:first-child {
+  margin-top: 14px;
+}
+
+.prod .tit {
+  /* display: block; */
+  margin-bottom: 18px;
+  padding-right: 35px;
+  font-size: 0;
+  line-height: 18px;
+  color: #252c41;
+}
+
+.prod .tit > span {
+  display: inline;
+  position: relative;
+  font-size: 14px;
+  vertical-align: middle;
+}
+
+.prod .tit > span:not(:first-child) {
+  margin-left: 6px;
+  padding-left: 6px;
+}
+
+.prod .tit > span:not(:first-child)::before {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 1px;
+  height: 11px;
+  background-color: #b2b4b9;
+  transform: translateY(-50%);
+  content: "";
+}
+
+.prod .del {
+  position: absolute;
+  top: 5px;
+  right: 4px;
+  width: 28px;
+  height: 28px;
+  background: url("./img/del.jpg");
+  background-size: cover;
+  font-size: 0;
+  border: 0;
+  outline: 0;
+}
+
+.blind {
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  opacity: 0;
+  clip: rect(0, 0, 0, 0);
+}
+
+.prod .middle_wrap {
+  float: left;
+  clear: both;
+  position: relative;
+  width: 100%;
+  margin-top: 15px;
+}
+
+.prod .price_area {
+  float: right;
+  position: relative;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.prod .price_area .price {
+  color: #252c41;
+  text-align: right;
+  vertical-align: middle;
+}
+
+.prod .price_area .price .total_price {
+  height: 26px;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 26px;
+}
+
+.prod .price_area .price .prmt_discount {
+  margin-left: 2px;
+  color: #252c41;
+}
+
+.prod .price_area .price .total_price strong {
+  position: relative;
+  top: 1px;
+  margin-right: 1px;
+  font-size: 13px;
+}
+
+.prod .price_area .price .prmt_discount strong {
+  display: inline-block;
+}
+
+.prod .amount {
+  position: absolute;
+  bottom: -3px;
+  font-size: 0;
+}
+
+.prod .amount button.minus {
+  width: 20px;
+  height: 20px;
+  background: url("./img/minus.jpg");
+  background-size: cover;
+  border: 0;
+  outline: 0;
+  border: 1px solid #b2b4b9;
+}
+
+.prod .amount button,
+.prod .amount label {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.prod .amount label {
+  box-sizing: border-box;
+  width: 28px;
+  height: 20px;
+  border-top: 1px solid #b2b4b9;
+  border-bottom: 1px solid #b2b4b9;
+  background-color: #fff;
+  line-height: 20px;
+  text-align: center;
+}
+
+.prod .amount label input,
+.prod .amount label strong {
+  display: inline-block;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 20px;
+  color: #252c41;
+  text-align: center;
+  outline: 0;
+}
+
+.prod .amount button.plus {
+  width: 20px;
+  height: 20px;
+  background: url("./img/plus.jpg");
+  background-size: cover;
+  border: 0;
+  outline: 0;
+  border: 1px solid #b2b4b9;
+}
+
+.prod .prod_avail_count {
+  display: block;
+  clear: both;
+  padding: 8px 0 0;
+  font-size: 12px;
+  line-height: 1;
+  color: #b2b4b9;
+}
+
+/* 총금액*/
+.opt_slt_price_box {
+  padding: 24px 0 0;
+  background-color: #fff;
+}
+
+.opt_slt_price_box .item {
+  line-height: 1;
+  zoom: 1;
+}
+
+.opt_slt_price_box .item .tit{
+  display: block;
+  float: left;
+  font-size: 14px;
+  color: #252c41;
+}
+
+.opt_slt_price_box .item.total .tit{
+  margin-top: 10px;
+}
+
+.opt_slt_price_box .item .num{
+  display: block;
+  float: right;
+  font-weight: 600;
+  font-size: 18px;
+  color: #252c41;
+}
+
+.opt_slt_price_box .item.total .num{
+font-size: 20px;
+color: #f1404b;
+}
+
+.opt_slt_price_box .item .num strong{
+  display: inline-block;
+  position: relative;
+  top: 2px;
+  margin-right: 1px;
+  font-size: 25px;
+
+}
 
 /* 버튼 스타일 */
+
+.ct_wrp.order_btn{
+  padding-top: 25px;
+}
+
+.ct_wrp .ct{
+  position: relative;
+  font-size: 14px;
+  line-height: 26px;
+  color: #252c41;
+}
+
+.purchase_list_box{
+  font-size: 0;
+}
+
+
+.lst_order_btn li{
+
+  display: flex;
+}
+
+.col_2{
+  float: left;
+  box-sizing: border-box;
+}
+
 .bt-css {
   border: none;
   background-color: white;
