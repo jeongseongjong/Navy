@@ -100,10 +100,18 @@ public class ProductServiceImpl implements ProductService {
 		}
 
 		// 가장 큰 PCODE값 가져오기
-		int maxPCode = proDao.findByMaxPCode();
+		int maxPCode = 0;
+		int maxSCode = 0;
+		try {
+			maxPCode = proDao.findByMaxPCode();
+			maxSCode = proDao.findByMaxSizeCode();
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 		log.debug("PCODE 최대값:" + maxPCode);
 		// 가장 큰 SCODE값 가져오기
-		int maxSCode = proDao.findByMaxSizeCode();
+
 
 		// PCODE + 1
 		maxPCode++;

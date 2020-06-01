@@ -134,7 +134,7 @@ public class CartServiceImpl implements CartService{
 	}
 
 	@Override
-	public int recipient_update(long bk_id) {
+	public int recipient_update(String[] bk_id) {
 
 		return cartDao.recipient_update(bk_id);
 	}
