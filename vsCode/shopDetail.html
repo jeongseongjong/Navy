@@ -41,17 +41,93 @@
         $(this).parent().addClass("on").siblings().removeClass("on");
         return false;
       });
+
+      $(document).on("change", "#color", function () {
+        if ($("#color").val() === "COLOR") {
+          return false;
+        }
+        let select_ck = $("#select_ck").val();
+        let color = $("#color").val();
+        $(".prod").append(`
+        <li>
+        <span class="tit">
+          <span>GUCCI DRESS/${select_ck}/${color}</span>
+          <span class="stock">15개 남음</span>
+          </span>
+          <button type="button" class="del">
+            <i class="blind">삭제</i>
+          </button>
+          <div class="middle_wrap">
+            <div class="price_area">
+              <div class="price">
+                <div class="total_price">
+                  <span class="prmt_discount">
+                    <strong>1,750,000</strong>
+                    won
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="amount">
+              <button class="minus " type="button">
+                <i class="blind">수량감소</i>
+              </button>
+              <label>
+                <input type="text" value="1">
+              </label>
+              <button class="plus" type="button">
+                <i class="blind">수량증가</i>
+              </button>
+            </div>
+          </div>
+          <span class="prod_avail_count">100개 구매가능</span>
+        </li>
+        `);
+      });
+
+      $(".starRev span").click(function () {
+        $(this).parent().children("span").removeClass("on");
+        $(this).addClass("on").prevAll("span").addClass("on");
+        return false;
+      });
     });
 
     function categoryChange(e) {
-      var size_s = ["BLACK", "RED", "WHITE", "BLUE", "GREEN", "GRAY", "YELLOW"];
-      var size_m = ["BLACK", "RED", "WHITE", "BLUE", "GREEN", "GRAY", "YELLOW"];
-      var size_l = ["BLACK", "RED", "WHITE", "BLUE", "GREEN", "GRAY", "YELLOW"];
-      var target = document.getElementById("size");
+      var size_s = [
+        "COLOR",
+        "BLACK",
+        "RED",
+        "WHITE",
+        "BLUE",
+        "GREEN",
+        "GRAY",
+        "YELLOW",
+      ];
+      var size_m = [
+        "COLOR",
+        "BLACK",
+        "RED",
+        "WHITE",
+        "BLUE",
+        "GREEN",
+        "GRAY",
+        "YELLOW",
+      ];
+      var size_l = [
+        "COLOR",
+        "BLACK",
+        "RED",
+        "WHITE",
+        "BLUE",
+        "GREEN",
+        "GRAY",
+        "YELLOW",
+      ];
+      var target = document.getElementById("color");
 
-      if (e.value == "size-s") var d = size_s;
-      else if (e.value == "size-m") var d = size_m;
-      else if (e.value == "size-l") var d = size_l;
+      if (e.value == "SMALL") var d = size_s;
+      else if (e.value == "MIDDLE") var d = size_m;
+      else if (e.value == "LARGE") var d = size_l;
 
       target.options.length = 0;
 
@@ -60,9 +136,6 @@
         opt.value = d[x];
         opt.innerHTML = d[x];
         target.appendChild(opt);
-      }
-      if (!d) {
-        alert("d를 선택하시오");
       }
     }
   </script>
@@ -108,7 +181,7 @@
     <article class="all-browsers">
       <div class="hr-sect mb-5">DETAIL PAGE</div>
       <!--detail pages 정보 -->
-      <div class="container">
+      <div>
         <div class="row justify-content-center" style="flex-wrap: nowrap;">
           <div class="">
             <div class="big_pic">
@@ -153,38 +226,65 @@
             </div>
             <hr style="border: 1px solid #252c41;" />
             <br />
-
-            <div class="col">
-              <label class="mr-5">OPTION</label>
-              <div class="select-s-box">
-                <select id="select_ck" onchange="categoryChange(this)">
-                  <option>SIZE</option>
-                  <option value="size-s">SMALL</option>
-                  <option value="size-m">MIDDLE</option>
-                  <option value="size-l">LARGE</option>
-                </select>
+            <!--옵션 설정-->
+            <div class="prch-option">
+              <div class="iscroll_inner">
+                <div class="prch-slt">
+                  <label class="tit_align_left">OPTION</label>
+                  <div class="select-s-box">
+                    <select
+                      class="dep-sel dep0"
+                      id="select_ck"
+                      onchange="categoryChange(this)"
+                    >
+                      <option>SIZE</option>
+                      <option value="SMALL">SMALL</option>
+                      <option value="MIDDLE">MIDDLE</option>
+                      <option value="LARGE">LARGE</option>
+                    </select>
+                  </div>
+                  <div class="select-c-box">
+                    <select id="color" class="dep-sel dep0">
+                      <option>COLOR</option>
+                    </select>
+                  </div>
+                  <ul class="prod"></ul>
+                </div>
               </div>
-              <div class="select-c-box">
-                <select id="size">
-                  <option selected>COLOR</option>
-                </select>
-              </div>
-              <div class="test-box"></div>
             </div>
-            <!-- <div class="col mb-5">
-              <label class="mr-5">QUAN·TITY</label>
-              <input type="number" class="text-center" style="width: 80px;" />
-            </div> -->
+
+            <!--총구매금액-->
+            <div class="opt_slt_price_box">
+              <div class="item total">
+                <span class="tit">총 상품금액</span>
+                <span class="num">
+                  <strong>
+                    1,750,000
+                  </strong>
+                  won
+                </span>
+              </div>
+            </div>
 
             <!-- 장바구니 상품 button -->
-            <div class="d-flex justify-content-center">
-              <button class="bt-css">장바구니</button>
-              <button
-                class="bt-css bt-buy"
-                onclick="$(document).on('click','.bt-buy',function(){document.location.href='./user/user-buy.html'})"
-              >
-                바로구매
-              </button>
+            <div class="ct_wrp order_btn">
+              <div class="ct">
+                <div class="purchase_list_box">
+                  <ul class="lst_order_btn">
+                    <li class="col_2">
+                      <button class="bt-css">장바구니</button>
+                    </li>
+                    <li class="col_2">
+                      <button
+                        class="bt-css bt-buy"
+                        onclick="$(document).on('click','.bt-buy',function(){document.location.href='./user/user-buy.html'})"
+                      >
+                        바로구매
+                      </button>
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -228,7 +328,7 @@
         <ul class="nav nav-tabs" id="myTab" role="tablist">
           <li class="nav-item">
             <a
-              class="nav-link active"
+              class="nav-link"
               id="home-tab"
               data-toggle="tab"
               href="#home"
@@ -252,7 +352,7 @@
           </li>
           <li class="nav-item">
             <a
-              class="nav-link"
+              class="nav-link active"
               id="contact-tab"
               data-toggle="tab"
               href="#contact"
@@ -267,7 +367,7 @@
         <div class="tab-content" id="myTabContent">
           <!--유의 사항-->
           <div
-            class="tab-pane fade show active"
+            class="tab-pane fade"
             id="home"
             role="tabpanel"
             aria-labelledby="home-tab"
@@ -283,325 +383,149 @@
             role="tabpanel"
             aria-labelledby="profile-tab"
           >
-            <div class="d-flex justify-content-end">
-              <button class="bt-review-wr">리뷰작성</button>
-            </div>
             <div
               class="container-fluid"
-              style="border-bottom: 1px solid #8c8d90; margin: 40px;"
+              style="border-bottom: 1px solid #8c8d90; margin: 15px;"
             >
-              <span class="pro-star">상품</span>
-              <input
-                type="radio"
-                name="rating"
-                value="1"
-                id="star-1"
-                class="star__radio visuhide"
-              />
-              <input
-                type="radio"
-                name="rating"
-                value="2"
-                id="star-2"
-                class="star__radio visuhide"
-              />
-              <input
-                type="radio"
-                name="rating"
-                value="3"
-                id="star-3"
-                class="star__radio visuhide"
-              />
-              <input
-                type="radio"
-                name="rating"
-                value="4"
-                id="star-4"
-                class="star__radio visuhide"
-              />
-              <input
-                type="radio"
-                name="rating"
-                value="5"
-                id="star-5"
-                class="star__radio visuhide"
-              />
-
-              <label class="star__item" for="star-1"
-                ><span class="visuhide">1 star</span></label
-              >
-              <label class="star__item" for="star-2"
-                ><span class="visuhide">2 stars</span></label
-              >
-              <label class="star__item" for="star-3"
-                ><span class="visuhide">3 stars</span></label
-              >
-              <label class="star__item" for="star-4"
-                ><span class="visuhide">4 stars</span></label
-              >
-              <label class="star__item" for="star-5"
-                ><span class="visuhide">5 stars</span></label
-              >
-
               <!--상품명-->
-              <span
-                class="row"
-                style="
-                  font-size: 20px;
-                  margin-top: 10px;
-                  color: #8c8d90;
-                  margin-bottom: 20px;
-                  margin-left: 30px;
-                "
-                >White pants</span
-              >
-              <div class="container">
-                <div
-                  class="row"
-                  style="margin-left: 30px; margin-bottom: 20px;"
-                >
-                  <div class="col-sm-4 d-flex justify-content-center">
-                    <img src="./img/dress1.jpg" style="width: 50%;" />
-                  </div>
-                  <div
-                    class="col-sm-8"
-                    style="
-                      vertical-align: middle;
+              <!--별점-->
+              <div class="starRev one-line">
+                <label class="la_st_box">
+                  별점
+                  <span class="starR on">별1</span>
+                  <span class="starR on">별2</span>
+                  <span class="starR on">별3</span>
+                  <span class="starR">별4</span>
+                  <span class="starR">별5</span>
+                </label>
+              </div>
 
-                      top: 30px;
-                    "
-                  >
-                    <span
-                      >Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                      Cras luctus nunc ut maximus consequat. Vestibulum et mi
-                      vulputate, convallis tortor quis, blandit mi. Suspendisse
-                      vulputate ligula turpis, id tincidunt ipsum vestibulum ac.
-                    </span>
-                  </div>
-                  <!--사용자 id 작성 날짜-->
-                  <div class="mt-5">
-                    <span>quss**</span>
-                    <span>&#124;</span>
-                    <span>2020-05-13</span>
-                  </div>
+              <!-- 별점 end -->
+
+              <div class="container">
+                <div class="img_rw_box">
+                  <img src="./img/dress1.jpg" class="img_rw" />
+
+                  <span class="rw_pr_tit">White pants</span>
+                  <span class="rw_txt"
+                    >Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Cras luctus nunc ut maximus consequat. Vestibulum et mi
+                    vulputate, convallis tortor quis, blandit mi. Suspendisse
+                    vulputate ligula turpis, id tincidunt ipsum vestibulum ac.
+                  </span>
+                </div>
+
+                <!--사용자 id 작성 날짜-->
+                <div class="mt-5">
+                  <span>quss**</span>
+                  <span>&#124;</span>
+                  <span>2020-05-13</span>
                 </div>
               </div>
             </div>
             <!--end-->
+
             <div
               class="container-fluid"
-              style="border-bottom: 1px solid #8c8d90; margin: 40px;"
+              style="border-bottom: 1px solid #8c8d90; margin: 15px;"
             >
-              <span class="pro-star">상품</span>
-              <input
-                type="radio"
-                name="rating"
-                value="1"
-                id="star-1"
-                class="star__radio visuhide"
-              />
-              <input
-                type="radio"
-                name="rating"
-                value="2"
-                id="star-2"
-                class="star__radio visuhide"
-              />
-              <input
-                type="radio"
-                name="rating"
-                value="3"
-                id="star-3"
-                class="star__radio visuhide"
-              />
-              <input
-                type="radio"
-                name="rating"
-                value="4"
-                id="star-4"
-                class="star__radio visuhide"
-              />
-              <input
-                type="radio"
-                name="rating"
-                value="5"
-                id="star-5"
-                class="star__radio visuhide"
-              />
-
-              <label class="star__item" for="star-1"
-                ><span class="visuhide">1 star</span></label
-              >
-              <label class="star__item" for="star-2"
-                ><span class="visuhide">2 stars</span></label
-              >
-              <label class="star__item" for="star-3"
-                ><span class="visuhide">3 stars</span></label
-              >
-              <label class="star__item" for="star-4"
-                ><span class="visuhide">4 stars</span></label
-              >
-              <label class="star__item" for="star-5"
-                ><span class="visuhide">5 stars</span></label
-              >
-
               <!--상품명-->
-              <span
-                class="row"
-                style="
-                  font-size: 20px;
-                  margin-top: 10px;
-                  color: #8c8d90;
-                  margin-bottom: 20px;
-                  margin-left: 30px;
-                "
-                >White pants</span
-              >
-              <div class="container">
-                <div
-                  class="row"
-                  style="margin-left: 30px; margin-bottom: 20px;"
-                >
-                  <div class="col-sm-4 d-flex justify-content-center">
-                    <img src="./img/dress1.jpg" style="width: 50%;" />
-                  </div>
-                  <div
-                    class="col-sm-8"
-                    style="
-                      vertical-align: middle;
+              <!--별점-->
+              <div class="starRev one-line">
+                <label class="la_st_box">
+                  별점
+                  <span class="starR on">별1</span>
+                  <span class="starR on">별2</span>
+                  <span class="starR on">별3</span>
+                  <span class="starR">별4</span>
+                  <span class="starR">별5</span>
+                </label>
+              </div>
 
-                      top: 30px;
-                    "
-                  >
-                    <span
-                      >Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                      Cras luctus nunc ut maximus consequat. Vestibulum et mi
-                      vulputate, convallis tortor quis, blandit mi. Suspendisse
-                      vulputate ligula turpis, id tincidunt ipsum vestibulum ac.
-                    </span>
-                  </div>
-                  <!--사용자 id 작성 날짜-->
-                  <div class="mt-5">
-                    <span>quss**</span>
-                    <span>&#124;</span>
-                    <span>2020-05-13</span>
-                  </div>
+              <!-- 별점 end -->
+
+              <div class="container">
+                <div class="img_rw_box">
+                  <img src="./img/dress1.jpg" class="img_rw" />
+
+                  <span class="rw_pr_tit">White pants</span>
+                  <span class="rw_txt"
+                    >Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Cras luctus nunc ut maximus consequat. Vestibulum et mi
+                    vulputate, convallis tortor quis, blandit mi. Suspendisse
+                    vulputate ligula turpis, id tincidunt ipsum vestibulum ac.
+                  </span>
+                </div>
+
+                <!--사용자 id 작성 날짜-->
+                <div class="mt-5">
+                  <span>quss**</span>
+                  <span>&#124;</span>
+                  <span>2020-05-13</span>
                 </div>
               </div>
             </div>
             <!--end-->
+
             <div
               class="container-fluid"
-              style="border-bottom: 1px solid #8c8d90; margin: 40px;"
+              style="border-bottom: 1px solid #8c8d90; margin: 15px;"
             >
-              <span class="pro-star">상품</span>
-              <input
-                type="radio"
-                name="rating"
-                value="1"
-                id="star-1"
-                class="star__radio visuhide"
-              />
-              <input
-                type="radio"
-                name="rating"
-                value="2"
-                id="star-2"
-                class="star__radio visuhide"
-              />
-              <input
-                type="radio"
-                name="rating"
-                value="3"
-                id="star-3"
-                class="star__radio visuhide"
-              />
-              <input
-                type="radio"
-                name="rating"
-                value="4"
-                id="star-4"
-                class="star__radio visuhide"
-              />
-              <input
-                type="radio"
-                name="rating"
-                value="5"
-                id="star-5"
-                class="star__radio visuhide"
-              />
-
-              <label class="star__item" for="star-1"
-                ><span class="visuhide">1 star</span></label
-              >
-              <label class="star__item" for="star-2"
-                ><span class="visuhide">2 stars</span></label
-              >
-              <label class="star__item" for="star-3"
-                ><span class="visuhide">3 stars</span></label
-              >
-              <label class="star__item" for="star-4"
-                ><span class="visuhide">4 stars</span></label
-              >
-              <label class="star__item" for="star-5"
-                ><span class="visuhide">5 stars</span></label
-              >
-
               <!--상품명-->
-              <span
-                class="row"
-                style="
-                  font-size: 20px;
-                  margin-top: 10px;
-                  color: #8c8d90;
-                  margin-bottom: 20px;
-                  margin-left: 30px;
-                "
-                >White pants</span
-              >
-              <div class="container">
-                <div
-                  class="row"
-                  style="margin-left: 30px; margin-bottom: 20px;"
-                >
-                  <div class="col-sm-4 d-flex justify-content-center">
-                    <img src="./img/dress1.jpg" style="width: 50%;" />
-                  </div>
-                  <div
-                    class="col-sm-8"
-                    style="
-                      vertical-align: middle;
+              <!--별점-->
+              <div class="starRev one-line">
+                <label class="la_st_box">
+                  별점
+                  <span class="starR on">별1</span>
+                  <span class="starR on">별2</span>
+                  <span class="starR on">별3</span>
+                  <span class="starR on">별4</span>
+                  <span class="starR">별5</span>
+                </label>
+              </div>
 
-                      top: 30px;
-                    "
-                  >
-                    <span
-                      >Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                      Cras luctus nunc ut maximus consequat. Vestibulum et mi
-                      vulputate, convallis tortor quis, blandit mi. Suspendisse
-                      vulputate ligula turpis, id tincidunt ipsum vestibulum ac.
-                    </span>
-                  </div>
-                  <!--사용자 id 작성 날짜-->
-                  <div class="mt-5">
-                    <span>quss**</span>
-                    <span>&#124;</span>
-                    <span>2020-05-13</span>
-                  </div>
+              <!-- 별점 end -->
+
+              <div class="container">
+                <div class="img_rw_box">
+                  <img src="./img/dress1.jpg" class="img_rw" />
+
+                  <span class="rw_pr_tit">White pants</span>
+                  <span class="rw_txt"
+                    >Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Cras luctus nunc ut maximus consequat. Vestibulum et mi
+                    vulputate, convallis tortor quis, blandit mi. Suspendisse
+                    vulputate ligula turpis, id tincidunt ipsum vestibulum ac.
+                  </span>
+                </div>
+
+                <!--사용자 id 작성 날짜-->
+                <div class="mt-5">
+                  <span>quss**</span>
+                  <span>&#124;</span>
+                  <span>2020-05-13</span>
                 </div>
               </div>
             </div>
+            <!--end-->
+
             <!--end-->
           </div>
 
           <div
-            class="tab-pane fade"
+            class="tab-pane fade show active"
             id="contact"
             role="tabpanel"
             aria-labelledby="contact-tab"
           >
             <div class="d-flex justify-content-end">
-              <button class="bt-review-wr">질문하기</button>
+              <button
+                class="bt-review-wr"
+                data-toggle="modal"
+                data-target="#staticBackdrop"
+              >
+                질문하기
+              </button>
             </div>
             <!--구매자 id-->
             <div class="container">
@@ -698,6 +622,7 @@
 
       <!--end-->
     </article>
+
     <!-- footer include -->
 
     <footer class="bg-gray mt-5">
@@ -767,4 +692,42 @@
       </div>
     </footer>
   </body>
+
+  <!-- Modal -->
+  <div
+    class="modal fade"
+    id="staticBackdrop"
+    data-backdrop="static"
+    data-keyboard="false"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="staticBackdropLabel"
+    aria-hidden="true"
+    style="top: 250px;"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title m_tit" id="staticBackdropLabel">질문하기</h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <textarea class="txt_box"></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="bt_save" data-dismiss="modal">
+            닫기
+          </button>
+          <button type="button" class="bt_save">저장</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </html>

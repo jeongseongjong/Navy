@@ -181,7 +181,7 @@ public class AdminController {
 		int ret = proService.insert(productVO, size, color, qty, files);
 		log.debug("관리자가 상품 등록하는 서비스 " + ret);
 		
-		return "redirect:/admin/pro_detail_view/"+productVO.getP_code();
+		return "redirect:/admin/productlist";
 	}
 	
 	// 상품 수정하는 페이지로 이동
