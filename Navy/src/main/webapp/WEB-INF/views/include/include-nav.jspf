@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="/WEB-INF/views/include/include-head.jspf" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+
 <script>
 $(function(){
 	$(document).on("click","a.logout", function(){
-		if(confirm("로그아웃 하실?")){
+		if(confirm("로그아웃 하겠습니까?")){
 			$.post("${rootPath}/logout",
 					{${_csrf.parameterName} : "${_csrf.token}"}	, function(result){
 						document.location.replace("${rootPath}/")
@@ -15,54 +15,47 @@ $(function(){
 	})
 })
 </script>
-    <header>
-      <div class="d-flex">
-        <ul class="nav ml-auto mr-5">
-          <!-- input 검색창-->
-          <li class="nav-item nav-input">
-          	<form action="${rootPath}/product/list">
-	            <input name="search" class="input-style" />
-            	<img src="${rootPath}/resources/img/scope.png" class="scope" />
-          	</form>
-          </li>
-          <!-- annonimous& authentication-->
-          <sec:authorize access="isAnonymous()">
-	          <li class="nav-item">
-	            <a class="nav-link" href="${rootPath}/user/login">login</a>
-	          </li>
-	          <li class="nav-item">
-	            <a class="nav-link" href="${rootPath}/user/join">join</a>
-	          </li>
-          </sec:authorize>
-          
-          <sec:authorize access="isAuthenticated()">
-          	<li class="nav-item">
-         	   <a class="nav-link logout" href="javascript:void(0)">logout</a>
-          	</li>
-          
-          <!--로그인시 mypage-->
-          	<li class="nav-item">
-            	<a class="nav-link" href="${rootPath}/user/mypage">mypage</a>
-          	</li>
-          	<li class="nav-item">
-            	<a class="nav-link" href="${rootPath}/cart/view">cart</a>
-          	</li>
-          </sec:authorize>
-          <sec:authorize access="hasRole('ROLE_ADMIN')">
-          <li class="nav-item">
-          	<a class="nav-link" href="${rootPath}/admin">admin</a>
-          </li>
-          </sec:authorize>
-        </ul>
-      </div>
-    </header>
-    <!--nav include 할 것-->
-    <nav
-      class="navbar navbar-expand-sm bg-white d-flex ml-5 mt-5 mb-5 sticky-top"
-    >
-      <a href="${rootPath}/" class="red-text mr-5 h-title"><h2>NAVIYA</h2></a>
-      <div class="d-flex">
+
+<header>
+	<div class="d-flex">
+     	<ul class="nav ml-auto mr-5">
+       		<!-- input 검색창-->
+			<li class="nav-item nav-input">
+  				<input class="input-style" />
+  				<img src="${rootPath}/resources/img/scope.png" class="scope" />
+			</li>
+			<!-- annonimous& authentication-->
+			<sec:authorize access="isAnonymous()">
+				<li class="nav-item">
+	            	<a class="nav-link" href="${rootPath}/user/login">login</a>
+		        </li>
+		        <li class="nav-item">
+		        	<a class="nav-link" href="${rootPath}/user/join">join</a>
+		        </li>
+			</sec:authorize>
+			<sec:authorize access="isAuthenticated()">
+	          	<li class="nav-item">
+	         	   <a class="nav-link logout" href="javascript:void(0)">logout</a>
+	          	</li>
+	          	<!--로그인시 mypage-->
+	          	<li class="nav-item">
+	            	<a class="nav-link" href="${rootPath}/user/mypage">mypage</a>
+	          	</li>
+          	</sec:authorize>
+    	</ul>
+	</div>
+</header>
+
+<nav class="navbar navbar-expand-sm bg-white d-flex ml-5 mt-5 mb-5 sticky-top">
+	<a href="${rootPath}/" class="red-text mr-5 h-title h2"><span>NAVIYA</span></a>
+  	<div class="d-flex">
         <a class="nav-link black-text" href="${rootPath}/product/list">SHOP</a>
+        <sec:authorize access="isAuthenticated()">
+        	<a class="nav-link black-text" href="${rootPath}/cart/view">장바구니</a>
+        </sec:authorize>
         <a class="nav-link black-text" href="${rootPath}/cs/list">고객센터</a>
-      </div>
-    </nav>
+        <sec:authorize access="hasRole('ROLE_ADMIN')">
+          	<a class="nav-link black-text" href="${rootPath}/admin">관리자</a>
+        </sec:authorize>
+  	</div>
+</nav>

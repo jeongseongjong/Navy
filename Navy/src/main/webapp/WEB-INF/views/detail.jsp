@@ -153,22 +153,6 @@
 					
 				</select>
 
-			<!-- 
-				<div class="col">
-	  				<label class="mr-5">SIZE/COLOR</label>
-	  				<form:form modelAttribute="productVO">
-	  					<form:select id="p_size" path="m_size_list" multiple="false" class="menu">
-							<form:option value="SIZE를 선택하세요" />
-							<form:options items="${m_size_list}" itemLabel="o_name" itemValue="o_standard" />
-						</form:select>
-						<form:select id="p_color" path="m_color_list" multiple="false">
-							<form:option value="COLOR를 선택하세요" />
-							<form:options items="${m_color_list}" itemLabel="o_name" itemValue="o_standard" />
-						</form:select>
-	  				</form:form>
-				</div>
-			 -->
-				
 				<div class="col mb-5">
 				  	<label class="mr-5">QUAN·TITY</label>
 				  	<input id="p_qty" type="number" class="text-center" style="width: 80px;" />

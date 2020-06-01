@@ -21,6 +21,7 @@ public class SizeVO {
     private int s_p_code; // number , -- tbl_color의 p_code와 fk될 값
     private String s_size; // VARCHAR(255)
     
-   private List<ColorVO> colorList;
+    // 상품의 color 정보를 담을 변수
+    private List<ColorVO> colorList;
 
 }

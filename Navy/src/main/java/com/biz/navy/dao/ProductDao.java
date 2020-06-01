@@ -18,6 +18,12 @@ import com.biz.navy.domain.ReviewVO;
 import com.biz.navy.domain.SizeVO;
 
 public interface ProductDao {
+	
+	// main 상품 추천 리스트(현재는 날짜,시간 등록 최신순 기준)
+	@Select("SELECT * FROM (SELECT * FROM tbl_product ORDER BY p_date DESC, p_time DESC) WHERE ROWNUM <= 3")
+	@Results(value = {@Result(property = "p_code", column = "p_code"),
+		@Result(property = "proDImgList", column = "p_code", javaType = List.class, many = @Many(select = "getProImages"))})
+	public List<ProductVO> findByBest();
 
 	// 상품 전체 조회
 	@Select("SELECT * FROM tbl_product ORDER BY p_code DESC")
@@ -55,7 +61,7 @@ public interface ProductDao {
 	
 	// 상품 이미지 조회
 	@Select("SELECT * FROM tbl_p_images WHERE p_img_p_code = #{p_img_p_code}")
-	public ProductImgVO getProImages(long p_img_p_code);
+	public List<ProductImgVO> getProImages(long p_img_p_code);
 	
 	// 상품 리뷰 조회
 	@Select("SELECT * FROM tbl_review WHERE r_code = #{r_code}")

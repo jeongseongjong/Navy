@@ -109,7 +109,6 @@ public class ProductController {
 		if(proColorList == null) {
 			return "FAIL";
 		}
-				
 		return proColorList;
 	}
 
