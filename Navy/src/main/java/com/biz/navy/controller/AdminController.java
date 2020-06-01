@@ -180,7 +180,7 @@ public class AdminController {
 			) {
 		int ret = proService.insert(productVO, size, color, qty, files);
 		
-		return "redirect:/admin/pro_detail_view/"+productVO.getP_code();
+		return "redirect:/admin/productlist";
 	}
 	
 	// 상품 수정하는 페이지로 이동
