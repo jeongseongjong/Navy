@@ -58,3 +58,16 @@
   > - 체크항목 삭제 (전체상품) / 내일 단일상품 삭제 적용해야함
   > - 총 주문금액 합산
   > - 구매하기 버튼 클릭시 구매목록으로 이동
+
+## 05-29
+ * 배송 받는사람 칼럼 추가
+  	> - private String bk_recipient_name; 			// 배송 받는사람 이름
+	> - private String bk_recipient_phone; 			// 받는사람 연락처
+	> - private String bk_recipient_address;		// 받는사람 주소
+	> - private String bk_recipient_address_etc;	// 받는사람 상세주소
+	> - private String bk_recipient_message;		// 배송요청사항
+	
+## 05-31
+ * productDao의 findByMaxPCode 리턴타임 int - > Integer로 변환
+  > - primitive 타입 오류
+ * productServiceImpl의 findByMaxPCode 널포인트 문제 -> try catch문으로 해결
