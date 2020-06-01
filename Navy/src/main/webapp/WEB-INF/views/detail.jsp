@@ -22,6 +22,9 @@
 				
 			})
 			.done(function(colorList) {
+				
+				// color select의 전체 options를 삭제
+				$("#colorList option").remove()
 						
 				if(colorList == "FAIL") {
 					alert("통신오류")

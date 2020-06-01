@@ -1,23 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="/WEB-INF/views/include/include-head.jspf" %>
-
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Page Title</title>
-    <!-- Latest compiled and minified CSS -->
-    
-  </head>
-  <style></style>
-  <script>
-    $(document).on("click", ".scope", function () {
-      (".scope");
-    });
-  </script>
-  <body>
-    
-    <%@ include file = "/WEB-INF/views/include/include-nav.jspf" %>
+<head>
+<%@ include file="/WEB-INF/views/include/include-head.jspf" %>
+<!-- Latest compiled and minified CSS -->
+</head>
+<script>
+$(function() {
+	$(document).on("click", ".scope", function() {
+	      (".scope");
+	});
+}
+</script>
+<body>
+<%@ include file = "/WEB-INF/views/include/include-nav.jspf" %>
+
     <!--main 화면 img들어갈 것-->
     <main>
       <div class="hr-sect mb-5">PRODUCT</div>
