@@ -5,30 +5,103 @@
 
 <mapper namespace="com.biz.navy.dao.ProductDao">
 
-	<insert id="insert" parameterType="productVO">
-		INSERT INTO tbl_product(
+	<select id="countSearch" resultType="Long">
+		SELECT COUNT(*) FROM tbl_product
+		<where>
+			<foreach collection="searchList" item="search" separator="OR">
+				p_name LIKE '%' || #{search,jdbcType=VARCHAR} || '%'
+			</foreach>
+		</where>
 		
-		p_code,
-		p_name,
-		p_price,
-		p_desc,
-		p_image,
-		p_size,
-		p_color,
-		p_qty
-		
-		) VALUES (
-		SEQ_PRODUCT.NEXTVAL,
-		#{p_name},
-		#{p_price},
-		#{p_desc,jdbcType=VARCHAR},
-		#{p_image,jdbcType=VARCHAR},
-		#{p_size,jdbcType=VARCHAR},
-		#{p_color,jdbcType=VARCHAR},
-		#{p_qty,jdbcType=VARCHAR}
+	</select>
+	
+	<select id="findBySearchNameAndPaging" resultMap="productAndSize">
+		SELECT * FROM
+		(
+			SELECT /*+ FIRST_ROWS 100 */ ROWNUM AS NUM, IP.* FROM
+			(
+				SELECT /*+ INDEX_DESC(P) FIRST_ROWS */ * FROM tbl_product P
+				<where>
+					<foreach collection="searchList" item="search" separator="OR">
+						p_name LIKE '%' || #{search,jdbcType=VARCHAR} || '%'		
+					</foreach>
+				</where>
+			) IP
+			WHERE ROWNUM &lt; = #{pageVO.limit,jdbcType=VARCHAR}
+		) 
+		WHERE NUM &gt; = #{pageVO.offset,jdbcType=VARCHAR}	
+	
+	
+	</select>
+
+
+	<select id="countAll" resultType="Long">
+		SELECT COUNT(*) FROM tbl_product
+	</select>
+
+
+	<select id="selectAllPaging" resultMap="productAndSize">
+		SELECT * FROM
+		(
+			SELECT /*+ FIRST_ROWS_100 */ ROWNUM AS NUM, IP.* FROM
+			(
+				SELECT /*+ INDEX_DESC(P) FIRST_ROWS */ * FROM tbl_product P
+			) IP
+			WHERE ROWNUM &lt; = #{limit,jdbcType=VARCHAR}
 		)
-		
-	</insert>
+		WHERE NUM &gt; = #{offset,jdbcType=VARCHAR}
+	</select>
+	
+	<!-- 
+	result 태그 
+	property는 VO의 값
+	column은 테이블에 있는 칼럼
+	
+	collection 태그
+	property는 productVO의 값
+	column은 보내줄 값인데 select문의 where 조건 안의 #{}값과 일치시키기
+	ofType은 받을 VO 타입
+	select는 가져올 셀렉트문
+	 -->
+	<resultMap type="productVO" id="productAndSize">
+		<id column="id" property="id"/>
+		<result property="p_code" column="p_code"/>
+		<collection property="sizeList" column="p_code"
+				ofType="sizeVO"	select="selectSize"	/>
+	</resultMap>
+
+	<select id="selectSize" resultType="sizeVO">
+		SELECT * FROM tbl_size WHERE s_p_code = #{p_code}
+	</select>
+
+	<insert id="insert" parameterType="productVO">
+      INSERT INTO tbl_product(
+      
+      p_code,
+      p_name,
+      p_price,
+      p_desc,
+      p_image,
+      p_size,
+      p_color,
+      p_date,
+      p_time,
+      p_qty
+      
+      ) VALUES (
+      SEQ_PRODUCT.NEXTVAL,
+      #{p_name},
+      #{p_price},
+      #{p_desc,jdbcType=VARCHAR},
+      #{p_image,jdbcType=VARCHAR},
+      #{p_size,jdbcType=VARCHAR},
+      #{p_color,jdbcType=VARCHAR},
+      #{p_date},
+      #{p_time},
+      #{p_qty,jdbcType=VARCHAR}
+      )
+      
+   </insert>
 
 	<insert id="insertWithSize" parameterType="list">
 		INSERT INTO tbl_size(s_code, s_p_code, s_size)
@@ -68,6 +141,19 @@
 		</foreach>
 		) sub
 		
+	</insert>
+	
+	<insert id="insertWithImages" parameterType="list">
+		INSERT INTO tbl_p_images(p_img_seq, p_img_p_code, p_img_origin_name, p_img_upload_name)
+		SELECT SEQ_PRODUCT_IMAGE.NEXTVAL, sub.* from(
+		<foreach collection="list" item="img" separator="UNION ALL">
+			SELECT
+				#{img.p_img_p_code,jdbcType=VARCHAR},
+				#{img.p_img_origin_name,jdbcType=VARCHAR},
+				#{img.p_img_upload_name,jdbcType=VARCHAR}
+			FROM dual
+		</foreach>
+		) sub
 	</insert>
 	
 

@@ -19,7 +19,9 @@ import org.springframework.stereotype.Service;
 import com.biz.navy.dao.AuthoritiesDao;
 import com.biz.navy.dao.UserDao;
 import com.biz.navy.domain.AuthorityVO;
+import com.biz.navy.domain.PageVO;
 import com.biz.navy.domain.UserDetailsVO;
+import com.biz.navy.utils.DateTime;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -42,6 +44,7 @@ public class UserService implements UserDetailsService{
 								.password(encPassword)
 								.address(address)
 								.address_etc(address_etc)
+								.join_date(DateTime.Date())
 								.enabled(true)
 								.build();
 		log.debug("여기는 조인 인서트 서비스 어드레스 " + address);
@@ -116,6 +119,10 @@ public class UserService implements UserDetailsService{
 		return userDao.selectAll();
 	}
 
+	public List<UserDetailsVO> selectAllPaging(PageVO pageVO) {
+		return userDao.selectAllPaging(pageVO);
+	}
+	
 	/**
 	 * 유저 디테일 조회
 	 * @param username
@@ -137,7 +144,7 @@ public class UserService implements UserDetailsService{
 	 */
 	public int update(UserDetailsVO userVO, String[] authList) {
 		
-		
+//		String[] authList1 = new String[];
 		int ret = userDao.update_auth(userVO);
 		
 		// DB Update를 성공하면
@@ -209,6 +216,39 @@ public class UserService implements UserDetailsService{
 
 		int ret = authDao.delete_id(id);
 		return ret;
+	}
+
+
+	public long totalCount(String search) {
+		
+		long ret = 0;
+		if(search == "") {
+			ret = userDao.countAll();
+		} else {
+			List<String> searchList = Arrays.asList(search.split(" "));
+			// 검색 결과의 totalCount 구하기
+			ret = userDao.countSearch(searchList);
+		}
+		return ret;
+	}
+
+
+	// 이름으로 검색
+	public List<UserDetailsVO> findBySearchName(String search, PageVO pageVO) {
+
+		List<String> searchList = Arrays.asList(search.split(" "));
+		
+		List<UserDetailsVO> userNameList = new ArrayList<UserDetailsVO>();
+		if(search != "") {
+			userNameList = userDao.findBySearchNameAndPaging(searchList, pageVO);
+			for(UserDetailsVO u : userNameList) {
+				log.debug("검색 후 리스트 유저네임 : "+u.getUsername());
+			}
+		} else {
+			userNameList = userDao.selectAllPaging(pageVO);
+		}
+		
+		return userNameList;
 	}
 
 

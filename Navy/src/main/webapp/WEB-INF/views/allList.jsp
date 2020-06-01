@@ -34,6 +34,37 @@ $(function() {
 		<c:otherwise>
 			<c:forEach var="PRO" items="${PROLIST}">
 				<div class="row">
+		          <div class="col-sm">
+		            <div class="card" data-id="${PRO.p_code}" style="border: none;" >
+		              <div class="scale" style="overflow: hidden;">
+		              	<c:choose>
+		              		<c:when test="${empty PRO.p_image}">
+				                <img
+				                  class="detail-img"
+				                  src="${rootPath}/resources/img/dress1.jpg"
+				                  style="width: 350px; height: 350px"
+				                />
+		              		</c:when>
+		              		<c:otherwise>
+		              			<img
+				                  class="detail-img"
+				                  src="${rootPath}/images/${PRO.p_image}"
+				                  style="width: 350px; height: 350px"
+				                />
+		              		</c:otherwise>
+		              	</c:choose>
+		              </div>
+		              <div class="card-body" style="border: none;">
+		                <h6>
+		                  <span>${PRO.p_name}</span><br />
+		                  <small>${PRO.p_price}won</small>
+		                </h6>
+		              </div>
+		            </div>
+		          </div>
+				
+				
+				<!-- 
 					<div class="col m-3">
 						<div class="card" data-id="${PRO.p_code}">
 							<img class="detail-img" src="${rootPath}/resources/img/dress1.jpg" style="width: 100%;" />
@@ -45,11 +76,15 @@ $(function() {
 							</div>
 						</div>
 					</div>
+					 -->
 				</div>
 			</c:forEach>
 		</c:otherwise>
 	</c:choose>
 </div>
+
+<%@ include file="/WEB-INF/views/include/include-paging.jspf" %>
+
 
 <%@ include file= "/WEB-INF/views/include/include-footer.jspf" %>
 </body>

@@ -5,6 +5,47 @@
 
 <mapper namespace="com.biz.navy.dao.UserDao">
 
+	<select id="countSearch" resultType="Long">
+		SELECT COUNT(*) FROM tbl_users
+		<where>
+			<foreach collection="searchList" item="search" separator="OR">
+				username LIKE '%' || #{search,jdbcType=VARCHAR} || '%'
+			</foreach>
+		</where>
+		
+	</select>
+
+	<select id="findBySearchNameAndPaging" resultMap="userAndAuthorities">
+		SELECT * FROM
+		(
+			SELECT /*+ FIRST_ROWS 100 */ ROWNUM AS NUM, IP.* FROM
+			(
+				SELECT /*+ INDEX_DESC(U) FIRST_ROWS */ * FROM tbl_users U
+				<where>
+					<foreach collection="searchList" item="search" separator="OR">
+						username LIKE '%' || #{search,jdbcType=VARCHAR} || '%'		
+					</foreach>
+				</where>
+			) IP
+			WHERE ROWNUM &lt; = #{pageVO.limit,jdbcType=VARCHAR}
+		) 
+		WHERE NUM &gt; = #{pageVO.offset,jdbcType=VARCHAR}
+	</select>
+
+
+	<select id="selectAllPaging" resultMap="userAndAuthorities">
+		SELECT * FROM 
+		(
+			SELECT /*+ FIRST_ROWS_100 */ ROWNUM AS NUM, IP.* FROM
+			(
+				SELECT /*+ INDEX_DESC(U) FIRST_ROWS */ * FROM tbl_users U
+			) IP
+			WHERE ROWNUM &lt; = #{limit,jdbcType=VARCHAR}
+		)	TBL
+		WHERE NUM &gt; = #{offset,jdbcType=VARCHAR}
+	</select>
+	
+	
 	<resultMap type="userDetailsVO" id="userAndAuthorities">
 		<id column="id" property="id" />
 		<result property="username" column="username" />
@@ -13,7 +54,7 @@
 	</resultMap>
 
 	<select id="findByUserName" resultMap="userAndAuthorities">
-		SELECT u_id,
+		SELECT u_id AS id,
 		username,
 		password,
 		enabled,
@@ -49,28 +90,30 @@
 		FROM tbl_authority
 		WHERE username = #{username}
 	</select>
+	
+   <insert id="insert" parameterType="userDetailsVO">
+      INSERT INTO tbl_users
 
-	<insert id="insert" parameterType="userDetailsVO">
-		INSERT INTO tbl_users
+      (u_id,
+      username,
+      password,
+      join_date,
+      address,
+      address_etc,
+      enabled
+      )
+      VALUES
+      (
+      SEQ_USERS_ID.NEXTVAL,
+      #{username,jdbcType=VARCHAR},
+      #{password,jdbcType=VARCHAR},
+      #{join_date,jdbcType=VARCHAR},
+      #{address,jdbcType=VARCHAR},
+      #{address_etc,jdbcType=VARCHAR},
+      #{enabled,jdbcType=VARCHAR}
+      )
 
-		(u_id,
-		username,
-		password,
-		address,
-		address_etc,
-		enabled
-		)
-		VALUES
-		(
-		SEQ_USERS_ID.NEXTVAL,
-		#{username,jdbcType=VARCHAR},
-		#{password,jdbcType=VARCHAR},
-		#{address,jdbcType=VARCHAR},
-		#{address_etc,jdbcType=VARCHAR},
-		#{enabled,jdbcType=VARCHAR}
-		)
-
-	</insert>
+   </insert>
 
 	<update id="update" parameterType="userDetailsVO">
 		UPDATE tbl_users
