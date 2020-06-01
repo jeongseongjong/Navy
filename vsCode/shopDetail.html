@@ -25,6 +25,7 @@
   </head>
   <script>
     $(function () {
+
       $(".dropdownbox").click(function () {
         $(".menu").toggleClass("showMenu");
         $(".menu > li").click(function () {
@@ -41,17 +42,65 @@
         $(this).parent().addClass("on").siblings().removeClass("on");
         return false;
       });
+
+      $(document).on("change","#color",function(){
+        if($("#color").val() === "COLOR"){
+          return false;
+        }
+        let select_ck = $("#select_ck").val()
+        let color = $("#color").val()
+        $(".prod").append(`
+        <li>
+        <span class="tit">
+          <span>GUCCI DRESS/${select_ck}/${color}</span>
+          <span class="stock">15개 남음</span>
+          </span>
+          <button type="button" class="del">
+            <i class="blind">삭제</i>
+          </button>
+          <div class="middle_wrap">
+            <div class="price_area">
+              <div class="price">
+                <div class="total_price">
+                  <span class="prmt_discount">
+                    <strong>1,750,000</strong>
+                    won
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="amount">
+              <button class="minus " type="button">
+                <i class="blind">수량감소</i>
+              </button>
+              <label>
+                <input type="text" value="1">
+              </label>
+              <button class="plus" type="button">
+                <i class="blind">수량증가</i>
+              </button>
+            </div>
+          </div>
+          <span class="prod_avail_count">100개 구매가능</span>
+        </li>
+        `)
+      })
+
+      
+
+      
+
     });
 
     function categoryChange(e) {
-      var size_s = ["BLACK", "RED", "WHITE", "BLUE", "GREEN", "GRAY", "YELLOW"];
-      var size_m = ["BLACK", "RED", "WHITE", "BLUE", "GREEN", "GRAY", "YELLOW"];
-      var size_l = ["BLACK", "RED", "WHITE", "BLUE", "GREEN", "GRAY", "YELLOW"];
-      var target = document.getElementById("size");
+      var size_s = ["COLOR","BLACK", "RED", "WHITE", "BLUE", "GREEN", "GRAY", "YELLOW"];
+      var size_m = ["COLOR","BLACK", "RED", "WHITE", "BLUE", "GREEN", "GRAY", "YELLOW"];
+      var size_l = ["COLOR","BLACK", "RED", "WHITE", "BLUE", "GREEN", "GRAY", "YELLOW"];
+      var target = document.getElementById("color");
 
-      if (e.value == "size-s") var d = size_s;
-      else if (e.value == "size-m") var d = size_m;
-      else if (e.value == "size-l") var d = size_l;
+      if (e.value == "SMALL") var d = size_s;
+      else if (e.value == "MIDDLE") var d = size_m;
+      else if (e.value == "LARGE") var d = size_l;
 
       target.options.length = 0;
 
@@ -61,10 +110,9 @@
         opt.innerHTML = d[x];
         target.appendChild(opt);
       }
-      if (!d) {
-        alert("d를 선택하시오");
-      }
+
     }
+
   </script>
   <body>
     <!--header include-->
@@ -153,38 +201,65 @@
             </div>
             <hr style="border: 1px solid #252c41;" />
             <br />
+          <!--옵션 설정-->
+            <div class="prch-option">
+              <div class="iscroll_inner">
+                <div class="prch-slt">
+                  <label class="tit_align_left">OPTION</label>
+                <div class="select-s-box ">
+                  <select class="dep-sel dep0" id="select_ck" onchange="categoryChange(this)">
+                    <option >SIZE</option>
+                    <option value="SMALL">SMALL</option>
+                    <option value="MIDDLE">MIDDLE</option>
+                    <option value="LARGE">LARGE</option>
+                  </select>
+                </div>
+                <div class="select-c-box ">
+                  <select id="color" class="dep-sel dep0">
+                    <option>COLOR</option>
+                  </select>
+                </div>
+                <ul class="prod">
 
-            <div class="col">
-              <label class="mr-5">OPTION</label>
-              <div class="select-s-box">
-                <select id="select_ck" onchange="categoryChange(this)">
-                  <option>SIZE</option>
-                  <option value="size-s">SMALL</option>
-                  <option value="size-m">MIDDLE</option>
-                  <option value="size-l">LARGE</option>
-                </select>
+                </ul>
+                </div>
               </div>
-              <div class="select-c-box">
-                <select id="size">
-                  <option selected>COLOR</option>
-                </select>
-              </div>
-              <div class="test-box"></div>
             </div>
-            <!-- <div class="col mb-5">
-              <label class="mr-5">QUAN·TITY</label>
-              <input type="number" class="text-center" style="width: 80px;" />
-            </div> -->
+
+            <!--총구매금액-->
+            <div class="opt_slt_price_box">
+              <div class="item total">
+                <span class="tit">총 상품금액</span>
+                <span class="num">
+                  <strong >
+                    1,750,000
+                  </strong>
+                  won
+                </span>
+              </div>
+            </div>
 
             <!-- 장바구니 상품 button -->
-            <div class="d-flex justify-content-center">
-              <button class="bt-css">장바구니</button>
-              <button
-                class="bt-css bt-buy"
-                onclick="$(document).on('click','.bt-buy',function(){document.location.href='./user/user-buy.html'})"
-              >
-                바로구매
-              </button>
+            <div class="ct_wrp order_btn">
+              <div class="ct">
+              <div class="purchase_list_box">
+                <ul class="lst_order_btn">
+                  <li class="col_2">
+                    <button class="bt-css">장바구니</button>
+                  </li>
+                  <li class="col_2">
+                    <button
+                  class="bt-css bt-buy"
+                  onclick="$(document).on('click','.bt-buy',function(){document.location.href='./user/user-buy.html'})"
+                >
+                  바로구매
+                </button>
+              </li>
+                  
+                
+                </ul>
+              </div>
+              </div>
             </div>
           </div>
         </div>
