@@ -25,11 +25,7 @@
 				
 				// color select의 전체 options를 삭제
 				$("#colorList option").remove()
-<<<<<<< HEAD
-				
-=======
 						
->>>>>>> a99a75a4bfde20dc017f2444cd8766b00f710648
 				if(colorList == "FAIL") {
 					alert("통신오류")
 				} else if(!colorList.length) {

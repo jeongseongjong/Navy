@@ -74,7 +74,15 @@ public interface CartDao {
 	@Select("SELECT * FROM tbl_cart WHERE bk_id = #{bk_id}")
 	public CartVO findbyBkId(String bk_id);
 
-	public int recipient_update(String[] bk_id);
+	/*
+	 * dao에서 list형 변수 1개만을 매개변수로 전달할 경우
+	 * collection에 단순히 list라고만 명시하면 되지만
+	 * 
+	 * dao에서 2개이상의 변수 지정시 param을 꼭 설정해 주어야한다.
+	 * 
+	 * mapper에서 collection에는 변수이름을 넣어줘야한다.
+	 */
+	public int recipient_update(@Param("bkSeqList") List<String> bkSeqList, @Param("cartVO") CartVO cartVO);
 
 
 }

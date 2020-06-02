@@ -1,5 +1,7 @@
 package com.biz.navy.domain;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -15,6 +17,8 @@ import lombok.ToString;
 @Builder
 public class CartVO {
 
+//	List<String> bkSeqList;
+	
 	// 장바구니 들어갈 seq값
 	private long bk_id;	
 	
