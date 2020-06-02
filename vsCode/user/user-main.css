@@ -536,3 +536,12 @@ div.delivery_condition {
   height: 2px;
   text-indent: -900px;
 }
+
+.a_car_hover {
+  color: #252c41;
+}
+
+.a_car_hover:hover {
+  color: #252c41;
+  text-decoration: none;
+}

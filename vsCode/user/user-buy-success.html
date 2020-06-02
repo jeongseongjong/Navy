@@ -90,8 +90,8 @@
             <!--장바구니 container-->
             <div class="title-buy">
               <span class="step_location_1">01 장바구니 > </span>
-              <span class="step_location_2 on">02 주문/결제 > </span>
-              <span class="step_location_3">03 결제완료</span>
+              <span class="step_location_2">02 주문/결제 > </span>
+              <span class="step_location_3 on">03 결제완료</span>
             </div>
 
             <!--buy main-->
@@ -108,7 +108,7 @@
                   <em class="col_pink">
                     <i>GUCCI DRESS</i>
                   </em>
-                  상품을 주문합니다
+                  결제를 완료하셨습니다
                 </span>
                 <span class="txt2"
                   >선택하신 상품의 가격과 옵션 정보는 하단 주문상품 정보에서
@@ -122,7 +122,7 @@
               <!-- 주문자 정보 2020-06-02-->
               <div class="checkout_delivery">
                 <div class="info_section">
-                  <h4>주문자 정보</h4>
+                  <h4>결제 정보</h4>
                   <div class="tbl_wrap">
                     <table>
                       <colgroup>
@@ -142,54 +142,10 @@
                             <span>010-4053-9404</span>
                           </td>
                         </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-              <!-- 배송지 정보 end-->
-              <!-- 배송지 정보-->
-              <div class="checkout_delivery">
-                <div class="info_section">
-                  <h4>배송지 정보</h4>
-                  <div class="tbl_wrap">
-                    <table>
-                      <colgroup>
-                        <col style="width: 160px;" />
-                        <col />
-                      </colgroup>
-                      <tbody>
-                        <tr>
-                          <th scope="row" class="bd0">이름</th>
-                          <td>
-                            <input type="text" class="user_name" />
-                          </td>
-                        </tr>
-                        <tr>
-                          <th scope="row" class="bd0">연락처</th>
-                          <td>
-                            <input type="text" class="user_phone" />
-                          </td>
-                        </tr>
                         <tr>
                           <th scope="row" class="bd0">주소</th>
-
-                          <td class="padding_td">
-                            <div class="fl-wrap">
-                              <input type="text" class="addr1" />
-                              <button
-                                type="button"
-                                class="btn_addr1"
-                                data-toggle="modal"
-                                data-target="#myModal"
-                              >
-                                우편번호
-                              </button>
-                            </div>
-                            <p class="mt6">
-                              <input type="text" class="addr_n2" readonly />
-                              <input type="text" class="addr_n3" />
-                            </p>
+                          <td>
+                            <span>광주광역시 남구 백운동</span>
                           </td>
                         </tr>
                       </tbody>
@@ -197,7 +153,8 @@
                   </div>
                 </div>
               </div>
-              <!-- 배송지 정보 end-->
+              <!-- 결제 정보 end-->
+
               <!-- 주문 정보 -->
               <div class="info_section">
                 <h4>주문상품 정보</h4>
@@ -244,16 +201,6 @@
                                   </em>
                                 </li>
                               </ul>
-                            </div>
-                            <div class="p-btn">
-                              <button
-                                type="button"
-                                class="btn_change_amount"
-                                data-toggle="modal"
-                                data-target="#m_count"
-                              >
-                                수량변경
-                              </button>
                             </div>
                           </div>
                         </td>
@@ -325,140 +272,11 @@
                 </div>
               </div>
               <!--주문 정보 end-->
-              <!--결제 -->
-              <script>
-                $(function () {
-                  /* 전체 선택 및 해제*/
-                  $("#chk_all").click(function () {
-                    if ($("#chk_all").is(":checked")) {
-                      $(".chk").prop("checked", true);
-                    } else {
-                      $(".chk").prop("checked", false);
-                    }
-                  });
-                  /* 1개 선택시 전체 선택 해제*/
-                  $(".chk").click(function () {
-                    if ($("input[name='chk']:checked").length == 3) {
-                      $("#chk_all").prop("checked", true);
-                    } else {
-                      $("#chk_all").prop("checked", false);
-                    }
-                  });
-                });
-              </script>
-              <div class="pay_section">
-                <h4>약관동의</h4>
-                <div class="tbl_wrap box_wrap agree">
-                  <div class="left_box">
-                    <dl>
-                      <dt>
-                        <label class="chk_type">
-                          <input type="checkbox" id="chk_all" class="chk" />
-                          <label for="chk_all"></label>
-                        </label>
-                        <em>전체 동의하기</em>
-                      </dt>
-                      <dd>
-                        <ul>
-                          <li>
-                            <div class="checkBox01 hightlight">
-                              <label class="chk_type">
-                                <input
-                                  type="checkbox"
-                                  class="chk"
-                                  name="chk"
-                                  id="chk1"
-                                />
-                                <label for="chk1"></label>
-                              </label>
-                              <em>개인정보 제3자 제공에 동의합니다</em>
-                            </div>
-                            <a
-                              href="#"
-                              class="detail"
-                              data-toggle="modal"
-                              data-target="#m_detail_1"
-                              >상세보기</a
-                            >
-                          </li>
-                          <li>
-                            <div class="checkBox01 small-font">
-                              <label class="chk_type">
-                                <input
-                                  type="checkbox"
-                                  class="chk"
-                                  name="chk"
-                                  id="chk2"
-                                />
-                                <label for="chk2"></label>
-                              </label>
-                              <em>결제대행서비스 이용약관에 동의합니다</em>
-                            </div>
-                            <a
-                              href="#"
-                              class="detail"
-                              data-toggle="modal"
-                              data-target="#m_detail_2"
-                              >상세보기</a
-                            >
-                          </li>
-                          <li>
-                            <div class="checkBox01 small-font">
-                              <label class="chk_type">
-                                <input
-                                  type="checkbox"
-                                  class="chk"
-                                  name="chk"
-                                  id="chk3"
-                                />
-                                <label for="chk3"></label>
-                              </label>
-                              <em
-                                >주문할 상품설명에 명시된 내용과 사용조건을
-                                확이하였으며, 취소·환불규정에 동의합니다.</em
-                              >
-                            </div>
-                          </li>
-                        </ul>
-                      </dd>
-                    </dl>
-                  </div>
-                  <div class="right_box">
-                    <div class="total_pay">
-                      <ul>
-                        <li>
-                          <em class="tit">총 상품금액</em>
-                          <span class="int_black_big">
-                            <em>1,750,000</em>
-                            <i class="won">won</i>
-                          </span>
-                        </li>
-                        <li>
-                          <em class="tit">배송비</em>
-                          <span class="int_black_big">
-                            <em>0</em>
-                            <i class="won">won</i>
-                          </span>
-                        </li>
-                      </ul>
-                      <div class="total">
-                        <em>총 결제금액</em>
-                        <p>
-                          <span class="int_pink">
-                            <em>1,750,000</em>
-                            <i class="won">won</i>
-                          </span>
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!--결제 end-->
+
               <div>
                 <div class="btn_buy_area">
-                  <a class="btn_cancel" href="../shopDetail.html">취소</a>
-                  <a class="btn_buy" href="./user-buy-success.html">결제하기</a>
+                  <a class="bt_cont" href="../shopList.html">쇼핑하기</a>
+                  <a class="bt_cart" href="user-cart.html">장바구니</a>
                 </div>
                 <div class="notice">
                   <dl>
