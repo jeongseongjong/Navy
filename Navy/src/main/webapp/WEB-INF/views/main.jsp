@@ -58,26 +58,28 @@ $(function() {
 	<div class="hr-sect mt-5 mb-5">FEATURED ITEMS</div>
 
 	<!-- 상품 갤러리 마우스 오버시 두가지 이미지-->
-	<div class="container-fluid d-flex justify-content-center" style="margin-bottom: 200px; margin-top: 100px;">
-		<div class="wrapper mr-5">
+	<div class="container-fluid" style="margin-bottom: 200px; margin-top: 100px;">
+		<div class="wrapper-1 mr-5">
 			<c:choose>
 				<c:when test="${empty PROBESTLIST}">
 					<div class="image">인기 상품 정보가 없습니다.</div>
 				</c:when>
 				<c:otherwise>
 					<c:forEach items="${PROBESTLIST}" var="PROBLIST">
-						<div class="image"  data-img="${PROBLIST.proDImgList[1].p_img_upload_name}">
-      						<img class="show-img" src="${rootPath}/images/${PROBLIST.proDImgList[0].p_img_upload_name}" alt="dress1" style="display: block;" />
-        					<div class="overlay">
-          						<div class="overlay-cont">
-            						<div class="share">
-              							<a class="moreDetail" data-id="${PROBLIST.p_code}">MORE VIEW</a>
-            						</div>
-          						</div>
+						<figure>
+							<div class="image" data-img="${PROBLIST.proDImgList[1].p_img_upload_name}">
+      							<img class="show-img" src="${rootPath}/images/${PROBLIST.proDImgList[0].p_img_upload_name}" alt="dress1" style="display: block;" />
+        						<div class="overlay">
+          							<div class="overlay-cont">
+            							<div class="share">
+              								<a class="moreDetail" data-id="${PROBLIST.p_code}">MORE VIEW</a>
+            							</div>
+          							</div>
+        						</div>
         					</div>
-      					</div>
-      					<p class="mt-4">${PROBLIST.p_name} : 
-      						<fmt:formatNumber value="${PROBLIST.p_price}" type="number" maxFractionDigits="3" var="commaPrice"/>&#8361; ${commaPrice}</p>
+        					<figcation class="mt-4">${PROBLIST.p_name} : 
+      							<fmt:formatNumber value="${PROBLIST.p_price}" type="number" maxFractionDigits="3" var="commaPrice"/>&#8361; ${commaPrice}</figcation>
+      					</figure>
 					</c:forEach>
 				</c:otherwise>
 			</c:choose>

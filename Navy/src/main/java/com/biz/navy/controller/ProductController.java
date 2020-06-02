@@ -52,7 +52,7 @@ public class ProductController {
 			) {
 		
 		long totalCount = proService.totalCount(search);
-		int listPerPage = 15;
+		int listPerPage = 9;
 		PageVO pageVO = pageService.getPagination(totalCount, currentPageNo, listPerPage);
 //		List<ProductVO> proList = proService.selectAll();
 //		List<ProductVO> proListPaging = proService.selectAllPaging(pageVO);
