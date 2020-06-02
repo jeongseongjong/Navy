@@ -1,83 +1,66 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-</head>
-<body>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+    
 <!-- footer include -->
-  <footer class="bg-gray mt-5">
-    <div class="container p-5">
-      <div class="row">
-        <h2 class="red-text">NAVIYA</h2>
-      </div>
-      <div class="pl-5 pr-5 d-flex row">
-        <div class="col-sm-3">
-          <div>
-            shop
-          </div>
-          <div>
-            main1
-          </div>
-          <div>
-            main2
-          </div>
-          <div>
-            QnA
-          </div>
-        </div>
-        <div class="col-sm-3">
-          <div>
-            <span class="font-weight-bold"> TEAMLEADER </span><br />
-            <span
-              ><a class="atag-github" href="https://github.com/jeongseongjong"
-                >&nbsp;&nbsp;- NAVI</a
-              ></span
-            >
-          </div>
-          <div>
-            <span class="font-weight-bold">UI/UX</span> <br />
-            <span
-              ><a class="atag-github" href="https://github.com/qussoa"
-                >&nbsp;&nbsp;- QUSSOA</a
-              ></span
-            >
-          </div>
-        </div>
-        <div class="col-sm-3">
-          <div>
-            <span class="font-weight-bold">DEVELOPER</span><br />
-            <span
-              ><a class="atag-github" href="https://github.com/leeiter"
-                >&nbsp;&nbsp;- PRINCESSEJIN</a
-              ></span
-            >
-          </div>
-          <div>
-            <span class="font-weight-bold">DEVELOPER</span><br />
-            <span
-              ><a class="atag-github" href="https://github.com/bjmin17"
-                >&nbsp;&nbsp; - BJ.MIN</a
-              ></span
-            >
-          </div>
-        </div>
-        <div class="col-sm-3">
-          <div>
-            <small>
-              광주광역시 북구 경양로170<br />
-              한경빌딩 5층
-            </small>
-          </div>
-          <div>
-            <small>
-              &copy; copyRight qussoa@naver.com
-            </small>
-          </div>
-        </div>
-      </div>
-    </div>
-  </footer>
-</body>
-</html>
+<footer class="bg-gray mt-5">
+	<div class="container footer_box">
+    	<div class="row">
+      		<h2 class="red-text ft_tit">NAVIYA</h2>
+    	</div>
+    	<div class="pl-5 pr-5 d-flex row">
+      		<div class="col-sm-3">
+        		<div>
+          			<a class="url_tag" href="${rootPath}/product/list">SHOP</a>
+        		</div>
+	        	<div>
+	          		<a class="url_tag" href="${rootPath}/cs/list">고객센터</a>
+	        	</div>
+	        	<div>
+	          		<a class="url_tag" href="#">개인정보</a>
+	        	</div>
+	        	<div>
+	          		<sec:authorize access="hasRole('ROLE_ADMIN')">
+	          			<a class="url_tag" href="${rootPath}/admin">관리자</a>
+	       			</sec:authorize>
+	        	</div>
+      		</div>
+      		<div class="col-sm-3">
+				<div>
+		        	<span class="font-weight-bold foot_tit">TEAMLEADER</span><br />
+		          	<span>
+		          		<a class="atag-github" href="https://github.com/jeongseongjong">&nbsp;&nbsp;- NAVI</a>
+		            </span>
+		        </div>
+		        <div>
+		        	<span class="font-weight-bold foot_tit">UI/UX</span> <br />
+		          	<span>
+		          		<a class="atag-github" href="https://github.com/qussoa">&nbsp;&nbsp;- QUSSOA</a>
+		          	</span>
+		        </div>
+     	 	</div>
+	      	<div class="col-sm-3">
+	      		<div>
+		        	<span class="font-weight-bold foot_tit">DEVELOPER</span><br />
+		          	<span>
+		          		<a class="atag-github" href="https://github.com/leeiter">&nbsp;&nbsp;- PRINCESSEJIN</a>
+		            </span>
+		        </div>
+	        	<div>
+		        	<span class="foot_tit">DEVELOPER</span><br />
+		          	<span>
+		          		<a class="atag-github" href="https://github.com/bjmin17">&nbsp;&nbsp; - BJ.MIN</a>
+		           	</span>
+		        </div>
+	      	</div>
+      		<div class="col-sm-3">
+      			<div>
+        			<small>광주광역시 북구 경양로170<br />한경빌딩 5층</small>
+        		</div>
+        		<div>
+          			<small>&copy; copyRight qussoa@naver.com</small>
+        		</div>
+      		</div>
+   		</div>
+   	</div>
+</footer>

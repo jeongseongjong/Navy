@@ -336,4 +336,16 @@ public class ProductServiceImpl implements ProductService {
 		return proDao.getProColor(c_s_code);
 	}
 
+	@Override
+	public List<ProductVO> findByBest() {
+		// TODO Auto-generated method stub
+		return proDao.findByBest();
+	}
+
+	@Override
+	public List<ProductImgVO> getProImages(long p_img_p_code) {
+		// TODO Auto-generated method stub
+		return proDao.getProImages(p_img_p_code);
+	}
+
 }
