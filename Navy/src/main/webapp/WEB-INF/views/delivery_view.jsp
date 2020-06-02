@@ -25,13 +25,16 @@
 		$(document).on("click", ".payment", function() {
 			alert("클릭")
 			var seqList = [];
-
-			$('input[name="seq"]').each(function(i, e) {
-				seqList.push( $("${DELIVERY_LIST.bk_id}") );
-			});
+			let dev_input = $("input[id='dev_list']")
+			alert(dev_input.length)
+			for(var i = 0 ; i < dev_input.length;i++) {
+				seqList.push(dev_input[i].value)
+			}
+			
 			alert(seqList)
 
 			let username = $("#username").val()
+			let phone = $("#phone").val()
 			let address = $("#address").val()
 			let address_etc = $("#address_etc").val()
 			let message = $("#message").val()
@@ -39,9 +42,11 @@
 			$.ajax({
 				url : "${rootPath}/cart/recipient_update",
 				method : "POST",
+				traditional : true,
 				data : {
-					bk_id : seqList,
-					username : username,
+					bkSeqList : seqList,
+					bk_recipient_name : username,
+					bk_recipient_phone : phone,
 					bk_recipient_address : address,
 					bk_recipient_address_etc : address_etc,
 					bk_recipient_message : message,
@@ -103,11 +108,11 @@
 				<p>받는사람 정보
 				<p>
 					<label>이름</label> 
-					<input type="text" id="username" name="username" class="w3-input">
+					<input type="text" id="username" value="" name="username" class="w3-input">
 				</p>
 				<p>
 					<label>연락처</label> 
-					<input type="text" id="phone" name="phone" class="w3-input">
+					<input type="text" id="phone" value="" name="phone" class="w3-input">
 				</p>
 				<input id="postcode1" type="text" value="" style="width: 50px;"	readonly /> 
 				<input id="postcode2" type="text" value="" style="width: 50px;" readonly /> 
@@ -116,7 +121,7 @@
 				<input type="text" id="address" name="address" value="" style="width: 240px;" readonly /> 
 				<input type="text" id="address_etc" name="address_etc" value="" style="width: 200px;" />
 				<c:forEach items="${DELIVERY_LIST}" var="delivery" varStatus="status">
-					<input type="hidden" id="seq" name="seq" value="${delivery.bk_id}">
+					<input type="hidden" id="dev_list" name="seq" value="${delivery.bk_id}">
 				</c:forEach>
 				<div>요청사항</div>
 				<input type="text" id="message" placeholder="요청사항">

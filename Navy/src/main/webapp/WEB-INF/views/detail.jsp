@@ -25,11 +25,12 @@ $(function() {
 	$("#select_ck").change(function() {
 		let s_code = $(this).find("option:selected").data("id")
 		// alert(s_code)
-		
+    
 		$.ajax({
 			url : "${rootPath}/product/get_color_list_by_size",
 			method : "GET",
 			data : { s_code : s_code }
+
 		})
 		.done(function(colorList) {
 			// color select의 전체 options를 삭제

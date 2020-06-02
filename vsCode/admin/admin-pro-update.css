@@ -1,0 +1,46 @@
+.big_pro_box {
+  position: relative;
+}
+
+.pro_list_box {
+  height: 360px;
+}
+.pro_list_in {
+  display: inline-block;
+  float: left;
+}
+
+.pro_list_img {
+  position: absolute;
+  right: 180px;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.pro_list_img img {
+  width: 130px;
+  height: 130px;
+  padding-bottom: 10px;
+}
+
+.ad_img_lt {
+  position: relative;
+  float: left;
+  padding-left: 10px;
+}
+
+.ad_bt_del {
+  position: absolute;
+  right: 0;
+  background: url("../img/del.jpg") no-repeat;
+  width: 20px;
+  height: 20px;
+  border: 0;
+  background-size: cover;
+  font-size: 0;
+  outline: none;
+}
+
+button:focus {
+  outline: 0;
+}
