@@ -258,3 +258,12 @@ a.top {
   display: flex;
   justify-content: center;
 }
+
+.a_tag_text {
+  color: #252c41;
+}
+
+.a_tag_text:hover {
+  color: #252c41;
+  text-decoration: none;
+}
