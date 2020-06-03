@@ -73,8 +73,11 @@
   
 ## 06-01
  * size/colorList 값 추가 수정
+ * main, include-nav, include-footer UI 적용
+ * main 추천List 적용(날짜/시간 -> 추천수 변경, UI 수정 필요)
+ * size/color -> Dao, Service, ServiceImpl 각 삭제
  * productServiceImpl의 findByMaxPCode 널포인트 문제 -> try catch문으로 해결
- 
+  
 ## 06-03
  * userDetail 권한 보여주는 부분에 이메일 나오는 것 수정
  * 재고관리 페이지 페이징

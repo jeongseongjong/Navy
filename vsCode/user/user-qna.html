@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Page Title</title>
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    />
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="../main.css" />
+    <link rel="stylesheet" href="./user-main.css" />
+  </head>
+  <style></style>
+  <script>
+    $(document).on("click", ".scope", function () {
+      (".scope");
+    });
+  </script>
+  <body>
+    <!--header include-->
+    <header>
+      <div class="d-flex">
+        <ul class="nav ml-auto mr-5">
+          <!-- input 검색창-->
+          <li class="nav-item nav-input">
+            <input class="input-style" />
+            <img src="../img/scope.png" class="scope" />
+          </li>
+          <!-- annonimous& authentication-->
+          <li class="nav-item">
+            <a class="nav-link">login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link">logout</a>
+          </li>
+          <!--로그인시 mypage-->
+          <li class="nav-item">
+            <a href="../user/user-main.html" class="nav-link black-text"
+              >mypage</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link">join</a>
+          </li>
+        </ul>
+      </div>
+    </header>
+    <!--nav include 할 것-->
+    <nav
+      class="navbar navbar-expand-sm bg-white d-flex ml-5 mt-5 mb-5 sticky-top"
+    >
+      <a href="../main.html" class="red-text mr-5 h-title h2"
+        ><span>NAVIYA</span></a
+      >
+      <div class="d-flex">
+        <a class="nav-link black-text" href="../shopList.html">SHOP</a>
+        <a class="nav-link black-text" href="./user-cart.html">장바구니</a>
+        <a class="nav-link black-text" href="../sponsor.html">고객센터</a>
+        <a class="nav-link black-text" href="./admin/admin-main.html">관리자</a>
+      </div>
+    </nav>
+    <!--main 화면 img들어갈 것-->
+    <article class="all-browers container">
+      <div>
+        <!--main-list-->
+        <div class="mypage-header">
+          <div class="image_title_area top_banner_mypage">
+            <div class="img_title_inner">
+              <div class="image_title_text">
+                <h2 class="my_title">MYNAVI</h2>
+                <strong>나비가 꽃을 찾아오듯</strong>
+              </div>
+            </div>
+          </div>
+          <p class="user_welcome"></p>
+          <ul class="info-box">
+            <li class="buy">
+              <a>
+                <dl>
+                  <dt>주문상품</dt>
+                  <dd>0</dd>
+                </dl>
+              </a>
+            </li>
+            <li class="delivery">
+              <a>
+                <dl>
+                  <dt>배송중</dt>
+                  <dd>2</dd>
+                </dl>
+              </a>
+            </li>
+            <li class="delivery">
+              <a>
+                <dl>
+                  <dt>장바구니</dt>
+                  <dd>5</dd>
+                </dl>
+              </a>
+            </li>
+            <li class="delivery">
+              <a>
+                <dl>
+                  <dt>문의내역</dt>
+                  <dd>10</dd>
+                </dl>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <!--header-end-->
+        <hr />
+        <!--구매내역 nav-->
+        <nav>
+          <ul class="nav nav-tabs justify-content-center">
+            <li class="nav-item">
+              <a class="nav-link nav-atag" href="./user-main.html">구매내역</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-atag" href="#">배송중</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-atag" href="./user-cart.html">장바구니</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-atag active" href="#">문의내역</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-atag" href="#">개인정보</a>
+            </li>
+          </ul>
+        </nav>
+        <!--구매내역 nav end-->
+        <!--구매내역 container-->
+
+        <div class="date_control">
+          <ul class="date_list dl_fit">
+            <li class="date_all">
+              <a class="a_on">전체</a>
+            </li>
+            <li class="date_all">
+              <a>1개월</a>
+            </li>
+            <li class="date_all">
+              <a>3개월</a>
+            </li>
+          </ul>
+        </div>
+        <!--기간 end-->
+        <!--상품 구매내역 1-->
+        <span class="h5" style="padding-left: 90px;">상품 구매내역</span>
+        <div class="buy_list">
+          <table cellspacing="0" border="1">
+            <caption>
+              구매내역
+            </caption>
+            <colgroup>
+              <col width="170" />
+              <col width="500" />
+              <col width="120" />
+              <col width="140" />
+            </colgroup>
+            <thead>
+              <tr>
+                <th scope="col">상품이름</th>
+                <th scope="col">문의내용</th>
+                <th scope="col">등록일</th>
+                <th scope="col">답변일</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- tr에 이벤트 걸어서 바로 디테일 밑에 qna 보이게 해주세요 -->
+              <tr>
+                <td colspan="4">여기에 상품 qna 리스트를 넣어주세요</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!--content end-->
+
+        <!--pagination-->
+        <div class="d-flex justify-content-center mt-3">
+          <nav aria-label="Page navigation example">
+            <ul class="pagination">
+              <li class="page-item">
+                <a class="page-link black-text" href="#" aria-label="Previous">
+                  <span aria-hidden="true" class="black-text">&laquo;</span>
+                  <span class="sr-only">Previous</span>
+                </a>
+              </li>
+              <li class="page-item black-text">
+                <a class="page-link black-text" href="#">1</a>
+              </li>
+              <li class="page-item black-text">
+                <a class="page-link black-text" href="#">2</a>
+              </li>
+              <li class="page-item black-text">
+                <a class="page-link black-text" href="#">3</a>
+              </li>
+              <li class="page-item black-text">
+                <a class="page-link black-text" href="#" aria-label="Next">
+                  <span aria-hidden="true" class="black-text">&raquo;</span>
+                  <span class="sr-only black-text">Next</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <!--pagination end-->
+        <div class="delivery_process_area">
+          <h3 class="h_delivery_process">배송상태안내 및 유의사항</h3>
+          <div class="delivery_process">
+            <ul class="1st-delivery_process"></ul>
+          </div>
+          <ul class="fst_delivery_caution">
+            <li>
+              <span>·</span>
+              배송지 수정 및 구매취소는 주문하신 배송상품이 '결제완료' 상태일
+              때만 가능합니다.
+            </li>
+            <li>
+              <span>·</span>
+              환불/교환 요청은 '배송완료 다음날부터 7일'까지 가능합니다. (환불은
+              '배송준비중', 교환은 '배송완료' 상태일 때 부터 요청가능)
+            </li>
+            <li>
+              <span>·</span>
+              환불/교환 요청 후 1~3일 내에 택배사에서 상품을 수거하게 되니 잠시
+              기다려 주세요.
+            </li>
+            <li>
+              <span>·</span>
+              구매 시의 상품정보와 현재 상품 정보가 상이할 수 있습니다.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </article>
+  </body>
+
+  <!-- footer include -->
+  <footer class="bg-gray mt-5">
+    <div class="container p-5">
+      <div class="row">
+        <h2 class="red-text">NAVIYA</h2>
+      </div>
+      <div class="pl-5 pr-5 d-flex row">
+        <div class="col-sm-3">
+          <div>
+            shop
+          </div>
+          <div>
+            main1
+          </div>
+          <div>
+            main2
+          </div>
+          <div>
+            QnA
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div>
+            <span class="font-weight-bold"> TEAMLEADER </span><br />
+            <span
+              ><a class="atag-github" href="https://github.com/jeongseongjong"
+                >&nbsp;&nbsp;- NAVI</a
+              ></span
+            >
+          </div>
+          <div>
+            <span class="font-weight-bold">UI/UX</span> <br />
+            <span
+              ><a class="atag-github" href="https://github.com/qussoa"
+                >&nbsp;&nbsp;- QUSSOA</a
+              ></span
+            >
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div>
+            <span class="font-weight-bold">DEVELOPER</span><br />
+            <span
+              ><a class="atag-github" href="https://github.com/leeiter"
+                >&nbsp;&nbsp;- PRINCESSEJIN</a
+              ></span
+            >
+          </div>
+          <div>
+            <span class="font-weight-bold">DEVELOPER</span><br />
+            <span
+              ><a class="atag-github" href="https://github.com/bjmin17"
+                >&nbsp;&nbsp; - BJ.MIN</a
+              ></span
+            >
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div>
+            <small>
+              광주광역시 북구 경양로170<br />
+              한경빌딩 5층
+            </small>
+          </div>
+          <div>
+            <small>
+              &copy; copyRight qussoa@naver.com
+            </small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+</html>

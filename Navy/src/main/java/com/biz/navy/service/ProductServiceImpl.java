@@ -337,7 +337,18 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public long countColor(String search) {
+	public List<ProductVO> findByBest() {
+		// TODO Auto-generated method stub
+		return proDao.findByBest();
+	}
+
+	@Override
+	public List<ProductImgVO> getProImages(long p_img_p_code) {
+		// TODO Auto-generated method stub
+		return proDao.getProImages(p_img_p_code);
+	}
+
+  public long countColor(String search) {
 		long ret = 0;
 //		if (search == "") {
 			ret = proDao.countColorAll();
@@ -362,6 +373,4 @@ public class ProductServiceImpl implements ProductService {
 			proSearchList = proDao.selectAllPaging(pageVO);
 		}
 		return proSearchList;
-	}
-
 }

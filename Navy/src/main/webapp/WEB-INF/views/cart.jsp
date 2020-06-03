@@ -169,76 +169,7 @@ $(function() {
     <article class="all-browers container">
       <div id="cart">
         <!--main-list-->
-        <div class="mypage-header">
-          <div class="image_title_area top_banner_mypage">
-            <div class="img_title_inner">
-              <div class="image_title_text">
-                <h2 class="my_title">장바구니</h2>
-                <strong>나비가 꽃을 찾아오듯</strong>
-              </div>
-            </div>
-          </div>
-          <p class="user_welcome"></p>
-          <ul class="info-box">
-            <li class="buy">
-              <a>
-                <dl>
-                  <dt>주문상품</dt>
-                  <dd>0</dd>
-                </dl>
-              </a>
-            </li>
-            <li class="delivery">
-              <a>
-                <dl>
-                  <dt>배송중</dt>
-                  <dd>2</dd>
-                </dl>
-              </a>
-            </li>
-            <li class="delivery">
-              <a>
-                <dl>
-                  <dt>장바구니</dt>
-                  <dd>5</dd>
-                </dl>
-              </a>
-            </li>
-            <li class="delivery">
-              <a>
-                <dl>
-                  <dt>문의내역</dt>
-                  <dd>10</dd>
-                </dl>
-              </a>
-            </li>
-          </ul>
-        </div>
-        <!--header-end-->
-
-        <hr />
-        <!--구매내역 nav include 하고 싶음 하시오-->
-        <nav>
-          <ul class="nav nav-tabs justify-content-center">
-            <li class="nav-item">
-              <a class="nav-link nav-atag" href="./user-main.html">구매내역</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link nav-atag" href="#">배송중</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active nav-atag" href="./user-cart.html"
-                >장바구니</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link nav-atag" href="#">문의내역</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link nav-atag" href="#">개인정보</a>
-            </li>
-          </ul>
-        </nav>
+        <%@ include file="/WEB-INF/views/include/include-menu.jspf" %>
         <!--구매내역 nav end-->
         <!--장바구니 container-->
         <div class="step_location">

@@ -1,415 +1,225 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Page Title</title>
-    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-    />
-    <!-- Popper JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<head>
+<%@ include file="/WEB-INF/views/include/include-head.jspf"%>
+<meta charset="utf-8" />
+<title>Page Title</title>
+</head>
+<script>
+	$(document).on("click", ".scope", function() {
+		(".scope");
+	});
+</script>
+<body>
+	<!--header include-->
+	<!--nav include 할 것-->
+	<%@ include file="/WEB-INF/views/include/include-nav.jspf"%>
+	<!--main 화면 img들어갈 것-->
+	<article class="all-browers container">
+		<div>
+			<!--main-list-->
+			<%@ include file="/WEB-INF/views/include/include-menu.jspf" %>
+			
+			<!--구매내역 nav end-->
+			<!--구매내역 container-->
 
-    <!-- Latest compiled JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+			<div class="date_control">
+				<ul class="date_list dl_fit">
+					<li class="date_all"><a class="a_on">전체</a></li>
+					<li class="date_all"><a>1개월</a></li>
+					<li class="date_all"><a>3개월</a></li>
+				</ul>
+			</div>
+			<!--기간 end-->
+			<!--상품 구매내역 1-->
+			<span class="h5" style="padding-left: 90px;">상품 구매내역</span>
+			<c:forEach items="${DELIVERY_LIST}" var="delivery">
+				<div class="buy_list">
+					<table cellspacing="0" border="1">
+						<caption>구매내역</caption>
+						<colgroup>
+							<col width="170" />
+							<col width="500" />
+							<col width="120" />
+							<col width="140" />
+						</colgroup>
+						<thead>
+							<tr>
+								<th colspan="2" scope="colgroup">구매내역</th>
+								<th scope="col">배송상태</th>
+								<th scope="col">관리</th>
+							</tr>
+						</thead>
+						<tbody>
+							<th scope="rowgroup" rowspan="4" class="deal_info">
+								<div class="date_num">
+									<p class="dt">
+										<strong>${delivery.bk_p_buyTime }</strong>
+									</p>
+									<p>(13:00:01)</p>
+									<p class="buy_num">
+										<em class="txt">주문번호</em> <strong>000${delivery.bk_id}</strong>
+									</p>
+								</div>
+							</th>
+							<tr>
+								<td colspan="3" class="delivery_wrap">
+									<div class="delivery_num">
+										<span>배송번호 : </span> <em>${bk_id}</em>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<th class="sum_up">
+									<div class="thmb_area">
+										<a href="../shopDetail.html"> <img
+											src="${rootPath}/resources/img/gu-dress.jpg" width="110"
+											height="110" alt="구매상품" class="thmb" />
+										</a>
+										<h4>
+											<a href="../shopDetail.html">${delivery.bk_p_name}</a>
+										</h4>
+										<p class="pay_info">
+											<span class="won"> <em>${delivery.bk_p_oprice }</em>
+												won
+											</span>
+											<!-- </span> (결제완료) -->
+										</p>
+									</div>
+									<p class="add_date_info">&nbsp;</p>
+									<p class="add_date_info">
+										배송완료일 : <strong>${delivery.bk_p_buyTime }</strong>
+									</p>
+									<ul class="shop_list">
+										<li>
+											<div class="detail">
+												<div class="tit">
+													<strong> color : ${delivery.bk_p_color } / Size :
+														${delivery.bk_p_size} </strong>
+													<p>
+														(구매수량 <em>${delivery.bk_p_qty}</em> 개)
+													</p>
+												</div>
+											</div>
+										</li>
+									</ul>
+								</th>
+								<td class="expiry">
+									<div class="delivery_condition">
+										<strong>배송중</strong>
+									</div>
+								</td>
+								<td class="review_write">
+									<button class="review-btn">리뷰쓰기</button>
+								</td>
+							</tr>
+							<tr>
+								<td colspan="3" class="delivery last-border"><span title
+									class="addr">
+										<p class="addr">
+											<em>배송지 정보 : <span>${delivery.username},
+													${delivery.bk_recipient_address}
+													${delivery.bk_recipient_address_etc}</span>
+											</em>
+										</p>
+								</span></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</c:forEach>
+			<!--content end-->
+			<!--pagination-->
+			<div class="d-flex justify-content-center mt-3">
+				<nav aria-label="Page navigation example">
+					<ul class="pagination">
+						<li class="page-item"><a class="page-link black-text"
+							href="#" aria-label="Previous"> <span aria-hidden="true"
+								class="black-text">&laquo;</span> <span class="sr-only">Previous</span>
+						</a></li>
+						<li class="page-item black-text"><a
+							class="page-link black-text" href="#">1</a></li>
+						<li class="page-item black-text"><a
+							class="page-link black-text" href="#">2</a></li>
+						<li class="page-item black-text"><a
+							class="page-link black-text" href="#">3</a></li>
+						<li class="page-item black-text"><a
+							class="page-link black-text" href="#" aria-label="Next"> <span
+								aria-hidden="true" class="black-text">&raquo;</span> <span
+								class="sr-only black-text">Next</span>
+						</a></li>
+					</ul>
+				</nav>
+			</div>
+			<!--pagination end-->
+			<div class="delivery_process_area">
+				<h3 class="h_delivery_process">배송상태안내 및 유의사항</h3>
+				<div class="delivery_process">
+					<ul class="1st-delivery_process"></ul>
+				</div>
+				<ul class="fst_delivery_caution">
+					<li><span>·</span> 배송지 수정 및 구매취소는 주문하신 배송상품이 '결제완료' 상태일 때만
+						가능합니다.</li>
+					<li><span>·</span> 환불/교환 요청은 '배송완료 다음날부터 7일'까지 가능합니다. (환불은
+						'배송준비중', 교환은 '배송완료' 상태일 때 부터 요청가능)</li>
+					<li><span>·</span> 환불/교환 요청 후 1~3일 내에 택배사에서 상품을 수거하게 되니 잠시 기다려
+						주세요.</li>
+					<li><span>·</span> 구매 시의 상품정보와 현재 상품 정보가 상이할 수 있습니다.</li>
+				</ul>
+			</div>
+		</div>
+	</article>
+</body>
 
-    <link rel="stylesheet" href="../main.css" />
-    <link rel="stylesheet" href="./user-main.css" />
-    <link rel="stylesheet" href="./user-cart.css" />
-  </head>
-  <style></style>
-  <script>
-    $(document).on("click", ".scope", function () {
-      (".scope");
-    });
-  </script>
-  <body>
-    <!--header include-->
-    <header>
-      <div class="d-flex">
-        <ul class="nav ml-auto mr-5">
-          <!-- input 검색창-->
-          <li class="nav-item nav-input">
-            <input class="input-style" />
-            <img src="../img/scope.png" class="scope" />
-          </li>
-          <!-- annonimous& authentication-->
-          <li class="nav-item">
-            <a class="nav-link">login</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link">logout</a>
-          </li>
-          <!--로그인시 mypage-->
-          <li class="nav-item">
-            <a href="../user/user-main.html" class="nav-link black-text"
-              >mypage</a
-            >
-          </li>
-          <li class="nav-item">
-            <a class="nav-link">join</a>
-          </li>
-        </ul>
-      </div>
-    </header>
-    <!--nav include 할 것-->
-    <nav
-      class="navbar navbar-expand-sm bg-white d-flex ml-5 mt-5 mb-5 sticky-top"
-    >
-      <a href="../main.html" class="red-text mr-5 h-title h2"
-        ><span>NAVIYA</span></a
-      >
-      <div class="d-flex">
-        <a class="nav-link black-text" href="../shopList.html">SHOP</a>
-        <a class="nav-link black-text" href="../basket.html">장바구니</a>
-        <a class="nav-link black-text" href="../sponsor.html">고객센터</a>
-        <a class="nav-link black-text" href="./admin/admin-main.html">관리자</a>
-      </div>
-    </nav>
-    <!--main 화면 img들어갈 것-->
-    <article class="all-browers container">
-      <div id="cart">
-        <!--main-list-->
-        <div class="mypage-header">
-          <div class="image_title_area top_banner_mypage">
-            <div class="img_title_inner">
-              <div class="image_title_text">
-                <h2 class="my_title">장바구니</h2>
-                <strong>나비가 꽃을 찾아오듯</strong>
-              </div>
-            </div>
-          </div>
-          <p class="user_welcome"></p>
-          <ul class="info-box">
-            <li class="buy">
-              <a>
-                <dl>
-                  <dt>주문상품</dt>
-                  <dd>0</dd>
-                </dl>
-              </a>
-            </li>
-            <li class="delivery">
-              <a>
-                <dl>
-                  <dt>배송중</dt>
-                  <dd>2</dd>
-                </dl>
-              </a>
-            </li>
-            <li class="delivery">
-              <a>
-                <dl>
-                  <dt>장바구니</dt>
-                  <dd>5</dd>
-                </dl>
-              </a>
-            </li>
-            <li class="delivery">
-              <a>
-                <dl>
-                  <dt>문의내역</dt>
-                  <dd>10</dd>
-                </dl>
-              </a>
-            </li>
-          </ul>
-        </div>
-        <!--header-end-->
-
-        <hr />
-        <!--구매내역 nav include 하고 싶음 하시오-->
-        <nav>
-          <ul class="nav nav-tabs justify-content-center">
-            <li class="nav-item">
-              <a class="nav-link nav-atag" href="./user-main.html">구매내역</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link nav-atag" href="#">배송중</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active nav-atag" href="./user-cart.html"
-                >장바구니</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link nav-atag" href="#">문의내역</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link nav-atag" href="#">개인정보</a>
-            </li>
-          </ul>
-        </nav>
-        <!--구매내역 nav end-->
-        <!--장바구니 container-->
-        <div class="step_location">
-          <span class="step_location_1 on">01 장바구니 > </span>
-          <span class="step_location_2">02 주문/결제 > </span>
-          <span class="step_location_3">03 결제완료</span>
-        </div>
-        <div class="cart_goods">
-          <span class="cart_goods_text">
-            전체
-            <span class="cart_goods_num_cart_cnt">0</span>
-            개
-          </span>
-        </div>
-        <section id="ct_cont">
-          <div class="prod_header">
-            <label class="checks _check_all chk_type">
-              <input
-                type="checkbox"
-                id="check_id"
-                class="_check_all"
-                checked="checked"
-              />
-              <label for="check_id"> </label>
-              <span class="clicked_deal">
-                <i class="blind">상품전체선택</i></span
-              >
-            </label>
-            <ul class="u_title">
-              <li class="u_info">상품정보</li>
-              <li class="u_order">상품금액</li>
-              <li class="u_delivery">배송비</li>
-            </ul>
-          </div>
-          <!--장바구니 리스트-->
-          <div id="deal_lists">
-            <div class="ct_prod_wp">
-              <div class="prod">
-                <label class="checks _check_all chk_type">
-                  <input
-                    type="checkbox"
-                    id="check_item"
-                    class="_check_all"
-                    checked="checked"
-                  />
-                  <label for="check_item"> </label>
-                  <span class="clicked_deal">
-                    <i class="blind">상품한개선택</i></span
-                  >
-                </label>
-                <div class="prod_tit">
-                  <a href="../shopDetail.html"
-                    ><!--여기에 디테일로 넘어갈 url입력--></a
-                  >
-                  <!--이미지 들어갈 tag-->
-                  <div class="prod_thumb">
-                    <img
-                      src="../img/gu-dress-2.jpg"
-                      alt="Gucci dress"
-                      style="width: 100%;"
-                      class="pro-img"
-                    />
-                  </div>
-                  <div class="prod_name">
-                    <strong class="pr_name">Gucci Dress</strong>
-                  </div>
-                </div>
-                <!--prod_tit end-->
-                <div class="highlight_wrap">
-                  <div class="p_item">
-                    <p class="op_name">
-                      <span>[black M] Gucci drass</span>
-                    </p>
-
-                    <div class="bt_cnt">
-                      <button
-                        type="button"
-                        class="cnt_minus"
-                        onClick="javascript:this.amount.value--;"
-                      >
-                        <i class="blind">수량빼기</i>
-                      </button>
-                      <input
-                        type="text"
-                        class="ip_quantity"
-                        title="수량입력"
-                        value="1"
-                        name="amount"
-                      />
-                      <button
-                        type="button"
-                        class="cnt_plus"
-                        onClick="javascript:this.amount.value++;"
-                      >
-                        <i class="blind">수량 더하기</i>
-                      </button>
-                    </div>
-
-                    <div class="price">
-                      <p class="_origin">
-                        <span class="num">1,750,000</span>
-                        won
-                      </p>
-                      <button type="button" class="bt_del">
-                        <i class="blind">삭제</i>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-                <!--option 변경-->
-                <div class="op_change">
-                  <div class="term_wrap">
-                    <div class="term_right">
-                      <button type="button" class="bt_type">
-                        옵션 변경/추가
-                      </button>
-                    </div>
-                  </div>
-                </div>
-                <!--end-->
-
-                <!--주문금액-->
-                <div class="order_price">
-                  <div class="price_inner">
-                    <div class="price_cont">
-                      <p class="nomal">
-                        <span>1,750,000</span>
-                        won
-                      </p>
-                      <p></p>
-                    </div>
-                  </div>
-                </div>
-                <!--주문금액 end-->
-                <div class="delivery_price">
-                  <div class="price_inner">
-                    <p>-</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- prod end-->
-          </div>
-          <!--deal list  1 end-->
-          <!--2 장바구니 리스트-->
-
-          <!--deal list end-->
-        </section>
-        <div class="product_footer">
-          <label class="checks _check_all chk_type">
-            <input
-              type="checkbox"
-              id="check_total"
-              class="_check_all"
-              checked="checked"
-            />
-            <label for="check_total"> </label>
-            <span class="clicked_deal"> <i class="blind">상품한개선택</i></span>
-          </label>
-          <button class="bt_del_type bt_type">삭제</button>
-          <p class="guide_txt">장바구니에 담긴 상품은 보관만 가능합니다</p>
-        </div>
-        <!--총 주문 금액-->
-        <div class="ct_total">
-          <h3 class="ct_total_tit">총 주문금액</h3>
-          <dl class="matter">
-            <dt>총상품금액</dt>
-            <dd>
-              <em>3,500,000</em>
-              <span>won</span>
-            </dd>
-            <dt>배송비</dt>
-            <dd>
-              <em>0</em>
-              <span>won</span>
-            </dd>
-          </dl>
-          <dl class="total">
-            <dt>결제 예상금액</dt>
-            <dd>
-              <em class="_total_amount">3,500,000</em>
-              <span>won</span>
-            </dd>
-          </dl>
-        </div>
-        <!--총주문금액 end-->
-        <!-- button -->
-        <div class="bt_area">
-          <button type="button" class="bt_continue">쇼핑계속하기</button>
-          <button type="button" class="bt_submit">구매하기</button>
-        </div>
-      </div>
-    </article>
-  </body>
-
-  <!-- footer include -->
-  <footer class="bg-gray mt-5">
-    <div class="container p-5">
-      <div class="row">
-        <h2 class="red-text">NAVIYA</h2>
-      </div>
-      <div class="pl-5 pr-5 d-flex row">
-        <div class="col-sm-3">
-          <div>
-            shop
-          </div>
-          <div>
-            main1
-          </div>
-          <div>
-            main2
-          </div>
-          <div>
-            QnA
-          </div>
-        </div>
-        <div class="col-sm-3">
-          <div>
-            <span class="font-weight-bold"> TEAMLEADER </span><br />
-            <span
-              ><a class="atag-github" href="https://github.com/jeongseongjong"
-                >&nbsp;&nbsp;- NAVI</a
-              ></span
-            >
-          </div>
-          <div>
-            <span class="font-weight-bold">UI/UX</span> <br />
-            <span
-              ><a class="atag-github" href="https://github.com/qussoa"
-                >&nbsp;&nbsp;- QUSSOA</a
-              ></span
-            >
-          </div>
-        </div>
-        <div class="col-sm-3">
-          <div>
-            <span class="font-weight-bold">DEVELOPER</span><br />
-            <span
-              ><a class="atag-github" href="https://github.com/leeiter"
-                >&nbsp;&nbsp;- PRINCESSEJIN</a
-              ></span
-            >
-          </div>
-          <div>
-            <span class="font-weight-bold">DEVELOPER</span><br />
-            <span
-              ><a class="atag-github" href="https://github.com/bjmin17"
-                >&nbsp;&nbsp; - BJ.MIN</a
-              ></span
-            >
-          </div>
-        </div>
-        <div class="col-sm-3">
-          <div>
-            <small>
-              광주광역시 북구 경양로170<br />
-              한경빌딩 5층
-            </small>
-          </div>
-          <div>
-            <small>
-              &copy; copyRight qussoa@naver.com
-            </small>
-          </div>
-        </div>
-      </div>
-    </div>
-  </footer>
+<!-- footer include -->
+<footer class="bg-gray mt-5">
+	<div class="container p-5">
+		<div class="row">
+			<h2 class="red-text">NAVIYA</h2>
+		</div>
+		<div class="pl-5 pr-5 d-flex row">
+			<div class="col-sm-3">
+				<div>shop</div>
+				<div>main1</div>
+				<div>main2</div>
+				<div>QnA</div>
+			</div>
+			<div class="col-sm-3">
+				<div>
+					<span class="font-weight-bold"> TEAMLEADER </span><br /> <span><a
+						class="atag-github" href="https://github.com/jeongseongjong">&nbsp;&nbsp;-
+							NAVI</a></span>
+				</div>
+				<div>
+					<span class="font-weight-bold">UI/UX</span> <br /> <span><a
+						class="atag-github" href="https://github.com/qussoa">&nbsp;&nbsp;-
+							QUSSOA</a></span>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div>
+					<span class="font-weight-bold">DEVELOPER</span><br /> <span><a
+						class="atag-github" href="https://github.com/leeiter">&nbsp;&nbsp;-
+							PRINCESSEJIN</a></span>
+				</div>
+				<div>
+					<span class="font-weight-bold">DEVELOPER</span><br /> <span><a
+						class="atag-github" href="https://github.com/bjmin17">&nbsp;&nbsp;
+							- BJ.MIN</a></span>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div>
+					<small> 광주광역시 북구 경양로170<br /> 한경빌딩 5층
+					</small>
+				</div>
+				<div>
+					<small> &copy; copyRight qussoa@naver.com </small>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>
 </html>

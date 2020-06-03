@@ -944,6 +944,33 @@ input[type="checkbox"]:checked + label {
   line-height: 0;
 }
 
+/*sucess bt*/
+
+.btn_buy_area .bt_cont,
+.btn_buy_area .bt_cart {
+  display: inline-block;
+  overflow: hidden;
+}
+
+.btn_buy_area .bt_cont {
+  width: 276px;
+  height: 64px;
+  margin-right: 4px;
+  background: url("../img/cont.jpg") no-repeat;
+  background-size: cover;
+  font-size: 0;
+  line-height: 0;
+  border: 1px solid #f1404b;
+}
+.btn_buy_area .bt_cart {
+  width: 276px;
+  height: 64px;
+  background: url("../img/cart_1.jpg") no-repeat;
+  background-size: cover;
+  font-size: 0;
+  line-height: 0;
+}
+
 .notice {
   position: relative;
   margin-top: 70px;

@@ -17,6 +17,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
     <link rel="stylesheet" href="./admin-main.css" />
+    <link rel="stylesheet" href="./admin-pro-update.css" />
     <link rel="stylesheet" href="../main.css" />
   </head>
   <body>
@@ -117,50 +118,80 @@
 
           <!-- 상품 입력 -->
           <main class="col offset-2 h-100 user-main">
-            <div class="container">
-              <div>
-                상품 정보 등록
-              </div>
-              <span>상품코드 : 000001</span>
-              <hr />
-              <div class="mb-3">
-                <lable class="mr-3">상품 이름</lable>
-                <input placeholder="상품이름을 입력해주세요" />
-              </div>
-              <div class="mb-3">
-                <label class="mr-3">상품 가격</label>
-                <input type="number" placeholder="가격을 입력해주세요" />
-              </div>
-              <div id="select-container">
-                <label class="mr-3">상품 종류</label>
-                <button
-                  id="btn-plus"
-                  style="
-                    border: 1px solid rgb(168, 163, 163);
-                    border-radius: 10px;
-                  "
-                >
-                  추가
-                </button>
-                <div class="select-box">
-                  <select class="select" name="test" style="height: 30px;">
-                    <option value="black_s">BLACK S</option>
-                    <option value="black_m">BLACK M</option>
-                    <option value="black_l">BLACK L</option>
-                    <option value="white_s">WHITE S</option>
-                    <option value="white_m">WHITE M</option>
-                    <option value="white_l">WHITE L</option>
-                    <option value="red_s">RED S</option>
-                    <option value="red_m">RED M</option>
-                    <option value="red_l">RED L</option>
-                  </select>
-                  <input type="number" style="width: 50px;" />
-                  <span class="delete-selectbox">&cross;</span>
+            <div class="container big_pro_box">
+              <div class="pro_list_box">
+                <div>
+                  상품 정보 등록
+                </div>
+                <span>상품코드 : 000001</span>
+                <hr />
+                <div class="pro_list_in">
+                  <div class="mb-3">
+                    <lable class="mr-3">상품 이름</lable>
+                    <input placeholder="상품이름을 입력해주세요" />
+                  </div>
+                  <div class="mb-3">
+                    <label class="mr-3">상품 가격</label>
+                    <input type="number" placeholder="가격을 입력해주세요" />
+                  </div>
+                  <div id="select-container">
+                    <label class="mr-3">상품 종류</label>
+                    <button
+                      id="btn-plus"
+                      style="
+                        border: 1px solid rgb(168, 163, 163);
+                        border-radius: 10px;
+                      "
+                    >
+                      추가
+                    </button>
+                    <div class="select-box">
+                      <select class="select" name="test" style="height: 30px;">
+                        <option value="black_s">BLACK S</option>
+                        <option value="black_m">BLACK M</option>
+                        <option value="black_l">BLACK L</option>
+                        <option value="white_s">WHITE S</option>
+                        <option value="white_m">WHITE M</option>
+                        <option value="white_l">WHITE L</option>
+                        <option value="red_s">RED S</option>
+                        <option value="red_m">RED M</option>
+                        <option value="red_l">RED L</option>
+                      </select>
+                      <input type="number" style="width: 50px;" />
+                      <span class="delete-selectbox">&cross;</span>
+                    </div>
+                  </div>
+                </div>
+
+                <script>
+                  $(function () {
+                    $("button#del_1").on("click", function () {
+                      $("#img_1").empty();
+                    });
+                  });
+                </script>
+                <div class="pro_list_img">
+                  <div class="ad_img_lt" id="img_1">
+                    <img class="ad_main_img" src="../img/gu-dress-2.jpg" />
+                    <button class="ad_bt_del" id="del_1">삭제</button>
+                  </div>
+                  <div class="ad_img_lt">
+                    <img class="ad_main_img" src="../img/gu-dress-2.jpg" />
+                    <button type="button" class="ad_bt_del">삭제</button>
+                  </div>
+                  <div class="cl_mt"></div>
+                  <div class="ad_img_lt">
+                    <img class="ad_main_img" src="../img/gu-dress-2.jpg" />
+                    <button type="button" class="ad_bt_del">삭제</button>
+                  </div>
+                  <div class="ad_img_lt">
+                    <img class="ad_main_img" src="../img/gu-dress-2.jpg" />
+                    <button type="button" class="ad_bt_del">삭제</button>
+                  </div>
                 </div>
               </div>
               <!--이미지 및 상세 정보-->
               <div class="mt-3">
-                <label>상품 정보</label>
                 <div>
                   <textarea style="width: 100%;">
 여기에 summernote랑 이미지 업로드 같이 설정</textarea

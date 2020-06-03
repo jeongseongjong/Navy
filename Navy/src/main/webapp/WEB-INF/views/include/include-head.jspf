@@ -33,5 +33,7 @@
 <script src="${rootPath}/resources/js/summernote-ko-KR.js"></script>
 
 <link rel="stylesheet" href="${rootPath}/resources/css/main.css" />
+<link rel="stylesheet" href="${rootPath}/resources/css/shopList.css" />
 <link rel="stylesheet" href="${rootPath}/resources/css/shopDetail.css" />
 <link rel="stylesheet" href="${rootPath}/resources/css/admin-main.css" />
+<link rel="stylesheet" href="${rootPath}/resources/css/user-main.css" />

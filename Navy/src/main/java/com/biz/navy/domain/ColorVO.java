@@ -19,4 +19,5 @@ public class ColorVO {
 	 private String c_color; // nvarchar2(255),
 	 private int c_s_code; // number, -- s_code 랑 fk될 값
 	 private int c_qty; // number
+	 
 }

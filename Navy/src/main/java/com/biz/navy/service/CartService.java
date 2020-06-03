@@ -54,7 +54,7 @@ public interface CartService {
 	public List<ColorVO> findByCsCode(long c_s_code);
 
 	// 배송정보 업데이트
-	public int recipient_update(long bk_id);
+	public int recipient_update(List<String> bkSeqList, CartVO cartVO);
 
 	
 }

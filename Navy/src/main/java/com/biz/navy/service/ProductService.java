@@ -2,16 +2,21 @@ package com.biz.navy.service;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Select;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.biz.navy.domain.PageVO;
+import com.biz.navy.domain.ProductImgVO;
 import com.biz.navy.domain.ColorVO;
 import com.biz.navy.domain.ProductVO;
 import com.biz.navy.domain.SizeVO;
 
 public interface ProductService {
 
+	// main 상품 추천 리스트(현재는 날짜,시간 등록 최신순 기준)
+	public List<ProductVO> findByBest();
+	
 	// 상품등록
 	public int insert(ProductVO productVO);
 	
@@ -44,6 +49,8 @@ public interface ProductService {
 	public List<SizeVO> getProSize(long s_p_code);
 
 	public List<ColorVO> getProColor(long c_s_code);
+	
+	public List<ProductImgVO> getProImages(long p_img_p_code);
 
 	public long countColor(String search);
 

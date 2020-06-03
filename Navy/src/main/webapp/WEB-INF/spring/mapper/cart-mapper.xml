@@ -60,13 +60,18 @@
 	
 	<update id="recipient_update" parameterType="cartVO">
 		UPDATE tbl_cart SET
-			bk_recipient_name = #{bk_recipient_name},
-			bk_recipient_phone = #{bk_recipient_phone},
-			bk_recipient_address = #{bk_recipient_address,jdbcType=VARCHAR},
-			bk_recipient_address = #{bk_recipient_address,jdbcType=VARCHAR},
-			bk_recipient_message = #{bk_recipient_message,jdbcType=VARCHAR}
+			bk_recipient_name = #{cartVO.bk_recipient_name,jdbcType=VARCHAR},
+			bk_recipient_phone = #{cartVO.bk_recipient_phone,jdbcType=VARCHAR},
+			bk_recipient_address = #{cartVO.bk_recipient_address,jdbcType=VARCHAR},
+			bk_recipient_address_etc = #{cartVO.bk_recipient_address_etc,jdbcType=VARCHAR},
+			bk_recipient_message = #{cartVO.bk_recipient_message,jdbcType=VARCHAR}
 
-		WHERE bk_id = #{bk_id}
+			WHERE bk_id IN (
+			<foreach collection="bkSeqList" item="seq" separator=", ">
+				#{seq}
+			</foreach>
+	
+	)
 	</update>
 	
 	
