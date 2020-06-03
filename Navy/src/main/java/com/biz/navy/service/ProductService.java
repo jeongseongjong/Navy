@@ -52,6 +52,10 @@ public interface ProductService {
 	
 	public List<ProductImgVO> getProImages(long p_img_p_code);
 
+	public long countColor(String search);
+
+	public List<ProductVO> findStockBySearchName(String search, PageVO pageVO);
+
 	
 
 	

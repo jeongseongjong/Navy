@@ -12,10 +12,7 @@ $(function(){
 	// 재고에서 표 클릭하면
 	$(document).on("click","tr.tr_stock",function(){
 		let p_code = $(this).data("proid")
-		$.get("${rootPath}/admin/pro_detail_view/" + p_code,
-				function(result){
-			$("#admin_content").html(result)
-		})
+		document.location.href="${rootPath}/admin/pro_detail_view/"+p_code
 	})
 })
 </script>
@@ -52,8 +49,8 @@ $(function(){
                       <th class="in-ck-box">상품코드</th>
                       <th class="in-ck-box">상품이름</th>
                       <th class="in-ck-box">상품가격</th>
-                      <th class="in-ck-box">상품컬러</th>
                       <th class="in-ck-box">상품사이즈</th>
+                      <th class="in-ck-box">상품컬러</th>
                       <th class="in-ck-box">상품수량</th>
                       <th class="in-ck-box">상품총수량</th>
                       <th class="in-ck-box">상품총가격</th>
@@ -69,8 +66,8 @@ $(function(){
 			                    		<td class="in-ck-box td-click">${pro.p_code}</td>
 			                    		<td class="in-ck-box td-click">${pro.p_name}</td>
 			                    		<td class="in-ck-box td-click">${pro.p_price}</td>
-			                    		<td class="in-ck-box td-click">${color.c_color}</td>
 			                    		<td class="in-ck-box td-click">${size.s_size}</td>
+			                    		<td class="in-ck-box td-click">${color.c_color}</td>
 			                    		<td class="in-ck-box td-click">${color.c_qty}</td>
 			                    		<td class="in-ck-box td-click">${pro.p_qty}</td>
 					            <c:set var="total" value='0' />
@@ -86,45 +83,7 @@ $(function(){
                 </table>
 
                 <!--pagination-->
-                <div class="d-flex justify-content-center">
-                  <nav aria-label="Page navigation example">
-                    <ul class="pagination">
-                      <li class="page-item">
-                        <a
-                          class="page-link black-text"
-                          href="#"
-                          aria-label="Previous"
-                        >
-                          <span aria-hidden="true" class="black-text"
-                            >&laquo;</span
-                          >
-                          <span class="sr-only">Previous</span>
-                        </a>
-                      </li>
-                      <li class="page-item black-text">
-                        <a class="page-link black-text" href="#">1</a>
-                      </li>
-                      <li class="page-item black-text">
-                        <a class="page-link black-text" href="#">2</a>
-                      </li>
-                      <li class="page-item black-text">
-                        <a class="page-link black-text" href="#">3</a>
-                      </li>
-                      <li class="page-item black-text">
-                        <a
-                          class="page-link black-text"
-                          href="#"
-                          aria-label="Next"
-                        >
-                          <span aria-hidden="true" class="black-text"
-                            >&raquo;</span
-                          >
-                          <span class="sr-only black-text">Next</span>
-                        </a>
-                      </li>
-                    </ul>
-                  </nav>
-                </div>
+                <%@ include file="/WEB-INF/views/include/include-paging.jspf" %>
                 <!--pagination end-->
               </div>
             </div>

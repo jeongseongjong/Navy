@@ -87,7 +87,7 @@ $(function(){
 							</tr>
 							<tr>
 								<th class="text-left">권한정보</th>
-								<td class="p-2">${userVO.email}
+								<td class="p-2">
 									<c:forEach items="${userVO.authorities}" var="auth">
 										${auth.authority}
 									</c:forEach>

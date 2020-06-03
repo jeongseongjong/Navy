@@ -70,10 +70,30 @@
 				ofType="sizeVO"	select="selectSize"	/>
 	</resultMap>
 
-	<select id="selectSize" resultType="sizeVO">
+	<!-- 사이즈 조회 -->
+	<select id="selectSize" resultType="sizeVO" resultMap="sizeAndColor">
 		SELECT * FROM tbl_size WHERE s_p_code = #{p_code}
 	</select>
 
+	<!-- 사이즈테이블에서 컬러 테이블 조회 -->
+	<resultMap type="sizeVO" id="sizeAndColor">
+		<id column="id" property="id"/>
+		<result property="s_code" column="s_code"/>
+		<collection property="colorList" column="s_code"
+			ofType="colorVO" select="selectColor"
+		/>
+	</resultMap>
+	<!-- 색상 조회 -->
+	<select id="selectColor" resultType="colorVO">
+		SELECT * FROM tbl_color WHERE c_s_code = #{s_code}	
+	</select>
+	
+	<!-- 재고조회에서 페이징위해 만든 SQL문 -->
+	<select id="countColorAll" resultType="Long">
+		SELECT COUNT(*) FROM tbl_color
+	</select>
+	
+	
 	<insert id="insert" parameterType="productVO">
       INSERT INTO tbl_product(
       
