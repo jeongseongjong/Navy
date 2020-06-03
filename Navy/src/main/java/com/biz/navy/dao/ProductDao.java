@@ -98,7 +98,12 @@ public interface ProductDao {
 
 	public long countSearch(@Param("searchList")List<String> searchList);
 
+	// 재고관리 페이지 위한 메서드들
 	// 제품 이름으로 검색, 페이징
 	public List<ProductVO> findBySearchNameAndPaging(@Param("searchList")List<String> searchList, @Param("pageVO")PageVO pageVO);
+
+	public long countColorAll();
+
+	public List<ProductVO> findStockBySearchNameAndPaging(List<String> searchList, PageVO pageVO);
 	
 }

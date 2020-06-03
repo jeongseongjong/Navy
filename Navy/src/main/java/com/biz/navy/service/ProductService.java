@@ -45,6 +45,10 @@ public interface ProductService {
 
 	public List<ColorVO> getProColor(long c_s_code);
 
+	public long countColor(String search);
+
+	public List<ProductVO> findStockBySearchName(String search, PageVO pageVO);
+
 	
 
 	

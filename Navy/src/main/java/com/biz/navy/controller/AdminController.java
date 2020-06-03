@@ -252,11 +252,31 @@ public class AdminController {
 	
 	// 재고 정보
 	@RequestMapping(value="/inventory",method=RequestMethod.GET)
-	public String inventory(Model model) {
+	public String inventory(Model model,
+			@RequestParam(value="search", required = false, defaultValue = "") String search,
+			@RequestParam(value="currentPageNo", required = false, defaultValue = "1") int currentPageNo
+			) {
 		
+		/*
 		List<ProductVO> proList = proService.selectAll();
 		log.debug("상품 리스트 : " + proList.toString());
 		model.addAttribute("PROLIST",proList);
+		*/
+		long totalCount = 500;
+		totalCount = proService.countColor(search);
+		PageVO pageVO = pageService.getPagination(totalCount, currentPageNo);
+		
+//		List<ProductVO> proListPaging = proService.selectAll();
+		List<ProductVO> proListPaging = proService.findBySearchName(search, pageVO);
+//		List<ProductVO> proListPaging = proService.findStockBySearchName(search, pageVO);
+		log.debug("페이징 후 리스트 : "+proListPaging);
+		model.addAttribute("PROLIST",proListPaging);
+		model.addAttribute("pageVO",pageVO);
+		
+		// 페이징에 보내줄 URL들 미리 만들어주기
+		model.addAttribute("controller","admin");
+		model.addAttribute("url","inventory");
+		model.addAttribute("search",search);
 		
 		return "admin/admin_inventory";
 	}

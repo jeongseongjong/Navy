@@ -336,4 +336,32 @@ public class ProductServiceImpl implements ProductService {
 		return proDao.getProColor(c_s_code);
 	}
 
+	@Override
+	public long countColor(String search) {
+		long ret = 0;
+//		if (search == "") {
+			ret = proDao.countColorAll();
+//		} else {
+			/* 아직 더 손보기
+			List<String> searchList = Arrays.asList(search.split(" "));
+			// 검색 결과의 totalCount 구하기
+			ret = proDao.countSearch(searchList);
+			*/
+//		}
+		return ret;
+	}
+
+	@Override
+	public List<ProductVO> findStockBySearchName(String search, PageVO pageVO) {
+		List<String> searchList = Arrays.asList(search.split(" "));
+
+		List<ProductVO> proSearchList = new ArrayList<>();
+		if (search != "") {
+			proSearchList = proDao.findStockBySearchNameAndPaging(searchList, pageVO);
+		} else {
+			proSearchList = proDao.selectAllPaging(pageVO);
+		}
+		return proSearchList;
+	}
+
 }

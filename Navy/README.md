@@ -74,3 +74,10 @@
 ## 06-01
  * size/colorList 값 추가 수정
  * productServiceImpl의 findByMaxPCode 널포인트 문제 -> try catch문으로 해결
+ 
+## 06-03
+ * userDetail 권한 보여주는 부분에 이메일 나오는 것 수정
+ * 재고관리 페이지 페이징
+ * pro-mapper에 selectCount 추가
+ * productService에 countColor  메서드 생성
+ * productService에 findStockBySearchName 메서드 생성
