@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Page Title</title>
+    <!-- Latest compiled and minified CSS -->
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    />
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="login.css" />
+  </head>
+  <script>
+    /* 체크박스 스타일 UI확인용 */
+    $(".uio_check_box").on("change", "input", function () {
+      $(this).toggleClass("checked");
+    });
+
+    $(document).ready(function () {
+      //{{{
+      var alertMsg = "";
+      if (alertMsg) {
+        /* if(!('' == '1' && alertMsg == "아이디 또는 비밀번호가 일치하지 않습니다.")) {		
+			$("#msgHolder").html(alertMsg).show();
+		} */
+        $("#msgHolder").html(alertMsg).show();
+      }
+
+      if ($("#userid").val()) {
+        $("#pwd").focus();
+        $("#pwd_blind").addClass("blind");
+      }
+      $(".input_txt")
+        .focus(function () {
+          var did = "#" + $(this).attr("id");
+          $(did + "_blind").addClass("blind");
+        })
+        .blur(function () {
+          if ($.trim($(this).val()) == "") {
+            var did = "#" + $(this).attr("id");
+            $(did + "_blind").removeClass("blind");
+          }
+        });
+
+      if ($("#userid").val().length > 0 && $("#userid").val() != "아이디") {
+        // SLP-24
+        $("#pwd").focus();
+        $("#pwd_blind").addClass("blind");
+      }
+
+      $("#userid_clear").on("mousedown", function () {
+        $("#userid").val("");
+      });
+      $("#loginFrm .input_txt")
+        .on("focus", function () {
+          $(this).parent().addClass("on");
+        })
+        .on("focusout", function () {
+          $(this).parent().removeClass("on");
+        });
+      $(".login_ipt_box").removeClass("on");
+      $("#userid").focus();
+    }); //}}}
+
+    // functions{{{
+    function fn_submit(event) {
+      if (event.keyCode == 13) fn_submit2();
+      return false;
+    }
+
+    function fn_submit2() {
+      if ($("#userid").val() == "") {
+        $("#msgHolder").html("아이디를 입력해 주세요.").show();
+        $("#userid").focus();
+        return;
+      }
+      if ($("#pwd").val() == "") {
+        $("#msgHolder").html("비밀번호를 입력해 주세요.").show();
+        $("#pwd").focus();
+        return;
+      }
+
+      if (
+        typeof $("#captchaValue").val() !== "undefined" &&
+        $.trim($("#captchaValue").val()) == ""
+      ) {
+        $("#msgHolder").html("자동입력 방지문자를 입력해 주세요.").show();
+        $("#captchaValue").focus();
+        return;
+      }
+
+      $("#userid").attr("disabled", true);
+      $("#pwd").attr("disabled", true);
+      $("#chk_auto_login").attr("disabled", true);
+      $("#chk_secure").attr("disabled", true);
+
+      reqFrmObj.setUserId($("#userid").val());
+      reqFrmObj.setPasswd($("#pwd").val());
+      reqFrmObj.setChkAutoLogin($("#chk_auto_login:checked").val());
+      reqFrmObj.setChkSecure($("#chk_secure:checked").val());
+
+      reqFrmObj.setCaptchaType($("#captchaType").val());
+      reqFrmObj.setCaptchaKey($("#captchaKey").val());
+      reqFrmObj.setCaptchaValue($("#captchaValue").val());
+
+      reqFrmObj.submit();
+    }
+
+    function fn_auto_login() {
+      if ($("input[name=chk_auto_login]:checked").val() == "auto_login") {
+        $(".msg_layer").show(1, function () {
+          $(document).click(function (evt) {
+            if ($(evt.target).attr("class") == "msg_layer") return;
+            if ($(evt.target).attr("id") == "userid") return;
+            if ($(evt.target).attr("id") == "pwd") return;
+            if ($(evt.target).attr("id") == "btn_login") return;
+            $(".msg_layer").hide();
+            $(document).unbind("click");
+          });
+        });
+      } else {
+        $(".msg_layer").hide();
+      }
+    }
+
+    //}}}
+  </script>
+  <body>
+    <div class="social_login_ct_wrap">
+      <div class="pagepop_wrap">
+        <div class="social_login_cont join_cont">
+          <form>
+            <a href="../main.html"><h2 class="tit_bi">NAVIYA</h2></a>
+            <label for="userid" class="id_ipt login_ipt_box on">
+              <strong id="userid_blind">아이디</strong>
+              <input
+                type="text"
+                class="input_txt"
+                id="userid"
+                style="outline: none;"
+              />
+              <button
+                type="button"
+                id="userid_clear"
+                onclick="$('#userid').val('')"
+              >
+                아이디 입력값 삭제
+              </button>
+            </label>
+            <label for="pwd" class="pw_ipt login_ipt_box">
+              <strong id="pwd_blind">비밀번호</strong>
+              <input
+                type="password"
+                name="password"
+                id="pwd"
+                class="input_txt"
+                style="outline-style: none;"
+              />
+            </label>
+            <p class="ipt_wrn_msg" id="msgHoler" style="display: none;">
+              아이디 또는 비밀번호가 일치하지 않습니다
+            </p>
+            <a class="btn_login" href="../main.html">로그인</a>
+            <div class="bottom_button_box">
+              <a href="#">아이디 찾기</a>
+              <span class="icon_division"></span>
+              <a href="#">비밀번호 찾기</a>
+              <span class="icon_division"></span>
+              <a href="join.html">회원가입</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
