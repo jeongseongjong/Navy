@@ -36,10 +36,13 @@
 
       <!-- bbsList -->
       <div class="container">
-        <div class="bbs-search-div d-flex justify-content-center">
-          <input class="bbs-search" placeholder="검색내용을 입력해주세요" />
-          <button class="bt-bbs-search">검색</button>
-        </div>
+      	<form>
+	        <div class="bbs-search-div d-flex justify-content-center">
+	          <input class="bbs-search" placeholder="검색내용을 입력해주세요" 
+	          	name="search" value="${search}"/>
+	          <button class="bt-bbs-search">검색</button>
+	        </div>
+        </form>
         <table class="table">
           <thead>
             <tr>

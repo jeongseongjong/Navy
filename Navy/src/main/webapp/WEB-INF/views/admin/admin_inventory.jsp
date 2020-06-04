@@ -57,30 +57,44 @@ $(function(){
                     </tr>
                   </thead>
                   <tbody>
-                    <c:forEach items="${PROLIST}" var="pro" >
-                   		<c:forEach items="${pro.sizeList}" var="size" varStatus="i">
-							<c:if test="${!empty size.colorList}">
-								<c:forEach items="${size.colorList}" var="color">
-									<tr class="tr_stock" data-proid="${pro.p_code}">
-										<td class="in-ck-box td-click">${i.count}</td>
-			                    		<td class="in-ck-box td-click">${pro.p_code}</td>
-			                    		<td class="in-ck-box td-click">${pro.p_name}</td>
-			                    		<td class="in-ck-box td-click">${pro.p_price}</td>
-			                    		<td class="in-ck-box td-click">${size.s_size}</td>
-			                    		<td class="in-ck-box td-click">${color.c_color}</td>
-			                    		<td class="in-ck-box td-click">${color.c_qty}</td>
-			                    		<td class="in-ck-box td-click">${pro.p_qty}</td>
-					            <c:set var="total" value='0' />
-					               <c:set var="total"
-					                  value="${total + pro.p_price * color.c_qty}" />
-			                    		<td class="in-ck-box td-click">${total}</td>
-	                    			</tr>
-								</c:forEach>
-							</c:if>
-						</c:forEach>
-                    </c:forEach>
+                  
+                  	<c:choose>
+						<c:when test="${empty STOCKLIST}">
+							<tr>
+								<td colspan="9">상품 정보 없음</td>
+							</tr>
+						</c:when>
+						<c:otherwise>
+	                    <c:forEach items="${STOCKLIST}" var="stock">
+	                 		<tr class="tr_stock" data-proid="${stock.p_code}">
+								<td>${num}</td>
+		                   		<td class="in-ck-box td-click">${stock.p_code}</td>
+		                   		<td class="in-ck-box td-click">${stock.p_name}</td>
+		                   		<td class="in-ck-box td-click">${stock.p_price}</td>
+		                   		<td class="in-ck-box td-click">${stock.s_size}</td>
+		                   		<td class="in-ck-box td-click">${stock.c_color}</td>
+		                   		<td class="in-ck-box td-click">${stock.c_qty}</td>
+		                   		<td class="in-ck-box td-click">${stock.p_qty}</td>
+			           			 <c:set var="total" value='0' />
+			               		<c:set var="total"
+			                 		 value="${total + stock.p_price * stock.c_qty}" />
+		                   		<td class="in-ck-box td-click">${total}</td>
+	                  		</tr>
+							<c:set var="num" value="${num-1}"></c:set>
+	                    </c:forEach>
+                    </c:otherwise>
+                    </c:choose>
                   </tbody>
                 </table>
+                
+                <form>
+					<input type="search" 
+					class="bbs-search" 
+					name="search" 
+					value="${search}" 
+					placeholder="상품명을 입력 후 Enter...">
+					<button class="bt-bbs-search">검색</button>
+				</form>
 
                 <!--pagination-->
                 <%@ include file="/WEB-INF/views/include/include-paging.jspf" %>

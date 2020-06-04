@@ -140,20 +140,41 @@ $(function(){
 				<div id="pro_size_list" class="select-box">
 					
 				</div>
+				<script>
+                  $(function () {
+                    $("button#del_1").on("click", function () {
+                      $("#img_1").empty();
+                    });
+                  });
+                </script>
+				<div class="pro_list_img">
+                  <div class="ad_img_lt" id="img_1">
+                    <img class="ad_main_img" src="../img/gu-dress-2.jpg" />
+                    <button class="ad_bt_del" id="del_1">삭제</button>
+                  </div>
+                  <c:forEach items="${productVO.proDImgList}" var="img">
+	                  <div class="ad_img_lt">
+	                    <img class="ad_main_img" src="${rootPath}/images/${img.p_img_upload_name}"
+	                    data-id="${img.p_img_seq}" />
+	                    <button type="button" class="ad_bt_del">삭제</button>
+	                  </div>
+                  </c:forEach>
+                  <div class="cl_mt"></div>
+                  <div class="ad_img_lt">
+                    <img class="ad_main_img" src="../img/gu-dress-2.jpg" />
+                    <button type="button" class="ad_bt_del">삭제</button>
+                  </div>
+                  <div class="ad_img_lt">
+                    <img class="ad_main_img" src="../img/gu-dress-2.jpg" />
+                    <button type="button" class="ad_bt_del">삭제</button>
+                  </div>
+                </div>
 			</div>
 			<!--이미지 및 상세 정보-->
 			<div>
 				<label class="mr-3" for="p_image">이미지</label>
 				<input multiple="multiple" type="file" id="p_file" name="file">
-				<c:forEach items="${productVO.proDImgList}" var="img">
-					<img src="${rootPath}/images/${img.p_img_upload_name}"
-							style="width: 150px; height: 100px; margin-right: 70px;" 
-							class="pro_images"
-							data-id="${img.p_img_seq}"/>
-				</c:forEach>
-				<!-- 
-				<form:input type="file" path="p_image" value="${productVO.p_image}" placeholder="" />
-				 -->
+
 			</div>
 			<div class="mt-3">
 			<label>상품 정보</label>

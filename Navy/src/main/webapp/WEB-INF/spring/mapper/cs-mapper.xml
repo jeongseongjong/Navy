@@ -15,7 +15,7 @@
 		
 	</select>
 	
-	<select id="findBySearchNameAndPaging" resultMap="productAndSize">
+	<select id="findBySearchNameAndPaging" resultType="csVO">
 		SELECT * FROM
 		(
 			SELECT /*+ FIRST_ROWS 100 */ ROWNUM AS NUM, IP.* FROM
@@ -52,29 +52,37 @@
 		WHERE NUM &gt; = #{offset,jdbcType=VARCHAR}
 	</select>
 	
-	<!-- 
-	result 태그 
-	property는 VO의 값
-	column은 테이블에 있는 칼럼
-	
-	collection 태그
-	property는 productVO의 값
-	column은 보내줄 값인데 select문의 where 조건 안의 #{}값과 일치시키기
-	ofType은 받을 VO 타입
-	select는 가져올 셀렉트문
-	 -->
-	<resultMap type="productVO" id="productAndSize">
-		<id column="id" property="id"/>
-		<result property="p_code" column="p_code"/>
-		<collection property="sizeList" column="p_code"
-				ofType="sizeVO"	select="selectSize"	/>
-	</resultMap>
-
-	<select id="selectSize" resultType="sizeVO">
-		SELECT * FROM tbl_size WHERE s_p_code = #{p_code}
+	<select id="findCommentByBId" resultType="cscommentVO">
+ 		SELECT cs_c_id, cs_c_p_id, cs_c_b_id, 
+ 				cs_c_writer, cs_c_date, cs_c_time,
+				cs_c_subject
+		FROM tbl_cs_comment
+		WHERE cs_c_b_id = #{cs_id}
+		START WITH cs_c_p_id = 0
+		CONNECT BY PRIOR cs_c_id = cs_c_p_id
+		ORDER SIBLINGS BY cs_c_p_id
 	</select>
 
-
+	<insert id="insertComment" parameterType="cscommentVO">
+		INSERT INTO tbl_cs_comment(
+		    cs_c_id,
+		    cs_c_b_id,
+		    cs_c_p_id,
+		    cs_c_date,
+		    cs_c_time,
+		    cs_c_writer,
+		    cs_c_subject
+		    ) VALUES (
+				SEQ_CS_COMMENT.NEXTVAL,
+			    #{cs_c_b_id},
+			    #{cs_c_p_id,jdbcType=VARCHAR},
+			    #{cs_c_date},
+			    #{cs_c_time},
+			    #{cs_c_writer,jdbcType=VARCHAR},
+			    #{cs_c_subject,jdbcType=VARCHAR}			    
+		    )
+		
+	</insert>
 	
 
 

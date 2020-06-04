@@ -83,9 +83,33 @@
 			ofType="colorVO" select="selectColor"
 		/>
 	</resultMap>
+	
 	<!-- 색상 조회 -->
 	<select id="selectColor" resultType="colorVO">
-		SELECT * FROM tbl_color WHERE c_s_code = #{s_code}	
+		SELECT * FROM tbl_color WHERE c_s_code = #{s_code}
+	</select>
+	
+	<select id="selectColorAll" resultType="inventoryVO">
+		SELECT * FROM
+			(
+				SELECT /*+ FIRST_ROWS_100 */ ROWNUM AS NUM, IP.* FROM
+				(
+					SELECT /*+ INDEX_DESC(P) FIRST_ROWS */ * FROM 
+					(
+						SELECT P.p_code, P.p_name, P.p_price,
+							S.s_code, S.s_size,
+							C.c_code, C.c_color, C.c_qty,
+							P.p_qty
+						FROM tbl_product P,tbl_size S,tbl_color C
+					    WHERE P.p_code = S.s_p_code 
+					    	AND S.s_code = C.c_s_code
+					    ORDER BY P.p_code DESC
+					)P
+				) IP
+				WHERE ROWNUM &lt; = #{limit,jdbcType=VARCHAR}
+			)
+		WHERE NUM &gt; = #{offset,jdbcType=VARCHAR}
+
 	</select>
 	
 	<!-- 재고조회에서 페이징위해 만든 SQL문 -->
@@ -93,7 +117,50 @@
 		SELECT COUNT(*) FROM tbl_color
 	</select>
 	
+	<select id="countStockSearch" resultType="Long">
+		SELECT COUNT(*) FROM 
+		(
+			SELECT P.p_code, P.p_name, P.p_price,
+				S.s_code, S.s_size,
+				C.c_code, C.c_color, C.c_qty,
+				P.p_qty
+			FROM tbl_product P,tbl_size S,tbl_color C
+		    WHERE P.p_code = S.s_p_code 
+		    	AND S.s_code = C.c_s_code
+		)
+		<where>
+			<foreach collection="searchList" item="search" separator="OR">
+				p_name LIKE '%' || #{search,jdbcType=VARCHAR} || '%'
+			</foreach>
+		</where>
+	</select>
 	
+	<select id="findStockBySearchNameAndPaging" resultType="inventoryVO">
+		SELECT * FROM
+			(
+				SELECT /*+ FIRST_ROWS_100 */ ROWNUM AS NUM, IP.* FROM
+				(
+					SELECT /*+ INDEX_DESC(P) FIRST_ROWS */ * FROM 
+					(
+						SELECT P.p_code, P.p_name, P.p_price,
+							S.s_code, S.s_size,
+							C.c_code, C.c_color, C.c_qty,
+							P.p_qty
+						FROM tbl_product P,tbl_size S,tbl_color C
+					    WHERE P.p_code = S.s_p_code 
+					    	AND S.s_code = C.c_s_code
+					    ORDER BY P.p_code DESC
+					)P
+				<where>
+					<foreach collection="searchList" item="search" separator="OR">
+						p_name LIKE '%' || #{search,jdbcType=VARCHAR} || '%'		
+					</foreach>
+				</where>
+				) IP
+				WHERE ROWNUM &lt; = #{pageVO.limit,jdbcType=VARCHAR}
+			)
+		WHERE NUM &gt; = #{pageVO.offset,jdbcType=VARCHAR}
+	</select>
 	<insert id="insert" parameterType="productVO">
       INSERT INTO tbl_product(
       
