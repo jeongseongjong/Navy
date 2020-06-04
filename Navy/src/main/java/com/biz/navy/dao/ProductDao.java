@@ -10,6 +10,7 @@ import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 
 import com.biz.navy.domain.ColorVO;
+import com.biz.navy.domain.InventoryVO;
 import com.biz.navy.domain.PageVO;
 import com.biz.navy.domain.ProductImgVO;
 import com.biz.navy.domain.ProductVO;
@@ -102,14 +103,19 @@ public interface ProductDao {
 	// 검색 미포함한 페이징
 	public long countAll();
 
+	// 검색 포함한 페이징
 	public long countSearch(@Param("searchList")List<String> searchList);
 
 	// 재고관리 페이지 위한 메서드들
 	// 제품 이름으로 검색, 페이징
 	public List<ProductVO> findBySearchNameAndPaging(@Param("searchList")List<String> searchList, @Param("pageVO")PageVO pageVO);
 
+	// 재고관리 총 개수 세기
 	public long countColorAll();
-
-	public List<ProductVO> findStockBySearchNameAndPaging(List<String> searchList, PageVO pageVO);
-	
+	// 재고관리 이름으로 검색 후 페이징
+	public List<InventoryVO> findStockBySearchNameAndPaging(@Param("searchList") List<String> searchList, @Param("pageVO")PageVO pageVO);
+	// 재고관리 검색 후 개수 세기
+	public long countStockSearch(@Param("searchList")List<String> searchList);
+	// 재고관리 총 개수 세기
+	public List<InventoryVO> selectColorAll(PageVO pageVO);
 }

@@ -84,3 +84,14 @@
  * pro-mapper에 selectCount 추가
  * productService에 countColor  메서드 생성
  * productService에 findStockBySearchName 메서드 생성
+
+## 06-04
+ * 재고관리 리스트, 페이징 하기 위해 pro-mapper에 selectColorAll 생성
+  > - ProductDao에도 selectColorAll 생성
+  > - 재고관리 리스트 담을 InventoryVO 생성
+ * 재고관리 검색 추가
+ * 고객센터 검색 추가
+ * 고객센터 댓글 추가
+  > - 테이블 tbl_cs_comment 추가
+  > - 시퀀스 SEQ_CS_COMMENT 추가
+ * 고객센터 댓글에 답글 추가
