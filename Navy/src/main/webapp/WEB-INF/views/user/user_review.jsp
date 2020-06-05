@@ -6,7 +6,7 @@
 				<div class="tab-pane fade" id="profile" role="tabpanel"
 					aria-labelledby="profile-tab">
 					<div class="d-flex justify-content-end">
-						<button class="bt-review-wr" data-id="${productVO.p_code}">리뷰작성</button>
+						<!-- <button class="bt-review-wr" data-id="${productVO.p_code}">리뷰작성</button> -->
 					</div>
 
 					<!-- 리뷰List -->

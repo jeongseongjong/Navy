@@ -18,7 +18,7 @@ $(function() {
  
 <style>
  	div.card {
- 		width:32%;
+
 	}
 </style>
 </head>
@@ -37,7 +37,7 @@ $(function() {
 			<c:otherwise>
 				<c:forEach var="PRO" items="${PROLIST}" varStatus="i">
 			    	<div class="card" style="border: none;" data-id="${PRO.p_code}">
-			        	<div class="scale" style="overflow: hidden;">
+			        	<div class="scale" style="overflow: hidden; width: 207px;">
 			            	<img class="detail-img" src="${rootPath}/images/${PRO.p_image}" style="width: 100%;" />
 			           	</div>
 			           	<div class="card-body" style="border: none;">
