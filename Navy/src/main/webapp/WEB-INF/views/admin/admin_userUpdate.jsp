@@ -229,60 +229,8 @@ $(function(){
 
                           <!--modal 창-->
                           <!-- Button trigger modal -->
-
                           <!-- Modal -->
-                          <div
-                            class="modal fade"
-                            id="exampleModalCenter"
-                            tabindex="-1"
-                            role="dialog"
-                            aria-labelledby="exampleModalCenterTitle"
-                            aria-hidden="true"
-                          >
-                            <div
-                              class="modal-dialog modal-dialog-centered"
-                              role="document"
-                            >
-                              <div class="modal-content">
-                                <div class="modal-header">
-                                  <span
-                                    class="modal-title"
-                                    style="font-size: 20px;"
-                                    id="exampleModalCenterTitle"
-                                  >
-                                    주소로 검색하기
-                                  </span>
-                                  <button
-                                    type="button"
-                                    class="close"
-                                    data-dismiss="modal"
-                                    aria-label="Close"
-                                  >
-                                    <span aria-hidden="true">&times;</span>
-                                  </button>
-                                </div>
-                                <div class="modal-body">
-                                  <p>예)광주광역시 남구 백운동</p>
-                                  <input placeholder="주소를 입력해주세요" id="address_etc"/>
-                                  <button type="button" class="bt-bbs-style">
-                                    검색
-                                  </button>
-                                </div>
-                                <div class="modal-footer">
-                                  <button type="button" class="bt-bbs-style">
-                                    확인
-                                  </button>
-                                  <button
-                                    type="button"
-                                    class="bt-bbs-style"
-                                    data-dismiss="modal"
-                                  >
-                                    닫기
-                                  </button>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
+
                           <!--modal 끝-->
                         </div>
                         <div class="mb-3">

@@ -57,6 +57,8 @@ public interface ProductService {
 
 	public List<InventoryVO> findStockBySearchName(String search, PageVO pageVO);
 
+	public int updateRepImg(String imgName, long p_code);
+
 	
 
 	
