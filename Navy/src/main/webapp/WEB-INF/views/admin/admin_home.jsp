@@ -9,123 +9,10 @@
 <title>Insert title here</title>
 	<script>
 		$(function(){
-			/*
-			// 유저 디테일 페이지 보이기
-			$(document).on("click","tr.tr_user",function(){
-				let username = $(this).data("id")
-				$.get("${rootPath}/admin/user_detail_view/" + username,
-						function(result){
-					$("#admin_content").html(result)
-				}		
-				)
-			})
-			
-			// 상품 리스트 보이기
-			$(document).on("click",".ad-pro-list",function(){
-				$.get("${rootPath}/admin/productlist",function(result){
-					$("#admin_content").html(result)
-				})
-			})
-			
-			// 상품 디테일 페이지 보이기
-			$(document).on("click","tr.tr_pro",function(){
-				let p_code = $(this).data("id")
-				
-				$.get("${rootPath}/admin/pro_detail_view/" + p_code,
-						function(result){
-					$("#admin_content").html(result)
-				})
-			})
-			
-			// 상품 등록 페이지 이동
-			$(document).on("click",".ad-pro-insert",function(){
-				
-				$.get("${rootPath}/admin/pro_insert",
-						function(result){
-					$("#admin_content").html(result)
-				})
-			})
-			
-			// 상품 수정 페이지 이동
-			$(document).on("click",".ad-pro-update",function(){
-				let p_code = $(this).data("id")
-				$.get("${rootPath}/admin/pro_update/" + p_code,
-						function(result){
-					$("#admin_content").html(result)
-				})
-			})
-			
-			// 상품 1개 삭제
-			$(document).on("click",".ad-pro-delete",function(){
-				let p_code = $(this).data("id")
-				$.get("${rootPath}/admin/pro_delete/" + p_code,
-						function(result){
-					document.location.replace("${rootPath}/admin/pro_delete/" + p_code)
-				})
-			})
-			
-
-			
-			// 재고에서 표 클릭하면
-			$(document).on("click","tr.tr_stock",function(){
-				let p_code = $(this).data("proid")
-				$.get("${rootPath}/admin/pro_detail_view/" + p_code,
-						function(result){
-					$("#admin_content").html(result)
-				})
-			})
-			
-			
-			$(document).on("click",".support_list",function(){
-				$.get("${rootPath}/admin/support",function(result){
-					$("#admin_content").html(result)
-				})
-			})
-			
-			// 유저정보 수정 화면 저장 버튼
-			$(document).on("click",".ad-us-update",function(){
-				
-				let formdata = $("form").serialize()
-				let username = $(this).data("name")
-				$.get("${rootPath}/admin/user_update/"+username,formdata,function(result){
-					$("#admin_content").html(result)
-				})
-			})
-
-			//$(document).on("click","#auth_append",function(){
-			$(document).on("change","#auth",function(){
-					let item = $(this).val()
-					$("div#auth_list").append($("<input/>",{class:"auth form-control-plaintext", name:"auth",value:item}))
-			})
-			
-			$(document).on("click","#auth_append",function(){
-			
-				let auth_input = $("<input/>", {class:"auth form-control mb-3", name:"auth"})
-				// let auth_delete = $("<button class='btn btn-danger' type='button'>&times</button>")
-				// auth_input.append($("<p/>",{text:'제거',class:'auth_delete'}))
-				$("div#auth_box").append(auth_input)
-				// $("div#auth_box").append(auth_delete)
-			})
-			
-			$(document).on("click",".btn-delete",function(){
-				
+			$("a.cscard").click(function(){
 				let id = $(this).data("id")
-				//alert(id)
-				let username = $(this).data("username")
-				//alert(username)
-				
-				if (confirm("권한을 삭제하겠습니까?")) {
-					// document.location.replace("${rootPath}/admin/delete?id=" + id)
-					
-					$.get("${rootPath}/admin/delete?id=" + id +"&username=" + username, function(result){
-							$("#admin_content").html(result)
-						}		
-					)
-				}
-				
-				//alert(id)
+				document.location.href="${rootPath}/cs/detail/"+id
 			})
-			*/
 
 		})
 	</script>
@@ -442,41 +329,28 @@
                     </div>
                     <div class="card-body">
                       <div class="spn-list">
-                        <a href="#" class="card-text">
-                          <span class="title mr-4">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore magna aliqua.</span
-                          >
-                          <span class="date">2020-05-19</span>
-                        </a>
-                        <a href="#" class="card-text">
-                          <span class="title mr-4">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore magna aliqua.</span
-                          >
-                          <span class="date">2020-05-19</span>
-                        </a>
-
-                        <a href="#" class="card-text">
-                          <span class="title mr-4">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore magna aliqua.</span
-                          >
-                          <span class="date">2020-05-19</span>
-                        </a>
-                        <a href="#" class="card-text">
-                          <span class="title mr-4">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore magna aliqua.</span
-                          >
-                          <span class="date">2020-05-19</span>
-                        </a>
+                        <c:choose>
+                      		<c:when test="${!empty CSLIST}">
+								<c:forEach items="${CSLIST}" var="cs" begin="0" end="4">
+									<a href="#" class="card-text cscard" data-id="${cs.cs_id}">
+		                          <span class="title mr-4">
+		                            ${cs.cs_title}</span
+		                          >
+		                          <span class="date">${cs.cs_date}</span>
+		                        </a>	
+								</c:forEach>
+                      		</c:when>
+                      		<c:otherwise>
+                      			<a href="#" class="card-text">
+		                          <span class="title mr-4">
+		                            고객센터 글이 없습니다.</span
+		                          >
+		                          <span class="date"></span>
+		                        </a>		
+                      		</c:otherwise>
+                      	</c:choose>
                       </div>
-                      <a href="#" class="card-link d-flex justify-content-end"
+                      <a href="${rootPath}/cs/list" class="card-link d-flex justify-content-end"
                         >더보기</a
                       >
                     </div>

@@ -14,7 +14,7 @@ import com.biz.navy.domain.PageVO;
 
 public interface CsDao {
 
-	@Select("SELECT * FROM tbl_cs")
+	@Select("SELECT * FROM tbl_cs ORDER BY cs_id DESC")
 	public List<CsVO> selectAll();
 	
 	@Select("SELECT * FROM tbl_cs WHERE cs_id = #{cs_id}")

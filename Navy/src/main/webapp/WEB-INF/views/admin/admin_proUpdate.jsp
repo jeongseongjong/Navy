@@ -138,7 +138,26 @@ $(function(){
                     border-radius: 10px;
                   ">추가</button>
 				<div id="pro_size_list" class="select-box">
-					
+					<c:forEach items="${productVO.sizeList}" var="size">
+						<c:if test="${!empty size.colorList}">
+							<c:forEach items="${size.colorList}" var="color">
+							<li> ${size.s_size} ${color.c_color} (${color.c_qty})</li>
+							<select class="select" name="size" style="height: 30px;" >
+							    <option value="${size.s_size}">${size.s_size}</option>
+							    <option value="S">S</option>
+							    <option value="M">M</option>
+							    <option value="L">L</option>
+							    <option value="XL">XL</option>
+							    <option value="XXL">XXL</option>
+							    <option value="FREE">FREE</option>
+							</select>
+							<input name="color" style="width: 50px;" placeholder="색깔" value="${color.c_color}"/>
+							<input name="qty" type="number" style="width: 50px;" placeholder="수량" value="${color.c_qty}"/>
+							<input name="s_code" type="hidden" value="${size.s_code}">
+							<input name="c_code" type="hidden" value="${color.c_code}">
+							</c:forEach>
+						</c:if>
+					</c:forEach>
 				</div>
 				<script>
                   $(function () {
