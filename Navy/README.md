@@ -95,3 +95,11 @@
   > - 테이블 tbl_cs_comment 추가
   > - 시퀀스 SEQ_CS_COMMENT 추가
  * 고객센터 댓글에 답글 추가
+ 
+## 06-05
+ * 관리자 상품 수정에서 대표이미지 설정
+  > - admin_proupdate.jspf에 ajax 추가
+  > - adminController에 representativeImage 메서드 추가
+ * 관리자 대시보드 고객센터 글 조회
+  > - 각 글마다 조회할 수 있게 링크 연결
+ * 고객센터 글 대댓글 입력 창 모달로 생성
