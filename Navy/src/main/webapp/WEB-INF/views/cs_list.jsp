@@ -32,7 +32,8 @@
 <%@ include file="/WEB-INF/views/include/include-nav.jspf" %>
     <!--main 화면 bbs 들어갈 것-->
     <article class="all-browsers">
-      <div class="hr-sect mb-5">BULLETIN BOARD</div>
+      <div class="hr-sect mb-5">
+			Service center</div>
 
       <!-- bbsList -->
       <div class="container">

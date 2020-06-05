@@ -3,6 +3,7 @@ package com.biz.navy.service;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -12,6 +13,7 @@ import com.biz.navy.domain.CartListVO;
 import com.biz.navy.domain.CartVO;
 import com.biz.navy.domain.ColorVO;
 import com.biz.navy.domain.PageVO;
+import com.biz.navy.domain.ProductVO;
 import com.biz.navy.domain.SizeVO;
 
 import lombok.RequiredArgsConstructor;
@@ -146,6 +148,40 @@ public class CartServiceImpl implements CartService{
 
 		List<CartVO> cartList = cartDao.paymentList(username, pageVO);
 		return cartList;
+	}
+
+	// 주문정보 유저 id로 조회
+	@Override
+	public List<CartVO> findBySearchUsername(String search, PageVO pageVO) {
+		List<String> searchList = Arrays.asList(search.split(" "));
+
+		List<CartVO> cartSearchList = new ArrayList<>();
+		if (search != "") {
+//			cartSearchList = cartDao.findBySearchNameAndPaging(searchList, pageVO);
+		} else {
+//			cartSearchList = cartDao.selectAllPaging(pageVO);
+		}
+		return cartSearchList;
+	}
+
+	// 리스트 총 개수 세기
+	@Override
+	public long totalCount(String search) {
+		long ret = 0;
+		if(search == "") {
+			ret = cartDao.totalCount();
+		} else {
+			List<String> searchList = Arrays.asList(search.split(" "));
+//			ret = cartDao.countSearch(searchList);
+		}
+		
+		return ret;
+	}
+
+	// 사용자 별로 주문내역 조회
+	@Override
+	public List<CartVO> findByUserId(String username) {
+		return cartDao.findByUserId(username);
 	}
 	
 	

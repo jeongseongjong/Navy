@@ -108,3 +108,9 @@
  * 관리자 대시보드 고객센터 글 조회
   > - 각 글마다 조회할 수 있게 링크 연결
  * 고객센터 글 대댓글 입력 창 모달로 생성
+ * 유저 디테일 jsp 구매이력 댓글이력
+  >- ReviewService에 findByUserId 메서드 추가
+  >- QnaService에 findByUserId 메서드 추가
+  >- CartService에 findByUserId 메서드 추가
+ * include-paging 수정
+ * pageService에 listperpage 변경

@@ -47,73 +47,31 @@
                     </tr>
                   </thead>
                   <tbody>
-                  	<c:forEach items="${CARTLIST}" var="cart" varStatus="i">
-                  		<tr>
-                  			<td class="in-ck-box td-click">${i.count}</td>
-                  			<td class="in-ck-box td-click">${cart.username}</td>
-                  			<td class="in-ck-box td-click">주소</td>
-                  			<td class="in-ck-box td-click">${cart.bk_p_name}</td>
-                  			<td class="in-ck-box td-click">${cart.bk_p_oprice}</td>
-                  			<td class="in-ck-box td-click">${cart.bk_p_qty}</td>
-                  			<td class="in-ck-box td-click">총가격</td>
-                  			<td class="in-ck-box td-click">${cart.bk_p_buyTime}</td>
-                  			<td class="in-ck-box td-click">${cart.bk_p_status}</td>
-                  		</tr>
-                  	</c:forEach>
-                    <tr>
-                      <td class="in-ck-box td-click">1</td>
-                      <td class="in-ck-box td-click">qussoa</td>
-                      <td class="in-ck-box td-click">백운동</td>
-                      <td class="in-ck-box td-click">White pants</td>
-                      <td class="in-ck-box td-click">15000</td>
-                      <td class="in-ck-box td-click">10</td>
-                      <td class="in-ck-box td-click">1500000</td>
-                      <td class="in-ck-box td-click">2020-05-17</td>
-                      <td class="in-ck-box td-click">배송중</td>
-                    </tr>
+                  	<c:choose>
+                  		<c:when test="${empty CARTLIST}">
+                  			<td class="in-ck-box td-click" colspan="9">주문정보가 없습니다.</td>
+                  		</c:when>
+                  		<c:otherwise>
+		                  	<c:forEach items="${CARTLIST}" var="cart" varStatus="i">
+		                  		<tr>
+		                  			<td class="in-ck-box td-click">${i.count}</td>
+		                  			<td class="in-ck-box td-click">${cart.username}</td>
+		                  			<td class="in-ck-box td-click">주소</td>
+		                  			<td class="in-ck-box td-click">${cart.bk_p_name}</td>
+		                  			<td class="in-ck-box td-click">${cart.bk_p_oprice}</td>
+		                  			<td class="in-ck-box td-click">${cart.bk_p_qty}</td>
+		                  			<td class="in-ck-box td-click">총가격</td>
+		                  			<td class="in-ck-box td-click">${cart.bk_p_buyTime}</td>
+		                  			<td class="in-ck-box td-click">${cart.bk_p_status}</td>
+		                  		</tr>
+		                  	</c:forEach>
+                  		</c:otherwise>
+                  	</c:choose>
                   </tbody>
                 </table>
 
                 <!--pagination-->
-                <div class="d-flex justify-content-center">
-                  <nav aria-label="Page navigation example">
-                    <ul class="pagination">
-                      <li class="page-item">
-                        <a
-                          class="page-link black-text"
-                          href="#"
-                          aria-label="Previous"
-                        >
-                          <span aria-hidden="true" class="black-text"
-                            >&laquo;</span
-                          >
-                          <span class="sr-only">Previous</span>
-                        </a>
-                      </li>
-                      <li class="page-item black-text">
-                        <a class="page-link black-text" href="#">1</a>
-                      </li>
-                      <li class="page-item black-text">
-                        <a class="page-link black-text" href="#">2</a>
-                      </li>
-                      <li class="page-item black-text">
-                        <a class="page-link black-text" href="#">3</a>
-                      </li>
-                      <li class="page-item black-text">
-                        <a
-                          class="page-link black-text"
-                          href="#"
-                          aria-label="Next"
-                        >
-                          <span aria-hidden="true" class="black-text"
-                            >&raquo;</span
-                          >
-                          <span class="sr-only black-text">Next</span>
-                        </a>
-                      </li>
-                    </ul>
-                  </nav>
-                </div>
+					<%@ include file="/WEB-INF/views/include/include-paging.jspf" %>
                 <!--pagination end-->
               </div>
             </div>

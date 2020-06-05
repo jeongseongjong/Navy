@@ -189,62 +189,6 @@
 		                        </a>		
                       		</c:otherwise>
                       	</c:choose>
-                        <a href="#" class="card-text">
-                          <span class="title mr-4">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore magna aliqua.</span
-                          >
-                          <span class="date">2020-05-19</span>
-                        </a>
-                        <a href="#" class="card-text">
-                          <span class="title mr-4">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore magna aliqua.</span
-                          >
-                          <span class="date">2020-05-19</span>
-                        </a>
-                        <a href="#" class="card-text">
-                          <span class="title mr-4">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore magna aliqua.</span
-                          >
-                          <span class="date">2020-05-19</span>
-                        </a>
-                        <a href="#" class="card-text">
-                          <span class="title mr-4">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore magna aliqua.</span
-                          >
-                          <span class="date">2020-05-19</span>
-                        </a>
-                        <a href="#" class="card-text">
-                          <span class="title mr-4">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore magna aliqua.</span
-                          >
-                          <span class="date">2020-05-19</span>
-                        </a>
-                        <a href="#" class="card-text">
-                          <span class="title mr-4">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore magna aliqua.</span
-                          >
-                          <span class="date">2020-05-19</span>
-                        </a>
-                        <a href="#" class="card-text">
-                          <span class="title mr-4">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore magna aliqua.</span
-                          >
-                          <span class="date">2020-05-19</span>
-                        </a>
                       </div>
                       <a href="${rootPath}/admin/qna" class="card-link d-flex justify-content-end qna_list"
                         >더보기</a
@@ -281,38 +225,6 @@
 		                        </a>		
                       		</c:otherwise>
                       	</c:choose>
-                        <a href="#" class="card-text">
-                          <span class="title mr-4">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore magna aliqua.</span
-                          >
-                          <span class="date">2020-05-19</span>
-                        </a>
-                        <a href="#" class="card-text">
-                          <span class="title mr-4">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore magna aliqua.</span
-                          >
-                          <span class="date">2020-05-19</span>
-                        </a>
-                        <a href="#" class="card-text">
-                          <span class="title mr-4">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore magna aliqua.</span
-                          >
-                          <span class="date">2020-05-19</span>
-                        </a>
-                        <a href="#" class="card-text">
-                          <span class="title mr-4">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore magna aliqua.</span
-                          >
-                          <span class="date">2020-05-19</span>
-                        </a>
                       </div>
                       <a href="${rootPath}/admin/review" class="card-link d-flex justify-content-end review_list"
                         >더보기</a
