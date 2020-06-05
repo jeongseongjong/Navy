@@ -10,52 +10,56 @@
 <html>			
 <head>			
 <%@ include file="/WEB-INF/views/include/include-head.jspf" %>
+<link rel="stylesheet" href="${rootPath}/resources/css/login.css" />
 </head>
-<script>
+  <script>
 $(function(){
-	$(document).on("click","button.join",function(){
-		document.location.href = "${rootPath}/user/join"		
-	})
-	
 	$(document).on("click","button.login",function(){
-		document.location.href = "${rootPath}/user/main"
+		document.location.href = "${rootPath}/"
 	})
 })
 
-</script>	
-<body>
-	<section class="container body">
-		<form:form action="${rootPath}/login" method="POST" class="login_form">
-			<h1>
-				<span class="login">Log in</span> or <span class="sign-up">sign
-					up</span>
-			</h1>
-			<div>
-				<c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION}" >
-					<span>${SPRING_SECURITY_LAST_EXCEPTION.message}</span>
-				</c:if>
-			</div>
-			
-			<div class="input_layout">
-			
-			<div class="input_box">
-				<label id="username">UserName</label> 
-				<input id="username" name="username" type="text"
-					placeholder="User ID">
-			</div>
-			<div class="input_box">
-				<label id="password">Password</label> 
-				<input type="password" id="password"
-					name="password" placeholder="비밀번호">
-			</div>
-			</div>
-			<div class="button_box">
-				<button class="login">로그인</button>
-				<button class="join" type="button">회원가입</button>
-			</div>
-		</form:form>
-	</section>
-	</body>
+</script>
+  <body>
+	<form:form action="${rootPath}/login" method="POST" class="login_form">
+	    <div class="social_login_ct_wrap">
+	      <div class="pagepop_wrap">
+	        <div class="social_login_cont join_cont">
+	            <a href="${rootPath}/"><h2 class="tit_bi">NAVIYA</h2></a>
+	            <c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION}" >
+						<span>${SPRING_SECURITY_LAST_EXCEPTION.message}</span>
+					</c:if>
+	            <label for="username" class="id_ipt login_ipt_box on">
+	              <input
+	              	id="username"
+	              	name="username"
+	              	placeholder="USER ID"
+	                type="text"
+	                class="input_txt"
+	                style="outline: none;"
+	              />
+	            </label>
+	            <label for="password" id="password" class="pw_ipt login_ipt_box">
+	              <input
+	                type="password"
+	                name="password"
+	                id="password"
+	                placeholder="비밀번호"
+	                class="input_txt"
+	                style="outline-style: none;"
+	              />
+	            </label>
+	            <button class="btn_login login" >로그인</button>
+	            <div class="bottom_button_box">
+	              <a href="#">아이디 찾기</a>
+	              <span class="icon_division"></span>
+	              <a href="#">비밀번호 찾기</a>
+	              <span class="icon_division join"></span>
+	              <a href="${rootPath}/user/join">회원가입</a>
+	            </div>
+	        </div>
+	      </div>
+	    </div>
+	</form:form>
+  </body>
 </html>
-
-

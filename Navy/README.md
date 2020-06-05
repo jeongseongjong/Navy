@@ -77,7 +77,12 @@
  * main 추천List 적용(날짜/시간 -> 추천수 변경, UI 수정 필요)
  * size/color -> Dao, Service, ServiceImpl 각 삭제
  * productServiceImpl의 findByMaxPCode 널포인트 문제 -> try catch문으로 해결
-  
+ 
+## 06-02
+ * include-menu 생성
+ * 구매자 정보 입력 view 완료
+ * 구매내역 view 추출 완료
+
 ## 06-03
  * userDetail 권한 보여주는 부분에 이메일 나오는 것 수정
  * 재고관리 페이지 페이징

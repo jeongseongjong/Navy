@@ -57,10 +57,10 @@ $(function() {
 
 	    
 		
-		$("#btn-cart").click(function() {
+		$(".btn-cart").click(function() {
 			let p_qty = parseInt($("#p_qty").val())
 			let p_color = $("#colorList").val()
-			let p_size = $("#sizeList").val()
+			let p_size = $(".dep-sel").val()
 			alert(p_size)
 			alert(p_color)
 			alert("${productVO.p_name}")
@@ -213,7 +213,7 @@ $(function() {
       	                <i class="blind">수량감소</i>
       	              </button>
       	              <label>
-      	                <input type="text" value="1">
+      	                <input id="p_qty" type="text" value="1">
       	              </label>
       	              <button class="plus" type="button">
       	                <i class="blind">수량증가</i>
@@ -225,63 +225,6 @@ $(function() {
       	        `)
           			
 				})
-          		
-		
-          		
-        			
-        		
-        			
-          		
-          		/*
-      	      $(document).on("change","#color",function(){
-      	        if($("#color").val() === "COLOR"){
-      	          return false;
-      	        }
-      	        let select_ck = $("#select_ck").val()
-      	        let color = $("#color").val()
-      	        $(".prod").append(`
-      	        <li>
-      	        <span class="tit">
-      	          <span>GUCCI DRESS/${select_ck}/${color}</span>
-      	          <span class="stock">15개 남음</span>
-      	          </span>
-      	          <button type="button" class="del">
-      	            <i class="blind">삭제</i>
-      	          </button>
-      	          <div class="middle_wrap">
-      	            <div class="price_area">
-      	              <div class="price">
-      	                <div class="total_price">
-      	                  <span class="prmt_discount">
-      	                    <strong>1,750,000</strong>
-      	                    won
-      	                  </span>
-      	                </div>
-      	              </div>
-      	            </div>
-      	            <div class="amount">
-      	              <button class="minus " type="button">
-      	                <i class="blind">수량감소</i>
-      	              </button>
-      	              <label>
-      	                <input type="text" value="1">
-      	              </label>
-      	              <button class="plus" type="button">
-      	                <i class="blind">수량증가</i>
-      	              </button>
-      	            </div>
-      	          </div>
-      	          <span class="prod_avail_count">100개 구매가능</span>
-      	        </li>
-      	        `)
-      	      })
-
-      	      
-
-      	      
-
-      	    });
-			  	*/
           		
 			})
           	
@@ -297,7 +240,7 @@ $(function() {
                 <span class="tit">총 상품금액</span>
                 <span class="num">
                   <strong >
-                    1,750,000
+					???
                   </strong>
                   won
                 </span>
@@ -310,7 +253,7 @@ $(function() {
               <div class="purchase_list_box">
                 <ul class="lst_order_btn">
                   <li class="col_2">
-                    <button class="bt-css">장바구니</button>
+                    <button class="bt-css btn-cart">장바구니</button>
                   </li>
                   <li class="col_2">
                     <button

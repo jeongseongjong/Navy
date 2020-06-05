@@ -1,22 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
-<c:set var="rootPath" value="${pageContext.request.contextPath}" />
-
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-
-<%@ taglib uri="http://www.springframework.org/security/tags"
-	prefix="sec"%>
-	
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<%@ include file="/WEB-INF/views/include/include-head.jspf"%>
-<script type="text/JavaScript"
+  <head>
+<%@ include file="/WEB-INF/views/include/include-head.jspf" %>
+
+    <link rel="stylesheet" href="${rootPath}/resources/css/join.css" />
+  </head>
+  <script type="text/JavaScript"
 	src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script>
 	$(function() {
@@ -94,47 +85,95 @@
 
 	}
 </script>
-
-
-<body>
-	<div class="w3-container w3-red">
-		<h2>회원가입</h2>
-	</div>
-
-	<form:form method="POST" action="${rootPath}/user/join">
-		<p>
-			<label>ID</label> <input id="username" name="username"
-				placeholder="User ID" class="w3-input" type="text">
-		</p>
-		<p>
-			<label>PASSWORD</label> <input id="password" name="password"
-				placeholder="비밀번호" class="w3-input" type="password">
-		</p>
-		<p>
-			<label>re_PASSWORD</label> <input id="re_password" name="re_password"
-				placeholder="비밀번호" class="w3-input" type="password">
-		</p>
-		<input id="postcode1" type="text" value="" style="width: 50px;"
-			readonly /> &nbsp;-&nbsp;
-
-	<input id="postcode2" type="text" value="" style="width: 50px;"
-			readonly /> &nbsp;&nbsp;
-
-	<input id="zonecode" type="text" value="" style="width: 50px;" readonly />
-
-	&nbsp;
-
-	<input type="button" onClick="openDaumZipAddress();" value="Address" />
-
-		<br />
-
-		<input type="text" id="address" name="address" value="" style="width: 240px;"
-			readonly />
-
-		<input type="text" id="address_etc" name="address_etc" value="" style="width: 200px;" />
-
-		<button type="button" id="btn-join">회원가입</button>
-		<button type="button" id="btn-loss">ID/비밀번호 찾기</button>
-	</form:form>
-</body>
+  <body>
+  <form:form method="POST" action="${rootPath}/user/join">
+    <div class="join_wrap">
+      <!--header start-->
+      <div class="join_header">
+        <h1 class="logo">
+          <a href="../main.html">NAVIYA</a>
+        </h1>
+      </div>
+      <!--header end-->
+      <div class="join_contain join_form">
+        <h2 class="join_title">회원정보 입력</h2>
+        <dl class="form_wrap">
+          <dt>아이디</dt>
+          <dd>
+            <div class="input">
+              <input type="text" id="username" name="username" placeholder="아이디를 입력해주세요" />
+            </div>
+            <p class="msg dont">영문/숫자 4자 이상을 입력해주세요</p>
+          </dd>
+          <dt>비밀번호</dt>
+          <dd>
+            <div class="input">
+              <input type="password" id="password" name="password" placeholder="비밀번호를 입력해주세요" />
+            </div>
+            <p class="msg dont">
+              8~20의 영문 대/소문자, 숫자, 특수문자를 사용해주세요
+            </p>
+          </dd>
+          <dt>비밀번호 재확인</dt>
+          <dd>
+            <div class="input">
+              <input
+                type="password"
+                id="re_password"
+                name="re_password"
+                placeholder="비밀번호를 다시 한번 입력해주세요"
+              />
+            </div>
+            <p class="msg dont"></p>
+          </dd>
+          <dt>연락처</dt>
+          <dd>
+            <div class="input">
+              <input type="text" placeholder="연락처를 입력해주세요" />
+            </div>
+            <p class="msg">예) 000-0000-0000</p>
+          </dd>
+          <dt>
+            주소
+            <button
+              type="button"
+              class="btn_addr1"
+              data-toggle="modal"
+              data-target="#myModal"
+            >
+              우편번호
+            </button>
+          </dt>
+          <dd>
+            <div class="input">
+              <input type="text" placeholder="주소를 입력해주세요" />
+            </div>
+            <p class="msg dont">주소를 입력해주세요</p>
+          </dd>
+          <dt>이메일</dt>
+          <dd>
+            <div class="input">
+              <input type="text" placeholder="이메일을 입력해주세요" />
+            </div>
+            <p class="msg dont">이메일을 입력해주세요</p>
+          </dd>
+        </dl>
+        <div class="btns_area">
+          <button
+            class="btn_join"
+            onclick="$(document).on('click','.btn_join',function(){document.location.href='join-success.html'})"
+          >
+            가입하기
+          </button>
+        </div>
+      </div>
+      <div class="join_footer">
+        <div class="copyright">
+          COPYRIGHT. QUSSOA. 한국경영원 인재개발원
+        </div>
+      </div>
+    </div>
+    </form:form>
+  </body>
+  
 </html>

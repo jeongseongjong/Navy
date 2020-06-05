@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+7<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -8,9 +8,7 @@
 <title>Page Title</title>
 </head>
 <script>
-	$(document).on("click", ".scope", function() {
-		(".scope");
-	});
+
 </script>
 <body>
 	<!--header include-->
@@ -132,27 +130,7 @@
 			</c:forEach>
 			<!--content end-->
 			<!--pagination-->
-			<div class="d-flex justify-content-center mt-3">
-				<nav aria-label="Page navigation example">
-					<ul class="pagination">
-						<li class="page-item"><a class="page-link black-text"
-							href="#" aria-label="Previous"> <span aria-hidden="true"
-								class="black-text">&laquo;</span> <span class="sr-only">Previous</span>
-						</a></li>
-						<li class="page-item black-text"><a
-							class="page-link black-text" href="#">1</a></li>
-						<li class="page-item black-text"><a
-							class="page-link black-text" href="#">2</a></li>
-						<li class="page-item black-text"><a
-							class="page-link black-text" href="#">3</a></li>
-						<li class="page-item black-text"><a
-							class="page-link black-text" href="#" aria-label="Next"> <span
-								aria-hidden="true" class="black-text">&raquo;</span> <span
-								class="sr-only black-text">Next</span>
-						</a></li>
-					</ul>
-				</nav>
-			</div>
+			<%@ include file="/WEB-INF/views/include/include-paging.jspf" %>
 			<!--pagination end-->
 			<div class="delivery_process_area">
 				<h3 class="h_delivery_process">배송상태안내 및 유의사항</h3>

@@ -58,6 +58,21 @@
 	)
 	</update>
 	
+	<select id="paymentList" resultType="cartVO">
+ 	SELECT * FROM
+ 		(
+ 			SELECT /* + FIRST_ROWS_100 */ ROWNUM AS NUM, IP.* FROM
+ 			(
+ 				SELECT /*+ INDEX_DESC(C) */ * FROM tbl_cart C
+ 			)IP
+ 			WHERE ROWNUM &lt;= #{limit,jdbcType=VARCHAR}
+ 		)TBL
+ 		
+ 		WHERE NUM &gt;= #{offset,jdbcType=VARCHAR}
+ 		
+ 	</select>
+	
+	
 	<update id="recipient_update" parameterType="cartVO">
 		UPDATE tbl_cart SET
 			bk_recipient_name = #{cartVO.bk_recipient_name,jdbcType=VARCHAR},

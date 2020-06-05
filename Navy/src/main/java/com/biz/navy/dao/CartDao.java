@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Update;
 
 import com.biz.navy.domain.CartVO;
 import com.biz.navy.domain.ColorVO;
+import com.biz.navy.domain.PageVO;
 import com.biz.navy.domain.SizeVO;
 
 public interface CartDao {
@@ -50,6 +51,8 @@ public interface CartDao {
 	@Select("select * from tbl_cart where username = #{username} AND bk_p_status = 'DELIV' ")
 	public List<CartVO> selectDelivery(@Param("username")String username);
 	
+	public List<CartVO> paymentList(@Param("username")String username, @Param("pageVO")PageVO pageVO);
+	
 	// 관리자가 현재 배송중인 상품이 몇건이나 되는지 조회할 때 
 	@Select("select count(*) from tbl_cart where bk_p_status = 'DELIV' ")
 	public int countDelivery();
@@ -83,6 +86,11 @@ public interface CartDao {
 	 * mapper에서 collection에는 변수이름을 넣어줘야한다.
 	 */
 	public int recipient_update(@Param("bkSeqList") List<String> bkSeqList, @Param("cartVO") CartVO cartVO);
+
+	@Select("SELECT COUNT(*) FROM tbl_cart")
+	public long totalCount();
+
+	
 
 
 }
