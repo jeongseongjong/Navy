@@ -105,3 +105,7 @@
   > - 시퀀스 SEQ_CS_COMMENT 추가
  * 고객센터 댓글에 답글 추가
 >>>>>>> 7bb0c741c2be1df428dda86c1f268bbfcf4ea6d3
+
+## 06-05
+ * Detail > 상품 UI 재수정
+  
