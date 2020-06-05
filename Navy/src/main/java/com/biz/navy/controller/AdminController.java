@@ -13,12 +13,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.biz.navy.domain.CartVO;
+import com.biz.navy.domain.CsVO;
+import com.biz.navy.domain.InventoryVO;
 import com.biz.navy.domain.PageVO;
 import com.biz.navy.domain.ProductVO;
 import com.biz.navy.domain.QnaVO;
 import com.biz.navy.domain.ReviewVO;
 import com.biz.navy.domain.UserDetailsVO;
 import com.biz.navy.service.CartService;
+import com.biz.navy.service.CsService;
 import com.biz.navy.service.PageService;
 import com.biz.navy.service.ProductImgService;
 import com.biz.navy.service.ProductService;
@@ -42,7 +45,7 @@ public class AdminController {
 	private final ReviewService reviewService;
 	private final QnaService qnaService;
 	private final PageService pageService;
-	
+	private final CsService csService;
 	
 	
 	@RequestMapping(value="",method=RequestMethod.GET)
@@ -50,9 +53,11 @@ public class AdminController {
 		
 		List<ReviewVO> reviewList = reviewService.selectAll();
 		List<QnaVO> qnaList = qnaService.selectAll();
+		List<CsVO> csList = csService.selectAll();
 		
 		model.addAttribute("REVIEWLIST",reviewList);
 		model.addAttribute("QNALIST",qnaList);
+		model.addAttribute("CSLIST",csList);
 		
 		return "admin/admin_home";
 	}
@@ -189,7 +194,7 @@ public class AdminController {
 	public String proUpdate(@PathVariable("p_code") String p_code, ProductVO productVO, Model model) {
 		
 		productVO = proService.findById(Long.valueOf(p_code));
-		
+		log.debug("상품 업데이트 컨트롤러 : "+productVO);
 		model.addAttribute("productVO",productVO);
 		model.addAttribute("adminBody","proUpdate");
 		
@@ -198,11 +203,33 @@ public class AdminController {
 	
 	// 상품 수정하고 DB에 저장
 	@RequestMapping(value="/pro_update/{p_code}",method=RequestMethod.POST)
-	public String proUpdatePOST(@PathVariable("p_code") String p_code, ProductVO productVO, Model model) {
+	public String proUpdatePOST(@PathVariable("p_code") String p_code, ProductVO productVO, 
+			String[] size,
+			String[] color,
+			int[] qty,
+			long[] s_code,
+			long[] c_code,
+			Model model) {
+		log.debug("상품 업데이트 포스트 : "+productVO);
+		for(String s : size) {
+			log.debug("사이즈 : " + s);
+		}
+		for(String s : color) {
+			log.debug("색상 : " + s);
+		}
+		for(int s : qty) {
+			log.debug("수량 : " + s+"");
+		}
+		for(long s : s_code) {
+			log.debug("사이즈 코드 : " + s+"");
+		}
+		for(long s : c_code) {
+			log.debug("컬러 코드 : " + s+"");
+		}
 		
 		int ret = proService.update(productVO);
 		
-		return "redirect:/admin/pro_detail_view/\"+productVO.getP_code()";
+		return "redirect:/admin/pro_detail_view/"+productVO.getP_code();
 	}
 	
 	// 상품 삭제
@@ -253,11 +280,22 @@ public class AdminController {
 	
 	// 재고 정보
 	@RequestMapping(value="/inventory",method=RequestMethod.GET)
-	public String inventory(Model model) {
+	public String inventory(Model model,
+			@RequestParam(value="search", required = false, defaultValue = "") String search,
+			@RequestParam(value="currentPageNo", required = false, defaultValue = "1") int currentPageNo
+			) {
+		long totalCount = proService.countColor(search);
+		PageVO pageVO = pageService.getPagination(totalCount, currentPageNo);
 		
-		List<ProductVO> proList = proService.selectAll();
-		log.debug("상품 리스트 : " + proList.toString());
-		model.addAttribute("PROLIST",proList);
+		List<InventoryVO> stockListPaging = proService.findStockBySearchName(search, pageVO);
+		log.debug("페이징 후 리스트 : "+stockListPaging);
+		model.addAttribute("STOCKLIST",stockListPaging);
+		model.addAttribute("pageVO",pageVO);
+		
+		// 페이징에 보내줄 URL들 미리 만들어주기
+		model.addAttribute("controller","admin");
+		model.addAttribute("url","inventory");
+		model.addAttribute("search",search);
 		
 		return "admin/admin_inventory";
 	}

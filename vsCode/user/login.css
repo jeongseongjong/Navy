@@ -1,0 +1,193 @@
+a,
+body,
+button,
+dd,
+div,
+dl,
+dt,
+fieldset,
+form,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+input,
+legend,
+li,
+ol,
+p,
+select,
+table,
+td,
+textarea,
+th,
+ul {
+  margin: 0;
+  padding: 0;
+}
+div {
+  display: block;
+}
+
+body,
+button,
+input,
+select,
+table,
+textarea {
+  font-size: 12px;
+  font-family: "GmarketSansMedium";
+}
+
+/*font-family*/
+@font-face {
+  font-family: "GmarketSansMedium";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.pagepop_wrap {
+  margin: 200px 0 0 -246px;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  z-index: 900;
+}
+
+.pagepop_wrap .join_cont {
+  padding: 60px 50px;
+  border: 1px solid #f2f4f5;
+}
+
+.join_cont {
+  width: 390px;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+.join_cont .tit_bi {
+  margin: 0 auto 30px auto;
+  width: 160px;
+  height: 40px;
+  color: #f1404b;
+  font-weight: 700;
+}
+
+label {
+  vertical-align: -1px;
+}
+
+.social_login_cont .id_ipt {
+  margin-bottom: 6px;
+}
+
+.social_login_cont .login_ipt_box {
+  position: relative;
+  display: block;
+  height: 48px;
+  overflow: hidden;
+  border: 1px solid #d7d7d7;
+}
+
+.social_login_cont .login_ipt_box strong {
+  display: block;
+  position: absolute;
+  top: 16px;
+  left: 19px;
+  height: 17px;
+  font-size: 14px;
+  color: #aaa;
+  vertical-align: middle;
+}
+
+.social_login_cont .login_ipt_box input {
+  position: relative;
+  padding: 23px 19px 15px 19px;
+  width: 350px;
+  height: 17px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #aaa;
+  border: none;
+  background-color: transparent;
+}
+
+button {
+  border: 0;
+  border-radius: 0;
+  background-color: transparent;
+  outline: 0;
+  cursor: pointer;
+  outline-style: none;
+}
+
+.social_login_cont .login_ipt_box button {
+  display: none;
+}
+
+.social_login_cont .pw_ipt {
+  margin-bottom: 9px;
+}
+
+.blind {
+  overflow: hidden;
+  position: absolute;
+  visibility: hidden;
+  width: 0;
+  height: 0;
+  font-size: 0;
+  line-height: 0;
+}
+
+.join_cont .btn_login {
+  display: block;
+  height: 50px;
+  color: #fff;
+  letter-spacing: -0.5px;
+  font-weight: bold;
+  font-size: 14px;
+  text-align: center;
+  line-height: 51px;
+  background-color: #f1404b;
+}
+
+.join_cont .btn_login:hover {
+  color: #fff;
+  cursor: pointer;
+}
+
+.social_login_cont .bottom_button_box {
+  margin-top: 30px;
+  text-align: center;
+  border-top: 1px solid #f2f2f5;
+}
+
+.social_login_cont .bottom_button_box a {
+  display: inline-block;
+  padding: 19px 10px 0 18px;
+  color: #252c41;
+}
+
+.social_login_cont .bottom_button_box .icon_division {
+  display: inline-block;
+  width: 1px;
+  height: 11px;
+  background: url("../img/l.jpg") no-repeat;
+  background-size: cover;
+}
+
+.social_login_cont .ipt_wrn_msg {
+  margin-bottom: 18px;
+  color: #f1404b;
+  letter-spacing: -0.5px;
+}

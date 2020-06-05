@@ -68,83 +68,77 @@ $(function(){
 			//alert(id)
 		})
 		
-		                          // 권한설정 관련해서 유효성 검사
-                          $("#bt-bbs-update").click(function(){
-                        	  var ele = $(".s-box").length;
-                        	  //alert("셀렉트 개수:"+ele)
-                        	  
-                        	  let selectText = $(".s-box option:selected").text()
-                        	  alert("셀렉트 텍스트:"+selectText)
-                        	  
-                        	  var searchText = selectText.indexOf("권한")
-                        	  alert(searchText)
-                        	  
-							  if(searchText > -1){
-								  alert("권한을 설정해 주세요.")
-								  return false
-							  }
-                        	  
-                        	  if(ele < 1){
-                        		  alert("권한은 최소 1개 이상 설정해야 합니다.")
-								  return false
-                        	  } else{
-                        		  //alert("된다")
-	                        	  $("form").submit()
-                        		  
-                        	  }
-                        	  
-                          })// bt-bbs-update 저장버튼 끝
-                          
-                          $(".ad-us-list").click(function(){
-							document.location.href="${rootPath}/admin/userlist"
-                          })
+                  // 권한설정 관련해서 유효성 검사
+                $("#bt-bbs-update").click(function(){
+              	  var ele = $(".s-box").length;
+              	  //alert("셀렉트 개수:"+ele)
+              	  
+              	  let selectText = $(".s-box option:selected").text()
+              	  //alert("셀렉트 텍스트:"+selectText)
+              	  
+              	  var searchText = selectText.indexOf("권한")
+              	  //alert(searchText)
+              	  
+				  if(searchText > -1){
+					  alert("권한을 설정해 주세요.")
+					  return false
+				  }
+                     	  
+                  if(ele < 1){
+                     alert("권한은 최소 1개 이상 설정해야 합니다.")
+					 return false
+                  } else{
+                  	  //alert("된다")
+                  	$("form").submit()
+                  }
+		})// bt-bbs-update 저장버튼 끝
+                       
+        $(".ad-us-list").click(function(){
+			document.location.href="${rootPath}/admin/userlist"
+        })
                           
 })
-                          /*
-                          $(document).ready(function () {
+         /*
+         $(document).ready(function () {
 
-                          });
-                          function count_select(){
-                        	  var ele = $(".select-box").length;
-                        	  alert("개수:"+ele)
-                        	  if(ele < 1){
-                        		  alert("권한은 최소 1개 이상 설정해야 합니다.")
-                        		  return false
-                        	  }
-                          }
-                          */
-                          
+         });
+         function count_select(){
+       	  var ele = $(".select-box").length;
+       	  alert("개수:"+ele)
+       	  if(ele < 1){
+       		  alert("권한은 최소 1개 이상 설정해야 합니다.")
+       		  return false
+       	  }
+         }
+         */
+         
 
-                          
-                          
+         
+         
 </script>
-                        <!-- 권한설정 추가 script-->
-                        <script>
-
-                        </script>
 <script>
 	function openDaumZipAddress() {
-
+	
 		new daum.Postcode({
-
+	
 			oncomplete : function(data) {
-
+	
 				jQuery("#postcode1").val(data.postcode1);
-
+	
 				jQuery("#postcode2").val(data.postcode2);
-
+	
 				jQuery("#zonecode").val(data.zonecode);
-
+	
 				jQuery("#address").val(data.address);
-
+	
 				jQuery("#address_etc").focus();
-
+	
 				console.log(data);
-
+	
 			}
-
+	
 		}).open();
-
+	
 	}
 </script>
                         

@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.biz.navy.dao.ProductDao;
 import com.biz.navy.domain.ColorVO;
+import com.biz.navy.domain.InventoryVO;
 import com.biz.navy.domain.PageVO;
 import com.biz.navy.domain.ProSizeColorVO;
 import com.biz.navy.domain.ProductImgVO;
@@ -348,4 +349,28 @@ public class ProductServiceImpl implements ProductService {
 		return proDao.getProImages(p_img_p_code);
 	}
 
+  public long countColor(String search) {
+		long ret = 0;
+		if (search == "") {
+			ret = proDao.countColorAll();
+		} else {
+			List<String> searchList = Arrays.asList(search.split(" "));
+			// 검색 결과의 totalCount 구하기
+			ret = proDao.countStockSearch(searchList);
+		}
+		return ret;
+	}
+
+	@Override
+	public List<InventoryVO> findStockBySearchName(String search, PageVO pageVO) {
+		List<String> searchList = Arrays.asList(search.split(" "));
+
+		List<InventoryVO> proSearchList = new ArrayList<>();
+		if (search != "") {
+			proSearchList = proDao.findStockBySearchNameAndPaging(searchList, pageVO);
+		} else {
+			proSearchList = proDao.selectColorAll(pageVO);
+		}
+		return proSearchList;
+	}
 }

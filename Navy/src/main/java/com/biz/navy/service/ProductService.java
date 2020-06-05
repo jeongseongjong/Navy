@@ -9,6 +9,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.biz.navy.domain.PageVO;
 import com.biz.navy.domain.ProductImgVO;
 import com.biz.navy.domain.ColorVO;
+import com.biz.navy.domain.InventoryVO;
 import com.biz.navy.domain.ProductVO;
 import com.biz.navy.domain.SizeVO;
 
@@ -51,6 +52,10 @@ public interface ProductService {
 	public List<ColorVO> getProColor(long c_s_code);
 	
 	public List<ProductImgVO> getProImages(long p_img_p_code);
+
+	public long countColor(String search);
+
+	public List<InventoryVO> findStockBySearchName(String search, PageVO pageVO);
 
 	
 

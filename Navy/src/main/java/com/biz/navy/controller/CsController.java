@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.biz.navy.domain.CsCommentVO;
 import com.biz.navy.domain.CsVO;
 import com.biz.navy.domain.PageVO;
 import com.biz.navy.domain.UserDetailsVO;
@@ -36,12 +38,12 @@ public class CsController {
 			@RequestParam(value="currentPageNo", required = false, defaultValue = "1") int currentPageNo
 			) {
 		
-//		long totalCount = csService.totalCount(search);
-		long totalCount = 30;
+		long totalCount = csService.totalCount(search);
+//		long totalCount = 30;
 		PageVO pageVO = pageService.getPagination(totalCount, currentPageNo);
 		
-		List<CsVO> csList = csService.selectAll(); 
-//		List<CsVO> csList = csService.findBySearchName(search, pageVO);
+//		List<CsVO> csList = csService.selectAll(); 
+		List<CsVO> csList = csService.findBySearchName(search, pageVO);
 		
 		model.addAttribute("pageVO",pageVO);
 		
@@ -76,18 +78,67 @@ public class CsController {
 	}
 	
 	@RequestMapping(value="/detail/{cs_id}",method=RequestMethod.GET)
-	public String Detail(@PathVariable("cs_id")long cs_id,Model model) {
+	public String detail(@PathVariable("cs_id")long cs_id,Model model) {
 		
 		CsVO csVO = csService.findById(cs_id);
 		
+		List<CsCommentVO> commentList = csService.findCommentByBId(cs_id);
+		int listSize = commentList.size();
+		
 		model.addAttribute("CSVO",csVO);
+		model.addAttribute("COMMENTLIST",commentList);
+		model.addAttribute("LISTSIZE",listSize);
 		
 		return "cs_detail";
 	}
 	
 	@RequestMapping(value="/delete/{cs_id}",method=RequestMethod.GET)
-	public String Delete(@PathVariable("cs_id")long cs_id) {
+	public String delete(@PathVariable("cs_id")long cs_id) {
 		int ret = csService.delete(cs_id);
 		return "redirect:/cs/list";
 	}
+	
+	// 댓글 입력 메서드
+	@RequestMapping(value="/comment",method=RequestMethod.POST)
+	public String comment(Principal principal, CsCommentVO csCommentVO, Model model) {
+		
+		UsernamePasswordAuthenticationToken upa = (UsernamePasswordAuthenticationToken) principal;
+		
+		UserDetailsVO userVO = (UserDetailsVO)upa.getPrincipal();
+		String username = userVO.getUsername();
+		
+		log.debug("댓글 : "+csCommentVO);
+		int ret = csService.insertComment(csCommentVO,username);
+		
+		return "redirect:/cs/detail/" + csCommentVO.getCs_c_b_id();
+	}
+	
+	// 댓글 삭제 메서드
+	@RequestMapping(value="/comment/delete",method=RequestMethod.GET)
+	public String cmtDelete(@RequestParam("c_id") long c_id, @RequestParam("b_id") long b_id) {
+		int ret = csService.deleteComment(c_id);
+		return "redirect:/cs/detail/" + b_id;
+	}
+	
+	// 대댓글
+	
+	@RequestMapping(value = "/comment/repl",method=RequestMethod.GET)
+	public String commentRepl(CsCommentVO csCommentVO, Model model) {
+		log.debug("모달창 띄우는데 필요한 VO : "+csCommentVO);
+		model.addAttribute("REPLCOMMENT",csCommentVO);
+		return "cs_comment_insert";
+	}
+	@RequestMapping(value = "/comment/repl",method=RequestMethod.POST)
+	public String commentRepl(Principal principal, CsCommentVO csCommentVO,Model model) {
+		log.debug("댓글 왔나 : "+csCommentVO);
+		UsernamePasswordAuthenticationToken upa = (UsernamePasswordAuthenticationToken) principal;
+		
+		UserDetailsVO userVO = (UserDetailsVO)upa.getPrincipal();
+		String username = userVO.getUsername();
+		
+		int ret = csService.insertComment(csCommentVO, username);
+		
+		return "redirect:/cs/detail/" + csCommentVO.getCs_c_b_id();
+	}
+	
 }

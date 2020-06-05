@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.biz.navy.dao.CsDao;
+import com.biz.navy.domain.CsCommentVO;
 import com.biz.navy.domain.CsVO;
 import com.biz.navy.domain.PageVO;
 import com.biz.navy.utils.DateTime;
@@ -78,6 +79,30 @@ public class CsServiceImpl implements CsService{
 			ret = csDao.countSearch(searchList);
 		}
 		return ret;
+	}
+
+	// 댓글 입력 메서드
+	@Override
+	public int insertComment(CsCommentVO csCommentVO, String username) {
+
+		csCommentVO.setCs_c_writer(username);
+		csCommentVO.setCs_c_date(DateTime.Date());
+		csCommentVO.setCs_c_time(DateTime.Time());
+		
+		
+		return csDao.insertComment(csCommentVO);
+	}
+
+	// 댓글 리스트로 뽑기
+	@Override
+	public List<CsCommentVO> findCommentByBId(long cs_id) {
+		return csDao.findCommentByBId(cs_id);
+	}
+
+	// 댓글 삭제
+	@Override
+	public int deleteComment(long cid) {
+		return csDao.deleteComment(cid);
 	}
 
 	

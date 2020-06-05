@@ -8,12 +8,13 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+import com.biz.navy.domain.CsCommentVO;
 import com.biz.navy.domain.CsVO;
 import com.biz.navy.domain.PageVO;
 
 public interface CsDao {
 
-	@Select("SELECT * FROM tbl_cs")
+	@Select("SELECT * FROM tbl_cs ORDER BY cs_id DESC")
 	public List<CsVO> selectAll();
 	
 	@Select("SELECT * FROM tbl_cs WHERE cs_id = #{cs_id}")
@@ -50,6 +51,14 @@ public interface CsDao {
 
 	public long countAll();
 
-	public long countSearch(List<String> searchList);
+	public long countSearch(@Param("searchList") List<String> searchList);
+
+	public int insertComment(CsCommentVO csCommentVO);
+
+//	@Select("SELECT * FROM tbl_cs_comment WHERE cs_c_b_id = #{cs_id} ORDER BY cs_c_id ")
+	public List<CsCommentVO> findCommentByBId(long cs_id);
+
+	@Delete("DELETE FROM tbl_cs_comment WHERE cs_c_id = #{cid}")
+	public int deleteComment(long cid);
 	
 }

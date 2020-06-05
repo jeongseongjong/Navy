@@ -12,10 +12,7 @@ $(function(){
 	// 재고에서 표 클릭하면
 	$(document).on("click","tr.tr_stock",function(){
 		let p_code = $(this).data("proid")
-		$.get("${rootPath}/admin/pro_detail_view/" + p_code,
-				function(result){
-			$("#admin_content").html(result)
-		})
+		document.location.href="${rootPath}/admin/pro_detail_view/"+p_code
 	})
 })
 </script>
@@ -52,79 +49,55 @@ $(function(){
                       <th class="in-ck-box">상품코드</th>
                       <th class="in-ck-box">상품이름</th>
                       <th class="in-ck-box">상품가격</th>
-                      <th class="in-ck-box">상품컬러</th>
                       <th class="in-ck-box">상품사이즈</th>
+                      <th class="in-ck-box">상품컬러</th>
                       <th class="in-ck-box">상품수량</th>
                       <th class="in-ck-box">상품총수량</th>
                       <th class="in-ck-box">상품총가격</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <c:forEach items="${PROLIST}" var="pro" >
-                   		<c:forEach items="${pro.sizeList}" var="size" varStatus="i">
-							<c:if test="${!empty size.colorList}">
-								<c:forEach items="${size.colorList}" var="color">
-									<tr class="tr_stock" data-proid="${pro.p_code}">
-										<td class="in-ck-box td-click">${i.count}</td>
-			                    		<td class="in-ck-box td-click">${pro.p_code}</td>
-			                    		<td class="in-ck-box td-click">${pro.p_name}</td>
-			                    		<td class="in-ck-box td-click">${pro.p_price}</td>
-			                    		<td class="in-ck-box td-click">${color.c_color}</td>
-			                    		<td class="in-ck-box td-click">${size.s_size}</td>
-			                    		<td class="in-ck-box td-click">${color.c_qty}</td>
-			                    		<td class="in-ck-box td-click">${pro.p_qty}</td>
-					            <c:set var="total" value='0' />
-					               <c:set var="total"
-					                  value="${total + pro.p_price * color.c_qty}" />
-			                    		<td class="in-ck-box td-click">${total}</td>
-	                    			</tr>
-								</c:forEach>
-							</c:if>
-						</c:forEach>
-                    </c:forEach>
+                  
+                  	<c:choose>
+						<c:when test="${empty STOCKLIST}">
+							<tr>
+								<td colspan="9">상품 정보 없음</td>
+							</tr>
+						</c:when>
+						<c:otherwise>
+	                    <c:forEach items="${STOCKLIST}" var="stock">
+	                 		<tr class="tr_stock" data-proid="${stock.p_code}">
+								<td>${num}</td>
+		                   		<td class="in-ck-box td-click">${stock.p_code}</td>
+		                   		<td class="in-ck-box td-click">${stock.p_name}</td>
+		                   		<td class="in-ck-box td-click">${stock.p_price}</td>
+		                   		<td class="in-ck-box td-click">${stock.s_size}</td>
+		                   		<td class="in-ck-box td-click">${stock.c_color}</td>
+		                   		<td class="in-ck-box td-click">${stock.c_qty}</td>
+		                   		<td class="in-ck-box td-click">${stock.p_qty}</td>
+			           			 <c:set var="total" value='0' />
+			               		<c:set var="total"
+			                 		 value="${total + stock.p_price * stock.c_qty}" />
+		                   		<td class="in-ck-box td-click">${total}</td>
+	                  		</tr>
+							<c:set var="num" value="${num-1}"></c:set>
+	                    </c:forEach>
+                    </c:otherwise>
+                    </c:choose>
                   </tbody>
                 </table>
+                
+                <form>
+					<input type="search" 
+					class="bbs-search" 
+					name="search" 
+					value="${search}" 
+					placeholder="상품명을 입력 후 Enter...">
+					<button class="bt-bbs-search">검색</button>
+				</form>
 
                 <!--pagination-->
-                <div class="d-flex justify-content-center">
-                  <nav aria-label="Page navigation example">
-                    <ul class="pagination">
-                      <li class="page-item">
-                        <a
-                          class="page-link black-text"
-                          href="#"
-                          aria-label="Previous"
-                        >
-                          <span aria-hidden="true" class="black-text"
-                            >&laquo;</span
-                          >
-                          <span class="sr-only">Previous</span>
-                        </a>
-                      </li>
-                      <li class="page-item black-text">
-                        <a class="page-link black-text" href="#">1</a>
-                      </li>
-                      <li class="page-item black-text">
-                        <a class="page-link black-text" href="#">2</a>
-                      </li>
-                      <li class="page-item black-text">
-                        <a class="page-link black-text" href="#">3</a>
-                      </li>
-                      <li class="page-item black-text">
-                        <a
-                          class="page-link black-text"
-                          href="#"
-                          aria-label="Next"
-                        >
-                          <span aria-hidden="true" class="black-text"
-                            >&raquo;</span
-                          >
-                          <span class="sr-only black-text">Next</span>
-                        </a>
-                      </li>
-                    </ul>
-                  </nav>
-                </div>
+                <%@ include file="/WEB-INF/views/include/include-paging.jspf" %>
                 <!--pagination end-->
               </div>
             </div>
