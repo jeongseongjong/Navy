@@ -373,4 +373,13 @@ public class ProductServiceImpl implements ProductService {
 		}
 		return proSearchList;
 	}
+
+	// 대표이미지 변경 메서드
+	@Override
+	public int updateRepImg(String imgName, long p_code) {
+		
+		ProductVO proVO = findById(p_code);
+		proVO.setP_image(imgName);
+		return proDao.update(proVO);
+	}
 }

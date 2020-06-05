@@ -201,6 +201,18 @@ public class AdminController {
 		return "admin/admin_proUpdate";
 	}
 	
+	// 대표이미지 설정하기
+	@ResponseBody
+	@RequestMapping(value = "/repimg",method=RequestMethod.POST)
+	public int representativeImage(@RequestParam("p_code") long p_code,
+			@RequestParam("imgName") String imgName, Model model) {
+		
+		log.debug("피코드와 이미지이름 : "+p_code +"이미지이름 : "+imgName);
+		int ret = proService.updateRepImg(imgName, p_code);
+		
+		return ret;
+	}
+	
 	// 상품 수정하고 DB에 저장
 	@RequestMapping(value="/pro_update/{p_code}",method=RequestMethod.POST)
 	public String proUpdatePOST(@PathVariable("p_code") String p_code, ProductVO productVO, 

@@ -76,6 +76,38 @@ $(function(){
 				}		
 			)
 		}
+	})
+	
+	$(".ad_main_img").click(function(){
+		let imgName = $(this).data("name")
+		let p_code = "${productVO.p_code}"
+		//alert(imgName)
+		
+		if(confirm("대표이미지를 선택한 사진으로 바꾸시겠습니까?")) {
+			$.ajax({
+				url : "${rootPath}/admin/repimg" ,
+				method : "POST",
+				data : {
+					imgName : imgName,
+					p_code : p_code
+				},
+				beforeSend : function(ax) {
+					ax.setRequestHeader(
+						"${_csrf.headerName}","${_csrf.token}"		
+					)					
+				}, success : function(result) {
+					if ( result > 0 ) {
+						document.location.replace("${rootPath}/admin/pro_detail_view/"+p_code)
+					} else {
+						alert("대표 이미지 변경 실패")						
+					}
+				}, error : function(){
+					alert("서버 통신 오류")
+				}
+				
+				
+			})			
+		}
 		
 	})
 	
@@ -174,7 +206,7 @@ $(function(){
                   <c:forEach items="${productVO.proDImgList}" var="img">
 	                  <div class="ad_img_lt">
 	                    <img class="ad_main_img" src="${rootPath}/images/${img.p_img_upload_name}"
-	                    data-id="${img.p_img_seq}" />
+	                    data-id="${img.p_img_seq}" data-name="${img.p_img_upload_name}"/>
 	                    <button type="button" class="ad_bt_del">삭제</button>
 	                  </div>
                   </c:forEach>

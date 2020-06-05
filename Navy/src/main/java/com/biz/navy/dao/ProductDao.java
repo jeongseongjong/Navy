@@ -118,4 +118,6 @@ public interface ProductDao {
 	public long countStockSearch(@Param("searchList")List<String> searchList);
 	// 재고관리 총 개수 세기
 	public List<InventoryVO> selectColorAll(PageVO pageVO);
+	// 대표이미지 변경 메서드
+	public int updateRepImg(String imgName);
 }
