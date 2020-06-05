@@ -78,3 +78,10 @@
  * size/color -> Dao, Service, ServiceImpl 각 삭제
 
  * productServiceImpl의 findByMaxPCode 널포인트 문제 -> try catch문으로 해결
+ 
+## 06-02
+ * include-menu 생성
+ * 구매자 정보 입력 view 완료
+ * 구매내역 view 추출 완료
+
+ 

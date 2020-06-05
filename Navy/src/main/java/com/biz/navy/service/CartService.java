@@ -2,19 +2,19 @@ package com.biz.navy.service;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 
 import com.biz.navy.domain.CartListVO;
 import com.biz.navy.domain.CartVO;
 import com.biz.navy.domain.ColorVO;
+import com.biz.navy.domain.PageVO;
 import com.biz.navy.domain.SizeVO;
 
 public interface CartService {
 
 	// 장바구니 개수
 	public int cartCount();
-	
-	public int countDelivery();
 	
 	public List<CartVO> selectAll();
 	
@@ -24,7 +24,10 @@ public interface CartService {
 	public List<CartVO> selectCart(String username);
 	
 	// 배송중인 상품을 보여주는 메서드
+	public List<CartVO> paymentList(@Param("username")String username, @Param("pageVO")PageVO pageVO);
+	
 	public List<CartVO> selectDelivery(String username);
+	
 	
 	// 장바구니 담기
 	public int insert(CartVO cartVO);
@@ -55,6 +58,9 @@ public interface CartService {
 
 	// 배송정보 업데이트
 	public int recipient_update(List<String> bkSeqList, CartVO cartVO);
+
+	public long countDelivery();
+	
 
 	
 }

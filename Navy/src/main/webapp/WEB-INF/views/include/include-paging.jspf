@@ -14,7 +14,7 @@
     				</a>
 				</li>
 				<li class="page-item">
-					<a href="${rootPath}/${controller}/${url}?currentPageNo=${pageDTO.prePageNo}" class="page-link black-text">&lt;</a>
+					<a href="${rootPath}/${controller}/${url}?currentPageNo=${pageVO.prePageNo}" class="page-link black-text">&lt;</a>
 				</li>
 			</c:if>
 			
@@ -26,7 +26,7 @@
 			
 			<c:if test="${pageVO.endPageNo != pageVO.finalPageNo}">
 				<li class="page-item">
-					<a href="${rootPath}/${controller}/${url}?currentPageNo=${pageDTO.nextPageNo}" class="page-link">&lt;</a>
+					<a href="${rootPath}/${controller}/${url}?currentPageNo=${pageVO.nextPageNo}" class="page-link">&lt;</a>
 				</li>
 				<li class="page-item black-text">
   					<a class="page-link black-text" href="${rootPath}/${controller}/${url}?currentPageNo=${pageVO.finalPageNo}" aria-label="Next">

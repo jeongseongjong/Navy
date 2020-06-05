@@ -11,6 +11,7 @@ import com.biz.navy.dao.CartDao;
 import com.biz.navy.domain.CartListVO;
 import com.biz.navy.domain.CartVO;
 import com.biz.navy.domain.ColorVO;
+import com.biz.navy.domain.PageVO;
 import com.biz.navy.domain.SizeVO;
 
 import lombok.RequiredArgsConstructor;
@@ -39,11 +40,6 @@ public class CartServiceImpl implements CartService{
 		return cartDao.cartCount();
 	}
 
-	@Override
-	public int countDelivery() {
-
-		return cartDao.countDelivery();
-	}
 
 	@Override
 	public List<CartVO> selectCart(String username) {
@@ -137,6 +133,19 @@ public class CartServiceImpl implements CartService{
 	public int recipient_update(List<String> bkSeqList, CartVO cartVO) {
 
 		return cartDao.recipient_update(bkSeqList,cartVO);
+	}
+
+	@Override
+	public long countDelivery() {
+
+		return cartDao.countDelivery();
+	}
+
+	@Override
+	public List<CartVO> paymentList(String username, PageVO pageVO) {
+
+		List<CartVO> cartList = cartDao.paymentList(username, pageVO);
+		return cartList;
 	}
 	
 	

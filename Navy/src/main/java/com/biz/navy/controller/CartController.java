@@ -6,7 +6,6 @@ import java.util.List;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,10 +16,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.biz.navy.domain.CartListVO;
 import com.biz.navy.domain.CartVO;
 import com.biz.navy.domain.ColorVO;
+import com.biz.navy.domain.PageVO;
 import com.biz.navy.domain.ProductVO;
 import com.biz.navy.domain.SizeVO;
 import com.biz.navy.domain.UserDetailsVO;
 import com.biz.navy.service.CartService;
+import com.biz.navy.service.PageService;
 import com.biz.navy.service.ProductService;
 import com.biz.navy.service.secure.UserService;
 
@@ -36,6 +37,7 @@ public class CartController {
 	private final ProductService proService;
 	private final CartService cartService;
 	private final UserService userService;
+	private final PageService pageService;
 
 // <<<<<<< HEAD
 	@ResponseBody
@@ -52,10 +54,15 @@ public class CartController {
 //			cartVO.setUsername(userVO.getUsername());
 //			cartVO.setBk_p_code(productVO.getP_code()+"");
 
-			cartVO = CartVO.builder().bk_p_code(productVO.getP_code()).bk_p_name(productVO.getP_name())
-					.username(userVO.getUsername()).bk_p_oprice((int) productVO.getP_price())
-					.bk_p_size(productVO.getP_size()).bk_p_color(productVO.getP_color())
-					.bk_p_qty((int) productVO.getP_qty()).build();
+			cartVO = CartVO.builder()
+					.bk_p_code(productVO.getP_code())
+					.bk_p_name(productVO.getP_name())
+					.username(userVO.getUsername())
+					.bk_p_oprice((int) productVO.getP_price())
+					.bk_p_size(productVO.getP_size())
+					.bk_p_color(productVO.getP_color())
+					.bk_p_qty((int) productVO.getP_qty())
+					.build();
 
 		} catch (Exception e) {
 
@@ -191,21 +198,35 @@ public class CartController {
 
 	// 결제완료 상품을 보여주는 메서드
 	@RequestMapping(value = "/payment_list", method = RequestMethod.GET)
-	public String payment_list(Principal principal, Authentication authen, Model model) {
+	public String payment_list(Principal principal, Authentication authen, Model model, 
+							@RequestParam(value="currentPageNo", required = false, defaultValue = "1")int currentPageNo) {
 
+		// 구매내역 리스트 개수를 totalCount에 집어넣기
+		long totalCount = cartService.countDelivery();
+		log.debug("구매내역 총 개수 " + totalCount);
+		
+		// 구매내역 개수와 현재 페이지를 pageVO에 주입
+		PageVO pageVO = pageService.getPagination(totalCount, currentPageNo);
+		log.debug("페이먼트리스트 pageVO " +pageVO);
 		UsernamePasswordAuthenticationToken upa = (UsernamePasswordAuthenticationToken) principal;
 		try {
 			UserDetailsVO userVO = (UserDetailsVO) upa.getPrincipal();
-			List<CartVO> deliveryList = cartService.selectDelivery(userVO.getUsername());
+			List<CartVO> deliveryList = cartService.paymentList(userVO.getUsername(), pageVO);
 			UserDetailsVO userList = userService.findByUserName(userVO.getUsername());
 			log.debug("여기는 페이먼트 리스트" + deliveryList.toString());
 			log.debug("구매자 정보" + userList.toString());
+			
 			int size = deliveryList.size();
+			
 			model.addAttribute("USER_LIST", userList);
 			model.addAttribute("DELIVERY_LIST", deliveryList);
-
+			model.addAttribute("pageVO" + pageVO);
 			model.addAttribute("LIST_COUNT", size - 1);
-
+			log.debug("cart컨트롤러 pageVO " + pageVO);
+			// 페이징에 보내줄 URL들 미리 만들어주기
+			model.addAttribute("controller","cart");
+			model.addAttribute("url","payment_list");
+			
 			log.debug("결제 리스트 " + deliveryList);
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -214,7 +235,7 @@ public class CartController {
 		return "payment_list";
 	}
 
-	// 결제완료 상품을 보여주는 메서드
+	// 배송중 상품을 보여주는 메서드
 	@RequestMapping(value = "/delivery_list", method = RequestMethod.GET)
 	public String delivery_list(Principal principal, Authentication authen, Model model) {
 
