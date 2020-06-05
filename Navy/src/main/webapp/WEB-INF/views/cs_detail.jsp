@@ -89,6 +89,11 @@
       $("#bt-plus").click(function () {
         $("#select-container").append(cmt_repl);
       });
+        	
+	   	$(".modal-close").click(function(){
+	   		$(".modal-main").css("display","none")
+	   	})
+        	
   })
   </script>
 </head>
