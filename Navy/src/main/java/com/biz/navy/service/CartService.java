@@ -60,6 +60,15 @@ public interface CartService {
 	public int recipient_update(List<String> bkSeqList, CartVO cartVO);
 
 	public long countDelivery();
+
+	// 주문정보 유저 아이디로 조회
+	public List<CartVO> findBySearchUsername(String search, PageVO pageVO);
+	
+	// 총 개수 세기 
+	public long totalCount(String search);
+
+	// 관리자 유저 정보 화면에서 사용자가 주문한 내역 조회
+	public List<CartVO> findByUserId(String username);
 	
 
 	

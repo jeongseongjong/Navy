@@ -24,4 +24,7 @@ public interface QnaService {
 
 	// 질문 상품 조회
 	public QnaVO findByQPcode(long q_code);
+
+	// 관리자 유저 정보 화면에서 사용자가 입력한 qna 조회
+	public List<QnaVO> findByUserId(String username);
 }

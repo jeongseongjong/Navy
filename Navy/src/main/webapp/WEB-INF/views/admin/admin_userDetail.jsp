@@ -33,6 +33,11 @@ $(function(){
 		document.location.href="${rootPath}/admin/userlist"
 	})
 	
+	$(".CARTLIST_LIST").click(function(){
+		let p_code = $(this).data("id")
+		document.location.href="${rootPath}/product/detail/"+p_code
+	})
+	
 })
 </script>
 </head>
@@ -114,39 +119,53 @@ $(function(){
 							 -->
 						</div>
 						<!-- review 정보 가져오기-->
-						<div class="container col mt-4">
-							<span>상품 구매 이력</span>
-							<div class="container" style="border: 1px solid #c6cad4;">
-								<p class="mr-5">상품이름 : 금액 : 날짜</p>
-								<small
-									onclick="$(document).on('click','small',function(){document.location.href='../shopDetail.html'})">
-									White pants : 15000 : 2020-05-13 </small>
+						<c:if test="${!empty CARTLIST}">
+							<div class="container col mt-4">
+								<span>상품 구매 이력</span>
+								<div class="container" style="border: 1px solid #c6cad4;">
+									<p class="mr-5">상품이름 : 금액 : 날짜</p>
+									<c:forEach items="${CARTLIST}" var="cart" begin="0" end="4">
+										<small
+											class="CARTLIST_LIST" data-id="${cart.bk_p_code}"
+											>
+											${cart.bk_p_name} : ${cart.bk_p_oprice} : ${cart.bk_p_buyTime} </small>
+										<br/>
+									</c:forEach>
+								</div>
 							</div>
-						</div>
+						</c:if>
 						<!--review 정보 box end-->
 						<!-- review 정보 가져오기-->
-						<div class="container col mt-4">
-							<span>댓글</span>
-							<div class="container" style="border: 1px solid #c6cad4;">
-								<p class="mr-5">상품이름 : 리뷰내용 : 날짜</p>
-								<small
-									onclick="$(document).on('click','small',function(){document.location.href='../shopDetail.html'})">
-									White pants : Lorem ipsum dolor sit amet, consectetur
-									adipiscing elit. : 2020-05-13 </small>
+						<c:if test="${!empty REVIEWLIST}">
+							<div class="container col mt-4">
+								<span>상품리뷰</span>
+								<div class="container" style="border: 1px solid #c6cad4;">
+									<p class="mr-5">상품코드 : 리뷰내용 : 날짜</p>
+									<c:forEach items="${REVIEWLIST}" var="review" begin="0" end="4">
+										<small
+											>
+											${review.r_code} : ${review.r_text} : ${review.r_date} </small>
+										<br/>
+									</c:forEach>
+								</div>
 							</div>
-						</div>
+						</c:if>
 						<!--review 정보 box end-->
-						<!--고객센터 게시판 글-->
-						<div class="container col mt-4">
-							<span>댓글</span>
-							<div class="container" style="border: 1px solid #c6cad4;">
-								<p class="mr-5">게시판 제목 : 내용 : 날짜</p>
-								<small
-									onclick="$(document).on('click','small',function(){document.location.href='../shopDetail.html'})">
-									White pants : Lorem ipsum dolor sit amet, consectetur
-									adipiscing elit. : 2020-05-13 </small>
+						<!--상품 문의 내역 글-->
+						<c:if test="${!empty QNALIST}">
+							<div class="container col mt-4">
+								<span>상품 문의 내역</span>
+								<div class="container" style="border: 1px solid #c6cad4;">
+									<p class="mr-5">게시판 제목 : 내용 : 날짜</p>
+									<c:forEach items="${QNALIST}" var="qna" begin="0" end="4">
+										<small
+											>
+											${qna.q_title} : ${qna.q_text} : ${qna.q_date} </small>
+										<br/>
+									</c:forEach>
+								</div>
 							</div>
-						</div>
+						</c:if>
 					</div>
 					<!--card body end-->
 				</div>

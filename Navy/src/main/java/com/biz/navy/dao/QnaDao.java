@@ -25,5 +25,9 @@ public interface QnaDao {
 	// Qna p_code 조회
 	@Select("SELECT * FROM tbl_q_a WHERE q_code = #{q_code}")
 	public QnaVO findByQPcode(long q_code);
+
+	// 유저ID로 사용자가 입력한 qna 조회
+	@Select("SELECT * FROM tbl_q_a WHERE q_auth = #{username}")
+	public List<QnaVO> findByUserId(String username);
 	
 }

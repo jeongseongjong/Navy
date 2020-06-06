@@ -101,7 +101,8 @@
 <%@ include file="/WEB-INF/views/include/include-nav.jspf" %>
 
     <article class="all-browsers">
-      <div class="hr-sect mb-5">BULLETIN WRITE</div>
+      <div class="hr-sect mb-5">
+			Service center</div>
 
       <div class="container">
         <h3>${CSVO.cs_title}</h3>

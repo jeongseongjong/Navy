@@ -24,6 +24,10 @@ public interface ReviewDao {
 	
 	@Select("SELECT * FROM tbl_review WHERE r_code = #{r_code}")
 	public ReviewVO findByRPcode(long r_code);
+
+	// 유저ID로 사용자가 입력한 review 조회	
+	@Select("SELECT * FROM tbl_review WHERE r_auth = #{username}")
+	public List<ReviewVO> findByUserId(String username);
 	
 	
 	
