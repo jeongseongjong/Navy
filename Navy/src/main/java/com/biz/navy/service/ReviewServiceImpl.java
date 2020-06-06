@@ -58,7 +58,11 @@ public class ReviewServiceImpl implements ReviewService {
 		return reviewDao.findByRPcode(r_code);
 	}
 
+	@Override
+	public List<ReviewVO> findByUserId(String username) {
+		// TODO Auto-generated method stub
+		return reviewDao.findByUserId(username);
+	}
 
-	
 
 }

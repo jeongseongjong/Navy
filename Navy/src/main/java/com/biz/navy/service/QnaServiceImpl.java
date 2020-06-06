@@ -51,4 +51,10 @@ public class QnaServiceImpl implements QnaService {
 		return qnaDao.findByQPcode(q_code);
 	}
 
+	@Override
+	public List<QnaVO> findByUserId(String username) {
+		// TODO Auto-generated method stub
+		return qnaDao.findByUserId(username);
+	}
+
 }

@@ -26,6 +26,9 @@ public interface ReviewService {
 	
 	// 리뷰 상품 조회
 	public ReviewVO findByRPcode(long r_code);
+
+	// 관리자 유저 정보 화면에서 사용자가 입력한 review 조회
+	public List<ReviewVO> findByUserId(String username);
 	
 	
 }

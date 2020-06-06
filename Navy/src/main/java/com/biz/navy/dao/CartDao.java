@@ -90,6 +90,10 @@ public interface CartDao {
 	@Select("SELECT COUNT(*) FROM tbl_cart")
 	public long totalCount();
 
+	// 사용자별로 주문내역 조회
+	@Select("SELECT * FROM tbl_cart WHERE username = #{username}")
+	public List<CartVO> findByUserId(String username);
+
 	
 
 

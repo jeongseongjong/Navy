@@ -94,7 +94,15 @@ public class AdminController {
 	public String userDetailView(@PathVariable("username") String username, Model model) {
 		
 		UserDetailsVO userVO =  userService.findByUserName(username);
+		
+		List<ReviewVO> reviewList = reviewService.findByUserId(username);
+		List<QnaVO> qnaList = qnaService.findByUserId(username);
+		List<CartVO> cartList = cartService.findByUserId(username);
+		
 		model.addAttribute("userVO", userVO);
+		model.addAttribute("REVIEWLIST",reviewList);
+		model.addAttribute("QNALIST",qnaList);
+		model.addAttribute("CARTLIST",cartList);
 		
 		return "admin/admin_userDetail";
 	}
@@ -201,6 +209,18 @@ public class AdminController {
 		return "admin/admin_proUpdate";
 	}
 	
+	// 대표이미지 설정하기
+	@ResponseBody
+	@RequestMapping(value = "/repimg",method=RequestMethod.POST)
+	public int representativeImage(@RequestParam("p_code") long p_code,
+			@RequestParam("imgName") String imgName, Model model) {
+		
+		log.debug("피코드와 이미지이름 : "+p_code +"이미지이름 : "+imgName);
+		int ret = proService.updateRepImg(imgName, p_code);
+		
+		return ret;
+	}
+	
 	// 상품 수정하고 DB에 저장
 	@RequestMapping(value="/pro_update/{p_code}",method=RequestMethod.POST)
 	public String proUpdatePOST(@PathVariable("p_code") String p_code, ProductVO productVO, 
@@ -255,11 +275,24 @@ public class AdminController {
 	
 	// 주문 정보
 	@RequestMapping(value="/orderlist",method=RequestMethod.GET)
-	public String orderlist(Model model) {
+	public String orderlist(Model model,
+			@RequestParam(value="search", required = false, defaultValue = "") String search,
+			@RequestParam(value="currentPageNo", required = false, defaultValue = "1") int currentPageNo
+			) {
 		
+		long totalCount = 300;
+		totalCount = cartService.totalCount(search);
+		
+		PageVO pageVO = pageService.getPagination(totalCount, currentPageNo);
 		List<CartVO> cartList = cartService.selectAll();
+//		List<CartVO> cartList = cartService.findBySearchUsername(search,pageVO);
 		
 		model.addAttribute("CARTLIST",cartList);
+		
+		// 페이징에 보내줄 URL들 미리 만들어주기
+		model.addAttribute("pageVO",pageVO);
+		model.addAttribute("controller","product");
+		model.addAttribute("url","list");
 		
 		return "admin/admin_orderList";
 	}

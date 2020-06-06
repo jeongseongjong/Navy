@@ -77,16 +77,12 @@
  * main 추천List 적용(날짜/시간 -> 추천수 변경, UI 수정 필요)
  * size/color -> Dao, Service, ServiceImpl 각 삭제
  * productServiceImpl의 findByMaxPCode 널포인트 문제 -> try catch문으로 해결
-<<<<<<< HEAD
  
 ## 06-02
  * include-menu 생성
  * 구매자 정보 입력 view 완료
  * 구매내역 view 추출 완료
 
- 
-=======
-  
 ## 06-03
  * userDetail 권한 보여주는 부분에 이메일 나오는 것 수정
  * 재고관리 페이지 페이징
@@ -104,4 +100,17 @@
   > - 테이블 tbl_cs_comment 추가
   > - 시퀀스 SEQ_CS_COMMENT 추가
  * 고객센터 댓글에 답글 추가
->>>>>>> 7bb0c741c2be1df428dda86c1f268bbfcf4ea6d3
+ 
+## 06-05
+ * 관리자 상품 수정에서 대표이미지 설정
+  > - admin_proupdate.jspf에 ajax 추가
+  > - adminController에 representativeImage 메서드 추가
+ * 관리자 대시보드 고객센터 글 조회
+  > - 각 글마다 조회할 수 있게 링크 연결
+ * 고객센터 글 대댓글 입력 창 모달로 생성
+ * 유저 디테일 jsp 구매이력 댓글이력
+  >- ReviewService에 findByUserId 메서드 추가
+  >- QnaService에 findByUserId 메서드 추가
+  >- CartService에 findByUserId 메서드 추가
+ * include-paging 수정
+ * pageService에 listperpage 변경
