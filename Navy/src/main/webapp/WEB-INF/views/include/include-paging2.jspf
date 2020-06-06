@@ -9,7 +9,7 @@
       <li class="page-item">
         <a
           class="page-link black-text"
-          href="${rootPath}/${controller}/${url}?currentPageNo=1&search=${search}"
+          href="${rootPath}/${controller}/${url}?currentPageNo=1"
           aria-label="Previous"
         >
           <span aria-hidden="true" class="black-text"
@@ -19,26 +19,26 @@
         </a>
       </li>
       <li class="page-item">
-        <a href="${rootPath}/${controller}/${url}?currentPageNo=${pageVO.prePageNo}&search=${search}" 
+        <a href="${rootPath}/${controller}/${url}?currentPageNo=${pageVO.prePageNo}" 
           class="page-link black-text">&lt;</a>
         </li>
         </c:if>
         <c:forEach begin="${pageVO.startPageNo}" end="${pageVO.endPageNo}" var="pageNo">
           <li class="page-item <c:if test="${pageNo == pageVO.currentPageNo}">active</c:if>">
-          <a href="${rootPath}/${controller}/${url}?currentPageNo=${pageNo}&search=${search}" 
+          <a href="${rootPath}/${controller}/${url}?currentPageNo=${pageNo}" 
           class="page-link black-text">${pageNo}
           </a></li>
         </c:forEach>
       <c:if test="${pageVO.endPageNo != pageVO.finalPageNo}">
 
       <li class="page-item">
-        <a href="${rootPath}/${controller}/${url}?currentPageNo=${pageVO.nextPageNo}&search=${search}" 
+        <a href="${rootPath}/${controller}/${url}?currentPageNo=${pageVO.nextPageNo}" 
           class="page-link black-text">&gt;</a>
         </li>
       <li class="page-item black-text">
         <a
           class="page-link black-text"
-          href="${rootPath}/${controller}/${url}?currentPageNo=${pageVO.finalPageNo}&search=${search}"
+          href="${rootPath}/${controller}/${url}?currentPageNo=${pageVO.finalPageNo}"
           aria-label="Next"
         >
           <span aria-hidden="true" class="black-text"

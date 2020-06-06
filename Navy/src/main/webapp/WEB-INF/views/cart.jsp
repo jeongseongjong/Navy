@@ -40,6 +40,20 @@ $(function() {
 		})
 	})
 	
+	$(".cnt_minus").click(function(){
+		    var n = $('.cnt_minus').index(this);
+		    var num = $(".ip_quantity:eq("+n+")").val();
+		    num = $(".ip_quantity:eq("+n+")").val(num*1-1); 
+		
+	})
+	
+	$(".cnt_plus").click(function(){
+		    var n = $('.cnt_plus').index(this);
+		    var num = $(".ip_quantity:eq("+n+")").val();
+		    num = $(".ip_quantity:eq("+n+")").val(num*1+1); 
+		
+	})
+	
 	$(".btn_one_delete").click(function() {
 		
 		let id = $(this).data("id")
@@ -275,7 +289,7 @@ $(function() {
                         <span class="num">${cart.bk_p_oprice}</span>
                         won
                       </p>
-                      <button type="button" data-check="1" class="bt_del btn_list_check" value="">
+                      <button type="button" data-check="1" data-id="${cart.bk_id}"class="bt_del btn_one_delete btn_list_check" value="">
                         <i class="blind">삭제</i>
                       </button>
                     </div>

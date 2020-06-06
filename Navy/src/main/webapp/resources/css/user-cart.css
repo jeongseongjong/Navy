@@ -136,7 +136,7 @@ input[type="checkbox"] {
 .chk_type {
   display: block;
   width: 22px;
-  height: 22px;
+  height: 21px;
   border: 1px solid #f1404b;
   cursor: pointer;
 }

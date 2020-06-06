@@ -63,13 +63,12 @@
  		(
  			SELECT /* + FIRST_ROWS_100 */ ROWNUM AS NUM, IP.* FROM
  			(
- 				SELECT /*+ INDEX_DESC(C) */ * FROM tbl_cart C
+ 				SELECT /*+ INDEX_DESC(C) */ * FROM tbl_cart C where username = #{username}
  			)IP
- 			WHERE ROWNUM &lt;= #{limit,jdbcType=VARCHAR}
+ 			WHERE ROWNUM &lt;= #{pageVO.limit,jdbcType=VARCHAR}
  		)TBL
  		
- 		WHERE NUM &gt;= #{offset,jdbcType=VARCHAR}
- 		
+ 		WHERE NUM &gt;= #{pageVO.offset,jdbcType=VARCHAR}
  	</select>
 	
 	

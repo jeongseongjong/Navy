@@ -130,7 +130,7 @@
 			</c:forEach>
 			<!--content end-->
 			<!--pagination-->
-			<%@ include file="/WEB-INF/views/include/include-paging.jspf" %>
+			<%@ include file="/WEB-INF/views/include/include-paging2.jspf" %>
 			<!--pagination end-->
 			<div class="delivery_process_area">
 				<h3 class="h_delivery_process">배송상태안내 및 유의사항</h3>

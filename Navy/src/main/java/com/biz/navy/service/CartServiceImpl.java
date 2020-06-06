@@ -5,6 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 
 import com.biz.navy.dao.CartDao;
@@ -142,7 +143,7 @@ public class CartServiceImpl implements CartService{
 	}
 
 	@Override
-	public List<CartVO> paymentList(String username, PageVO pageVO) {
+	public List<CartVO> paymentList(@Param("username")String username, @Param("pageVO")PageVO pageVO) {
 
 		List<CartVO> cartList = cartDao.paymentList(username, pageVO);
 		return cartList;

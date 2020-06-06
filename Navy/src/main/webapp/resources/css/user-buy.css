@@ -856,7 +856,6 @@ input[type="checkbox"]:checked + label {
 .pay_section .box_wrap .right_box {
   float: right;
   width: 296px;
-  height: 100%;
   padding: 18px 20px 18px 26px;
 }
 
