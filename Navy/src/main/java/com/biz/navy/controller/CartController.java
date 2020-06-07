@@ -221,6 +221,7 @@ public class CartController {
 			model.addAttribute("USER_LIST", userList);
 			model.addAttribute("DELIVERY_LIST", deliveryList);
 			model.addAttribute("pageVO" + pageVO);
+			log.debug("컨트롤러에서 스타트 페이지번호 " +pageVO.getStartPageNo());
 			model.addAttribute("LIST_COUNT", size - 1);
 			log.debug("cart컨트롤러 pageVO " + pageVO);
 			// 페이징에 보내줄 URL들 미리 만들어주기

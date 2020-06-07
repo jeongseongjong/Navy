@@ -5,7 +5,7 @@
 <div class="d-flex justify-content-center">
   <nav aria-label="Page navigation example">
     <ul class="pagination">
-      <c:if test="${pageVO.startPageNo > 1}">
+    <c:if test="${pageVO.startPageNo > 1}">
       <li class="page-item">
         <a
           class="page-link black-text"
@@ -29,6 +29,7 @@
           class="page-link black-text">${pageNo}
           </a></li>
         </c:forEach>
+
       <c:if test="${pageVO.endPageNo != pageVO.finalPageNo}">
 
       <li class="page-item">
