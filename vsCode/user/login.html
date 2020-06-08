@@ -102,36 +102,8 @@
       $("#chk_auto_login").attr("disabled", true);
       $("#chk_secure").attr("disabled", true);
 
-      reqFrmObj.setUserId($("#userid").val());
-      reqFrmObj.setPasswd($("#pwd").val());
-      reqFrmObj.setChkAutoLogin($("#chk_auto_login:checked").val());
-      reqFrmObj.setChkSecure($("#chk_secure:checked").val());
-
-      reqFrmObj.setCaptchaType($("#captchaType").val());
-      reqFrmObj.setCaptchaKey($("#captchaKey").val());
-      reqFrmObj.setCaptchaValue($("#captchaValue").val());
-
       reqFrmObj.submit();
     }
-
-    function fn_auto_login() {
-      if ($("input[name=chk_auto_login]:checked").val() == "auto_login") {
-        $(".msg_layer").show(1, function () {
-          $(document).click(function (evt) {
-            if ($(evt.target).attr("class") == "msg_layer") return;
-            if ($(evt.target).attr("id") == "userid") return;
-            if ($(evt.target).attr("id") == "pwd") return;
-            if ($(evt.target).attr("id") == "btn_login") return;
-            $(".msg_layer").hide();
-            $(document).unbind("click");
-          });
-        });
-      } else {
-        $(".msg_layer").hide();
-      }
-    }
-
-    //}}}
   </script>
   <body>
     <div class="social_login_ct_wrap">
@@ -168,7 +140,12 @@
             <p class="ipt_wrn_msg" id="msgHoler" style="display: none;">
               아이디 또는 비밀번호가 일치하지 않습니다
             </p>
-            <a class="btn_login" href="../main.html">로그인</a>
+            <button
+              class="btn_login"
+              onclick="$(document).on('click','.btn_login',function(){document.location.href='../main.html'})"
+            >
+              로그인
+            </button>
             <div class="bottom_button_box">
               <a href="#">아이디 찾기</a>
               <span class="icon_division"></span>

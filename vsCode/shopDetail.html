@@ -272,7 +272,12 @@
                 <div class="purchase_list_box">
                   <ul class="lst_order_btn">
                     <li class="col_2">
-                      <button class="bt-css">장바구니</button>
+                      <button
+                        class="bt-css bt_cart"
+                        onclick="$(document).on('click','.bt_cart',function(){document.location.href='./user/user-cart.html'})"
+                      >
+                        장바구니
+                      </button>
                     </li>
                     <li class="col_2">
                       <button
