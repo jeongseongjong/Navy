@@ -1,0 +1,100 @@
+@font-face {
+  font-family: "GmarketSansMedium";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+a,
+body,
+button,
+dd,
+div,
+dl,
+dt,
+fieldset,
+form,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+input,
+legend,
+li,
+ol,
+p,
+select,
+table,
+td,
+textarea,
+th,
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+.pw_cfm_ct {
+  position: relative;
+  margin-top: 30px;
+  background: #fff;
+}
+
+.pw_cfm_ct .inner {
+  width: 390px;
+  margin: 100px auto;
+}
+
+.pw_cfm_ct .onemore_desc {
+  margin-bottom: 20px;
+  font-family: "GmarketSansMedium";
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  color: #252c41;
+  letter-spacing: -0.5px;
+}
+
+.pw_cfm_ct .insert_pw {
+  margin-bottom: 30px;
+}
+
+label {
+  vertical-align: -1px;
+}
+
+.pw_cfm_ct .insert_pw label {
+  position: relative;
+  display: block;
+  border: 1px solid #d7d7d7;
+}
+.pw_cfm_ct .insert_pw input {
+  width: 348px;
+  height: 16px;
+  padding: 17px 20px;
+  outline-style: none;
+  border: 0 none;
+  font-size: 14px;
+  color: #252c41;
+  font-weight: bold;
+}
+
+.pw_cfm_ct .btn_confirm {
+  position: relative;
+}
+
+.pw_cfm_ct .btn_confirm button {
+  text-align: center;
+  display: block;
+  height: 50px;
+  line-height: 50px;
+  font-size: 16px;
+  color: #fff;
+  font-weight: bold;
+  background-color: #f1404b;
+  border: none;
+  outline-style: none;
+  width: 100%;
+}

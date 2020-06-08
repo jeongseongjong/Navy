@@ -1,0 +1,169 @@
+td {
+  text-align: start !important;
+}
+
+a,
+body,
+button,
+dd,
+div,
+dl,
+dt,
+fieldset,
+form,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+input,
+legend,
+li,
+ol,
+p,
+select,
+table,
+td,
+textarea,
+th,
+ul {
+  margin: 0;
+  padding: 0;
+}
+@font-face {
+  font-family: "GmarketSansMedium";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+input,
+select,
+table,
+textarea {
+  font-size: 12px;
+  font-family: "GmarketSansMedium";
+}
+
+h3.tit {
+  padding: 40px 0 20px;
+}
+
+h3.tit span.info {
+  width: 97px;
+  height: 27px;
+  font-size: 25px;
+  font-weight: 700;
+  color: #252c41;
+}
+
+.myinfo {
+  padding-top: 10px;
+}
+
+.myinfo .subtit {
+  margin: 5px 0 12px;
+}
+
+.basic {
+  font-size: 20px;
+  font-weight: 700;
+  color: #252c41;
+}
+
+.myinfo_inr {
+  border-top: 1px solid #252c41;
+}
+
+.myinfo table {
+  width: 100%;
+  border: 1px solid #e5e5e5;
+  border-top: 0;
+  border-spacing: 0;
+  table-layout: fixed;
+}
+
+caption,
+legend {
+  display: none;
+}
+
+tbody {
+  display: table-row-group;
+  vertical-align: middle;
+  border-color: inherit;
+}
+
+tr {
+  display: table-row;
+  vertical-align: inherit;
+  border-color: inherit;
+}
+
+.myinfo th {
+  padding: 16px 0 15px 15px;
+  background-color: #f4f4f6;
+  border-right: 1px solid #e5e5e5;
+  color: #252c41;
+  text-align: left;
+  vertical-align: top;
+  letter-spacing: -1px;
+}
+
+.myinfo table tr.first th,
+.mypage_container .myinfo table tr.first td {
+  border-top: none;
+}
+.myinfo td {
+  padding: 10px 0 10px 12px;
+}
+
+.myinfo td span.guide {
+  margin-left: 10px;
+  font-size: 11px;
+  color: #9fa09f;
+  letter-spacing: -1px;
+  line-height: 22px;
+}
+.myinfo .addr1 {
+  width: 50px;
+  margin-bottom: 5px;
+}
+
+.myinfo .addr_btn {
+  outline: none;
+  border: none;
+  outline-style: none;
+  color: #252c41;
+  background-color: #fff;
+  width: 50px;
+  height: 20px;
+}
+.btn_section {
+  overflow: hidden;
+  text-align: center;
+}
+
+.myinfo .btn_section .btn_modify {
+  width: 169px;
+  height: 53px;
+  outline-style: none;
+  border: none;
+  background-color: #f1404b;
+  color: #fff;
+}
+
+.myinfo .btn_section {
+  margin-top: 49px;
+}
+
+.myinfo .btn_section .btn_leave {
+  width: 169px;
+  height: 53px;
+  outline-style: none;
+  border: 1px solid #f1404b;
+  background-color: #fff;
+  color: #f1404b;
+}
