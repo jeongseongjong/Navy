@@ -545,3 +545,38 @@ div.delivery_condition {
   color: #252c41;
   text-decoration: none;
 }
+
+/* 별점 css*/
+
+.starR {
+  background: url("http://miuu227.godohosting.com/images/icon/ico_review.png")
+    no-repeat right 0;
+  background-size: auto 100%;
+  width: 15px;
+  height: 15px;
+  display: inline-block;
+  text-indent: -9999px;
+  cursor: pointer;
+  vertical-align: text-top;
+}
+.starR.on {
+  background-position: 0 0;
+}
+.pro-star {
+  font-size: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+  justify-content: left;
+  text-align: left;
+}
+
+.md_tit {
+  width: 100%;
+}
+
+.one-line .md_sub {
+  font-size: 12px;
+  color: #959191;
+  text-align: right;
+  right: 0;
+}

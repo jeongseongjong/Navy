@@ -150,6 +150,7 @@ button {
 }
 
 .join_cont .btn_login {
+  width: 100%;
   display: block;
   height: 50px;
   color: #fff;
