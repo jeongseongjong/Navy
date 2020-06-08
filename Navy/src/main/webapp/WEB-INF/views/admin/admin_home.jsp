@@ -13,7 +13,25 @@
 				let id = $(this).data("id")
 				document.location.href="${rootPath}/cs/detail/"+id
 			})
-
+			
+			$(".ex_jsondata").click(function(){
+				$.ajax({
+					url : "${rootPath}/admin/chartData",
+					dataType:"json",
+					method:"GET",
+					beforeSend : function(ax) {
+						ax.setRequestHeader(
+							"${_csrf.headerName}","${_csrf.token}"		
+						)					
+					}, success : function(result) {
+						alert("성공")
+						alert(result)
+					}, error : function(){
+						alert("서버 통신 오류")
+					}
+					
+				})
+			})
 		})
 	</script>
 	  <script>
@@ -46,6 +64,7 @@
     google.charts.load("current", { packages: ["corechart"] });
     google.charts.setOnLoadCallback(allCurveChart);
     google.charts.setOnLoadCallback(todayCurveChart);
+    google.charts.setOnLoadCallback(month_draw_Chart);
 
     /* chart 1*/
     function allCurveChart() {
@@ -104,13 +123,42 @@
 
       chart.draw(data, options);
     }
+    
+    /* 차트 그리기 */
+    function month_draw_Chart() {
+    	var jsonData = 
+    		$.ajax({
+    			url : "",
+    			dataType:"json",
+    			async:false
+    		}).responseText;
+    		
+    	var data = new google.visualization.DataTable(jsonData);
+    	
+        var options = {
+           hAxis: {
+             titleTextStyle: { color: "#333" },
+           },
+           lineWidth: 5,
+           series: {
+             0: { color: "#1c91c0" },
+             1: { color: "#e7711b" },
+           },
+           vAxis: { minValue: 0 },
+         };
+    	
+    	var chart = new google.visualization.LineChart(
+    		document.getElementById("month_draw_chart")		
+    	)
+    	chart.draw(data, options);
+    		
+    }
   </script>
 </head>
 <body>
 <%@ include file = "/WEB-INF/views/include/include-nav.jspf" %>
 <article class="all-browsers">
       <div class="hr-sect">ADMIN</div>
-
       <div class="container">
         <!--sidebar-->
         <div class="row">
@@ -127,6 +175,7 @@
 			            <div class="row bg-light">
               <div class="col-12 py-4 text-center">
                 <span style="font-size: 30px;">DASHBOARD</span>
+				<button class="ex_jsondata" type="button">차트 ajax json데이터 보기</button>
               </div>
             </div>
             <!--DASHBORAD Contents-->

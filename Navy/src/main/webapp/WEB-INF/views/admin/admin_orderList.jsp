@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/include/include-head.jspf" %>
+<c:set var="num" value="${pageVO.totalCount - ((pageVO.currentPageNo-1) * 10) }"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,6 +31,14 @@
                 <span style="font-size: 30px;">주문관리</span>
               </div>
             </div>
+           	<form>
+				<input type="search" 
+				class="bbs-search" 
+				name="search" 
+				value="${search}" 
+				placeholder="유저ID를 입력 후 Enter...">
+				<button class="bt-bbs-search">검색</button>
+			</form>
             <div class="row bg-white">
               <div class="col-12 py-4">
                 <table class="table" style="width: 100%;">
@@ -54,7 +63,7 @@
                   		<c:otherwise>
 		                  	<c:forEach items="${CARTLIST}" var="cart" varStatus="i">
 		                  		<tr>
-		                  			<td class="in-ck-box td-click">${i.count}</td>
+		                  			<td>${num}</td>
 		                  			<td class="in-ck-box td-click">${cart.username}</td>
 		                  			<td class="in-ck-box td-click">주소</td>
 		                  			<td class="in-ck-box td-click">${cart.bk_p_name}</td>
@@ -64,6 +73,7 @@
 		                  			<td class="in-ck-box td-click">${cart.bk_p_buyTime}</td>
 		                  			<td class="in-ck-box td-click">${cart.bk_p_status}</td>
 		                  		</tr>
+		                  		<c:set var="num" value="${num-1}"></c:set>
 		                  	</c:forEach>
                   		</c:otherwise>
                   	</c:choose>

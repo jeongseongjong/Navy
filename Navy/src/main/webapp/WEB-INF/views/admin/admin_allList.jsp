@@ -59,6 +59,14 @@ $(function(){
 				<span style="font-size: 30px;">상품관리</span>
 			</div>
 		</div>
+		<form>
+			<input type="search" 
+			class="bbs-search" 
+			name="search" 
+			value="${search}" 
+			placeholder="상품명을 입력 후 Enter...">
+			<button class="bt-bbs-search">검색</button>
+		</form>
 		<div class="row bg-white">
 			<div class="col-12 py-4">
 				<table class="table">
@@ -101,16 +109,6 @@ $(function(){
 
 						등록</button>
 				</div>
-				
-				<form>
-					<input type="search" 
-					class="bbs-search" 
-					name="search" 
-					value="${search}" 
-					placeholder="상품명을 입력 후 Enter...">
-					<button class="bt-bbs-search">검색</button>
-				</form>
-				
 				<!--button group end-->
 				<%@ include file="/WEB-INF/views/include/include-paging.jspf" %>
 			</div>

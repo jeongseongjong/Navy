@@ -249,9 +249,36 @@
 			p_name = #{p_name},
 			p_price = #{p_price},
 			p_desc = #{p_desc,jdbcType=VARCHAR},
-			p_image = #{p_image,jdbcType=VARCHAR}
+			p_image = #{p_image,jdbcType=VARCHAR},
+			p_qty = #{p_qty,jdbcType=VARCHAR}
 
 		WHERE p_code = #{p_code}
+	</update>
+	
+	<!-- 
+	<update id="existing_update" parameterType="productUpdateVO">
+				UPDATE tbl_color 
+					SET (c_color, c_qty) = 
+					<foreach collection="proUpdateList" item="pro" separator="">
+					(
+						#{pro.c_color,jdbcType=VARCHAR},
+						#{pro.c_qty,jdbcType=VARCHAR}	
+					)
+					</foreach>
+				WHERE  c_code IN (
+					<foreach collection="proUpdateList" item="pro" separator=",">
+						#{pro.c_code,jdbcType=VARCHAR}
+					</foreach>
+				
+				)
+	</update>
+	 -->
+	<update id="existing_update" parameterType="productUpdateVO">
+				UPDATE tbl_color SET
+					c_color = #{c_color,jdbcType=VARCHAR},
+					c_qty = #{c_qty,jdbcType=VARCHAR}
+				WHERE  
+					c_code = #{c_code,jdbcType=VARCHAR}
 	</update>
 	
 </mapper> 

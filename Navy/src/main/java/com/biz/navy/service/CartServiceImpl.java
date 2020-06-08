@@ -157,9 +157,9 @@ public class CartServiceImpl implements CartService{
 
 		List<CartVO> cartSearchList = new ArrayList<>();
 		if (search != "") {
-//			cartSearchList = cartDao.findBySearchNameAndPaging(searchList, pageVO);
+			cartSearchList = cartDao.findBySearchNameAndPaging(searchList, pageVO);
 		} else {
-//			cartSearchList = cartDao.selectAllPaging(pageVO);
+			cartSearchList = cartDao.selectAllPaging(pageVO);
 		}
 		return cartSearchList;
 	}
@@ -172,7 +172,7 @@ public class CartServiceImpl implements CartService{
 			ret = cartDao.totalCount();
 		} else {
 			List<String> searchList = Arrays.asList(search.split(" "));
-//			ret = cartDao.countSearch(searchList);
+			ret = cartDao.countSearch(searchList);
 		}
 		
 		return ret;
