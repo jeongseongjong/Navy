@@ -40,6 +40,14 @@ $(function(){
                 <span style="font-size: 30px;">재고관리</span>
               </div>
             </div>
+			<form>
+				<input type="search" 
+				class="bbs-search" 
+				name="search" 
+				value="${search}" 
+				placeholder="상품명을 입력 후 Enter...">
+				<button class="bt-bbs-search">검색</button>
+			</form>
             <div class="row bg-white">
               <div class="col-12 py-4">
                 <table class="table" style="width: 100%;">
@@ -86,16 +94,6 @@ $(function(){
                     </c:choose>
                   </tbody>
                 </table>
-                
-                <form>
-					<input type="search" 
-					class="bbs-search" 
-					name="search" 
-					value="${search}" 
-					placeholder="상품명을 입력 후 Enter...">
-					<button class="bt-bbs-search">검색</button>
-				</form>
-
                 <!--pagination-->
                 <%@ include file="/WEB-INF/views/include/include-paging.jspf" %>
                 <!--pagination end-->

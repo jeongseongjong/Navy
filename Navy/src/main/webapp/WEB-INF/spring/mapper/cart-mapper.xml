@@ -88,5 +88,46 @@
 	)
 	</update>
 	
+	<!-- 주문정보 검색 후 페이징 위해 리스트 개수 세기 -->
+	<select id="countSearch" resultType="Long">
+		SELECT COUNT(*) FROM tbl_cart
+		<where>
+			<foreach collection="searchList" item="search" separator="OR">
+				username LIKE '%' || #{search,jdbcType=VARCHAR} || '%'
+			</foreach>
+		</where>
+		
+	</select>
+	<!-- 주문정보를 검색하고 페이징 -->
+	<select id="findBySearchNameAndPaging" resultType="cartVO">
+		SELECT * FROM
+		(
+			SELECT /*+ FIRST_ROWS 100 */ ROWNUM AS NUM, IP.* FROM
+			(
+				SELECT /*+ INDEX_DESC(C) FIRST_ROWS */ * FROM tbl_cart C
+				<where>
+					<foreach collection="searchList" item="search" separator="OR">
+						username LIKE '%' || #{search,jdbcType=VARCHAR} || '%'		
+					</foreach>
+				</where>
+			) IP
+			WHERE ROWNUM &lt; = #{pageVO.limit,jdbcType=VARCHAR}
+		) 
+		WHERE NUM &gt; = #{pageVO.offset,jdbcType=VARCHAR}	
+	
+	
+	</select>
+	<!-- 주문정보 모두 불러와서 페이징 -->
+	<select id="selectAllPaging" resultType="list">
+		SELECT * FROM
+		(
+			SELECT /*+ FIRST_ROWS_100 */ ROWNUM AS NUM, IP.* FROM
+			(
+				SELECT /*+ INDEX_DESC(C) FIRST_ROWS */ * FROM tbl_cart C
+			) IP
+			WHERE ROWNUM &lt; = #{limit,jdbcType=VARCHAR}
+		)
+		WHERE NUM &gt; = #{offset,jdbcType=VARCHAR}
+	</select>
 	
 </mapper> 

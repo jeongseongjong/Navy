@@ -94,6 +94,15 @@ public interface CartDao {
 	@Select("SELECT * FROM tbl_cart WHERE username = #{username}")
 	public List<CartVO> findByUserId(String username);
 
+	// 주문정보 모두 불러와서 페이징
+	public List<CartVO> selectAllPaging(PageVO pageVO);
+
+	// 주문정보를 검색하고 페이징
+	public List<CartVO> findBySearchNameAndPaging(@Param("searchList") List<String> searchList, @Param("pageVO") PageVO pageVO);
+
+	// 주문정보를 검색하고 페이징하기 위해 필요한 총 리스트 개수
+	public long countSearch(@Param("searchList") List<String> searchList);
+
 	
 
 

@@ -12,13 +12,19 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.biz.navy.dao.ProductDao;
 import com.biz.navy.domain.ColorVO;
+import com.biz.navy.domain.GoogleChartVO;
+import com.biz.navy.domain.InventoryChangeVO;
 import com.biz.navy.domain.InventoryVO;
 import com.biz.navy.domain.PageVO;
 import com.biz.navy.domain.ProSizeColorVO;
 import com.biz.navy.domain.ProductImgVO;
+import com.biz.navy.domain.ProductUpdateVO;
 import com.biz.navy.domain.ProductVO;
 import com.biz.navy.domain.SizeVO;
 import com.biz.navy.utils.DateTime;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -381,5 +387,94 @@ public class ProductServiceImpl implements ProductService {
 		ProductVO proVO = findById(p_code);
 		proVO.setP_image(imgName);
 		return proDao.update(proVO);
+	}
+
+	// DB에 존재하는 재고(사이즈, 컬러)리스트 삭제하기 위한 메서드
+	@Override
+	public int existing_delete(long s_code, long c_code) {
+		// TODO existing_delete
+		int ret = proDao.existing_color_delete(c_code);
+		// 컬러 테이블만 지워도 목록에는 안 뜨니
+		// 사이즈 테이블은 안 지워도 괜찮다.
+//				proDao.existing_size_delete(s_code);
+		return ret;
+	}
+
+	// DB에 존재하는 재고 변경하기 위한 메서드
+	@Override
+	public int existing_update(ProductVO productVO, 
+			String[] existing_color, 
+			int[] existing_qty, 
+			long[] existing_s_code, long[] existing_c_code) {
+		// TODO existing_update
+		ProductUpdateVO proUpdateVO ;
+		List<ProductUpdateVO> proUpdateList = new ArrayList<>();
+		int qty = 0;
+		for(int i = 0 ; i < existing_color.length ; i ++) {
+			proUpdateVO = new ProductUpdateVO();
+			log.debug("사이즈 색상 수량 사이즈코드 컬러코드 : "
+//					+ existing_size[i] + ", "
+					+ existing_color[i] + ", "
+					+ existing_qty[i] + ", "
+					+ existing_s_code[i] + ", "
+					+ existing_c_code[i]
+					);
+//			proUpdateVO.setS_size(existing_size[i]);
+			proUpdateVO.setC_color(existing_color[i]);
+			proUpdateVO.setC_qty(existing_qty[i]);
+			proUpdateVO.setS_code(existing_s_code[i]);
+			proUpdateVO.setC_code(existing_c_code[i]);
+			qty += existing_qty[i];
+			
+			proUpdateList.add(proUpdateVO);
+		}
+		// 일단 컬러테이블의 컬러 칼럼과 수량 칼럼 교체
+		int ret = 0;
+		for(ProductUpdateVO p : proUpdateList) {
+			ret = proDao.existing_update(p);
+		}
+		productVO.setP_qty(qty);
+		proDao.update(productVO);
+//		ret = proDao.existing_update(proUpdateList);
+		return ret;
+	}
+
+	@Override
+	public String selectChanges() {
+		// TODO selectChanges
+		List<InventoryChangeVO> changeList = new ArrayList<InventoryChangeVO>(); 
+		changeList = proDao.selectChanges();
+		log.debug("서비스에서 체인지리스트 : "+changeList);
+//		// JSON 데이터로 만들어주기
+//		JsonObject json = new JsonObject();
+//		JsonArray jsonArray = new JsonArray();
+//		JsonObject result = new JsonObject();
+
+		int count = proDao.countChange(); 
+		
+		GoogleChartVO go = new GoogleChartVO();
+		// month, 상품이름, 상품타입(넘버?)
+		go.addColumn("month", "string");
+		go.addColumn("매출액", "number");
+//		go.addColumn(changeList.get(0).getCh_p_name(), "number");
+//		go.addColumn(changeList.get(changeList.size()-1).getCh_p_name(), "number");
+		
+		go.createRows(count);
+		
+		
+		for(int i = 0 ; i < count ; i ++) {
+//		for(InventoryChangeVO i : changeList) {
+			go.addCell(i,
+					changeList.get(i).getCh_date(),
+					changeList.get(i).getCh_date().substring(5,7)
+					);
+			go.addCell(i, (int)changeList.get(i).getCh_price());
+		}
+		
+		Gson gson = new Gson();
+		String json = gson.toJson(go);
+		
+		log.debug("GSON을 JSON으로 변경 : "+json);
+		return json;
 	}
 }

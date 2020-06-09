@@ -41,11 +41,47 @@ $(function(){
 	$("#btn-plus").click(function(){
 		$('#select-container').append(templates);
 	})
+	
 	$(".delete-selectbox").click(function(){
 		
     //$(document).on('click', '.delete-selectbox', function () {
         $(this).closest('div').remove();
     });
+    
+	// 기존에 있던 재고 보여주는 select 박스들 지우기
+	$(".existing_delete-selectbox").click(function(){
+		let s_code = $(this).data("s_code")
+		let c_code = $(this).data("c_code")
+		let p_code = "${productVO.p_code}"
+		
+		if(confirm("선택하신 재고(사이즈, 컬러)를 지우시겠습니까?")) {
+			$.ajax({
+				url : "${rootPath}/admin/pro_existing_delete" ,
+				method : "POST",
+				data : {
+					s_code : s_code,
+					c_code : c_code
+				},
+				beforeSend : function(ax) {
+					ax.setRequestHeader(
+						"${_csrf.headerName}","${_csrf.token}"		
+					)					
+				}, success : function(result) {
+					if ( result == 'SUCCESS' ) {
+						alert("성공")						
+						document.location.replace("${rootPath}/admin/pro_update/" + p_code)
+					} else {
+						alert("재고(사이즈, 컬러) 삭제 실패")						
+					}
+				}, error : function(){
+					alert("서버 통신 오류")
+				}
+				
+				
+			})				
+		}
+	})
+    
 	$("#pro_append").click(function(){
 		
 		let size_input = $("<input/>", {class:"product_type form-control mb-3", name:"size", placeholder:"사이즈"})
@@ -173,20 +209,30 @@ $(function(){
 					<c:forEach items="${productVO.sizeList}" var="size">
 						<c:if test="${!empty size.colorList}">
 							<c:forEach items="${size.colorList}" var="color">
-							<li> ${size.s_size} ${color.c_color} (${color.c_qty})</li>
-							<select class="select" name="size" style="height: 30px;" >
-							    <option value="${size.s_size}">${size.s_size}</option>
-							    <option value="S">S</option>
-							    <option value="M">M</option>
-							    <option value="L">L</option>
-							    <option value="XL">XL</option>
-							    <option value="XXL">XXL</option>
-							    <option value="FREE">FREE</option>
-							</select>
-							<input name="color" style="width: 50px;" placeholder="색깔" value="${color.c_color}"/>
-							<input name="qty" type="number" style="width: 50px;" placeholder="수량" value="${color.c_qty}"/>
-							<input name="s_code" type="hidden" value="${size.s_code}">
-							<input name="c_code" type="hidden" value="${color.c_code}">
+								<li> ${size.s_size} ${color.c_color} (${color.c_qty})</li>
+								<!-- 
+								<input name="existing_size" style="width: 50px;" value="${size.s_size}" readonly="readonly">
+								 -->
+								<span>사이즈 : ${size.s_size}</span>
+								<!-- 
+								<select class="select" name="existing_size" style="height: 30px;" >
+								    <option value="${size.s_size}">${size.s_size}</option>
+								    <option value="S">S</option>
+								    <option value="M">M</option>
+								    <option value="L">L</option>
+								    <option value="XL">XL</option>
+								    <option value="XXL">XXL</option>
+								    <option value="FREE">FREE</option>
+								</select>
+								 -->
+								<input name="existing_color" style="width: 50px;" placeholder="색깔" value="${color.c_color}"/>
+								<input name="existing_qty" type="number" style="width: 50px;" placeholder="수량" value="${color.c_qty}"/>
+								<input name="existing_s_code" type="hidden" value="${size.s_code}">
+								<input name="existing_c_code" type="hidden" value="${color.c_code}">
+								<span class="existing_delete-selectbox"
+									data-s_code="${size.s_code}"
+									data-c_code="${color.c_code}"
+								>&cross;</span>
 							</c:forEach>
 						</c:if>
 					</c:forEach>
