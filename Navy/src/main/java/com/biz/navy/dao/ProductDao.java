@@ -140,7 +140,9 @@ public interface ProductDao {
 	public int existing_update(ProductUpdateVO proVO);
 	
 	// 차트 구현하기 위해 월별 판매량 데이터 가져오기	
-	@Select("SELECT * FROM tbl_inventory_changes")
 	public List<InventoryChangeVO> selectChanges();
+
+	// 차트 구현하는데 필요한 row(ex:월별) 개수 세기
+	public int countChange();
 
 }

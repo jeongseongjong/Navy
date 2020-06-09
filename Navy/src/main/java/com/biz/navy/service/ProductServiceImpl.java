@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.biz.navy.dao.ProductDao;
 import com.biz.navy.domain.ColorVO;
+import com.biz.navy.domain.GoogleChartVO;
 import com.biz.navy.domain.InventoryChangeVO;
 import com.biz.navy.domain.InventoryVO;
 import com.biz.navy.domain.PageVO;
@@ -21,6 +22,9 @@ import com.biz.navy.domain.ProductUpdateVO;
 import com.biz.navy.domain.ProductVO;
 import com.biz.navy.domain.SizeVO;
 import com.biz.navy.utils.DateTime;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -436,9 +440,41 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public List<InventoryChangeVO> selectChanges() {
+	public String selectChanges() {
 		// TODO selectChanges
-		List<InventoryChangeVO> changeList = proDao.selectChanges();
-		return changeList;
+		List<InventoryChangeVO> changeList = new ArrayList<InventoryChangeVO>(); 
+		changeList = proDao.selectChanges();
+		log.debug("서비스에서 체인지리스트 : "+changeList);
+//		// JSON 데이터로 만들어주기
+//		JsonObject json = new JsonObject();
+//		JsonArray jsonArray = new JsonArray();
+//		JsonObject result = new JsonObject();
+
+		int count = proDao.countChange(); 
+		
+		GoogleChartVO go = new GoogleChartVO();
+		// month, 상품이름, 상품타입(넘버?)
+		go.addColumn("month", "string");
+		go.addColumn("매출액", "number");
+//		go.addColumn(changeList.get(0).getCh_p_name(), "number");
+//		go.addColumn(changeList.get(changeList.size()-1).getCh_p_name(), "number");
+		
+		go.createRows(count);
+		
+		
+		for(int i = 0 ; i < count ; i ++) {
+//		for(InventoryChangeVO i : changeList) {
+			go.addCell(i,
+					changeList.get(i).getCh_date(),
+					changeList.get(i).getCh_date().substring(5,7)
+					);
+			go.addCell(i, (int)changeList.get(i).getCh_price());
+		}
+		
+		Gson gson = new Gson();
+		String json = gson.toJson(go);
+		
+		log.debug("GSON을 JSON으로 변경 : "+json);
+		return json;
 	}
 }

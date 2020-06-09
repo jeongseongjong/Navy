@@ -67,9 +67,9 @@ public class AdminController {
 	// 차트 만들기 위해 데이터 가져오기
 	@ResponseBody
 	@RequestMapping(value="/chartData",method=RequestMethod.GET,produces = "application/json;charset=UTF-8")
-	public List<InventoryChangeVO> chartData(Model model) {
+	public String chartData(Model model) {
 		
-		List<InventoryChangeVO> changeList = proService.selectChanges();
+		String changeList = proService.selectChanges();
 		
 		model.addAttribute("CHANGELIST",changeList);
 		log.debug("불러온 리스트 : "+changeList);

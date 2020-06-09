@@ -62,8 +62,8 @@
     */
 
     google.charts.load("current", { packages: ["corechart"] });
-    google.charts.setOnLoadCallback(allCurveChart);
-    google.charts.setOnLoadCallback(todayCurveChart);
+    //google.charts.setOnLoadCallback(allCurveChart);
+    //google.charts.setOnLoadCallback(todayCurveChart);
     google.charts.setOnLoadCallback(month_draw_Chart);
 
     /* chart 1*/
@@ -126,11 +126,19 @@
     
     /* 차트 그리기 */
     function month_draw_Chart() {
-    	var jsonData = 
-    		$.ajax({
-    			url : "",
-    			dataType:"json",
-    			async:false
+    	var jsonData = $.ajax({
+			url : "${rootPath}/admin/chartData",
+			dataType:"json",
+			method:"GET",
+			async:false,
+			/*
+			beforeSend : function(ax) {
+				ax.setRequestHeader(
+					"${_csrf.headerName}","${_csrf.token}"		
+				)	
+			}
+			*/
+				
     		}).responseText;
     		
     	var data = new google.visualization.DataTable(jsonData);
@@ -141,14 +149,15 @@
            },
            lineWidth: 5,
            series: {
-             0: { color: "#1c91c0" },
+        	   0: { color: "#0000ff" },
+             //0: { color: "#ff0000" },
              1: { color: "#e7711b" },
            },
            vAxis: { minValue: 0 },
          };
     	
     	var chart = new google.visualization.LineChart(
-    		document.getElementById("month_draw_chart")		
+    		document.getElementById("all_curve_chart")		
     	)
     	chart.draw(data, options);
     		
@@ -175,7 +184,6 @@
 			            <div class="row bg-light">
               <div class="col-12 py-4 text-center">
                 <span style="font-size: 30px;">DASHBOARD</span>
-				<button class="ex_jsondata" type="button">차트 ajax json데이터 보기</button>
               </div>
             </div>
             <!--DASHBORAD Contents-->

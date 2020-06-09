@@ -14,6 +14,7 @@ import lombok.ToString;
 public class InventoryChangeVO {
     private long ch_id;// NUMBER PRIMARY KEY,
     private String ch_p_code;// VARCHAR(6),
+    private String ch_p_name;// nVARCHAR2(255),
     private String ch_date;// nVARCHAR2(50),
     private String ch_time;// nVARCHAR2(50),
     private long ch_inout;// INT,

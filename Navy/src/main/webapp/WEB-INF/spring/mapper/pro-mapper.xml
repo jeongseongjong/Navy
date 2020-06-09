@@ -5,6 +5,25 @@
 
 <mapper namespace="com.biz.navy.dao.ProductDao">
 
+	<!-- 구글 차트 그리기 관련 SQL문 들 -->
+		<select id="countChange" resultType="int">
+			SELECT COUNT(*) FROM (
+			    SELECT SUBSTR(ch_date,1,7), sum(ch_price) 
+			    FROM tbl_inventory_changes 
+			    GROUP BY SUBSTR(ch_date,1,7)
+			)
+		</select>
+		
+		<select id="selectChanges" resultType="inventoryChangeVO">
+			SELECT SUBSTR(ch_date,1,7) AS ch_date, 
+					sum(ch_price) AS ch_price 
+				FROM tbl_inventory_changes 
+				GROUP BY SUBSTR(ch_date,1,7)
+				ORDER BY SUBSTR(ch_date,1,7)
+		</select>
+
+	<!-- 구글 차트 그리기 관련 SQL문 들 끝 -->
+	<!-- 검색 & 페이징 관련 SQL문 들 -->
 	<select id="countSearch" resultType="Long">
 		SELECT COUNT(*) FROM tbl_product
 		<where>
