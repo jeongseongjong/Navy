@@ -109,7 +109,17 @@ $(function() {
 	})
 	
 	$(document).on("click","button.plus",function() {
-		alert("선택")
+		let p_qty = parseInt($("#p_qty").val())
+		// alert(p_qty)
+		
+		if(p_qty <= 100) {
+			$("#p_qty").append("value", "1")
+					
+		} else {
+			var p_qtyplus = parseInt(p_qty) + 1 
+			$("#p_qty").append("value", p_qtyplus)
+		}
+		
 	})
  
 		
