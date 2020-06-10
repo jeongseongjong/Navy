@@ -37,6 +37,41 @@ $(function(){
 	$(".ad-pro-list").click(function(){
 		document.location.href="${rootPath}/admin/productlist"
 	})
+	
+	// 대표이미지 설정하기
+	$(".ad_main_img").click(function(){
+		let imgName = $(this).data("name")
+		let p_code = "${productVO.p_code}"
+		//alert(imgName)
+		//alert(p_code)
+		
+		if(confirm("대표이미지를 선택한 사진으로 바꾸시겠습니까?")) {
+			$.ajax({
+				url : "${rootPath}/admin/repimg" ,
+				method : "POST",
+				data : {
+					imgName : imgName,
+					p_code : p_code
+				},
+				beforeSend : function(ax) {
+					ax.setRequestHeader(
+						"${_csrf.headerName}","${_csrf.token}"		
+					)					
+				}, success : function(result) {
+					if ( result > 0 ) {
+						document.location.replace("${rootPath}/admin/pro_detail_view/"+p_code)
+					} else {
+						alert("대표 이미지 변경 실패")						
+					}
+				}, error : function(){
+					alert("서버 통신 오류")
+				}
+				
+				
+			})			
+		}
+		
+	})
 })
 </script>
 </head>
@@ -112,7 +147,8 @@ $(function(){
 							 -->
 					</div>
 					<c:forEach items="${productVO.proDImgList}" var="img">
-						<img src="${rootPath}/images/${img.p_img_upload_name}"
+						<img src="${rootPath}/images/${img.p_img_upload_name}" class="ad_main_img"
+							data-name="${img.p_img_upload_name}"
 								style="width: 250px; height: 200px; margin-right: 70px;" />
 					</c:forEach>
 				</div>

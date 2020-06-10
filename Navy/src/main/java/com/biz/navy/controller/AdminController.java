@@ -14,8 +14,10 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.biz.navy.domain.CartVO;
 import com.biz.navy.domain.CsVO;
+import com.biz.navy.domain.InventoryChangeVO;
 import com.biz.navy.domain.InventoryVO;
 import com.biz.navy.domain.PageVO;
+import com.biz.navy.domain.ProductUpdateVO;
 import com.biz.navy.domain.ProductVO;
 import com.biz.navy.domain.QnaVO;
 import com.biz.navy.domain.ReviewVO;
@@ -60,6 +62,18 @@ public class AdminController {
 		model.addAttribute("CSLIST",csList);
 		
 		return "admin/admin_home";
+	}
+	
+	// 차트 만들기 위해 데이터 가져오기
+	@ResponseBody
+	@RequestMapping(value="/chartData",method=RequestMethod.GET,produces = "application/json;charset=UTF-8")
+	public String chartData(Model model) {
+		
+		String changeList = proService.selectChanges();
+		
+		model.addAttribute("CHANGELIST",changeList);
+		log.debug("불러온 리스트 : "+changeList);
+		return changeList;
 	}
 	
 	// 회원 리스트
@@ -168,7 +182,8 @@ public class AdminController {
 		long id = Long.valueOf(p_code);
 		ProductVO productVO = proService.findById(id);
 		model.addAttribute("productVO", productVO);
-		
+		log.debug("상품VO:"+productVO);
+		log.debug("상품 디테일 이미지들 : "+productVO.getProDImgList());
 		return "admin/admin_proDetail";
 	}
 	
@@ -191,6 +206,7 @@ public class AdminController {
 			
 			MultipartHttpServletRequest files
 			) {
+		log.debug("상품 등록 이미지들 : "+files.toString());
 		int ret = proService.insert(productVO, size, color, qty, files);
 		log.debug("관리자가 상품 등록하는 서비스 " + ret);
 		
@@ -224,30 +240,29 @@ public class AdminController {
 	// 상품 수정하고 DB에 저장
 	@RequestMapping(value="/pro_update/{p_code}",method=RequestMethod.POST)
 	public String proUpdatePOST(@PathVariable("p_code") String p_code, ProductVO productVO, 
-			String[] size,
-			String[] color,
-			int[] qty,
-			long[] s_code,
-			long[] c_code,
+//			String[] existing_size,
+			String[] existing_color,
+			int[] existing_qty,
+			long[] existing_s_code,
+			long[] existing_c_code,
+			String[] images,
+			MultipartHttpServletRequest files,
+			int[] ex_qty,
 			Model model) {
 		log.debug("상품 업데이트 포스트 : "+productVO);
-		for(String s : size) {
-			log.debug("사이즈 : " + s);
+		log.debug("상품 업데이트 파일들 : "+files);
+		for(int i : ex_qty) {
+			log.debug("기존 수량 : " + i);
 		}
-		for(String s : color) {
-			log.debug("색상 : " + s);
-		}
-		for(int s : qty) {
-			log.debug("수량 : " + s+"");
-		}
-		for(long s : s_code) {
-			log.debug("사이즈 코드 : " + s+"");
-		}
-		for(long s : c_code) {
-			log.debug("컬러 코드 : " + s+"");
-		}
-		
-		int ret = proService.update(productVO);
+		int ret = proService.existing_update(productVO, 
+				existing_color,
+				existing_qty,
+				existing_s_code,
+				existing_c_code,
+				images,
+				files,
+				ex_qty
+				);
 		
 		return "redirect:/admin/pro_detail_view/"+productVO.getP_code();
 	}
@@ -258,6 +273,17 @@ public class AdminController {
 		int ret = proService.delete(Long.valueOf(p_code));
 		return "redirect:/admin/productlist";
 	}
+	
+	// 상품 종류(사이즈,컬러) 삭제
+	@ResponseBody
+	@RequestMapping(value="/pro_existing_delete",method=RequestMethod.POST)
+	public String proExistingDelete(@RequestParam("s_code") long s_code, 
+			@RequestParam("c_code") long c_code) {
+
+		int ret = proService.existing_delete(s_code, c_code);
+		if(ret > 0) return "SUCCESS";
+		return "FAIL";
+	}	
 	
 	// 상품 이미지 삭제
 	@ResponseBody
@@ -283,9 +309,12 @@ public class AdminController {
 		long totalCount = 300;
 		totalCount = cartService.totalCount(search);
 		
+		log.debug("토탈카운트 값 : " + totalCount);
 		PageVO pageVO = pageService.getPagination(totalCount, currentPageNo);
-		List<CartVO> cartList = cartService.selectAll();
-//		List<CartVO> cartList = cartService.findBySearchUsername(search,pageVO);
+//		List<CartVO> cartList = cartService.selectAll();
+		List<CartVO> cartList = cartService.findBySearchUsername(search,pageVO);
+		
+		log.debug("가져온 카트리스트 : " + cartList);
 		
 		model.addAttribute("CARTLIST",cartList);
 		

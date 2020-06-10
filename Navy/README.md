@@ -114,6 +114,7 @@
   >- CartService에 findByUserId 메서드 추가
  * include-paging 수정
  * pageService에 listperpage 변경
+<<<<<<< HEAD
  
 ## 06-07
  * 장바구니 페이지 수량 수정 +- 코드완료 
@@ -129,3 +130,21 @@
  * 구매내역에서 리뷰 작성 DB저장 완료
   > - review insert get 삭제
   > - review insert get 코드 -> cart/payment_list로 이동
+=======
+
+## 06-08
+ * 상품 대표이미지 변경 기능 구현
+ * 관리자 - 주문정보 페이지에서 페이징
+ * 관리자 - 주문정보 페이지에 검색 추가
+ * 상품 수정에서 기존(컬러 테이블에 있는) 색상, 수량 변경
+ * ProductUpdateVO 생성
+ * tbl_inventory_changes 테이블 생성(차트 그리기 시도)
+ * InventoryChangeVO 생성
+ 
+## 06-09
+ * gson 추가
+ * 관리자 - 메인에 매출액 그래표 구현
+ 
+## 06-10
+ * 관리자 - 상품 수정 CSS 적용, 이미지 업로드, 수량 변동내역 DB에 저장
+>>>>>>> bb6b86628a7f835dc0196c4be4818b7cf6b9880a

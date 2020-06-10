@@ -5,6 +5,25 @@
 
 <mapper namespace="com.biz.navy.dao.ProductDao">
 
+	<!-- 구글 차트 그리기 관련 SQL문 들 -->
+		<select id="countChange" resultType="int">
+			SELECT COUNT(*) FROM (
+			    SELECT SUBSTR(ch_date,1,7), sum(ch_price) 
+			    FROM tbl_inventory_changes 
+			    GROUP BY SUBSTR(ch_date,1,7)
+			)
+		</select>
+		
+		<select id="selectChanges" resultType="inventoryChangeVO">
+			SELECT SUBSTR(ch_date,1,7) AS ch_date, 
+					sum(ch_price) AS ch_price 
+				FROM tbl_inventory_changes 
+				GROUP BY SUBSTR(ch_date,1,7)
+				ORDER BY SUBSTR(ch_date,1,7)
+		</select>
+
+	<!-- 구글 차트 그리기 관련 SQL문 들 끝 -->
+	<!-- 검색 & 페이징 관련 SQL문 들 -->
 	<select id="countSearch" resultType="Long">
 		SELECT COUNT(*) FROM tbl_product
 		<where>
@@ -243,15 +262,59 @@
 		) sub
 	</insert>
 	
+	<!-- 상품 수정에서 수량 변경 시 변경 내역을 테이블에 저장하기 -->
+	<insert id="update_changes" parameterType="list">
+		INSERT INTO tbl_inventory_changes(ch_id,ch_p_code,ch_p_name,ch_date,ch_time,ch_inout,ch_qty,ch_price)
+		SELECT SEQ_INVENTORY_CHANGE.NEXTVAL, sub.* from(
+		<foreach collection="list" item="ch" separator="UNION ALL">
+			SELECT
+				#{ch.ch_p_code,jdbcType=VARCHAR},
+				#{ch.ch_p_name,jdbcType=VARCHAR},
+				#{ch.ch_date,jdbcType=VARCHAR},
+				#{ch.ch_time,jdbcType=VARCHAR},
+				#{ch.ch_inout,jdbcType=VARCHAR},
+				#{ch.ch_qty,jdbcType=VARCHAR},
+				#{ch.ch_price,jdbcType=VARCHAR}
+			FROM dual		
+		</foreach>
+		) sub
+	</insert>
 
 	<update id="update" parameterType="productVO">
 		UPDATE tbl_product SET
 			p_name = #{p_name},
 			p_price = #{p_price},
 			p_desc = #{p_desc,jdbcType=VARCHAR},
-			p_image = #{p_image,jdbcType=VARCHAR}
+			p_image = #{p_image,jdbcType=VARCHAR},
+			p_qty = #{p_qty,jdbcType=VARCHAR}
 
 		WHERE p_code = #{p_code}
+	</update>
+	
+	<!-- 
+	<update id="existing_update" parameterType="productUpdateVO">
+				UPDATE tbl_color 
+					SET (c_color, c_qty) = 
+					<foreach collection="proUpdateList" item="pro" separator="">
+					(
+						#{pro.c_color,jdbcType=VARCHAR},
+						#{pro.c_qty,jdbcType=VARCHAR}	
+					)
+					</foreach>
+				WHERE  c_code IN (
+					<foreach collection="proUpdateList" item="pro" separator=",">
+						#{pro.c_code,jdbcType=VARCHAR}
+					</foreach>
+				
+				)
+	</update>
+	 -->
+	<update id="existing_update" parameterType="productUpdateVO">
+				UPDATE tbl_color SET
+					c_color = #{c_color,jdbcType=VARCHAR},
+					c_qty = #{c_qty,jdbcType=VARCHAR}
+				WHERE  
+					c_code = #{c_code,jdbcType=VARCHAR}
 	</update>
 	
 </mapper> 

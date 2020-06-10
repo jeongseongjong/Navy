@@ -10,9 +10,11 @@ import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 
 import com.biz.navy.domain.ColorVO;
+import com.biz.navy.domain.InventoryChangeVO;
 import com.biz.navy.domain.InventoryVO;
 import com.biz.navy.domain.PageVO;
 import com.biz.navy.domain.ProductImgVO;
+import com.biz.navy.domain.ProductUpdateVO;
 import com.biz.navy.domain.ProductVO;
 import com.biz.navy.domain.QnaVO;
 import com.biz.navy.domain.ReviewVO;
@@ -112,12 +114,38 @@ public interface ProductDao {
 
 	// 재고관리 총 개수 세기
 	public long countColorAll();
+	
 	// 재고관리 이름으로 검색 후 페이징
 	public List<InventoryVO> findStockBySearchNameAndPaging(@Param("searchList") List<String> searchList, @Param("pageVO")PageVO pageVO);
+	
 	// 재고관리 검색 후 개수 세기
 	public long countStockSearch(@Param("searchList")List<String> searchList);
+	
 	// 재고관리 총 개수 세기
 	public List<InventoryVO> selectColorAll(PageVO pageVO);
+	
 	// 대표이미지 변경 메서드
 	public int updateRepImg(String imgName);
+	
+	// DB에 존재하는 재고(사이즈)리스트 삭제하기 위한 메서드
+	@Delete("DELETE FROM tbl_size WHERE s_code = #{s_code} ")
+	public void existing_size_delete(long s_code);
+	
+	// DB에 존재하는 재고(컬러)리스트 삭제하기 위한 메서드
+	@Delete("DELETE FROM tbl_color WHERE c_code = #{c_code} ")
+	public int existing_color_delete(long c_code);
+	
+	// DB에 존재하는 재고, 컬러 변경하기 위한 메서드
+//	public int existing_update(@Param("proUpdateList") List<ProductUpdateVO> proUpdateList);
+	public int existing_update(ProductUpdateVO proVO);
+	
+	// 차트 구현하기 위해 월별 판매량 데이터 가져오기	
+	public List<InventoryChangeVO> selectChanges();
+
+	// 차트 구현하는데 필요한 row(ex:월별) 개수 세기
+	public int countChange();
+
+	// 그래프에 쓸 변동량 데이터 Insert위한 코드
+	public void update_changes(List<InventoryChangeVO> exQtyList);
+
 }

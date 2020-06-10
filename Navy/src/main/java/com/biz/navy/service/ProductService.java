@@ -8,7 +8,9 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.biz.navy.domain.PageVO;
 import com.biz.navy.domain.ProductImgVO;
+import com.biz.navy.domain.ProductUpdateVO;
 import com.biz.navy.domain.ColorVO;
+import com.biz.navy.domain.InventoryChangeVO;
 import com.biz.navy.domain.InventoryVO;
 import com.biz.navy.domain.ProductVO;
 import com.biz.navy.domain.SizeVO;
@@ -58,6 +60,12 @@ public interface ProductService {
 	public List<InventoryVO> findStockBySearchName(String search, PageVO pageVO);
 
 	public int updateRepImg(String imgName, long p_code);
+	// DB에 존재하는 재고(사이즈, 컬러)리스트 삭제하기 위한 메서드
+	public int existing_delete(long s_code, long c_code);
+	// DB에 존재하는 재고 변경하기 위한 메서드
+	public int existing_update(ProductVO productVO, String[] existing_color, int[] existing_qty, long[] existing_s_code, long[] existing_c_code, String[] images, MultipartHttpServletRequest files, int[] ex_qty);
+	// 차트 구현하기 위해 월별 판매량 데이터 가져오기
+	public String selectChanges();
 
 	
 
