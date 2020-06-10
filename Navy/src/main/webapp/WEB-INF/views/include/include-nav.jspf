@@ -21,8 +21,10 @@ $(function(){
      	<ul class="nav ml-auto mr-5">
        		<!-- input 검색창-->
 			<li class="nav-item nav-input">
-  				<input class="input-style" />
-  				<img src="${rootPath}/resources/img/scope.png" class="scope" />
+  				<form action="${rootPath}/product/list">
+	            <input name="search" class="input-style" />
+            	<img src="${rootPath}/resources/img/scope.png" class="scope" />
+          	</form>
 			</li>
 			<!-- annonimous& authentication-->
 			<sec:authorize access="isAnonymous()">

@@ -182,7 +182,8 @@ public class AdminController {
 		long id = Long.valueOf(p_code);
 		ProductVO productVO = proService.findById(id);
 		model.addAttribute("productVO", productVO);
-		
+		log.debug("상품VO:"+productVO);
+		log.debug("상품 디테일 이미지들 : "+productVO.getProDImgList());
 		return "admin/admin_proDetail";
 	}
 	
@@ -205,6 +206,7 @@ public class AdminController {
 			
 			MultipartHttpServletRequest files
 			) {
+		log.debug("상품 등록 이미지들 : "+files.toString());
 		int ret = proService.insert(productVO, size, color, qty, files);
 		log.debug("관리자가 상품 등록하는 서비스 " + ret);
 		
@@ -243,14 +245,23 @@ public class AdminController {
 			int[] existing_qty,
 			long[] existing_s_code,
 			long[] existing_c_code,
+			String[] images,
+			MultipartHttpServletRequest files,
+			int[] ex_qty,
 			Model model) {
 		log.debug("상품 업데이트 포스트 : "+productVO);
-		
+		log.debug("상품 업데이트 파일들 : "+files);
+		for(int i : ex_qty) {
+			log.debug("기존 수량 : " + i);
+		}
 		int ret = proService.existing_update(productVO, 
 				existing_color,
 				existing_qty,
 				existing_s_code,
-				existing_c_code
+				existing_c_code,
+				images,
+				files,
+				ex_qty
 				);
 		
 		return "redirect:/admin/pro_detail_view/"+productVO.getP_code();
