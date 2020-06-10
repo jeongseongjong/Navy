@@ -262,6 +262,23 @@
 		) sub
 	</insert>
 	
+	<!-- 상품 수정에서 수량 변경 시 변경 내역을 테이블에 저장하기 -->
+	<insert id="update_changes" parameterType="list">
+		INSERT INTO tbl_inventory_changes(ch_id,ch_p_code,ch_p_name,ch_date,ch_time,ch_inout,ch_qty,ch_price)
+		SELECT SEQ_INVENTORY_CHANGE.NEXTVAL, sub.* from(
+		<foreach collection="list" item="ch" separator="UNION ALL">
+			SELECT
+				#{ch.ch_p_code,jdbcType=VARCHAR},
+				#{ch.ch_p_name,jdbcType=VARCHAR},
+				#{ch.ch_date,jdbcType=VARCHAR},
+				#{ch.ch_time,jdbcType=VARCHAR},
+				#{ch.ch_inout,jdbcType=VARCHAR},
+				#{ch.ch_qty,jdbcType=VARCHAR},
+				#{ch.ch_price,jdbcType=VARCHAR}
+			FROM dual		
+		</foreach>
+		) sub
+	</insert>
 
 	<update id="update" parameterType="productVO">
 		UPDATE tbl_product SET

@@ -145,4 +145,7 @@ public interface ProductDao {
 	// 차트 구현하는데 필요한 row(ex:월별) 개수 세기
 	public int countChange();
 
+	// 그래프에 쓸 변동량 데이터 Insert위한 코드
+	public void update_changes(List<InventoryChangeVO> exQtyList);
+
 }
