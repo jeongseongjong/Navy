@@ -16,6 +16,7 @@ import com.biz.navy.domain.ColorVO;
 import com.biz.navy.domain.PageVO;
 import com.biz.navy.domain.ProductVO;
 import com.biz.navy.domain.SizeVO;
+import com.biz.navy.domain.UserDetailsVO;
 
 import lombok.RequiredArgsConstructor;
 
@@ -138,6 +139,12 @@ public class CartServiceImpl implements CartService{
 		return cartDao.recipient_update(bkSeqList,cartVO);
 	}
 
+	@Override
+	public long deliveryCount(String username) {
+
+		return cartDao.deliveryCount(username);
+	}
+	
 	@Override
 	public long countDelivery() {
 

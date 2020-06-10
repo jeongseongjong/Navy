@@ -9,6 +9,40 @@
 </head>
 <script>
 
+$(function(){
+	$(".bt-save").click(function(){
+		let bk_p_code = $("#bk_p_code").val()
+		let text = $("#text").val()
+		let title = $("#title").val()
+
+		alert(bk_p_code)
+		alert(text)
+		alert(title)
+		
+		$.ajax({
+			url : "${rootPath}/user/review",
+			method : "POST",
+			data : {
+				r_code : bk_p_code,
+				r_title : title,
+				r_text : text,
+				"${_csrf.parameterName}" : "${_csrf.token}"
+			},
+			success : function(result){
+				if(result == "OK"){
+					alert("리뷰 작성 성공" + bk_p_code)
+					document.location.href = "${rootPath}/cart/payment_list"	
+				}else{
+					alert("작성실패")
+				}
+			},
+			error : function(result){
+				alert("서버통신오류")
+			}
+		})
+	})
+})
+
 </script>
 <body>
 	<!--header include-->
@@ -65,7 +99,7 @@
 							<tr>
 								<td colspan="3" class="delivery_wrap">
 									<div class="delivery_num">
-										<span>배송번호 : </span> <em>${bk_id}</em>
+										<span>배송번호 : </span> <em>${delivery.bk_id}</em>
 									</div>
 								</td>
 							</tr>
@@ -110,7 +144,9 @@
 									</div>
 								</td>
 								<td class="review_write">
-									<button class="review-btn">리뷰쓰기</button>
+									<input type="hidden" id="bk_p_code" name="bk_p_code" value="${delivery.bk_p_code }"/>
+									<button id="rev" data-name="${delivery.bk_p_code}" data-id="${delivery.bk_id}"
+									 		data-toggle="modal" data-target="#staticBackdrop"class="review-btn">리뷰쓰기</button>
 								</td>
 							</tr>
 							<tr>
@@ -150,54 +186,61 @@
 		</div>
 	</article>
 </body>
-
-<!-- footer include -->
-<footer class="bg-gray mt-5">
-	<div class="container p-5">
-		<div class="row">
-			<h2 class="red-text">NAVIYA</h2>
-		</div>
-		<div class="pl-5 pr-5 d-flex row">
-			<div class="col-sm-3">
-				<div>shop</div>
-				<div>main1</div>
-				<div>main2</div>
-				<div>QnA</div>
-			</div>
-			<div class="col-sm-3">
-				<div>
-					<span class="font-weight-bold"> TEAMLEADER </span><br /> <span><a
-						class="atag-github" href="https://github.com/jeongseongjong">&nbsp;&nbsp;-
-							NAVI</a></span>
-				</div>
-				<div>
-					<span class="font-weight-bold">UI/UX</span> <br /> <span><a
-						class="atag-github" href="https://github.com/qussoa">&nbsp;&nbsp;-
-							QUSSOA</a></span>
-				</div>
-			</div>
-			<div class="col-sm-3">
-				<div>
-					<span class="font-weight-bold">DEVELOPER</span><br /> <span><a
-						class="atag-github" href="https://github.com/leeiter">&nbsp;&nbsp;-
-							PRINCESSEJIN</a></span>
-				</div>
-				<div>
-					<span class="font-weight-bold">DEVELOPER</span><br /> <span><a
-						class="atag-github" href="https://github.com/bjmin17">&nbsp;&nbsp;
-							- BJ.MIN</a></span>
-				</div>
-			</div>
-			<div class="col-sm-3">
-				<div>
-					<small> 광주광역시 북구 경양로170<br /> 한경빌딩 5층
-					</small>
-				</div>
-				<div>
-					<small> &copy; copyRight qussoa@naver.com </small>
-				</div>
-			</div>
-		</div>
-	</div>
-</footer>
+<%@ include file="/WEB-INF/views/include/include-footer.jspf" %>
+<!-- Modal -->
+<form:form modelAttribute="reviewVO" action="${rootPath}/user/reivew" method="POST" class="modal_insert"> 
+  <div
+    class="modal fade"
+    id="staticBackdrop"
+    data-backdrop="static"
+    data-keyboard="false"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="staticBackdropLabel"
+    aria-hidden="true"
+    style="top: 250px;"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title m_tit" id="staticBackdropLabel">리뷰쓰기</h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div>
+            <label>제목</label>
+            <input id="title" name="r_title" class="md_tit" type="text" />
+            <!--별점-->
+            <div class="starRev one-line">
+              <label class="la_st_box">
+                별점
+                <span class="starR">별1</span>
+                <span class="starR">별2</span>
+                <span class="starR">별3</span>
+                <span class="starR">별4</span>
+                <span class="starR">별5</span>
+              </label>
+              <span class="md_sub">*상품의 별점을 1~5까지 선택해주세요</span>
+            </div>
+          </div>
+          <textarea class="txt_box" id="text" name="r_text" placeholder="후기를 작성해 주세요"></textarea>
+          <input type="file" />
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="bt_close" data-dismiss="modal">
+            닫기
+          </button>
+          <button type="button" class="bt-save">저장</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </form:form>
 </html>

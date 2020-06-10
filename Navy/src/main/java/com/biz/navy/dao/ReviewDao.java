@@ -18,8 +18,11 @@ public interface ReviewDao {
 	public ReviewVO findByRId(long r_id);
 	
 	// Review 등록
-	@Insert(" INSERT INTO tbl_review (r_id, r_text, r_start, r_code, r_auth, r_date, r_image, r_like) "
-			+ " VALUES(SEQ_REVIEW.NEXTVAL, #{r_text}, #{r_start}, #{r_code}, #{r_auth}, #{r_date}, #{r_image}, #{r_like}) ")
+	@Insert(" INSERT INTO tbl_review (r_id, r_text, r_title, r_code, r_auth, r_date, r_image, r_like) "
+			+ " VALUES(SEQ_REVIEW.NEXTVAL, #{r_text,jdbcType=VARCHAR}, "
+			+ " #{r_title,jdbcType=VARCHAR}, #{r_code,jdbcType=VARCHAR}, "
+			+ " #{r_auth,jdbcType=VARCHAR}, #{r_date,jdbcType=VARCHAR}, "
+			+ " #{r_image,jdbcType=VARCHAR}, #{r_like,jdbcType=VARCHAR}) ")
 	public int insert(ReviewVO reviewVO);
 	
 	@Select("SELECT * FROM tbl_review WHERE r_code = #{r_code}")

@@ -114,3 +114,18 @@
   >- CartService에 findByUserId 메서드 추가
  * include-paging 수정
  * pageService에 listperpage 변경
+ 
+## 06-07
+ * 장바구니 페이지 수량 수정 +- 코드완료 
+ * 구매내역 페이징 완료
+ 
+## 06-08
+ * 회원정보 수정 UI 적용
+ * 회원정보 수정 완료
+ * 구매내역 페이징 완료
+ * 배송중 리스트 페이징 완료
+
+## 06-10
+ * 구매내역에서 리뷰 작성 DB저장 완료
+  > - review insert get 삭제
+  > - review insert get 코드 -> cart/payment_list로 이동

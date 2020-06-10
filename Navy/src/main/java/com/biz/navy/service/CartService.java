@@ -10,6 +10,7 @@ import com.biz.navy.domain.CartVO;
 import com.biz.navy.domain.ColorVO;
 import com.biz.navy.domain.PageVO;
 import com.biz.navy.domain.SizeVO;
+import com.biz.navy.domain.UserDetailsVO;
 
 public interface CartService {
 
@@ -59,6 +60,7 @@ public interface CartService {
 	// 배송정보 업데이트
 	public int recipient_update(List<String> bkSeqList, CartVO cartVO);
 
+	public long deliveryCount(String username);
 	public long countDelivery();
 
 	// 주문정보 유저 아이디로 조회

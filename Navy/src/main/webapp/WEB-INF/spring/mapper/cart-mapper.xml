@@ -63,7 +63,7 @@
  		(
  			SELECT /* + FIRST_ROWS_100 */ ROWNUM AS NUM, IP.* FROM
  			(
- 				SELECT /*+ INDEX_DESC(C) */ * FROM tbl_cart C where username = #{username}
+ 				SELECT /*+ INDEX_DESC(C) */ * FROM tbl_cart C where C.username = #{username} AND C.bk_p_status = 'DELIV'
  			)IP
  			WHERE ROWNUM &lt;= #{pageVO.limit,jdbcType=VARCHAR}
  		)TBL

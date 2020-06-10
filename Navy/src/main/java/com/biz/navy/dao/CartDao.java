@@ -11,6 +11,7 @@ import com.biz.navy.domain.CartVO;
 import com.biz.navy.domain.ColorVO;
 import com.biz.navy.domain.PageVO;
 import com.biz.navy.domain.SizeVO;
+import com.biz.navy.domain.UserDetailsVO;
 
 public interface CartDao {
  
@@ -54,8 +55,8 @@ public interface CartDao {
 	public List<CartVO> paymentList(@Param("username")String username, @Param("pageVO")PageVO pageVO);
 	
 	// 관리자가 현재 배송중인 상품이 몇건이나 되는지 조회할 때 
-	@Select("select count(*) from tbl_cart where bk_p_status = 'DELIV' ")
-	public int countDelivery();
+	@Select("select count(*) from tbl_cart where username = #{username} AND bk_p_status = 'DELIV' ")
+	public int deliveryCount(String username);
 	
 	@Update("UPDATE tbl_cart set bk_p_qty = #{bk_p_qty} where bk_id = #{bk_id} ")
 	public int qty_update(@Param("bk_id")long bk_id, @Param("bk_p_qty")int bk_p_qty) ;
@@ -93,6 +94,9 @@ public interface CartDao {
 	// 사용자별로 주문내역 조회
 	@Select("SELECT * FROM tbl_cart WHERE username = #{username}")
 	public List<CartVO> findByUserId(String username);
+
+	@Select("select count(*) from tbl_cart where bk_p_status = 'DELIV' ")
+	public long countDelivery();
 
 	
 

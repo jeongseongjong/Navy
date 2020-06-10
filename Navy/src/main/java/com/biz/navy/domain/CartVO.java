@@ -25,7 +25,7 @@ public class CartVO {
 	private String username;	// 회원 이름
 	
 	private long bk_p_code; 	// 상품코드
-	
+	private long bk_c_code; 	// 컬러코드를 가져올 코드 
 	private String bk_p_name; 	// 상품 이름
 	
 	private int bk_p_oprice;	// 판매가격

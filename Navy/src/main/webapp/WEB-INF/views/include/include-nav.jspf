@@ -39,7 +39,7 @@ $(function(){
 	          	</li>
 	          	<!--로그인시 mypage-->
 	          	<li class="nav-item">
-	            	<a class="nav-link" href="${rootPath}/user/mypage">mypage</a>
+	            	<a class="nav-link" href="${rootPath}/user/myinfo">mypage</a>
 	          	</li>
           	</sec:authorize>
     	</ul>

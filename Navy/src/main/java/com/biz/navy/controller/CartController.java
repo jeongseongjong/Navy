@@ -1,6 +1,9 @@
 package com.biz.navy.controller;
 
 import java.security.Principal;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -18,6 +21,7 @@ import com.biz.navy.domain.CartVO;
 import com.biz.navy.domain.ColorVO;
 import com.biz.navy.domain.PageVO;
 import com.biz.navy.domain.ProductVO;
+import com.biz.navy.domain.ReviewVO;
 import com.biz.navy.domain.SizeVO;
 import com.biz.navy.domain.UserDetailsVO;
 import com.biz.navy.service.CartService;
@@ -72,6 +76,7 @@ public class CartController {
 		//
 		log.debug("오류 " + cartVO.getUsername());
 		log.debug("카트:" + cartVO.toString());
+		log.debug("카트에 담길 컬러 코드 " +colorVO.getC_code());
 		int ret = cartService.insert(cartVO);
 		log.debug("여기는 카트 메서드의 인서트실행 코드 " + ret);
 
@@ -102,12 +107,16 @@ public class CartController {
 
 	// 배송중 상품을 보여주는 메서드
 	@RequestMapping(value = "/delivery_view", method = RequestMethod.GET)
-	public String cart_list_delivery(Principal principal, Authentication authen, Model model) {
-
+	public String cart_list_delivery(Principal principal, Authentication authen, Model model,
+										@RequestParam(value="currentPageNo", required = false, defaultValue = "1")int currentPageNo) {
+		
+		long totalCount = cartService.countDelivery();
+		
+		PageVO pageVO = pageService.getPagination(totalCount, currentPageNo);
 		UsernamePasswordAuthenticationToken upa = (UsernamePasswordAuthenticationToken) principal;
 		try {
 			UserDetailsVO userVO = (UserDetailsVO) upa.getPrincipal();
-			List<CartVO> deliveryList = cartService.selectDelivery(userVO.getUsername());
+			List<CartVO> deliveryList = cartService.paymentList(userVO.getUsername(), pageVO);
 			UserDetailsVO userList = userService.findByUserName(userVO.getUsername());
 			log.debug("여기는 딜리버리 리스트 " + deliveryList.toString());
 			log.debug("구매자 정보" + userList.toString());
@@ -116,7 +125,7 @@ public class CartController {
 			model.addAttribute("DELIVERY_LIST", deliveryList);
 
 			model.addAttribute("LIST_COUNT", size - 1);
-
+			
 			log.debug("딜리버리 리스트 " + deliveryList);
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -155,7 +164,6 @@ public class CartController {
 		log.debug("삭제할 상품 seq 번호 " + ret);
 
 		return "redirect:/cart/view";
-
 	}
 
 	// 장바구니 전체 삭제 메서드
@@ -198,31 +206,37 @@ public class CartController {
 
 	// 결제완료 상품을 보여주는 메서드
 	@RequestMapping(value = "/payment_list", method = RequestMethod.GET)
-	public String payment_list(Principal principal, Authentication authen, Model model, 
-							@RequestParam(value="currentPageNo", required = false, defaultValue = "1")int currentPageNo) {
+	public String payment_list(
+						Principal principal, Authentication authen, 
+						Model model, ProductVO productVO,
+						@RequestParam(value="currentPageNo", required = false, defaultValue = "1")int currentPageNo) {
 
-		// 구매내역 리스트 개수를 totalCount에 집어넣기
-		long totalCount = cartService.countDelivery();
-		log.debug("구매내역 총 개수 " + totalCount);
-		
-		// 구매내역 개수와 현재 페이지를 pageVO에 주입
-		PageVO pageVO = pageService.getPagination(totalCount, currentPageNo);
-		log.debug("페이먼트리스트 pageVO " +pageVO);
 		UsernamePasswordAuthenticationToken upa = (UsernamePasswordAuthenticationToken) principal;
+		
 		try {
 			UserDetailsVO userVO = (UserDetailsVO) upa.getPrincipal();
+			
+			long totalCount = cartService.deliveryCount(userVO.getUsername());
+			PageVO pageVO = pageService.getPagination(totalCount, currentPageNo);
+
 			List<CartVO> deliveryList = cartService.paymentList(userVO.getUsername(), pageVO);
 			UserDetailsVO userList = userService.findByUserName(userVO.getUsername());
 			log.debug("여기는 페이먼트 리스트" + deliveryList.toString());
 			log.debug("구매자 정보" + userList.toString());
 			
-			int size = deliveryList.size();
+			ReviewVO reviewVO = new ReviewVO();
+			LocalDate localDate = LocalDate.now();
+			String curDate = localDate.toString();
+			DateTimeFormatter dt = DateTimeFormatter.ofPattern("HH:mm:ss");
+			LocalTime localTime = LocalTime.now();
+			String curTime = localTime.format(dt).toString();
+			reviewVO.setR_date(curDate + " " + curTime);
+			reviewVO.setR_auth(userVO.getUsername());
 			
 			model.addAttribute("USER_LIST", userList);
 			model.addAttribute("DELIVERY_LIST", deliveryList);
-			model.addAttribute("pageVO" + pageVO);
+			model.addAttribute("pageVO" , pageVO);
 			log.debug("컨트롤러에서 스타트 페이지번호 " +pageVO.getStartPageNo());
-			model.addAttribute("LIST_COUNT", size - 1);
 			log.debug("cart컨트롤러 pageVO " + pageVO);
 			// 페이징에 보내줄 URL들 미리 만들어주기
 			model.addAttribute("controller","cart");
@@ -238,21 +252,31 @@ public class CartController {
 
 	// 배송중 상품을 보여주는 메서드
 	@RequestMapping(value = "/delivery_list", method = RequestMethod.GET)
-	public String delivery_list(Principal principal, Authentication authen, Model model) {
+	public String delivery_list(Principal principal, Authentication authen, Model model,
+								@RequestParam(value="currentPageNo", required = false, defaultValue = "1")int currentPageNo) {
 
 		UsernamePasswordAuthenticationToken upa = (UsernamePasswordAuthenticationToken) principal;
+		
 		try {
 			UserDetailsVO userVO = (UserDetailsVO) upa.getPrincipal();
-			List<CartVO> deliveryList = cartService.selectDelivery(userVO.getUsername());
+
+			
+			long totalCount = cartService.deliveryCount(userVO.getUsername());
+			PageVO pageVO = pageService.getPagination(totalCount, currentPageNo);
+			List<CartVO> deliveryList = cartService.paymentList(userVO.getUsername(), pageVO);
 			UserDetailsVO userList = userService.findByUserName(userVO.getUsername());
 			log.debug("여기는 배송중 리스트" + deliveryList.toString());
 			log.debug("구매자 정보" + userList.toString());
-			int size = deliveryList.size();
+
 			model.addAttribute("USER_LIST", userList);
 			model.addAttribute("DELIVERY_LIST", deliveryList);
+			model.addAttribute("pageVO", pageVO);
 
-			model.addAttribute("LIST_COUNT", size - 1);
 
+			// 페이징에 보내줄 URL들 미리 만들어주기
+			model.addAttribute("controller","cart");
+			model.addAttribute("url","delivery_list");
+			
 			log.debug("결제 리스트 " + deliveryList);
 		} catch (Exception e) {
 			// TODO: handle exception

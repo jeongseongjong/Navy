@@ -5,15 +5,19 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.biz.navy.domain.CartVO;
 import com.biz.navy.domain.ProductVO;
 import com.biz.navy.domain.ReviewVO;
 import com.biz.navy.domain.UserDetailsVO;
@@ -70,6 +74,23 @@ public class UserController {
 		return "PASS_FAIL";
 	}
 	
+	
+	@RequestMapping(value="/myinfo",method=RequestMethod.GET)
+	public String myinfo(Principal principal, Model model) {
+	
+		UsernamePasswordAuthenticationToken upa = (UsernamePasswordAuthenticationToken) principal;
+		
+		UserDetailsVO userVO = (UserDetailsVO)upa.getPrincipal();
+		
+		userVO.setAuthorities(upa.getAuthorities());
+		
+		model.addAttribute("userVO",userVO);
+		
+		log.debug("컨트롤러 마이페이지 겟 " + userVO);
+		
+		return "user/user_info";
+	}
+	
 	@RequestMapping(value="/mypage",method=RequestMethod.GET)
 	public String mypage(Principal principal, Model model) {
 	
@@ -93,46 +114,34 @@ public class UserController {
 		log.debug("컨트롤러 패스워드"+password);
 		int ret = userService.update(userVO, password);
 		log.debug("컨트롤러 마이페이지 포스트 " + ret+"");
-		return "redirect:/logout";
+		return "redirect:/";
 	}
 	
-	//
-	// -- Review 
-	@RequestMapping(value="/review/{id}", method=RequestMethod.GET)
-	public String review(ProductVO productVO, @PathVariable("id") String id, Principal principal, Model model) {
-		long p_code = Long.valueOf(id);
-		productVO = proService.findById(p_code);
-			
-		UsernamePasswordAuthenticationToken upa = (UsernamePasswordAuthenticationToken) principal;
-		UserDetailsVO userVO = (UserDetailsVO)upa.getPrincipal();
-		userVO.setAuthorities(upa.getAuthorities());
+	@ResponseBody
+	@RequestMapping(value = "/review", method = RequestMethod.POST)
+	public String review_input(Principal principal, Authentication authen, 
+								@ModelAttribute("reviewVO") ReviewVO reviewVO, Model model) {
 		
-		ReviewVO reviewVO = new ReviewVO();
+		UsernamePasswordAuthenticationToken upa = (UsernamePasswordAuthenticationToken) principal;
+		UserDetailsVO userVO = (UserDetailsVO) upa.getPrincipal();
+		
+		long p_code = Long.valueOf(reviewVO.getR_code());
+		ProductVO productVO = proService.findById(p_code);
+		model.addAttribute("productVO", productVO);	
+		
+		
 		LocalDate localDate = LocalDate.now();
 		String curDate = localDate.toString();
 		DateTimeFormatter dt = DateTimeFormatter.ofPattern("HH:mm:ss");
 		LocalTime localTime = LocalTime.now();
 		String curTime = localTime.format(dt).toString();
 		reviewVO.setR_date(curDate + " " + curTime);
-		reviewVO.setR_code((int) p_code);
 		reviewVO.setR_auth(userVO.getUsername());
-		
-		model.addAttribute("productVO", productVO);
-		model.addAttribute("userVO",userVO);
-		model.addAttribute("reviewVO", reviewVO);
-		
-		return "user/user_review";
-	}
-	
-	@RequestMapping(value = "/review/{id}", method = RequestMethod.POST)
-	public String review_input(@ModelAttribute("reviewVO") ReviewVO reviewVO, @PathVariable("id") String id, Model model) {
-		long p_code = Long.valueOf(id);
-		ProductVO productVO = proService.findById(p_code);
-		model.addAttribute("productVO", productVO);	
-		
 		log.debug("REVIEW : " + reviewVO.toString());
 		reviewService.insert(reviewVO);
-		return "redirect:/product/detail/" + id;
+		
+//		return "redirect:/cart/payment_list";
+		return "OK";
 	}
 	
 	@RequestMapping("/goPopup")

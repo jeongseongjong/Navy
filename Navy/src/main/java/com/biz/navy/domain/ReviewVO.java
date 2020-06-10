@@ -17,7 +17,7 @@ public class ReviewVO {
 		
    private long r_id; // number primary key,
    private String r_text; // nvarchar2(1000),
-   private int r_start; // int, ?
+   private String r_title; // 리뷰 제목
    private int r_code; // varchar2(6) not null, -- (p_code 참조해서 p_name 가져오기)
    private String r_auth; // varchar2(64),
    private String r_date; // varchar2(40),

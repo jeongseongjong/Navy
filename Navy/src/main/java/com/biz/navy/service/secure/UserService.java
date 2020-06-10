@@ -198,6 +198,10 @@ public class UserService implements UserDetailsService{
 
 		// 암호화된 password를 vo에 직접 담아줘야한다.
 		userVO.setPassword(encPassword);
+		userVO.setPhone(userVO.getPhone());
+		userVO.setAddress(userVO.getAddress());
+		userVO.setAddress_etc(userVO.getAddress_etc());
+		userVO.setEmail(userVO.getEmail());
 		log.debug("서비스 유저VO : " + userVO.toString());
 		int ret = userDao.update(userVO);
 		

@@ -59,19 +59,19 @@
         <nav>
           <ul class="nav nav-tabs justify-content-center">
             <li class="nav-item">
-              <a class="nav-link nav-atag" href="${rootPath}/cart/payment_list">구매내역</a>
+              <a class="nav-link active nav-atag" href="${rootPath}/cart/payment_list">구매내역</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link nav-atag active" href="${rootPath}/cart/delivery_list">배송중</a>
+              <a class="nav-link active nav-atag" href="${rootPath}/cart/delivery_list">배송중</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link nav-atag" href="${rootPath}/cart/view">장바구니</a>
+              <a class="nav-link active nav-atag" href="${rootPath}/cart/view">장바구니</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link nav-atag" href="#">문의내역</a>
+              <a class="nav-link active nav-atag" href="#">문의내역</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link nav-atag" href="#">개인정보</a>
+              <a class="nav-link active nav-atag" href="${rootPath}/user/myinfo">개인정보</a>
             </li>
           </ul>
         </nav>

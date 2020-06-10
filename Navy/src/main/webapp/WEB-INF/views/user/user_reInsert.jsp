@@ -67,9 +67,6 @@ $(function() {
 	<label>날짜 : </label>
 	<form:input id="read3" path="r_date" /><br/>
 	
-	<label>추천수 : </label>
-	<form:input type="number" path="r_like" min="1" max="5" /><br/>
-	
 	<label>내용 : </label>
 	<form:textarea path="r_text" />
 	

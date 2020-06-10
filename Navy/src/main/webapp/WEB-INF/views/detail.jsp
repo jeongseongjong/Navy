@@ -43,7 +43,8 @@ $(function() {
 			} else {
 				$("#colorList").append($("<option/>", {text : '[COLOR 필수] 옵션2을 선택해주세요'}))
 				colorList.forEach(function(vo) {
-					$("#colorList").append($("<option/>", {value : vo.c_color, text : vo.c_color, 'data-id' : vo.c_code, 'data-qty' : vo.c_qty}))
+					$("#colorList").append($("<option/>", {value : vo.c_color, text : vo.c_color, 'data-id' : vo.c_code, 'data-qty' : vo.c_qty
+						,'data-c_seq' : vo.c_code}))
 				})
 			}
 		})
@@ -117,6 +118,9 @@ $(function() {
 			let p_qty = parseInt($("#p_qty").val())
 			let p_color = $("#colorList").val()
 			let p_size = $(".dep-sel").val()
+			let c_code = $("#colorList").data("c_seq")
+			
+			alert(c_code)
 			alert(p_size)
 			alert(p_color)
 			alert("${productVO.p_name}")
