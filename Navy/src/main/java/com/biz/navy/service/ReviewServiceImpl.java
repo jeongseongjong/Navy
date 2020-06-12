@@ -29,9 +29,9 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public String update() {
-		// TODO Auto-generated method stub
-		return null;
+	public int update(ReviewVO reviewVO) {
+		
+		return reviewDao.update(reviewVO);
 	}
 
 	@Override

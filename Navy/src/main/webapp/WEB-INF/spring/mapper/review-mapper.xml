@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+	<mapper namespace="com.biz.navy.dao.ReviewDao">
+	
+		<insert id="insert" parameterType="reviewVO">
+			INSERT INTO tbl_review (
+			r_id,
+			r_title,
+			r_auth,
+			r_star,
+			r_like,
+			r_text,
+			r_date,
+			r_code,
+			r_image
+			)VALUES(
+			SEQ_REVIEW.NEXTVAL,
+			#{r_title,jdbcType=VARCHAR},
+			#{r_auth,jdbcType=VARCHAR},
+			#{r_star,jdbcType=VARCHAR},
+			#{r_like,jdbcType=VARCHAR},
+			#{r_text,jdbcType=VARCHAR},
+			#{r_date,jdbcType=VARCHAR},
+			#{r_code,jdbcType=VARCHAR},
+			#{r_image,jdbcType=VARCHAR}
+			)
+		</insert>
+		
+		<update id="update" parameterType="reviewVO">
+		
+		UPDATE tbl_review SET
+		r_like = #{r_like,jdbcType=VARCHAR}
+		
+		where r_id = #{r_id}
+		
+		</update>
+	</mapper>

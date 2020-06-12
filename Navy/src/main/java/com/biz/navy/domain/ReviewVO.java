@@ -24,5 +24,6 @@ public class ReviewVO {
    private String r_time; // VARCHAR2(40),
    private String r_image; // varchar2(255),
    private int r_like; // number -- 추천
+   private int r_star; // number -- 별점
 
 }

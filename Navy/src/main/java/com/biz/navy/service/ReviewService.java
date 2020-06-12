@@ -13,7 +13,7 @@ public interface ReviewService {
 	public List<ReviewVO> selectAll();
 	
 	// 리뷰수정
-	public String update();
+	public int update(ReviewVO reviewVO);
 	
 	// 리뷰삭제
 	public String delete();

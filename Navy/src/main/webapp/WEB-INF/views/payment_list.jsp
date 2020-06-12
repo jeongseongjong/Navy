@@ -14,10 +14,12 @@ $(function(){
 		let bk_p_code = $("#bk_p_code").val()
 		let text = $("#text").val()
 		let title = $("#title").val()
+		let star = $("#star").val()
 
 		alert(bk_p_code)
 		alert(text)
 		alert(title)
+		alert(star)
 		
 		$.ajax({
 			url : "${rootPath}/user/review",
@@ -26,11 +28,12 @@ $(function(){
 				r_code : bk_p_code,
 				r_title : title,
 				r_text : text,
+				r_star : star,
 				"${_csrf.parameterName}" : "${_csrf.token}"
 			},
 			success : function(result){
 				if(result == "OK"){
-					alert("리뷰 작성 성공" + bk_p_code)
+					alert("리뷰 작성 성공"+ bk_p_code)
 					document.location.href = "${rootPath}/cart/payment_list"	
 				}else{
 					alert("작성실패")
@@ -221,11 +224,16 @@ $(function(){
             <div class="starRev one-line">
               <label class="la_st_box">
                 별점
-                <span class="starR">별1</span>
-                <span class="starR">별2</span>
-                <span class="starR">별3</span>
-                <span class="starR">별4</span>
-                <span class="starR">별5</span>
+                <input
+                  type="range"
+                  min="0"
+                  max="5"
+                  step="1"
+                  onmousemove="rangevalue1.value=value"
+                  id="star"
+                  name="r_star"
+                />
+                <output class="ran_output" id="rangevalue1"></output>
               </label>
               <span class="md_sub">*상품의 별점을 1~5까지 선택해주세요</span>
             </div>

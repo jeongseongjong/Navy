@@ -95,10 +95,8 @@ public interface CartDao {
 	@Select("SELECT * FROM tbl_cart WHERE username = #{username}")
 	public List<CartVO> findByUserId(String username);
 
-<<<<<<< HEAD
 	@Select("select count(*) from tbl_cart where bk_p_status = 'DELIV' ")
 	public long countDelivery();
-=======
 	// 주문정보 모두 불러와서 페이징
 	public List<CartVO> selectAllPaging(PageVO pageVO);
 
@@ -107,9 +105,6 @@ public interface CartDao {
 
 	// 주문정보를 검색하고 페이징하기 위해 필요한 총 리스트 개수
 	public long countSearch(@Param("searchList") List<String> searchList);
->>>>>>> bb6b86628a7f835dc0196c4be4818b7cf6b9880a
-
-	
 
 
 }

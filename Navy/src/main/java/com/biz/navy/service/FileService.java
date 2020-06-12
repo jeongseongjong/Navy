@@ -27,7 +27,6 @@ public class FileService {
 		
 		log.debug("파일서비스 파일 경로 : "+filePath);
 		
-		
 		if(mFile == null) {
 			return null;
 		}

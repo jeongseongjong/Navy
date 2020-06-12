@@ -2,16 +2,12 @@ package com.biz.navy.service;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Select;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.biz.navy.domain.ColorVO;
+import com.biz.navy.domain.InventoryVO;
 import com.biz.navy.domain.PageVO;
 import com.biz.navy.domain.ProductImgVO;
-import com.biz.navy.domain.ProductUpdateVO;
-import com.biz.navy.domain.ColorVO;
-import com.biz.navy.domain.InventoryChangeVO;
-import com.biz.navy.domain.InventoryVO;
 import com.biz.navy.domain.ProductVO;
 import com.biz.navy.domain.SizeVO;
 

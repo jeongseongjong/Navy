@@ -258,7 +258,7 @@ i.btn.orange.btn_arr::after {
   right: 4px;
   width: 28px;
   height: 28px;
-  background: url("../img/del.jpg");
+  background: url("./img/del.jpg");
   background-size: cover;
   font-size: 0;
   border: 0;
@@ -329,7 +329,7 @@ i.btn.orange.btn_arr::after {
 .prod .amount button.minus {
   width: 20px;
   height: 20px;
-  background: url("../img/minus.jpg");
+  background: url("./img/minus.jpg");
   background-size: cover;
   border: 0;
   outline: 0;
@@ -371,7 +371,7 @@ i.btn.orange.btn_arr::after {
 .prod .amount button.plus {
   width: 20px;
   height: 20px;
-  background: url("../img/plus.jpg");
+  background: url("./img/plus.jpg");
   background-size: cover;
   border: 0;
   outline: 0;
@@ -498,6 +498,7 @@ i.btn.orange.btn_arr::after {
   display: inline-block;
   position: relative;
   padding-top: 15px;
+  width: 100%;
 }
 
 /* 별점 css*/
@@ -566,14 +567,17 @@ i.btn.orange.btn_arr::after {
 }
 
 .bt-review-wr {
-  border: 1px solid #b2b4b9;
+  border: none;
+  border-bottom: 1px solid #dee2e6;
   background-color: white;
   width: 100px;
   height: 30px;
   margin-top: 10px;
   outline: none;
+  outline-style: none;
   text-align: center;
   right: 100px;
+  display: none;
   position: absolute;
 }
 
@@ -609,4 +613,10 @@ li {
 
 .layer {
   display: none;
+}
+
+.re_cmd {
+  text-align: right;
+  right: 0;
+  font-weight: 700;
 }

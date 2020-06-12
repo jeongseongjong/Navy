@@ -18,11 +18,6 @@ public interface ReviewDao {
 	public ReviewVO findByRId(long r_id);
 	
 	// Review 등록
-	@Insert(" INSERT INTO tbl_review (r_id, r_text, r_title, r_code, r_auth, r_date, r_image, r_like) "
-			+ " VALUES(SEQ_REVIEW.NEXTVAL, #{r_text,jdbcType=VARCHAR}, "
-			+ " #{r_title,jdbcType=VARCHAR}, #{r_code,jdbcType=VARCHAR}, "
-			+ " #{r_auth,jdbcType=VARCHAR}, #{r_date,jdbcType=VARCHAR}, "
-			+ " #{r_image,jdbcType=VARCHAR}, #{r_like,jdbcType=VARCHAR}) ")
 	public int insert(ReviewVO reviewVO);
 	
 	@Select("SELECT * FROM tbl_review WHERE r_code = #{r_code}")
@@ -31,6 +26,8 @@ public interface ReviewDao {
 	// 유저ID로 사용자가 입력한 review 조회	
 	@Select("SELECT * FROM tbl_review WHERE r_auth = #{username}")
 	public List<ReviewVO> findByUserId(String username);
+
+	public int update(ReviewVO reviewVO);
 	
 	
 	

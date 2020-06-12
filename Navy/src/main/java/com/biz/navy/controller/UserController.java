@@ -150,4 +150,15 @@ public class UserController {
         return "/goPopup";
 
     }
+	
+	@ResponseBody
+	@RequestMapping(value="/update", method=RequestMethod.POST)
+	public String update(Principal principal, Authentication authen, ReviewVO reviewVO) {
+	
+		reviewVO.setR_like(reviewVO.getR_like());
+		
+		reviewService.update(reviewVO);
+		
+		return "OK";
+	}
 }

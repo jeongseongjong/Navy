@@ -130,4 +130,17 @@
 		WHERE NUM &gt; = #{offset,jdbcType=VARCHAR}
 	</select>
 	
+	<insert id="insertWithImages" parameterType="list">
+		INSERT INTO tbl_r_images(r_img_seq, r_img_p_code, r_img_origin_name, r_img_upload_name)
+		SELECT SEQ_REVIEW_IMAGE.NEXTVAL, sub.* from(
+		<foreach collection="list" item="img" separator="UNION ALL">
+			SELECT
+				#{img.r_img_p_code,jdbcType=VARCHAR},
+				#{img.r_img_origin_name,jdbcType=VARCHAR},
+				#{img.r_img_upload_name,jdbcType=VARCHAR}
+			FROM dual
+		</foreach>
+		) sub
+	</insert>
+	
 </mapper> 
