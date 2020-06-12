@@ -330,6 +330,21 @@
         </div>
 
         <!-- review Q&A-->
+        <script>
+          $(function () {
+            $(".nav-item").click(function () {
+              let id = $(this).attr("id");
+              if (id == "li_click") {
+                $("#btn_que").show();
+
+                // alert($("#btn_que").css("display"));
+                // if ($("#btn_que").css("display") === "none") {
+              } else {
+                $("#btn_que").hide();
+              }
+            });
+          });
+        </script>
         <ul class="nav nav-tabs" id="myTab" role="tablist">
           <li class="nav-item">
             <a
@@ -345,7 +360,7 @@
           </li>
           <li class="nav-item">
             <a
-              class="nav-link"
+              class="nav-link active"
               id="profile-tab"
               data-toggle="tab"
               href="#profile"
@@ -355,17 +370,27 @@
               >REVIEW</a
             >
           </li>
-          <li class="nav-item">
+          <li class="nav-item" id="li_click">
             <a
-              class="nav-link active"
+              class="nav-link"
               id="contact-tab"
               data-toggle="tab"
               href="#contact"
               role="tab"
               aria-controls="contact"
               aria-selected="false"
-              >Q&A</a
+              >Q&A
+            </a>
+          </li>
+          <li>
+            <button
+              class="bt-review-wr"
+              data-toggle="modal"
+              data-target="#staticBackdrop"
+              id="btn_que"
             >
+              질문하기
+            </button>
           </li>
         </ul>
         <!--tab 본문-->
@@ -383,7 +408,7 @@
           <!--review -->
 
           <div
-            class="tab-pane fade"
+            class="tab-pane fade show active"
             id="profile"
             role="tabpanel"
             aria-labelledby="profile-tab"
@@ -403,6 +428,10 @@
                   <span class="starR">별4</span>
                   <span class="starR">별5</span>
                 </label>
+
+                <!--추천-->
+
+                <div class="re_cmd"><span>♡</span>10</div>
               </div>
 
               <!-- 별점 end -->
@@ -445,6 +474,9 @@
                   <span class="starR">별4</span>
                   <span class="starR">별5</span>
                 </label>
+                <!--추천-->
+
+                <div class="re_cmd"><span>♡</span>5</div>
               </div>
 
               <!-- 별점 end -->
@@ -487,6 +519,9 @@
                   <span class="starR on">별4</span>
                   <span class="starR">별5</span>
                 </label>
+                <!--추천-->
+
+                <div class="re_cmd"><span>♡</span>0</div>
               </div>
 
               <!-- 별점 end -->
@@ -518,20 +553,11 @@
           </div>
 
           <div
-            class="tab-pane fade show active"
+            class="tab-pane fade"
             id="contact"
             role="tabpanel"
             aria-labelledby="contact-tab"
           >
-            <div class="d-flex justify-content-end">
-              <button
-                class="bt-review-wr"
-                data-toggle="modal"
-                data-target="#staticBackdrop"
-              >
-                질문하기
-              </button>
-            </div>
             <!--구매자 id-->
             <div class="container">
               <div
