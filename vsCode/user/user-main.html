@@ -670,11 +670,14 @@
             <div class="starRev one-line">
               <label class="la_st_box">
                 별점
-                <span class="starR">별1</span>
-                <span class="starR">별2</span>
-                <span class="starR">별3</span>
-                <span class="starR">별4</span>
-                <span class="starR">별5</span>
+                <input
+                  type="range"
+                  min="0"
+                  max="5"
+                  step="1"
+                  onmousemove="rangevalue1.value=value"
+                />
+                <output class="ran_output" id="rangevalue1"></output>
               </label>
               <span class="md_sub">*상품의 별점을 1~5까지 선택해주세요</span>
             </div>
