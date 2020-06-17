@@ -43,46 +43,70 @@ public class CartController {
 	private final UserService userService;
 	private final PageService pageService;
 
-// <<<<<<< HEAD
-	@ResponseBody
-	@RequestMapping(value = "/cart", method = RequestMethod.POST)
-	public String cart(CartVO cartVO, Authentication authen, ProductVO productVO, String[] size, SizeVO sizeVO,
-			ColorVO colorVO) {
+	// detail에서 상품 선택시 바로 cart에 저장
+    @ResponseBody
+    @RequestMapping(value = "/cartlist", method = RequestMethod.POST)
+    public Object cartlist(CartVO cartVO, Authentication authen, ProductVO productVO, String[] size, SizeVO sizeVO, ColorVO colorVO, Model model) {
+    	log.debug("가격 있니 > " + productVO.toString());
+       try {
+    	  UserDetailsVO userVO = (UserDetailsVO) authen.getPrincipal();
+    	   
+          cartVO.setBk_p_code(productVO.getP_code());
+          cartVO.setBk_p_name(productVO.getP_name());
+          cartVO.setUsername(userVO.getUsername());
+          cartVO.setBk_p_oprice((int) productVO.getP_price());
+          cartVO.setBk_p_size(productVO.getP_size());
+          cartVO.setBk_p_color(productVO.getP_color());
+          cartVO.setBk_p_qty((int) productVO.getP_qty());
+          cartVO.setBk_p_status("DETAIL");
+       } catch (Exception e) {
+          return "LOGIN_FAIL";
+       }
+       
+       log.debug("오류 " + cartVO.getUsername());
+       log.debug("카트:" + cartVO.toString());
+       log.debug("카트에 담길 컬러 코드 " +colorVO.getC_code());
+       
+       int ret = cartService.insert(cartVO);
+       log.debug("여기는 카트 메서드의 인서트실행 코드 " + ret);
+       
+       return cartVO;
+    }
+    
+    // 상품 리스트로 장바구니에 담길 method
+    @ResponseBody
+    @RequestMapping(value="/detail_to_cart",method=RequestMethod.GET)
+    public Integer detail_to_cart(@RequestParam("detailBuyList[]") List<String> detailBuyList) {
+    	log.debug("담겨있음> " + detailBuyList);
+    	Integer ret = cartService.detail_to_cart(detailBuyList);
+       
+       return ret;
+    }
+    
+    // 상품 리스트로 바로주문에 담길 method
+    @ResponseBody
+    @RequestMapping(value="/detail_to_deli",method=RequestMethod.GET)
+    public Integer detail_to_deli(@RequestParam("detailBuyList[]") List<String> detailBuyList) {
+    	log.debug("담겨있음> " + detailBuyList);
+    	Integer ret = cartService.detail_to_deli(detailBuyList);
+       
+       return ret;
+    }
+    
+    // 디테일에서 상품 1개씩 삭제
+	@RequestMapping(value = "/detail_cart_one_delete/{seq}", method = RequestMethod.GET)
+	public String detail_cart_one_delete(@PathVariable("seq") String seq, String bk_p_code) {
+		// 카트에 담겨있는 p_code
+		long id = Long.valueOf(bk_p_code);
+		
+		// 카트 번호
+		long longSeq = Long.valueOf(seq);
+		int ret = cartService.deleteOne(longSeq);
+		log.debug("삭제할 상품 seq 번호 " + ret);
 
-		log.debug("프로덕트" + productVO.toString());
-
-		try {
-			// 카트 VO에서 시큐리티로 로그인한 사용자 이름 가져오기
-			/////////////// 이 아랫줄을 보아라!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-			UserDetailsVO userVO = (UserDetailsVO) authen.getPrincipal();
-//			cartVO.setUsername(userVO.getUsername());
-//			cartVO.setBk_p_code(productVO.getP_code()+"");
-
-			cartVO = CartVO.builder()
-					.bk_p_code(productVO.getP_code())
-					.bk_p_name(productVO.getP_name())
-					.username(userVO.getUsername())
-					.bk_p_oprice((int) productVO.getP_price())
-					.bk_p_size(productVO.getP_size())
-					.bk_p_color(productVO.getP_color())
-					.bk_p_qty((int) productVO.getP_qty())
-					.build();
-
-		} catch (Exception e) {
-
-			return "LOGIN_FAIL";
-		}
-
-		//
-		log.debug("오류 " + cartVO.getUsername());
-		log.debug("카트:" + cartVO.toString());
-		log.debug("카트에 담길 컬러 코드 " +colorVO.getC_code());
-		int ret = cartService.insert(cartVO);
-		log.debug("여기는 카트 메서드의 인서트실행 코드 " + ret);
-
-		return "OK";
-
+		return "redirect:/product/detail/" + id;
 	}
+    
 // <<<<<<< HEAD
 
 	// 장바구니 목록

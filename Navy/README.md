@@ -148,3 +148,18 @@
 ## 06-10
  * 관리자 - 상품 수정 CSS 적용, 이미지 업로드, 수량 변동내역 DB에 저장
 >>>>>>> bb6b86628a7f835dc0196c4be4818b7cf6b9880a
+
+## 06-17
+ * CartController
+ 	> /cart method > /cartlist 변경 후 cartVO.setBk_p_status("DETAIL") 추가
+ 	> /detail_to_cart, /detail_to_deli, /detail_cart_one_delete/{seq} 추가
+ * cartDao, cart-mapper, CartServiceImpl
+ 	> detail_to_cart(List<String> detailBuyList); method 추가
+	> findByBkPCode(long bk_p_code); method 추가
+	> detail_to_deli(List<String> detailBuyList); method 추가
+ * cart-mapper
+ 	> insert 에 selectKey 추가
+ * CartServiceImpl
+  > cartVO.setBk_p_status("CART"); 주석처리
+ * detail.jsp
+  > 상품 디테일 장바구니(.btn-cart) / 바로주문(.bt-buy) 리스트 저장 완료(script 수정)

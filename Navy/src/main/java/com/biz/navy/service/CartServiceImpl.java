@@ -61,7 +61,7 @@ public class CartServiceImpl implements CartService{
 	@Override
 	public int insert(CartVO cartVO) {
 
-		cartVO.setBk_p_status("CART");
+		// cartVO.setBk_p_status("CART");
 		return cartDao.insert(cartVO);
 	}
 
@@ -191,7 +191,36 @@ public class CartServiceImpl implements CartService{
 	public List<CartVO> findByUserId(String username) {
 		return cartDao.findByUserId(username);
 	}
+
+	@Override
+	public Integer detail_to_cart(List<String> detailBuyList) {
+		List<CartVO> cartList = new ArrayList<CartVO>();
+		for(String id : detailBuyList) {
+			CartVO cartVO = cartDao.findbyBkId(id);
 	
+			// cartVO.setBk_p_buyTime(DateTime.Date() + " " + DateTime.Time());
+			cartList.add(cartVO);
+		}
+		
+		return cartDao.detail_to_cart(detailBuyList);
+	}
+
+	@Override
+	public List<CartVO> findByBkPCode(long bk_p_code) {
+		return cartDao.findByBkPCode(bk_p_code);
+	}
+
+	@Override
+	public Integer detail_to_deli(List<String> detailBuyList) {
+		List<CartVO> cartList = new ArrayList<CartVO>();
+		for(String id : detailBuyList) {
+			CartVO cartVO = cartDao.findbyBkId(id);
+	
+			cartList.add(cartVO);
+		}
+		
+		return cartDao.detail_to_deli(detailBuyList);
+	}
 	
 
 

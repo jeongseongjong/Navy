@@ -106,5 +106,15 @@ public interface CartDao {
 	// 주문정보를 검색하고 페이징하기 위해 필요한 총 리스트 개수
 	public long countSearch(@Param("searchList") List<String> searchList);
 
+	// 디테일 화면에서 장바구니로
+	public int detail_to_cart(List<String> detailBuyList);
+	
+	// 카트테이이블에서 상품 코드 찾기
+	@Select("SELECT * FROM tbl_cart WHERE bk_p_code = #{bk_p_code}")
+	public List<CartVO> findByBkPCode(long bk_p_code);
+
+	// 디테일 화면에서 바로 주문으로
+	public Integer detail_to_deli(List<String> detailBuyList);
+
 
 }

@@ -68,10 +68,17 @@ public interface CartService {
 	
 	// 총 개수 세기 
 	public long totalCount(String search);
-
+	
 	// 관리자 유저 정보 화면에서 사용자가 주문한 내역 조회
 	public List<CartVO> findByUserId(String username);
-	
 
+	// 상품 디테일에 있는 상품을 장바구니로 담는 method
+	public Integer detail_to_cart(List<String> detailBuyList);
+
+	// 카트테이블에서 상품 코드 찾기
+	public List<CartVO> findByBkPCode(long bk_p_code);
+
+	// 상품 디테일에 있는 상품을 바로 주문로 담는 method
+	public Integer detail_to_deli(List<String> detailBuyList);
 	
 }
