@@ -147,6 +147,7 @@ $(function() {
 	
 	// 수량 증가
 	$(document).on("click","button.plus",function() {
+<<<<<<< HEAD
 		var n = $('.amount').index(this);
 	    var num = $(".bk_qty:eq("+n+")").val();
 	    if(num == 100) {
@@ -154,6 +155,19 @@ $(function() {
 	    } else {
 	    	num = $(".bk_qty:eq("+n+")").val(num*1+1); 
 	    }
+=======
+		let p_qty = parseInt($("#p_qty").val())
+		// alert(p_qty)
+		
+		if(p_qty <= 100) {
+			$("#p_qty").append("value", "1")
+					
+		} else {
+			var p_qtyplus = parseInt(p_qty) + 1 
+			$("#p_qty").append("value", p_qtyplus)
+		}
+		
+>>>>>>> 48d826b495a852cd2c0bcd165b0705613c6b31f9
 	})
 	
 	// 디테일 선택된 상품 삭제

@@ -100,6 +100,7 @@
   > - 테이블 tbl_cs_comment 추가
   > - 시퀀스 SEQ_CS_COMMENT 추가
  * 고객센터 댓글에 답글 추가
+<<<<<<< HEAD
  
 ## 06-05
  * 관리자 상품 수정에서 대표이미지 설정
@@ -163,3 +164,10 @@
   > cartVO.setBk_p_status("CART"); 주석처리
  * detail.jsp
   > 상품 디테일 장바구니(.btn-cart) / 바로주문(.bt-buy) 리스트 저장 완료(script 수정)
+=======
+>>>>>>> 7bb0c741c2be1df428dda86c1f268bbfcf4ea6d3
+
+## 06-05
+ * Detail > 상품 UI 재수정
+  
+>>>>>>> 48d826b495a852cd2c0bcd165b0705613c6b31f9
