@@ -6,6 +6,10 @@
 <mapper namespace="com.biz.navy.dao.CartDao">
 
 <insert id="insert">
+	<selectKey resultType="Long" order="BEFORE" keyColumn="id" keyProperty="bk_id" >
+		SELECT SEQ_CART.NEXTVAL AS ID FROM DUAL
+	</selectKey>
+	
 	INSERT INTO tbl_cart(
 	
 	bk_id,
@@ -19,7 +23,7 @@
 	bk_p_status
 	
 	)VALUES(
-	seq_cart.nextval,
+	#{bk_id},
 	#{username,jdbcType=VARCHAR},
 	#{bk_p_code,jdbcType=VARCHAR},
 	#{bk_p_name,jdbcType=VARCHAR},
@@ -142,5 +146,31 @@
 		</foreach>
 		) sub
 	</insert>
+	
+	<!-- 디테일에서 장바구니 저장  -->
+	<update id="detail_to_cart" parameterType="List">
+	
+		UPDATE tbl_cart
+		SET bk_p_status = 'CART',
+		bk_p_buyTime = sysdate
+		WHERE bk_id IN (
+		<foreach collection="list" item="cart" separator=", ">
+		#{cart}
+		</foreach>
+		
+		)
+	</update>
+	
+	<!-- 디테일에서 바로주문 저장  -->
+	<update id="detail_to_deli" parameterType="List">
+		UPDATE tbl_cart
+		SET bk_p_status = 'DELIV',
+		bk_p_buyTime = sysdate
+		WHERE bk_id IN (
+		<foreach collection="list" item="cart" separator=", ">
+		#{cart}
+		</foreach>
+		)
+	</update>
 	
 </mapper> 
